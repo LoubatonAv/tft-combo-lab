@@ -1,0 +1,844 @@
+MetaTFT
+​
+Download App
+EN
+Comps
+Stats
+Players
+Tools
+Info
+Team Builder
+Augments
+Units
+Data Explorer
+Items
+Traits
+Trends
+New!
+Gods Tier List
+New!
+Tacticians
+Want To Win More Games?
+Download the free MetaTFT in-game App for more features and live insights
+Download Now! 
+Ads help to pay our server costs
+TFT Champion Tier List
+Stats on the best tft champions to play in set 17. Select a unit to see the best items and builds for that unit. Data updates every 5 minutes.
+Last Updated:
+2 minutes ago
+Comps Analyzed:
+3,392,052
+Ranked
+17.4b
+Last 3 Days
+Platinum+
+Cost:
+1
+2
+3
+4
+5
+Unit
+	
+Tier
+	
+Avg Place
+	
+Win Rate
+	
+Frequency
+	
+Popular Items
+
+
+Apex Primordian
+	
+S
+	
+1.94
+	
+52.6%
+	
+2,566 0.1%
+	
+
+
+Jhin
+	
+S
+	
+3.85
+	
+19.3%
+	
+634,130 18.7%
+	
+
+
+Shen
+	
+S
+	
+3.95
+	
+20.2%
+	
+635,619 18.7%
+	
+
+
+Sona
+	
+S
+	
+3.97
+	
+18.9%
+	
+621,767 18.3%
+	
+
+
+Bard
+	
+S
+	
+3.97
+	
+18.4%
+	
+648,715 19.1%
+	
+
+
+Blitzcrank
+	
+S
+	
+3.97
+	
+20.3%
+	
+1,070,438 31.6%
+	
+
+
+Rhaast
+	
+S
+	
+4.11
+	
+17.0%
+	
+898,602 26.5%
+	
+
+
+Fiora
+	
+S
+	
+4.13
+	
+19.2%
+	
+573,403 16.9%
+	
+
+
+Vex
+	
+S
+	
+4.18
+	
+20.0%
+	
+625,526 18.4%
+	
+
+
+Morgana
+	
+S
+	
+4.18
+	
+18.0%
+	
+367,671 10.8%
+	
+
+
+Kindred
+	
+S
+	
+4.20
+	
+11.1%
+	
+393,006 11.6%
+	
+
+
+Riven
+	
+A
+	
+4.29
+	
+11.0%
+	
+458,557 13.5%
+	
+
+
+Zed
+	
+A
+	
+4.29
+	
+15.6%
+	
+58,970 1.7%
+	
+
+
+Karma
+	
+A
+	
+4.30
+	
+14.3%
+	
+843,006 24.9%
+	
+
+
+Nami
+	
+A
+	
+4.31
+	
+11.3%
+	
+200,996 5.9%
+	
+
+
+The Mighty Mech
+	
+A
+	
+4.32
+	
+11.9%
+	
+601,057 17.7%
+	
+
+
+Miss Fortune
+	
+A
+	
+4.32
+	
+9.2%
+	
+319,165 9.4%
+	
+
+
+Aatrox
+	
+A
+	
+4.33
+	
+15.1%
+	
+953,579 28.1%
+	
+
+
+Corki
+	
+A
+	
+4.33
+	
+9.9%
+	
+367,661 10.8%
+	
+
+
+Maokai
+	
+A
+	
+4.35
+	
+12.8%
+	
+1,023,061 30.2%
+	
+
+
+Xayah
+	
+A
+	
+4.40
+	
+16.3%
+	
+458,376 13.5%
+	
+
+
+Urgot
+	
+A
+	
+4.40
+	
+10.2%
+	
+492,234 14.5%
+	
+
+
+Milio
+	
+B
+	
+4.40
+	
+10.3%
+	
+435,235 12.8%
+	
+
+
+Graves
+	
+B
+	
+4.40
+	
+19.2%
+	
+419,824 12.4%
+	
+
+
+Meepsie
+	
+B
+	
+4.41
+	
+12.9%
+	
+1,037,389 30.6%
+	
+
+
+Nunu & Willump
+	
+B
+	
+4.41
+	
+16.1%
+	
+1,383,149 40.8%
+	
+
+
+Fizz
+	
+B
+	
+4.42
+	
+9.5%
+	
+320,138 9.4%
+	
+
+
+Ornn
+	
+B
+	
+4.43
+	
+9.8%
+	
+460,368 13.6%
+	
+
+
+Bel'Veth
+	
+B
+	
+4.43
+	
+9.4%
+	
+456,481 13.5%
+	
+
+
+Tahm Kench
+	
+B
+	
+4.43
+	
+14.0%
+	
+926,023 27.3%
+	
+
+
+Master Yi
+	
+B
+	
+4.44
+	
+10.3%
+	
+309,004 9.1%
+	
+
+
+Rammus
+	
+B
+	
+4.45
+	
+10.8%
+	
+557,178 16.4%
+	
+
+
+Jax
+	
+B
+	
+4.49
+	
+14.0%
+	
+599,850 17.7%
+	
+
+
+Gwen
+	
+B
+	
+4.49
+	
+10.2%
+	
+159,618 4.7%
+	
+
+
+Akali
+	
+B
+	
+4.49
+	
+14.7%
+	
+485,283 14.3%
+	
+
+
+Pyke
+	
+B
+	
+4.52
+	
+8.6%
+	
+189,924 5.6%
+	
+
+
+Mordekaiser
+	
+B
+	
+4.52
+	
+12.8%
+	
+1,120,906 33.0%
+	
+
+
+Aurelion Sol
+	
+B
+	
+4.52
+	
+11.6%
+	
+216,511 6.4%
+	
+
+
+Gragas
+	
+B
+	
+4.53
+	
+8.9%
+	
+349,044 10.3%
+	
+
+
+Kai'Sa
+	
+B
+	
+4.55
+	
+10.0%
+	
+345,805 10.2%
+	
+
+
+Samira
+	
+B
+	
+4.55
+	
+11.9%
+	
+191,391 5.6%
+	
+
+
+Viktor
+	
+B
+	
+4.56
+	
+8.3%
+	
+181,713 5.4%
+	
+
+
+LeBlanc
+	
+B
+	
+4.56
+	
+11.4%
+	
+339,387 10.0%
+	
+
+
+Poppy
+	
+B
+	
+4.57
+	
+9.0%
+	
+309,149 9.1%
+	
+
+
+Lulu
+	
+B
+	
+4.59
+	
+11.1%
+	
+201,340 5.9%
+	
+
+
+Teemo
+	
+B
+	
+4.59
+	
+10.0%
+	
+146,934 4.3%
+	
+
+
+Cho'Gath
+	
+B
+	
+4.60
+	
+10.3%
+	
+427,691 12.6%
+	
+
+
+Lissandra
+	
+C
+	
+4.60
+	
+9.5%
+	
+420,351 12.4%
+	
+
+
+Pantheon
+	
+C
+	
+4.62
+	
+10.7%
+	
+434,732 12.8%
+	
+
+
+Illaoi
+	
+C
+	
+4.63
+	
+13.0%
+	
+960,750 28.3%
+	
+
+
+Twisted Fate
+	
+C
+	
+4.67
+	
+9.6%
+	
+200,311 5.9%
+	
+
+
+Caitlyn
+	
+C
+	
+4.70
+	
+7.7%
+	
+142,959 4.2%
+	
+
+
+Gnar
+	
+C
+	
+4.73
+	
+11.4%
+	
+147,699 4.4%
+	
+
+
+Diana
+	
+C
+	
+4.74
+	
+10.1%
+	
+252,626 7.4%
+	
+
+
+Leona
+	
+C
+	
+4.78
+	
+10.4%
+	
+492,373 14.5%
+	
+
+
+Nasus
+	
+D
+	
+4.81
+	
+8.9%
+	
+215,355 6.3%
+	
+
+
+Ezreal
+	
+D
+	
+4.89
+	
+10.4%
+	
+119,345 3.5%
+	
+
+
+Zoe
+	
+D
+	
+4.91
+	
+7.6%
+	
+194,034 5.7%
+	
+
+
+Rek'Sai
+	
+D
+	
+4.92
+	
+7.2%
+	
+165,564 4.9%
+	
+
+
+Talon
+	
+D
+	
+4.95
+	
+7.3%
+	
+123,828 3.7%
+	
+
+
+Veigar
+	
+D
+	
+4.96
+	
+9.0%
+	
+70,272 2.1%
+	
+
+
+Aurora
+	
+D
+	
+4.97
+	
+12.9%
+	
+196,132 5.8%
+	
+
+
+Jinx
+	
+D
+	
+5.06
+	
+11.5%
+	
+207,114 6.1%
+	
+
+
+Briar
+	
+D
+	
+5.40
+	
+6.6%
+	
+177,717 5.2%
+	
+Popular Features
+TFT Meta Comps
+Unit Stats
+Augment Tier List
+TFT Team Builder
+Match History
+Advanced Tools
+Data Explorer
+TFT Vod Library
+TFT Drop Tables
+More Features
+Download Desktop App
+Support us on Patreon
+Socials
+ Join our Discord
+ Follow us on X (Twitter)
+
+© 2026 Copyright: MetaTFT.com
+
+MetaTFT isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends™ and Riot Games are trademarks or registered trademarks of Riot Games, Inc.
+
+Privacy Policy
+Terms of Service
+Advertise With Us
+Sitemap

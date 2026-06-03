@@ -4,10 +4,7 @@ import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 import { optimize } from "./optimizer.js";
-import {
-  buildTeamPlannerCode,
-  parseTeamPlannerCode,
-} from "./teamPlannerCode.js";
+import { buildTeamPlannerCode, parseTeamPlannerCode } from "./teamPlannerCode.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -33,12 +30,14 @@ async function loadData() {
   const champions = await readJson("data/champions.json", []);
   const traits = await readJson("data/traits.json", []);
   const metaComps = await readJson("data/metaComps.json", []);
-  const matchHistory = await readJson("data/matchHistory.json", []);
+
   const championMeta = await readJson("data/championMeta.json", {});
   const traitMeta = await readJson("data/traitMeta.json", {});
   const itemStats = await readJson("data/itemStats.json", {});
   const itemSetStats = await readJson("data/itemSetStats.json", {});
+  const unitUpgradeMeta = await readJson("data/unitUpgradeMeta.json", {});
   const itemCatalog = await readJson("data/itemCatalog.json", {});
+  const matchHistory = await readJson("data/matchHistory.json", []);
   const augments = await readJson("data/augments.json", []);
 
   const carryProfiles = await readJson("data/carryProfiles.json", {});
@@ -50,10 +49,11 @@ async function loadData() {
     metaComps,
     championMeta,
     traitMeta,
-    matchHistory,
     itemStats,
     itemSetStats,
+    unitUpgradeMeta,
     itemCatalog,
+    matchHistory,
     augments,
     carryProfiles,
     traitProfiles,
@@ -69,6 +69,7 @@ app.get("/api/data", async (req, res) => {
 
   res.json(data);
 });
+
 
 app.post("/api/match-history", async (req, res) => {
   try {
@@ -109,6 +110,7 @@ app.post("/api/match-history", async (req, res) => {
   }
 });
 
+
 app.post("/api/team-planner-code", async (req, res) => {
   try {
     const result = await buildTeamPlannerCode({
@@ -125,6 +127,7 @@ app.post("/api/team-planner-code", async (req, res) => {
     });
   }
 });
+
 
 app.post("/api/parse-team-planner-code", async (req, res) => {
   try {
@@ -156,6 +159,8 @@ app.post("/api/optimize", async (req, res) => {
       traitMeta: data.traitMeta,
       itemStats: data.itemStats,
       itemSetStats: data.itemSetStats,
+      unitUpgradeMeta: data.unitUpgradeMeta,
+      matchHistory: data.matchHistory,
       carryProfiles: data.carryProfiles,
       traitProfiles: data.traitProfiles,
       lockedUnitIds: Array.isArray(req.body.lockedUnitIds)
@@ -169,9 +174,9 @@ app.post("/api/optimize", async (req, res) => {
       maxResults: Number(req.body.maxResults || 12),
       gameModeId: req.body.gameModeId || "capped",
       maxUnitCost: req.body.maxUnitCost ? Number(req.body.maxUnitCost) : null,
-      allowEmblems: req.body.allowEmblems !== false,
+      allowEmblems: req.body.allowEmblems === true,
       maxEmblems: Number(req.body.maxEmblems ?? 0),
-      allowMechaTransformer: req.body.allowMechaTransformer !== false,
+      allowMechaTransformer: req.body.allowMechaTransformer === true,
       transformedMechaIds: Array.isArray(req.body.transformedMechaIds)
         ? req.body.transformedMechaIds
         : [],

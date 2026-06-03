@@ -362,6 +362,7 @@ function getUpgradeValueScore({
   itemStats = {},
   itemSetStats = {},
   championMeta = {},
+  unitUpgradeMeta = {},
 }) {
   const cost = Number(unit.cost || 1);
 
@@ -393,11 +394,32 @@ function getUpgradeValueScore({
   if (cost === 2) score += 6;
   if (cost === 3) score -= 4;
 
+  const meta = unitUpgradeMeta?.[unit.id] || unitUpgradeMeta?.[unit.apiName];
+
+  if (meta) {
+    score += Number(meta.scoreBonus || 0);
+
+    if (Number(meta.recommendedStarLevel || 0) >= 3 && cost <= 3) {
+      score += 10;
+    }
+  }
+
   return Math.round(score);
 }
 
-function getRecommendedStarPlan(unit, { carry, targetTrait }) {
+function getRecommendedStarPlan(unit, { carry, targetTrait, unitUpgradeMeta = {} }) {
   const cost = Number(unit.cost || 1);
+  const meta = unitUpgradeMeta?.[unit.id] || unitUpgradeMeta?.[unit.apiName];
+
+  if (meta?.recommendedStarLevel) {
+    return {
+      starLevel: Math.max(1, Math.min(Number(meta.recommendedStarLevel), 3)),
+      label: meta.label || meta.reason || "Meta recommendation",
+      realism: Number(meta.realism ?? 1),
+      source: meta.source || "unitUpgradeMeta",
+    };
+  }
+
   const isCarry = carry?.id === unit.id;
   const isTargetUnit = targetTrait && unit.traits?.includes(targetTrait);
   const carryLike = isCarryLikeUnit(unit);
@@ -408,6 +430,7 @@ function getRecommendedStarPlan(unit, { carry, targetTrait }) {
         starLevel: 3,
         label: "3★ realistic reroll",
         realism: 1,
+        source: "rules",
       };
     }
 
@@ -415,6 +438,7 @@ function getRecommendedStarPlan(unit, { carry, targetTrait }) {
       starLevel: 2,
       label: "2★ easy",
       realism: 1,
+      source: "rules",
     };
   }
 
@@ -424,6 +448,7 @@ function getRecommendedStarPlan(unit, { carry, targetTrait }) {
         starLevel: 3,
         label: "3★ viable reroll",
         realism: 0.82,
+        source: "rules",
       };
     }
 
@@ -431,6 +456,7 @@ function getRecommendedStarPlan(unit, { carry, targetTrait }) {
       starLevel: 2,
       label: "2★ expected",
       realism: 1,
+      source: "rules",
     };
   }
 
@@ -440,6 +466,7 @@ function getRecommendedStarPlan(unit, { carry, targetTrait }) {
         starLevel: 3,
         label: "3★ possible, needs commitment",
         realism: 0.55,
+        source: "rules",
       };
     }
 
@@ -447,6 +474,7 @@ function getRecommendedStarPlan(unit, { carry, targetTrait }) {
       starLevel: 2,
       label: "2★ expected",
       realism: 0.9,
+      source: "rules",
     };
   }
 
@@ -455,6 +483,7 @@ function getRecommendedStarPlan(unit, { carry, targetTrait }) {
       starLevel: 2,
       label: "2★ realistic late-game",
       realism: 0.85,
+      source: "rules",
     };
   }
 
@@ -463,6 +492,7 @@ function getRecommendedStarPlan(unit, { carry, targetTrait }) {
       starLevel: 2,
       label: "2★ luxury late-game",
       realism: 0.45,
+      source: "rules",
     };
   }
 
@@ -470,30 +500,73 @@ function getRecommendedStarPlan(unit, { carry, targetTrait }) {
     starLevel: 1,
     label: "1★ expected / 2★ luxury",
     realism: 0.35,
+    source: "rules",
   };
 }
 
 function getStarPlanScore(unit, plan) {
   const base = getUnitRawCombatScore(unit);
-  const starPower = base * getStarMultiplier(plan.starLevel);
+  const starPower = base * getStarMultiplier(Number(plan.starLevel || 1));
 
   return Math.round(starPower * Number(plan.realism || 1) * 0.06);
 }
 
-function buildStarPlans(units, { carry, targetTrait }) {
+function buildStarPlans(units, { carry, targetTrait, unitUpgradeMeta = {} }) {
   return Object.fromEntries(
     units.map((unit) => {
-      const plan = getRecommendedStarPlan(unit, { carry, targetTrait });
+      const plan = getRecommendedStarPlan(unit, {
+        carry,
+        targetTrait,
+        unitUpgradeMeta,
+      });
 
       return [
         unit.id,
         {
           ...plan,
-          score: getStarPlanScore(unit, plan),
+          score: getStarPlanScore(unit, plan) + Number(unitUpgradeMeta?.[unit.id]?.scoreBonus || 0),
         },
       ];
     }),
   );
+}
+
+function getCompUnitKey(units = []) {
+  return units
+    .map((unit) => unit.id || unit.name)
+    .filter(Boolean)
+    .sort()
+    .join("|");
+}
+
+function getPersonalHistoryScore(units, carry, matchHistory = []) {
+  if (!Array.isArray(matchHistory) || !matchHistory.length) return 0;
+
+  const key = getCompUnitKey(units);
+  const carryId = carry?.id || null;
+
+  const matchingEntries = matchHistory.filter((entry) => {
+    const entryKey = getCompUnitKey(entry.units || []);
+    if (!entryKey || entryKey !== key) return false;
+
+    if (!carryId || !entry.carryId) return true;
+    return entry.carryId === carryId;
+  });
+
+  if (!matchingEntries.length) return 0;
+
+  const avgPlacement =
+    matchingEntries.reduce((sum, entry) => sum + Number(entry.placement || 8), 0) /
+    matchingEntries.length;
+  const top4Rate =
+    matchingEntries.filter((entry) => Number(entry.placement || 8) <= 4).length /
+    matchingEntries.length;
+  const gamesWeight = Math.min(matchingEntries.length / 6, 1);
+
+  const placementScore = (4.5 - avgPlacement) * 18;
+  const top4Score = (top4Rate - 0.5) * 36;
+
+  return Math.round((placementScore + top4Score) * gamesWeight);
 }
 
 export function scoreComp(
@@ -517,6 +590,8 @@ export function scoreComp(
     traitMeta = {},
     itemStats = {},
     itemSetStats = {},
+    unitUpgradeMeta = {},
+    matchHistory = [],
     carryProfiles = {},
     traitProfiles = {},
   } = options;
@@ -555,7 +630,12 @@ export function scoreComp(
 
   const boardSlotsUsed =
     units.length + Number(specialPlan.extraBoardSlots || 0);
-  const starPlans = buildStarPlans(units, { carry, targetTrait });
+
+  const starPlans = buildStarPlans(units, {
+    carry,
+    targetTrait,
+    unitUpgradeMeta,
+  });
 
   const targetTraitScore = getTargetTraitScore({
     primaryCount,
@@ -649,6 +729,7 @@ export function scoreComp(
         itemStats,
         itemSetStats,
         championMeta,
+        unitUpgradeMeta,
       })
     );
   }, 0);
@@ -656,6 +737,8 @@ export function scoreComp(
   const starPlanScore = Object.values(starPlans).reduce((sum, plan) => {
     return sum + Number(plan.score || 0);
   }, 0);
+
+  const personalHistoryScore = getPersonalHistoryScore(units, carry, matchHistory);
 
   const itemPlan = getCarryItemPlan({
     carry,
@@ -728,7 +811,8 @@ export function scoreComp(
       carryTraitFitScore +
       roleBalanceScore +
       stageFitScore +
-      metaShellScore -
+      metaShellScore +
+      personalHistoryScore -
       uniqueTraitNoisePenalty -
       deadTraitPenalty -
       tooManyFiveCostPenalty -
@@ -758,6 +842,18 @@ export function scoreComp(
   if (upgradeValueScore > 0) {
     reasons.push(
       "Low-cost upgrade value is included, so strong 1/2/3-cost units can beat random expensive goodstuff when they are realistic reroll candidates.",
+    );
+  }
+
+  if (starPlanScore > 0) {
+    reasons.push(
+      "Star plans are included in the score, so realistic 2★/3★ upgrade paths affect board strength.",
+    );
+  }
+
+  if (personalHistoryScore !== 0) {
+    reasons.push(
+      `Personal match history adjusted this comp by ${personalHistoryScore > 0 ? "+" : ""}${personalHistoryScore} points.`,
     );
   }
   reasons.push(
@@ -843,6 +939,7 @@ export function scoreComp(
   return {
     score,
     starPlans,
+    personalHistoryScore,
     activeTraits,
     boardSlotsUsed,
     specialSources: specialPlan.specialSources || [],

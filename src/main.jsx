@@ -1410,6 +1410,13 @@ function App() {
               targetCount={Number(targetCount)}
               allowEmblems={allowEmblems}
               allowMechaTransformer={allowMechaTransformer}
+              matchHistory={data.matchHistory || []}
+              onMatchHistorySaved={(nextHistory) => {
+                setData((current) => ({
+                  ...current,
+                  matchHistory: nextHistory,
+                }));
+              }}
             />
           ) : (
             <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
@@ -1901,7 +1908,77 @@ function CopyCompButton({ units }) {
   );
 }
 
-function LogResultBox({ comp, onSaved }) {
+
+function getCompUnitKey(units = []) {
+  return units
+    .map((unit) => unit.id || unit.name)
+    .filter(Boolean)
+    .sort()
+    .join("|");
+}
+
+function getMatchHistoryForComp(comp, matchHistory = []) {
+  const compKey = getCompUnitKey(comp.units || []);
+
+  return (matchHistory || []).filter((entry) => {
+    if (entry.compId && entry.compId === comp.id) return true;
+
+    const entryKey = getCompUnitKey(entry.units || []);
+    return entryKey && entryKey === compKey;
+  });
+}
+
+function PersonalCompStats({ comp, matchHistory = [] }) {
+  const entries = getMatchHistoryForComp(comp, matchHistory);
+
+  if (!entries.length) {
+    return (
+      <div className="rounded-3xl border border-white/10 bg-white/6 p-4 text-sm text-slate-300">
+        <div className="mb-1 font-black text-cyan-100">Personal stats</div>
+        No saved games for this exact comp yet.
+      </div>
+    );
+  }
+
+  const avgPlacement =
+    entries.reduce((sum, entry) => sum + Number(entry.placement || 8), 0) /
+    entries.length;
+  const top4Rate =
+    (entries.filter((entry) => Number(entry.placement || 8) <= 4).length /
+      entries.length) *
+    100;
+  const winRate =
+    (entries.filter((entry) => Number(entry.placement || 8) === 1).length /
+      entries.length) *
+    100;
+
+  return (
+    <div className="rounded-3xl border border-cyan-300/20 bg-cyan-400/10 p-4 text-sm text-cyan-100">
+      <div className="mb-3 font-black">Personal stats</div>
+
+      <div className="grid grid-cols-3 gap-2 text-center text-xs">
+        <div className="rounded-2xl bg-black/20 p-2">
+          <div className="text-slate-400">Games</div>
+          <div className="text-lg font-black">{entries.length}</div>
+        </div>
+        <div className="rounded-2xl bg-black/20 p-2">
+          <div className="text-slate-400">Avg</div>
+          <div className="text-lg font-black">{avgPlacement.toFixed(2)}</div>
+        </div>
+        <div className="rounded-2xl bg-black/20 p-2">
+          <div className="text-slate-400">Top 4</div>
+          <div className="text-lg font-black">{top4Rate.toFixed(0)}%</div>
+        </div>
+      </div>
+
+      <div className="mt-2 text-xs text-cyan-100/80">
+        Win rate: <b>{winRate.toFixed(0)}%</b>
+      </div>
+    </div>
+  );
+}
+
+function LogResultBox({ comp, units = [], activeTraits = [], onSaved }) {
   const [placement, setPlacement] = useState(4);
   const [rating, setRating] = useState("okay");
   const [notes, setNotes] = useState("");
@@ -1924,13 +2001,13 @@ function LogResultBox({ comp, onSaved }) {
           rating,
           carryId: comp.carry?.id || null,
           carryName: comp.carry?.name || null,
-          units: (comp.units || []).map((unit) => ({
+          units: (units || []).map((unit) => ({
             id: unit.id,
             name: unit.name,
             cost: unit.cost,
             traits: unit.traits || [],
           })),
-          traits: (comp.activeTraits || []).map((trait) => ({
+          traits: (activeTraits || []).map((trait) => ({
             name: trait.name,
             count: trait.count,
             activeAt: trait.activeAt,
@@ -1992,7 +2069,7 @@ function LogResultBox({ comp, onSaved }) {
           type="button"
           onClick={saveResult}
           disabled={status === "saving"}
-          className="rounded-2xl bg-emerald-300 px-4 py-3 font-black text-slate-950 disabled:opacity-60"
+          className="rounded-2xl bg-emerald-300 px-4 py-3 font-black text-slate-950 transition hover:bg-emerald-200 disabled:opacity-60"
         >
           {status === "saving" ? "Saving..." : "Save Result"}
         </button>
@@ -2001,7 +2078,7 @@ function LogResultBox({ comp, onSaved }) {
       <textarea
         value={notes}
         onChange={(event) => setNotes(event.target.value)}
-        placeholder="Notes: items hit, weak frontline, lost to AP, etc..."
+        placeholder="Notes: items hit, weak frontline, contested, lost to AP, etc..."
         className="input mt-3 min-h-20"
       />
 
@@ -2034,6 +2111,8 @@ function CompDetail({
   targetCount,
   allowEmblems = true,
   allowMechaTransformer = true,
+  matchHistory = [],
+  onMatchHistorySaved,
 }) {
   const [boardUnits, setBoardUnits] = useState(comp.units);
   const [upgradedMechaIds, setUpgradedMechaIds] = useState(new Set());
@@ -2305,7 +2384,15 @@ function CompDetail({
           starPlans={starPlans}
         />
 
-        <LogResultBox comp={comp} />
+        <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px]">
+          <LogResultBox
+            comp={comp}
+            units={effectiveBoardUnits}
+            activeTraits={manualTraitRows}
+            onSaved={onMatchHistorySaved}
+          />
+          <PersonalCompStats comp={comp} matchHistory={matchHistory} />
+        </div>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -2318,6 +2405,7 @@ function CompDetail({
             bestItems={getBestItemsForUnit(unit, itemStats, itemSetStats)}
             itemSets={getBestItemSetsForUnit(unit, itemSetStats, itemStats)}
             itemCatalog={itemCatalog}
+            starPlan={getUnitStarPlan(unit, starPlans)}
           />
         ))}
       </div>
@@ -2617,7 +2705,72 @@ function EmblemNotice({ plan }) {
   );
 }
 
-function UnitHoverCard({ unit }) {
+
+function getUnitStarPlan(unit, starPlans = {}) {
+  const direct = starPlans?.[unit.id] || starPlans?.[unit.apiName];
+
+  if (direct) {
+    return {
+      starLevel: Math.max(1, Math.min(Number(direct.starLevel || 1), 3)),
+      label: direct.label || "Expected star level",
+      score: Number(direct.score || 0),
+      source: direct.source || null,
+    };
+  }
+
+  const cost = Number(unit?.cost || 1);
+
+  if (cost <= 2) {
+    return {
+      starLevel: 2,
+      label: "2★ expected",
+      score: 0,
+      source: "fallback",
+    };
+  }
+
+  if (cost <= 4) {
+    return {
+      starLevel: 2,
+      label: "2★ late-game goal",
+      score: 0,
+      source: "fallback",
+    };
+  }
+
+  return {
+    starLevel: 1,
+    label: "1★ expected / 2★ luxury",
+    score: 0,
+    source: "fallback",
+  };
+}
+
+function StarBadge({ starLevel = 1, compact = false }) {
+  const level = Math.max(1, Math.min(Number(starLevel || 1), 3));
+
+  const colors = {
+    1: "text-orange-300 drop-shadow-[0_1px_4px_rgba(251,146,60,0.75)]",
+    2: "text-slate-200 drop-shadow-[0_1px_4px_rgba(226,232,240,0.85)]",
+    3: "text-yellow-300 drop-shadow-[0_1px_5px_rgba(253,224,71,0.95)]",
+  };
+
+  return (
+    <div
+      className={cx(
+        "select-none font-black leading-none tracking-tight",
+        compact ? "text-[12px]" : "text-sm",
+        colors[level],
+      )}
+      aria-label={`${level} star`}
+      title={`${level} star`}
+    >
+      {"★".repeat(level)}
+    </div>
+  );
+}
+
+function UnitHoverCard({ unit, starPlan = null }) {
   const traits = unit?.traits || [];
   const emblems = unit?.emblems || [];
 
@@ -2629,6 +2782,15 @@ function UnitHoverCard({ unit }) {
           <div className="mt-1 text-sm font-semibold text-slate-300">
             Cost {unit.cost} · Tier {unit.tier || "?"}
           </div>
+
+          {starPlan && (
+            <div className="mt-2 flex items-center gap-2">
+              <StarBadge starLevel={starPlan.starLevel} />
+              <span className="text-xs font-bold text-slate-300">
+                {starPlan.label}
+              </span>
+            </div>
+          )}
         </div>
 
         <span
@@ -2690,31 +2852,6 @@ function UnitHoverCard({ unit }) {
           </div>
         </div>
       )}
-    </div>
-  );
-}
-
-function getUnitStarPlan(unit, starPlans = {}) {
-  return (
-    starPlans?.[unit.id] || {
-      starLevel: Number(unit.cost || 1) <= 2 ? 2 : 1,
-      label: Number(unit.cost || 1) <= 2 ? "2★ likely" : "1★ expected",
-    }
-  );
-}
-
-function StarBadge({ starLevel = 1 }) {
-  const level = Math.max(1, Math.min(Number(starLevel || 1), 3));
-
-  const colors = {
-    1: "text-orange-300 drop-shadow-[0_1px_4px_rgba(251,146,60,0.75)]",
-    2: "text-slate-200 drop-shadow-[0_1px_4px_rgba(226,232,240,0.75)]",
-    3: "text-yellow-300 drop-shadow-[0_1px_5px_rgba(253,224,71,0.95)]",
-  };
-
-  return (
-    <div className={cx("tracking-tight font-black", colors[level])}>
-      {"★".repeat(level)}
     </div>
   );
 }
@@ -2861,7 +2998,7 @@ function TftBoard({
               <div className="truncate text-[10px] font-bold text-white">
                 {unit.name}
               </div>
-              <StarBadge starLevel={starPlan.starLevel} />
+              <StarBadge starLevel={starPlan.starLevel} compact />
             </div>
 
             {carryId === unit.id && (
@@ -2907,7 +3044,7 @@ function TftBoard({
               </div>
             )}
 
-            <UnitHoverCard unit={unit} />
+            <UnitHoverCard unit={unit} starPlan={starPlan} />
           </button>
         );
       })}
@@ -2965,6 +3102,7 @@ function ChampionCard({
           <div className="text-xs text-slate-300">
             Cost {unit.cost} · Tier {unit.tier} · {unit.role}
           </div>
+
           {starPlan && (
             <div className="mt-1 flex items-center gap-2 text-xs text-slate-300">
               <StarBadge starLevel={starPlan.starLevel} />

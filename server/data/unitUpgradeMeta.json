@@ -1,0 +1,443 @@
+{
+  "aatrox": {
+    "recommendedStarLevel": 2,
+    "label": "2★ easy",
+    "realism": 1,
+    "scoreBonus": 2,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "briar": {
+    "recommendedStarLevel": 3,
+    "label": "3★ reroll possible",
+    "realism": 1,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "caitlyn": {
+    "recommendedStarLevel": 3,
+    "label": "3★ reroll possible",
+    "realism": 1,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "chogath": {
+    "recommendedStarLevel": 2,
+    "label": "2★ easy",
+    "realism": 1,
+    "scoreBonus": 2,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "ezreal": {
+    "recommendedStarLevel": 3,
+    "label": "3★ reroll possible",
+    "realism": 1,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "leona": {
+    "recommendedStarLevel": 2,
+    "label": "2★ easy",
+    "realism": 1,
+    "scoreBonus": 2,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "lissandra": {
+    "recommendedStarLevel": 3,
+    "label": "3★ reroll possible",
+    "realism": 1,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "nasus": {
+    "recommendedStarLevel": 2,
+    "label": "2★ easy",
+    "realism": 1,
+    "scoreBonus": 2,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "poppy": {
+    "recommendedStarLevel": 2,
+    "label": "2★ easy",
+    "realism": 1,
+    "scoreBonus": 2,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "reksai": {
+    "recommendedStarLevel": 2,
+    "label": "2★ easy",
+    "realism": 1,
+    "scoreBonus": 2,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "talon": {
+    "recommendedStarLevel": 3,
+    "label": "3★ reroll possible",
+    "realism": 1,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "teemo": {
+    "recommendedStarLevel": 3,
+    "label": "3★ reroll possible",
+    "realism": 1,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "twisted-fate": {
+    "recommendedStarLevel": 3,
+    "label": "3★ reroll possible",
+    "realism": 1,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "veigar": {
+    "recommendedStarLevel": 3,
+    "label": "3★ reroll possible",
+    "realism": 1,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "akali": {
+    "recommendedStarLevel": 3,
+    "label": "3★ viable reroll",
+    "realism": 0.82,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "belveth": {
+    "recommendedStarLevel": 3,
+    "label": "3★ viable reroll",
+    "realism": 0.82,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "gnar": {
+    "recommendedStarLevel": 3,
+    "label": "3★ viable reroll",
+    "realism": 0.82,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "gragas": {
+    "recommendedStarLevel": 2,
+    "label": "2★ expected",
+    "realism": 1,
+    "scoreBonus": 2,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "gwen": {
+    "recommendedStarLevel": 3,
+    "label": "3★ viable reroll",
+    "realism": 0.82,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "jax": {
+    "recommendedStarLevel": 2,
+    "label": "2★ expected",
+    "realism": 1,
+    "scoreBonus": 2,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "jinx": {
+    "recommendedStarLevel": 3,
+    "label": "3★ viable reroll",
+    "realism": 0.82,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "meepsie": {
+    "recommendedStarLevel": 2,
+    "label": "2★ expected",
+    "realism": 1,
+    "scoreBonus": 2,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "milio": {
+    "recommendedStarLevel": 3,
+    "label": "3★ viable reroll",
+    "realism": 0.82,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "mordekaiser": {
+    "recommendedStarLevel": 2,
+    "label": "2★ expected",
+    "realism": 1,
+    "scoreBonus": 2,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "pantheon": {
+    "recommendedStarLevel": 2,
+    "label": "2★ expected",
+    "realism": 1,
+    "scoreBonus": 2,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "pyke": {
+    "recommendedStarLevel": 3,
+    "label": "3★ viable reroll",
+    "realism": 0.82,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "zoe": {
+    "recommendedStarLevel": 3,
+    "label": "3★ viable reroll",
+    "realism": 0.82,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "aurora": {
+    "recommendedStarLevel": 2,
+    "label": "2★ expected",
+    "realism": 0.9,
+    "scoreBonus": 3,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "diana": {
+    "recommendedStarLevel": 2,
+    "label": "2★ expected",
+    "realism": 0.9,
+    "scoreBonus": 3,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "fizz": {
+    "recommendedStarLevel": 2,
+    "label": "2★ expected",
+    "realism": 0.9,
+    "scoreBonus": 3,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "illaoi": {
+    "recommendedStarLevel": 2,
+    "label": "2★ expected",
+    "realism": 0.9,
+    "scoreBonus": 3,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "kaisa": {
+    "recommendedStarLevel": 2,
+    "label": "2★ expected",
+    "realism": 0.9,
+    "scoreBonus": 3,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "lulu": {
+    "recommendedStarLevel": 2,
+    "label": "2★ expected",
+    "realism": 0.9,
+    "scoreBonus": 3,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "maokai": {
+    "recommendedStarLevel": 2,
+    "label": "2★ expected",
+    "realism": 0.9,
+    "scoreBonus": 3,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "miss-fortune": {
+    "recommendedStarLevel": 2,
+    "label": "2★ expected",
+    "realism": 0.9,
+    "scoreBonus": 3,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "ornn": {
+    "recommendedStarLevel": 2,
+    "label": "2★ expected",
+    "realism": 0.9,
+    "scoreBonus": 3,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "rhaast": {
+    "recommendedStarLevel": 2,
+    "label": "2★ expected",
+    "realism": 0.9,
+    "scoreBonus": 3,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "samira": {
+    "recommendedStarLevel": 2,
+    "label": "2★ expected",
+    "realism": 0.9,
+    "scoreBonus": 3,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "urgot": {
+    "recommendedStarLevel": 3,
+    "label": "3★ possible meta carry",
+    "realism": 0.55,
+    "scoreBonus": 10,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "viktor": {
+    "recommendedStarLevel": 2,
+    "label": "2★ expected",
+    "realism": 0.9,
+    "scoreBonus": 3,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "aurelion-sol": {
+    "recommendedStarLevel": 2,
+    "label": "2★ realistic late-game",
+    "realism": 0.85,
+    "scoreBonus": 4,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "corki": {
+    "recommendedStarLevel": 2,
+    "label": "2★ realistic late-game",
+    "realism": 0.85,
+    "scoreBonus": 10,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "karma": {
+    "recommendedStarLevel": 2,
+    "label": "2★ realistic late-game",
+    "realism": 0.85,
+    "scoreBonus": 10,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "kindred": {
+    "recommendedStarLevel": 2,
+    "label": "2★ realistic late-game",
+    "realism": 0.85,
+    "scoreBonus": 10,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "leblanc": {
+    "recommendedStarLevel": 2,
+    "label": "2★ realistic late-game",
+    "realism": 0.85,
+    "scoreBonus": 4,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "master-yi": {
+    "recommendedStarLevel": 2,
+    "label": "2★ realistic late-game",
+    "realism": 0.85,
+    "scoreBonus": 4,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "morgana": {
+    "recommendedStarLevel": 2,
+    "label": "2★ realistic late-game",
+    "realism": 0.85,
+    "scoreBonus": 10,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "nami": {
+    "recommendedStarLevel": 2,
+    "label": "2★ realistic late-game",
+    "realism": 0.85,
+    "scoreBonus": 10,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "nunu-and-willump": {
+    "recommendedStarLevel": 2,
+    "label": "2★ realistic late-game",
+    "realism": 0.85,
+    "scoreBonus": 4,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "rammus": {
+    "recommendedStarLevel": 2,
+    "label": "2★ realistic late-game",
+    "realism": 0.85,
+    "scoreBonus": 4,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "riven": {
+    "recommendedStarLevel": 2,
+    "label": "2★ realistic late-game",
+    "realism": 0.85,
+    "scoreBonus": 10,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "tahm-kench": {
+    "recommendedStarLevel": 2,
+    "label": "2★ realistic late-game",
+    "realism": 0.85,
+    "scoreBonus": 4,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "the-mighty-mech": {
+    "recommendedStarLevel": 2,
+    "label": "2★ realistic late-game",
+    "realism": 0.85,
+    "scoreBonus": 10,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "xayah": {
+    "recommendedStarLevel": 2,
+    "label": "2★ realistic late-game",
+    "realism": 0.85,
+    "scoreBonus": 10,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "bard": {
+    "recommendedStarLevel": 2,
+    "label": "2★ luxury late-game",
+    "realism": 0.45,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "blitzcrank": {
+    "recommendedStarLevel": 2,
+    "label": "2★ luxury late-game",
+    "realism": 0.45,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "fiora": {
+    "recommendedStarLevel": 2,
+    "label": "2★ luxury late-game",
+    "realism": 0.45,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "graves": {
+    "recommendedStarLevel": 2,
+    "label": "2★ luxury late-game",
+    "realism": 0.45,
+    "scoreBonus": 2,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "jhin": {
+    "recommendedStarLevel": 2,
+    "label": "2★ luxury late-game",
+    "realism": 0.45,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "shen": {
+    "recommendedStarLevel": 2,
+    "label": "2★ luxury late-game",
+    "realism": 0.45,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "sona": {
+    "recommendedStarLevel": 2,
+    "label": "2★ luxury late-game",
+    "realism": 0.45,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "vex": {
+    "recommendedStarLevel": 2,
+    "label": "2★ luxury late-game",
+    "realism": 0.45,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  },
+  "zed": {
+    "recommendedStarLevel": 2,
+    "label": "2★ luxury late-game",
+    "realism": 0.45,
+    "scoreBonus": 8,
+    "source": "fallback-derived; run npm run import:meta for live MetaTFT data"
+  }
+}
