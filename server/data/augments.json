@@ -1,0 +1,10 @@
+[
+  {
+    "id": "mecha-transformer",
+    "name": "Mecha Transformer",
+    "type": "special-source",
+    "trait": "Mecha",
+    "alwaysAvailable": true,
+    "effect": "+1 Mecha and +1 occupied board slot on a Mecha holder"
+  }
+]

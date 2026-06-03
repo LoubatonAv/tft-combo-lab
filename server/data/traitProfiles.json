@@ -1,0 +1,255 @@
+{
+  "Anima": {
+    "tier": "A",
+    "score": 82,
+    "tags": ["damageAmp", "health", "scaling", "carry", "mixedDamage"],
+    "notes": "Good vertical scaling trait. Useful when the carry benefits from raw scaling and team-wide power."
+  },
+  "Arbiter": {
+    "tier": "B",
+    "score": 70,
+    "tags": ["utility", "control", "tempo", "teamAmp"],
+    "notes": "Flexible utility trait. Better when it supports an already strong carry shell."
+  },
+  "Bulwark": {
+    "tier": "B",
+    "score": 68,
+    "tags": ["unique", "frontline", "tank", "survivability", "timeToCast"],
+    "notes": "Unique defensive value. Should not be overvalued unless the holder is strong."
+  },
+  "Commander": {
+    "tier": "A",
+    "score": 78,
+    "tags": ["unique", "utility", "caster", "teamAmp", "tempo"],
+    "notes": "Useful unique support value for caster or utility boards."
+  },
+  "Dark Lady": {
+    "tier": "S",
+    "score": 88,
+    "tags": ["unique", "caster", "abilityPower", "spellDamage", "damageAmp"],
+    "notes": "Strong unique caster-oriented trait."
+  },
+  "Dark Star": {
+    "tier": "A",
+    "score": 84,
+    "tags": [
+      "damageAmp",
+      "spellDamage",
+      "attackDamage",
+      "carry",
+      "scaling",
+      "magic",
+      "physicalDamage"
+    ],
+    "notes": "Excellent secondary scaling trait for both AP and AD carry shells."
+  },
+  "Divine Duelist": {
+    "tier": "A",
+    "score": 80,
+    "tags": [
+      "unique",
+      "dueling",
+      "attackSpeed",
+      "survivability",
+      "physicalDamage"
+    ],
+    "notes": "Strong for melee/ad duelists, less important for pure mana casters."
+  },
+  "Doomer": {
+    "tier": "B",
+    "score": 62,
+    "tags": ["unique", "caster", "spellDamage"],
+    "notes": "Vex unique trait. Penalize if it appears randomly and Vex is not relevant."
+  },
+  "Factory New": {
+    "tier": "B",
+    "score": 66,
+    "tags": ["unique", "utility", "upgrade", "tempo"],
+    "notes": "Unique upgrade value. Do not treat as normal synergy density."
+  },
+  "Galaxy Hunter": {
+    "tier": "B",
+    "score": 65,
+    "tags": ["unique", "damageAmp", "assassin", "physicalDamage"],
+    "notes": "Special availability trait. Should not be assumed unless allowed."
+  },
+  "Gun Goddess": {
+    "tier": "B",
+    "score": 68,
+    "tags": ["unique", "caster", "attackDamage", "abilityPower", "mixedDamage"],
+    "notes": "Miss Fortune unique. Good only when the unit/role fits."
+  },
+  "Mecha": {
+    "tier": "S",
+    "score": 94,
+    "tags": [
+      "frontline",
+      "survivability",
+      "health",
+      "timeToCast",
+      "traitCore",
+      "tank",
+      "casterSupport"
+    ],
+    "notes": "Core vertical. Strong with Aurelion Sol because it gives time to cast and uses Mecha Transformer."
+  },
+  "Meeple": {
+    "tier": "C",
+    "score": 48,
+    "tags": ["utility", "summon", "tempo"],
+    "notes": "Can be useful, but should not beat direct carry-support traits by itself."
+  },
+  "N.O.V.A.": {
+    "tier": "B",
+    "score": 72,
+    "tags": ["tempo", "attackSpeed", "utility", "mixedDamage"],
+    "notes": "Good flexible tempo trait. Better if units are individually strong."
+  },
+  "Oracle": {
+    "tier": "A",
+    "score": 80,
+    "tags": ["mana", "utility", "caster", "timeToCast", "castFrequency"],
+    "notes": "Good caster support. Especially relevant for mana carries."
+  },
+  "Party Animal": {
+    "tier": "B",
+    "score": 70,
+    "tags": ["tempo", "teamAmp", "utility", "mixedDamage"],
+    "notes": "General board amplifier. Good when it comes with strong units."
+  },
+  "Primordian": {
+    "tier": "B",
+    "score": 70,
+    "tags": ["frontline", "tempo", "summon", "survivability"],
+    "notes": "Can stabilize early/mid boards."
+  },
+  "Psionic": {
+    "tier": "B",
+    "score": 74,
+    "tags": ["abilityPower", "caster", "spellDamage", "magic"],
+    "notes": "AP/caster support trait."
+  },
+  "Redeemer": {
+    "tier": "B",
+    "score": 70,
+    "tags": ["utility", "support", "survivability"],
+    "notes": "One-of utility, not usually a primary reason to choose a board."
+  },
+  "Space Groove": {
+    "tier": "B",
+    "score": 72,
+    "tags": ["tempo", "teamAmp", "utility", "mixedDamage"],
+    "notes": "Flexible trait. Stronger if it fits the carry shell."
+  },
+  "Stargazer": {
+    "tier": "B",
+    "score": 74,
+    "tags": ["scaling", "utility", "caster", "teamAmp"],
+    "notes": "Scaling trait. Better in boards that can support long fights."
+  },
+  "Timebreaker": {
+    "tier": "B",
+    "score": 72,
+    "tags": ["tempo", "utility", "castFrequency", "attackSpeed"],
+    "notes": "Tempo/frequency trait. Useful for fast-casting or attack-speed boards."
+  },
+  "Bastion": {
+    "tier": "B",
+    "score": 72,
+    "tags": ["frontline", "tank", "survivability", "timeToCast"],
+    "notes": "Good defensive shell for carries that need time."
+  },
+  "Brawler": {
+    "tier": "A",
+    "score": 80,
+    "tags": ["frontline", "health", "tank", "timeToCast", "survivability"],
+    "notes": "Strong generic frontline. Very good for mana carries that need time to cast."
+  },
+  "Challenger": {
+    "tier": "B",
+    "score": 72,
+    "tags": ["attackSpeed", "tempo", "physicalDamage", "dueling"],
+    "notes": "Good for attack-speed carries, weaker for pure AP mana casters."
+  },
+  "Conduit": {
+    "tier": "S",
+    "score": 92,
+    "tags": [
+      "mana",
+      "castFrequency",
+      "abilityPower",
+      "caster",
+      "spellDamage",
+      "magic"
+    ],
+    "notes": "Premium caster/mana trait. High priority for Aurelion Sol and similar AP carries."
+  },
+  "Eradicator": {
+    "tier": "A",
+    "score": 78,
+    "tags": ["damageAmp", "execute", "carry", "mixedDamage"],
+    "notes": "Damage amp trait. Good when attached to high-damage units."
+  },
+  "Fateweaver": {
+    "tier": "S",
+    "score": 86,
+    "tags": ["utility", "teamAmp", "caster", "tempo", "damageAmp"],
+    "notes": "Strong general utility/carry amplifier."
+  },
+  "Marauder": {
+    "tier": "A",
+    "score": 80,
+    "tags": [
+      "attackDamage",
+      "attackSpeed",
+      "physicalDamage",
+      "carry",
+      "dueling"
+    ],
+    "notes": "Strong AD/melee carry trait."
+  },
+  "Replicator": {
+    "tier": "B",
+    "score": 70,
+    "tags": ["utility", "tempo", "summon", "teamAmp"],
+    "notes": "Flexible utility, depends heavily on units."
+  },
+  "Rogue": {
+    "tier": "B",
+    "score": 74,
+    "tags": ["crit", "assassin", "physicalDamage", "backlineAccess", "carry"],
+    "notes": "Good for physical/crit carries, less useful for mana AP carries."
+  },
+  "Shepherd": {
+    "tier": "B",
+    "score": 70,
+    "tags": ["utility", "frontline", "support", "survivability"],
+    "notes": "Support/frontline utility trait."
+  },
+  "Sniper": {
+    "tier": "A",
+    "score": 82,
+    "tags": ["physicalDamage", "attackDamage", "range", "crit", "carry"],
+    "notes": "High-value AD ranged carry trait."
+  },
+  "Vanguard": {
+    "tier": "B",
+    "score": 64,
+    "tags": ["frontline", "tank", "survivability"],
+    "notes": "Okay frontline, but usually less carry-specific than Conduit/Brawler for AP caster boards."
+  },
+  "Voyager": {
+    "tier": "S",
+    "score": 90,
+    "tags": [
+      "utility",
+      "damageAmp",
+      "caster",
+      "magic",
+      "tempo",
+      "scaling",
+      "teamAmp"
+    ],
+    "notes": "Very strong flexible secondary trait, especially around AP/caster shells."
+  }
+}

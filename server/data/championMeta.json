@@ -1,0 +1,317 @@
+{
+  "jhin": {
+    "tier": "S",
+    "score": 95,
+    "source": "metatft/units-dom"
+  },
+  "shen": {
+    "tier": "S",
+    "score": 95,
+    "source": "metatft/units-dom"
+  },
+  "sona": {
+    "tier": "S",
+    "score": 95,
+    "source": "metatft/units-dom"
+  },
+  "bard": {
+    "tier": "S",
+    "score": 95,
+    "source": "metatft/units-dom"
+  },
+  "blitzcrank": {
+    "tier": "S",
+    "score": 95,
+    "source": "metatft/units-dom"
+  },
+  "rhaast": {
+    "tier": "S",
+    "score": 95,
+    "source": "metatft/units-dom"
+  },
+  "fiora": {
+    "tier": "S",
+    "score": 95,
+    "source": "metatft/units-dom"
+  },
+  "vex": {
+    "tier": "S",
+    "score": 95,
+    "source": "metatft/units-dom"
+  },
+  "morgana": {
+    "tier": "S",
+    "score": 95,
+    "source": "metatft/units-dom"
+  },
+  "kindred": {
+    "tier": "S",
+    "score": 95,
+    "source": "metatft/units-dom"
+  },
+  "riven": {
+    "tier": "S",
+    "score": 95,
+    "source": "metatft/units-dom"
+  },
+  "zed": {
+    "tier": "A",
+    "score": 82,
+    "source": "metatft/units-dom"
+  },
+  "karma": {
+    "tier": "A",
+    "score": 82,
+    "source": "metatft/units-dom"
+  },
+  "nami": {
+    "tier": "A",
+    "score": 82,
+    "source": "metatft/units-dom"
+  },
+  "the-mighty-mech": {
+    "tier": "A",
+    "score": 82,
+    "source": "metatft/units-dom"
+  },
+  "miss-fortune": {
+    "tier": "A",
+    "score": 82,
+    "source": "metatft/units-dom"
+  },
+  "aatrox": {
+    "tier": "A",
+    "score": 82,
+    "source": "metatft/units-dom"
+  },
+  "corki": {
+    "tier": "A",
+    "score": 82,
+    "source": "metatft/units-dom"
+  },
+  "maokai": {
+    "tier": "A",
+    "score": 82,
+    "source": "metatft/units-dom"
+  },
+  "xayah": {
+    "tier": "A",
+    "score": 82,
+    "source": "metatft/units-dom"
+  },
+  "urgot": {
+    "tier": "A",
+    "score": 82,
+    "source": "metatft/units-dom"
+  },
+  "milio": {
+    "tier": "A",
+    "score": 82,
+    "source": "metatft/units-dom"
+  },
+  "graves": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "meepsie": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "nunu-and-willump": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "fizz": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "ornn": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "belveth": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "tahm-kench": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "master-yi": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "rammus": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "jax": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "gwen": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "akali": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "pyke": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "mordekaiser": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "aurelion-sol": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "gragas": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "kaisa": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "samira": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "viktor": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "leblanc": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "poppy": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "lulu": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "teemo": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "chogath": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "lissandra": {
+    "tier": "B",
+    "score": 68,
+    "source": "metatft/units-dom"
+  },
+  "pantheon": {
+    "tier": "C",
+    "score": 52,
+    "source": "metatft/units-dom"
+  },
+  "illaoi": {
+    "tier": "C",
+    "score": 52,
+    "source": "metatft/units-dom"
+  },
+  "twisted-fate": {
+    "tier": "C",
+    "score": 52,
+    "source": "metatft/units-dom"
+  },
+  "caitlyn": {
+    "tier": "C",
+    "score": 52,
+    "source": "metatft/units-dom"
+  },
+  "gnar": {
+    "tier": "C",
+    "score": 52,
+    "source": "metatft/units-dom"
+  },
+  "diana": {
+    "tier": "C",
+    "score": 52,
+    "source": "metatft/units-dom"
+  },
+  "leona": {
+    "tier": "C",
+    "score": 52,
+    "source": "metatft/units-dom"
+  },
+  "nasus": {
+    "tier": "C",
+    "score": 52,
+    "source": "metatft/units-dom"
+  },
+  "ezreal": {
+    "tier": "D",
+    "score": 35,
+    "source": "metatft/units-dom"
+  },
+  "zoe": {
+    "tier": "D",
+    "score": 35,
+    "source": "metatft/units-dom"
+  },
+  "reksai": {
+    "tier": "D",
+    "score": 35,
+    "source": "metatft/units-dom"
+  },
+  "talon": {
+    "tier": "D",
+    "score": 35,
+    "source": "metatft/units-dom"
+  },
+  "veigar": {
+    "tier": "D",
+    "score": 35,
+    "source": "metatft/units-dom"
+  },
+  "aurora": {
+    "tier": "D",
+    "score": 35,
+    "source": "metatft/units-dom"
+  },
+  "jinx": {
+    "tier": "D",
+    "score": 35,
+    "source": "metatft/units-dom"
+  },
+  "briar": {
+    "tier": "D",
+    "score": 35,
+    "source": "metatft/units-dom"
+  }
+}

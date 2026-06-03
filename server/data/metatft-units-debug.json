@@ -1,0 +1,640 @@
+{
+  "url": "https://www.metatft.com/units",
+  "championsTotal": 63,
+  "importedTotal": 63,
+  "missing": [],
+  "textMatches": [
+    {
+      "id": "jhin",
+      "name": "Jhin",
+      "tier": "S",
+      "line": "Jhin"
+    },
+    {
+      "id": "shen",
+      "name": "Shen",
+      "tier": "S",
+      "line": "Shen"
+    },
+    {
+      "id": "sona",
+      "name": "Sona",
+      "tier": "S",
+      "line": "Sona"
+    },
+    {
+      "id": "bard",
+      "name": "Bard",
+      "tier": "S",
+      "line": "Bard"
+    },
+    {
+      "id": "blitzcrank",
+      "name": "Blitzcrank",
+      "tier": "S",
+      "line": "Blitzcrank"
+    },
+    {
+      "id": "rhaast",
+      "name": "Rhaast",
+      "tier": "S",
+      "line": "Rhaast"
+    },
+    {
+      "id": "fiora",
+      "name": "Fiora",
+      "tier": "S",
+      "line": "Fiora"
+    },
+    {
+      "id": "vex",
+      "name": "Vex",
+      "tier": "S",
+      "line": "Vex"
+    },
+    {
+      "id": "morgana",
+      "name": "Morgana",
+      "tier": "S",
+      "line": "Morgana"
+    },
+    {
+      "id": "kindred",
+      "name": "Kindred",
+      "tier": "S",
+      "line": "Kindred"
+    },
+    {
+      "id": "riven",
+      "name": "Riven",
+      "tier": "S",
+      "line": "Riven"
+    },
+    {
+      "id": "zed",
+      "name": "Zed",
+      "tier": "A",
+      "line": "Zed"
+    },
+    {
+      "id": "karma",
+      "name": "Karma",
+      "tier": "A",
+      "line": "Karma"
+    },
+    {
+      "id": "nami",
+      "name": "Nami",
+      "tier": "A",
+      "line": "Nami"
+    },
+    {
+      "id": "the-mighty-mech",
+      "name": "The Mighty Mech",
+      "tier": "A",
+      "line": "The Mighty Mech"
+    },
+    {
+      "id": "miss-fortune",
+      "name": "Miss Fortune",
+      "tier": "A",
+      "line": "Miss Fortune"
+    },
+    {
+      "id": "aatrox",
+      "name": "Aatrox",
+      "tier": "A",
+      "line": "Aatrox"
+    },
+    {
+      "id": "corki",
+      "name": "Corki",
+      "tier": "A",
+      "line": "Corki"
+    },
+    {
+      "id": "maokai",
+      "name": "Maokai",
+      "tier": "A",
+      "line": "Maokai"
+    },
+    {
+      "id": "xayah",
+      "name": "Xayah",
+      "tier": "A",
+      "line": "Xayah"
+    },
+    {
+      "id": "urgot",
+      "name": "Urgot",
+      "tier": "A",
+      "line": "Urgot"
+    },
+    {
+      "id": "milio",
+      "name": "Milio",
+      "tier": "A",
+      "line": "Milio"
+    },
+    {
+      "id": "graves",
+      "name": "Graves",
+      "tier": "B",
+      "line": "Graves"
+    },
+    {
+      "id": "meepsie",
+      "name": "Meepsie",
+      "tier": "B",
+      "line": "Meepsie"
+    },
+    {
+      "id": "nunu-and-willump",
+      "name": "Nunu & Willump",
+      "tier": "B",
+      "line": "Nunu & Willump"
+    },
+    {
+      "id": "fizz",
+      "name": "Fizz",
+      "tier": "B",
+      "line": "Fizz"
+    },
+    {
+      "id": "ornn",
+      "name": "Ornn",
+      "tier": "B",
+      "line": "Ornn"
+    },
+    {
+      "id": "belveth",
+      "name": "Bel'Veth",
+      "tier": "B",
+      "line": "Bel'Veth"
+    },
+    {
+      "id": "tahm-kench",
+      "name": "Tahm Kench",
+      "tier": "B",
+      "line": "Tahm Kench"
+    },
+    {
+      "id": "master-yi",
+      "name": "Master Yi",
+      "tier": "B",
+      "line": "Master Yi"
+    },
+    {
+      "id": "rammus",
+      "name": "Rammus",
+      "tier": "B",
+      "line": "Rammus"
+    },
+    {
+      "id": "jax",
+      "name": "Jax",
+      "tier": "B",
+      "line": "Jax"
+    },
+    {
+      "id": "gwen",
+      "name": "Gwen",
+      "tier": "B",
+      "line": "Gwen"
+    },
+    {
+      "id": "akali",
+      "name": "Akali",
+      "tier": "B",
+      "line": "Akali"
+    },
+    {
+      "id": "pyke",
+      "name": "Pyke",
+      "tier": "B",
+      "line": "Pyke"
+    },
+    {
+      "id": "mordekaiser",
+      "name": "Mordekaiser",
+      "tier": "B",
+      "line": "Mordekaiser"
+    },
+    {
+      "id": "aurelion-sol",
+      "name": "Aurelion Sol",
+      "tier": "B",
+      "line": "Aurelion Sol"
+    },
+    {
+      "id": "gragas",
+      "name": "Gragas",
+      "tier": "B",
+      "line": "Gragas"
+    },
+    {
+      "id": "kaisa",
+      "name": "Kai'Sa",
+      "tier": "B",
+      "line": "Kai'Sa"
+    },
+    {
+      "id": "samira",
+      "name": "Samira",
+      "tier": "B",
+      "line": "Samira"
+    },
+    {
+      "id": "viktor",
+      "name": "Viktor",
+      "tier": "B",
+      "line": "Viktor"
+    },
+    {
+      "id": "leblanc",
+      "name": "LeBlanc",
+      "tier": "B",
+      "line": "LeBlanc"
+    },
+    {
+      "id": "poppy",
+      "name": "Poppy",
+      "tier": "B",
+      "line": "Poppy"
+    },
+    {
+      "id": "lulu",
+      "name": "Lulu",
+      "tier": "B",
+      "line": "Lulu"
+    },
+    {
+      "id": "teemo",
+      "name": "Teemo",
+      "tier": "B",
+      "line": "Teemo"
+    },
+    {
+      "id": "chogath",
+      "name": "Cho'Gath",
+      "tier": "B",
+      "line": "Cho'Gath"
+    },
+    {
+      "id": "lissandra",
+      "name": "Lissandra",
+      "tier": "B",
+      "line": "Lissandra"
+    },
+    {
+      "id": "pantheon",
+      "name": "Pantheon",
+      "tier": "C",
+      "line": "Pantheon"
+    },
+    {
+      "id": "illaoi",
+      "name": "Illaoi",
+      "tier": "C",
+      "line": "Illaoi"
+    },
+    {
+      "id": "twisted-fate",
+      "name": "Twisted Fate",
+      "tier": "C",
+      "line": "Twisted Fate"
+    },
+    {
+      "id": "caitlyn",
+      "name": "Caitlyn",
+      "tier": "C",
+      "line": "Caitlyn"
+    },
+    {
+      "id": "gnar",
+      "name": "Gnar",
+      "tier": "C",
+      "line": "Gnar"
+    },
+    {
+      "id": "diana",
+      "name": "Diana",
+      "tier": "C",
+      "line": "Diana"
+    },
+    {
+      "id": "leona",
+      "name": "Leona",
+      "tier": "C",
+      "line": "Leona"
+    },
+    {
+      "id": "nasus",
+      "name": "Nasus",
+      "tier": "C",
+      "line": "Nasus"
+    },
+    {
+      "id": "ezreal",
+      "name": "Ezreal",
+      "tier": "D",
+      "line": "Ezreal"
+    },
+    {
+      "id": "zoe",
+      "name": "Zoe",
+      "tier": "D",
+      "line": "Zoe"
+    },
+    {
+      "id": "reksai",
+      "name": "Rek'Sai",
+      "tier": "D",
+      "line": "Rek'Sai"
+    },
+    {
+      "id": "talon",
+      "name": "Talon",
+      "tier": "D",
+      "line": "Talon"
+    },
+    {
+      "id": "veigar",
+      "name": "Veigar",
+      "tier": "D",
+      "line": "Veigar"
+    },
+    {
+      "id": "aurora",
+      "name": "Aurora",
+      "tier": "D",
+      "line": "Aurora"
+    },
+    {
+      "id": "jinx",
+      "name": "Jinx",
+      "tier": "D",
+      "line": "Jinx"
+    },
+    {
+      "id": "briar",
+      "name": "Briar",
+      "tier": "D",
+      "line": "Briar"
+    }
+  ],
+  "domMatches": [
+    {
+      "name": "Aatrox",
+      "tier": "A"
+    },
+    {
+      "name": "Briar",
+      "tier": "D"
+    },
+    {
+      "name": "Caitlyn",
+      "tier": "C"
+    },
+    {
+      "name": "Cho'Gath",
+      "tier": "B"
+    },
+    {
+      "name": "Ezreal",
+      "tier": "D"
+    },
+    {
+      "name": "Leona",
+      "tier": "C"
+    },
+    {
+      "name": "Lissandra",
+      "tier": "B"
+    },
+    {
+      "name": "Nasus",
+      "tier": "C"
+    },
+    {
+      "name": "Poppy",
+      "tier": "B"
+    },
+    {
+      "name": "Rek'Sai",
+      "tier": "D"
+    },
+    {
+      "name": "Talon",
+      "tier": "D"
+    },
+    {
+      "name": "Teemo",
+      "tier": "B"
+    },
+    {
+      "name": "Twisted Fate",
+      "tier": "C"
+    },
+    {
+      "name": "Veigar",
+      "tier": "D"
+    },
+    {
+      "name": "Akali",
+      "tier": "B"
+    },
+    {
+      "name": "Bel'Veth",
+      "tier": "B"
+    },
+    {
+      "name": "Gnar",
+      "tier": "C"
+    },
+    {
+      "name": "Gragas",
+      "tier": "B"
+    },
+    {
+      "name": "Gwen",
+      "tier": "B"
+    },
+    {
+      "name": "Jax",
+      "tier": "B"
+    },
+    {
+      "name": "Jinx",
+      "tier": "D"
+    },
+    {
+      "name": "Meepsie",
+      "tier": "B"
+    },
+    {
+      "name": "Milio",
+      "tier": "A"
+    },
+    {
+      "name": "Mordekaiser",
+      "tier": "B"
+    },
+    {
+      "name": "Pantheon",
+      "tier": "C"
+    },
+    {
+      "name": "Pyke",
+      "tier": "B"
+    },
+    {
+      "name": "Zoe",
+      "tier": "D"
+    },
+    {
+      "name": "Aurora",
+      "tier": "D"
+    },
+    {
+      "name": "Diana",
+      "tier": "C"
+    },
+    {
+      "name": "Fizz",
+      "tier": "B"
+    },
+    {
+      "name": "Illaoi",
+      "tier": "C"
+    },
+    {
+      "name": "Kai'Sa",
+      "tier": "B"
+    },
+    {
+      "name": "Lulu",
+      "tier": "B"
+    },
+    {
+      "name": "Maokai",
+      "tier": "A"
+    },
+    {
+      "name": "Miss Fortune",
+      "tier": "A"
+    },
+    {
+      "name": "Ornn",
+      "tier": "B"
+    },
+    {
+      "name": "Rhaast",
+      "tier": "S"
+    },
+    {
+      "name": "Samira",
+      "tier": "B"
+    },
+    {
+      "name": "Urgot",
+      "tier": "A"
+    },
+    {
+      "name": "Viktor",
+      "tier": "B"
+    },
+    {
+      "name": "Aurelion Sol",
+      "tier": "B"
+    },
+    {
+      "name": "Corki",
+      "tier": "A"
+    },
+    {
+      "name": "Karma",
+      "tier": "A"
+    },
+    {
+      "name": "Kindred",
+      "tier": "S"
+    },
+    {
+      "name": "LeBlanc",
+      "tier": "B"
+    },
+    {
+      "name": "Master Yi",
+      "tier": "B"
+    },
+    {
+      "name": "Morgana",
+      "tier": "S"
+    },
+    {
+      "name": "Nami",
+      "tier": "A"
+    },
+    {
+      "name": "Nunu & Willump",
+      "tier": "B"
+    },
+    {
+      "name": "Rammus",
+      "tier": "B"
+    },
+    {
+      "name": "Riven",
+      "tier": "S"
+    },
+    {
+      "name": "Tahm Kench",
+      "tier": "B"
+    },
+    {
+      "name": "The Mighty Mech",
+      "tier": "A"
+    },
+    {
+      "name": "Xayah",
+      "tier": "A"
+    },
+    {
+      "name": "Bard",
+      "tier": "S"
+    },
+    {
+      "name": "Blitzcrank",
+      "tier": "S"
+    },
+    {
+      "name": "Fiora",
+      "tier": "S"
+    },
+    {
+      "name": "Graves",
+      "tier": "B"
+    },
+    {
+      "name": "Jhin",
+      "tier": "S"
+    },
+    {
+      "name": "Shen",
+      "tier": "S"
+    },
+    {
+      "name": "Sona",
+      "tier": "S"
+    },
+    {
+      "name": "Vex",
+      "tier": "S"
+    },
+    {
+      "name": "Zed",
+      "tier": "A"
+    }
+  ]
+}

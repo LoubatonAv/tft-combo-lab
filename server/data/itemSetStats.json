@@ -1,0 +1,5169 @@
+{
+  "aatrox": [
+    {
+      "id": "aatrox-metatft-1",
+      "items": [
+        "Bloodthirster",
+        "Sterak's Gage",
+        "Titan's Resolve"
+      ],
+      "itemImages": [
+        {
+          "name": "Bloodthirster",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bloodthirster.png"
+        },
+        {
+          "name": "Sterak's Gage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_steraksgage.png"
+        },
+        {
+          "name": "Titan's Resolve",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_titansresolve.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.37,
+      "delta": 0,
+      "winRate": 6.5,
+      "games": 2901,
+      "playRate": "14.2%",
+      "source": "https://www.metatft.com/units/TFT17_Aatrox"
+    },
+    {
+      "id": "aatrox-metatft-2",
+      "items": [
+        "Bloodthirster",
+        "Titan's Resolve",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Bloodthirster",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bloodthirster.png"
+        },
+        {
+          "name": "Titan's Resolve",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_titansresolve.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.24,
+      "delta": -0.02,
+      "winRate": 5.1,
+      "games": 253,
+      "playRate": "1.2%",
+      "source": "https://www.metatft.com/units/TFT17_Aatrox"
+    },
+    {
+      "id": "aatrox-metatft-3",
+      "items": [
+        "Stargazer Emblem",
+        "Gargoyle Stoneplate",
+        "Spirit Visage"
+      ],
+      "itemImages": [
+        {
+          "name": "Stargazer Emblem",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_stargazeremblemitem.png"
+        },
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Spirit Visage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redemption.png?v=1"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.35,
+      "delta": -0.72,
+      "winRate": 17.5,
+      "games": 40,
+      "playRate": "0.2%",
+      "source": "https://www.metatft.com/units/TFT17_Aatrox"
+    }
+  ],
+  "briar": [
+    {
+      "id": "briar-metatft-1",
+      "items": [
+        "Bloodthirster",
+        "Sterak's Gage",
+        "Titan's Resolve"
+      ],
+      "itemImages": [
+        {
+          "name": "Bloodthirster",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bloodthirster.png"
+        },
+        {
+          "name": "Sterak's Gage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_steraksgage.png"
+        },
+        {
+          "name": "Titan's Resolve",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_titansresolve.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.11,
+      "delta": -0.65,
+      "winRate": 10.2,
+      "games": 6115,
+      "playRate": "29.1%",
+      "source": "https://www.metatft.com/units/TFT17_Briar"
+    },
+    {
+      "id": "briar-metatft-2",
+      "items": [
+        "Sterak's Gage",
+        "Titan's Resolve",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Sterak's Gage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_steraksgage.png"
+        },
+        {
+          "name": "Titan's Resolve",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_titansresolve.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.41,
+      "delta": -0.06,
+      "winRate": 8,
+      "games": 412,
+      "playRate": "2.0%",
+      "source": "https://www.metatft.com/units/TFT17_Briar"
+    },
+    {
+      "id": "briar-metatft-3",
+      "items": [
+        "Bloodthirster",
+        "Sterak's Gage",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Bloodthirster",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bloodthirster.png"
+        },
+        {
+          "name": "Sterak's Gage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_steraksgage.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.36,
+      "delta": -0.07,
+      "winRate": 9.8,
+      "games": 254,
+      "playRate": "1.2%",
+      "source": "https://www.metatft.com/units/TFT17_Briar"
+    }
+  ],
+  "caitlyn": [
+    {
+      "id": "caitlyn-metatft-1",
+      "items": [
+        "Deathblade",
+        "Guinsoo's Rageblade",
+        "Giant Slayer"
+      ],
+      "itemImages": [
+        {
+          "name": "Deathblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_deathblade.png"
+        },
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.19,
+      "delta": -0.33,
+      "winRate": 9.8,
+      "games": 1797,
+      "playRate": "8.2%",
+      "source": "https://www.metatft.com/units/TFT17_Caitlyn"
+    },
+    {
+      "id": "caitlyn-metatft-2",
+      "items": [
+        "Deathblade",
+        "Guinsoo's Rageblade",
+        "Infinity Edge"
+      ],
+      "itemImages": [
+        {
+          "name": "Deathblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_deathblade.png"
+        },
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Infinity Edge",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.38,
+      "delta": -0.12,
+      "winRate": 8.2,
+      "games": 1410,
+      "playRate": "6.4%",
+      "source": "https://www.metatft.com/units/TFT17_Caitlyn"
+    },
+    {
+      "id": "caitlyn-metatft-3",
+      "items": [
+        "Guinsoo's Rageblade",
+        "Infinity Edge",
+        "Giant Slayer"
+      ],
+      "itemImages": [
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Infinity Edge",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.38,
+      "delta": -0.12,
+      "winRate": 7.6,
+      "games": 1423,
+      "playRate": "6.5%",
+      "source": "https://www.metatft.com/units/TFT17_Caitlyn"
+    }
+  ],
+  "chogath": [
+    {
+      "id": "chogath-metatft-1",
+      "items": [
+        "Protector's Vow",
+        "Spirit Visage",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Protector's Vow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_frozenheart.png"
+        },
+        {
+          "name": "Spirit Visage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redemption.png?v=1"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.93,
+      "delta": -0.28,
+      "winRate": 19.9,
+      "games": 3194,
+      "playRate": "3.4%",
+      "source": "https://www.metatft.com/units/TFT17_Chogath"
+    },
+    {
+      "id": "chogath-metatft-2",
+      "items": [
+        "Crownguard",
+        "Protector's Vow",
+        "Gargoyle Stoneplate"
+      ],
+      "itemImages": [
+        {
+          "name": "Crownguard",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_crownguard.png"
+        },
+        {
+          "name": "Protector's Vow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_frozenheart.png"
+        },
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.98,
+      "delta": -0.2,
+      "winRate": 21,
+      "games": 1734,
+      "playRate": "1.9%",
+      "source": "https://www.metatft.com/units/TFT17_Chogath"
+    },
+    {
+      "id": "chogath-metatft-3",
+      "items": [
+        "Protector's Vow",
+        "Gargoyle Stoneplate",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Protector's Vow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_frozenheart.png"
+        },
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.06,
+      "delta": -0.13,
+      "winRate": 17.6,
+      "games": 2059,
+      "playRate": "2.2%",
+      "source": "https://www.metatft.com/units/TFT17_Chogath"
+    }
+  ],
+  "ezreal": [],
+  "leona": [
+    {
+      "id": "leona-metatft-1",
+      "items": [
+        "Bloodthirster",
+        "Sterak's Gage",
+        "Titan's Resolve"
+      ],
+      "itemImages": [
+        {
+          "name": "Bloodthirster",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bloodthirster.png"
+        },
+        {
+          "name": "Sterak's Gage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_steraksgage.png"
+        },
+        {
+          "name": "Titan's Resolve",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_titansresolve.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.13,
+      "delta": -0.32,
+      "winRate": 12.9,
+      "games": 6118,
+      "playRate": "5.1%",
+      "source": "https://www.metatft.com/units/TFT17_Leona"
+    },
+    {
+      "id": "leona-metatft-2",
+      "items": [
+        "Gargoyle Stoneplate",
+        "Gargoyle Stoneplate",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.18,
+      "delta": -0.27,
+      "winRate": 12.6,
+      "games": 6169,
+      "playRate": "5.1%",
+      "source": "https://www.metatft.com/units/TFT17_Leona"
+    },
+    {
+      "id": "leona-metatft-3",
+      "items": [
+        "Gargoyle Stoneplate",
+        "Gargoyle Stoneplate",
+        "Gargoyle Stoneplate"
+      ],
+      "itemImages": [
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.17,
+      "delta": -0.25,
+      "winRate": 12.8,
+      "games": 2736,
+      "playRate": "2.3%",
+      "source": "https://www.metatft.com/units/TFT17_Leona"
+    }
+  ],
+  "lissandra": [
+    {
+      "id": "lissandra-metatft-1",
+      "items": [
+        "Dawncore",
+        "Jeweled Gauntlet",
+        "Nashor's Tooth"
+      ],
+      "itemImages": [
+        {
+          "name": "Dawncore",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_artifact_dawncore.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Nashor's Tooth",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_leviathan.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.58,
+      "delta": -0.7,
+      "winRate": 20.4,
+      "games": 319,
+      "playRate": "0.8%",
+      "source": "https://www.metatft.com/units/TFT17_Lissandra"
+    },
+    {
+      "id": "lissandra-metatft-2",
+      "items": [
+        "Jeweled Gauntlet",
+        "Nashor's Tooth",
+        "Nashor's Tooth"
+      ],
+      "itemImages": [
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Nashor's Tooth",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_leviathan.png"
+        },
+        {
+          "name": "Nashor's Tooth",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_leviathan.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.27,
+      "delta": -0.19,
+      "winRate": 15.4,
+      "games": 11675,
+      "playRate": "28.6%",
+      "source": "https://www.metatft.com/units/TFT17_Lissandra"
+    },
+    {
+      "id": "lissandra-metatft-3",
+      "items": [
+        "Blue Buff",
+        "Jeweled Gauntlet",
+        "Rabadon's Deathcap"
+      ],
+      "itemImages": [
+        {
+          "name": "Blue Buff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bluebuff.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.86,
+      "delta": -0.42,
+      "winRate": 17.2,
+      "games": 378,
+      "playRate": "0.9%",
+      "source": "https://www.metatft.com/units/TFT17_Lissandra"
+    }
+  ],
+  "nasus": [
+    {
+      "id": "nasus-metatft-1",
+      "items": [
+        "Gargoyle Stoneplate",
+        "Sunfire Cape",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Sunfire Cape",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redbuff.png"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.75,
+      "delta": -0.35,
+      "winRate": 11.4,
+      "games": 175,
+      "playRate": "1.2%",
+      "source": "https://www.metatft.com/units/TFT17_Nasus"
+    },
+    {
+      "id": "nasus-metatft-2",
+      "items": [
+        "Gargoyle Stoneplate",
+        "Spirit Visage",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Spirit Visage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redemption.png?v=1"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.93,
+      "delta": -0.19,
+      "winRate": 15.1,
+      "games": 252,
+      "playRate": "1.7%",
+      "source": "https://www.metatft.com/units/TFT17_Nasus"
+    },
+    {
+      "id": "nasus-metatft-3",
+      "items": [
+        "Steadfast Heart",
+        "Spirit Visage",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Steadfast Heart",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_nightharvester.png"
+        },
+        {
+          "name": "Spirit Visage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redemption.png?v=1"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3,
+      "delta": -0.98,
+      "winRate": 17.9,
+      "games": 39,
+      "playRate": "0.3%",
+      "source": "https://www.metatft.com/units/TFT17_Nasus"
+    }
+  ],
+  "poppy": [
+    {
+      "id": "poppy-metatft-1",
+      "items": [
+        "Deathblade",
+        "Guinsoo's Rageblade",
+        "Infinity Edge"
+      ],
+      "itemImages": [
+        {
+          "name": "Deathblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_deathblade.png"
+        },
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Infinity Edge",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.12,
+      "delta": -0.22,
+      "winRate": 8.1,
+      "games": 307,
+      "playRate": "1.8%",
+      "source": "https://www.metatft.com/units/TFT17_Poppy"
+    },
+    {
+      "id": "poppy-metatft-2",
+      "items": [
+        "Ionic Spark",
+        "Sunfire Cape",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Ionic Spark",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_ionicspark.png"
+        },
+        {
+          "name": "Sunfire Cape",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redbuff.png"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.12,
+      "delta": -0.98,
+      "winRate": 26.8,
+      "games": 41,
+      "playRate": "0.2%",
+      "source": "https://www.metatft.com/units/TFT17_Poppy"
+    },
+    {
+      "id": "poppy-metatft-3",
+      "items": [
+        "Infinity Edge",
+        "Giant Slayer",
+        "Spear of Shojin"
+      ],
+      "itemImages": [
+        {
+          "name": "Infinity Edge",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        },
+        {
+          "name": "Spear of Shojin",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.25,
+      "delta": -0.07,
+      "winRate": 10.4,
+      "games": 259,
+      "playRate": "1.5%",
+      "source": "https://www.metatft.com/units/TFT17_Poppy"
+    }
+  ],
+  "reksai": [],
+  "talon": [
+    {
+      "id": "talon-metatft-1",
+      "items": [
+        "Edge of Night",
+        "Hextech Gunblade",
+        "Spear of Shojin"
+      ],
+      "itemImages": [
+        {
+          "name": "Edge of Night",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guardianangel.png"
+        },
+        {
+          "name": "Hextech Gunblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_hextechgunblade.png"
+        },
+        {
+          "name": "Spear of Shojin",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.05,
+      "delta": -0.5,
+      "winRate": 8.6,
+      "games": 795,
+      "playRate": "7.0%",
+      "source": "https://www.metatft.com/units/TFT17_Talon"
+    },
+    {
+      "id": "talon-metatft-2",
+      "items": [
+        "Edge of Night",
+        "Spear of Shojin",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Edge of Night",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guardianangel.png"
+        },
+        {
+          "name": "Spear of Shojin",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.09,
+      "delta": -0.3,
+      "winRate": 9.7,
+      "games": 145,
+      "playRate": "1.3%",
+      "source": "https://www.metatft.com/units/TFT17_Talon"
+    },
+    {
+      "id": "talon-metatft-3",
+      "items": [
+        "Hextech Gunblade",
+        "Red Buff",
+        "Spear of Shojin"
+      ],
+      "itemImages": [
+        {
+          "name": "Hextech Gunblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_hextechgunblade.png"
+        },
+        {
+          "name": "Red Buff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rapidfirecannon.png"
+        },
+        {
+          "name": "Spear of Shojin",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.59,
+      "delta": -0.67,
+      "winRate": 10.2,
+      "games": 49,
+      "playRate": "0.4%",
+      "source": "https://www.metatft.com/units/TFT17_Talon"
+    }
+  ],
+  "teemo": [
+    {
+      "id": "teemo-metatft-1",
+      "items": [
+        "Guinsoo's Rageblade",
+        "Giant Slayer",
+        "Rabadon's Deathcap"
+      ],
+      "itemImages": [
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        },
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.38,
+      "delta": -0.19,
+      "winRate": 10.3,
+      "games": 1183,
+      "playRate": "6.9%",
+      "source": "https://www.metatft.com/units/TFT17_Teemo"
+    },
+    {
+      "id": "teemo-metatft-2",
+      "items": [
+        "Guinsoo's Rageblade",
+        "Hextech Gunblade",
+        "Giant Slayer"
+      ],
+      "itemImages": [
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Hextech Gunblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_hextechgunblade.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.41,
+      "delta": -0.16,
+      "winRate": 8.7,
+      "games": 1009,
+      "playRate": "5.9%",
+      "source": "https://www.metatft.com/units/TFT17_Teemo"
+    },
+    {
+      "id": "teemo-metatft-3",
+      "items": [
+        "Guinsoo's Rageblade",
+        "Hextech Gunblade",
+        "Void Staff"
+      ],
+      "itemImages": [
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Hextech Gunblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_hextechgunblade.png"
+        },
+        {
+          "name": "Void Staff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_statikkshiv.png?v=1"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.23,
+      "delta": -0.25,
+      "winRate": 11.1,
+      "games": 244,
+      "playRate": "1.4%",
+      "source": "https://www.metatft.com/units/TFT17_Teemo"
+    }
+  ],
+  "twisted-fate": [
+    {
+      "id": "twisted-fate-metatft-1",
+      "items": [
+        "Nashor's Tooth",
+        "Nashor's Tooth",
+        "Rabadon's Deathcap"
+      ],
+      "itemImages": [
+        {
+          "name": "Nashor's Tooth",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_leviathan.png"
+        },
+        {
+          "name": "Nashor's Tooth",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_leviathan.png"
+        },
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.25,
+      "delta": -0.2,
+      "winRate": 10.3,
+      "games": 4427,
+      "playRate": "17.4%",
+      "source": "https://www.metatft.com/units/TFT17_TwistedFate"
+    },
+    {
+      "id": "twisted-fate-metatft-2",
+      "items": [
+        "Nashor's Tooth",
+        "Rabadon's Deathcap",
+        "Spear of Shojin"
+      ],
+      "itemImages": [
+        {
+          "name": "Nashor's Tooth",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_leviathan.png"
+        },
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        },
+        {
+          "name": "Spear of Shojin",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.03,
+      "delta": -0.3,
+      "winRate": 12.7,
+      "games": 393,
+      "playRate": "1.5%",
+      "source": "https://www.metatft.com/units/TFT17_TwistedFate"
+    },
+    {
+      "id": "twisted-fate-metatft-3",
+      "items": [
+        "Archangel's Staff",
+        "Nashor's Tooth",
+        "Nashor's Tooth"
+      ],
+      "itemImages": [
+        {
+          "name": "Archangel's Staff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_archangelsstaff.png"
+        },
+        {
+          "name": "Nashor's Tooth",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_leviathan.png"
+        },
+        {
+          "name": "Nashor's Tooth",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_leviathan.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.25,
+      "delta": -0.05,
+      "winRate": 9.6,
+      "games": 293,
+      "playRate": "1.1%",
+      "source": "https://www.metatft.com/units/TFT17_TwistedFate"
+    }
+  ],
+  "veigar": [],
+  "akali": [
+    {
+      "id": "akali-metatft-1",
+      "items": [
+        "Edge of Night",
+        "Infinity Edge",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Edge of Night",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guardianangel.png"
+        },
+        {
+          "name": "Infinity Edge",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.01,
+      "delta": -0.17,
+      "winRate": 13.1,
+      "games": 373,
+      "playRate": "1.7%",
+      "source": "https://www.metatft.com/units/TFT17_Akali"
+    },
+    {
+      "id": "akali-metatft-2",
+      "items": [
+        "Deathblade",
+        "Edge of Night",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Deathblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_deathblade.png"
+        },
+        {
+          "name": "Edge of Night",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guardianangel.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.98,
+      "delta": -0.18,
+      "winRate": 10.3,
+      "games": 302,
+      "playRate": "1.4%",
+      "source": "https://www.metatft.com/units/TFT17_Akali"
+    },
+    {
+      "id": "akali-metatft-3",
+      "items": [
+        "Edge of Night",
+        "Striker's Flail",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Edge of Night",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guardianangel.png"
+        },
+        {
+          "name": "Striker's Flail",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_powergauntlet.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.18,
+      "delta": -0.07,
+      "winRate": 9.9,
+      "games": 1153,
+      "playRate": "5.2%",
+      "source": "https://www.metatft.com/units/TFT17_Akali"
+    }
+  ],
+  "belveth": [
+    {
+      "id": "belveth-metatft-1",
+      "items": [
+        "Giant Slayer",
+        "Quicksilver",
+        "Kraken's Fury"
+      ],
+      "itemImages": [
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        },
+        {
+          "name": "Quicksilver",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_quicksilver.png"
+        },
+        {
+          "name": "Kraken's Fury",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_runaanshurricane.png?v=1"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.2,
+      "delta": -0.12,
+      "winRate": 10,
+      "games": 7603,
+      "playRate": "15.7%",
+      "source": "https://www.metatft.com/units/TFT17_Belveth"
+    },
+    {
+      "id": "belveth-metatft-2",
+      "items": [
+        "Deathblade",
+        "Giant Slayer",
+        "Quicksilver"
+      ],
+      "itemImages": [
+        {
+          "name": "Deathblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_deathblade.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        },
+        {
+          "name": "Quicksilver",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_quicksilver.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.09,
+      "delta": -0.11,
+      "winRate": 12.4,
+      "games": 427,
+      "playRate": "0.9%",
+      "source": "https://www.metatft.com/units/TFT17_Belveth"
+    },
+    {
+      "id": "belveth-metatft-3",
+      "items": [
+        "Giant Slayer",
+        "Striker's Flail",
+        "Quicksilver"
+      ],
+      "itemImages": [
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        },
+        {
+          "name": "Striker's Flail",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_powergauntlet.png"
+        },
+        {
+          "name": "Quicksilver",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_quicksilver.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.77,
+      "delta": -0.39,
+      "winRate": 14.3,
+      "games": 230,
+      "playRate": "0.5%",
+      "source": "https://www.metatft.com/units/TFT17_Belveth"
+    }
+  ],
+  "gnar": [
+    {
+      "id": "gnar-metatft-1",
+      "items": [
+        "Deathblade",
+        "Guinsoo's Rageblade",
+        "Infinity Edge"
+      ],
+      "itemImages": [
+        {
+          "name": "Deathblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_deathblade.png"
+        },
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Infinity Edge",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.9,
+      "delta": -0.4,
+      "winRate": 16,
+      "games": 3665,
+      "playRate": "15.6%",
+      "source": "https://www.metatft.com/units/TFT17_Gnar"
+    },
+    {
+      "id": "gnar-metatft-2",
+      "items": [
+        "Guinsoo's Rageblade",
+        "Infinity Edge",
+        "Kraken's Fury"
+      ],
+      "itemImages": [
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Infinity Edge",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png"
+        },
+        {
+          "name": "Kraken's Fury",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_runaanshurricane.png?v=1"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.05,
+      "delta": -0.18,
+      "winRate": 13.7,
+      "games": 1604,
+      "playRate": "6.8%",
+      "source": "https://www.metatft.com/units/TFT17_Gnar"
+    },
+    {
+      "id": "gnar-metatft-3",
+      "items": [
+        "Guinsoo's Rageblade",
+        "Infinity Edge",
+        "Giant Slayer"
+      ],
+      "itemImages": [
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Infinity Edge",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.1,
+      "delta": -0.13,
+      "winRate": 13.3,
+      "games": 1985,
+      "playRate": "8.4%",
+      "source": "https://www.metatft.com/units/TFT17_Gnar"
+    }
+  ],
+  "gragas": [
+    {
+      "id": "gragas-metatft-1",
+      "items": [
+        "Sympathetic Implant",
+        "Jeweled Gauntlet",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Sympathetic Implant",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_psyops_sympatheticimplantmod_radiant.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.18,
+      "delta": -1.23,
+      "winRate": 23.2,
+      "games": 4807,
+      "playRate": "9.1%",
+      "source": "https://www.metatft.com/units/TFT17_Gragas"
+    },
+    {
+      "id": "gragas-metatft-2",
+      "items": [
+        "Drone Uplink",
+        "Jeweled Gauntlet",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Drone Uplink",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_psyops_dronemod_radiant.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.82,
+      "delta": -0.43,
+      "winRate": 12,
+      "games": 1004,
+      "playRate": "1.9%",
+      "source": "https://www.metatft.com/units/TFT17_Gragas"
+    },
+    {
+      "id": "gragas-metatft-3",
+      "items": [
+        "Jeweled Gauntlet",
+        "Striker's Flail",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Striker's Flail",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_powergauntlet.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.98,
+      "delta": -0.26,
+      "winRate": 12,
+      "games": 784,
+      "playRate": "1.5%",
+      "source": "https://www.metatft.com/units/TFT17_Gragas"
+    }
+  ],
+  "gwen": [
+    {
+      "id": "gwen-metatft-1",
+      "items": [
+        "Hextech Gunblade",
+        "Jeweled Gauntlet",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Hextech Gunblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_hextechgunblade.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.79,
+      "delta": -0.22,
+      "winRate": 11.2,
+      "games": 457,
+      "playRate": "1.2%",
+      "source": "https://www.metatft.com/units/TFT17_Gwen"
+    },
+    {
+      "id": "gwen-metatft-2",
+      "items": [
+        "Hextech Gunblade",
+        "Jeweled Gauntlet",
+        "Rabadon's Deathcap"
+      ],
+      "itemImages": [
+        {
+          "name": "Hextech Gunblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_hextechgunblade.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.01,
+      "delta": -0.06,
+      "winRate": 9.2,
+      "games": 1289,
+      "playRate": "3.4%",
+      "source": "https://www.metatft.com/units/TFT17_Gwen"
+    },
+    {
+      "id": "gwen-metatft-3",
+      "items": [
+        "Jeweled Gauntlet",
+        "Striker's Flail",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Striker's Flail",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_powergauntlet.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.96,
+      "delta": -0.07,
+      "winRate": 10.2,
+      "games": 521,
+      "playRate": "1.4%",
+      "source": "https://www.metatft.com/units/TFT17_Gwen"
+    }
+  ],
+  "jax": [
+    {
+      "id": "jax-metatft-1",
+      "items": [
+        "Bloodthirster",
+        "Edge of Night",
+        "Titan's Resolve"
+      ],
+      "itemImages": [
+        {
+          "name": "Bloodthirster",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bloodthirster.png"
+        },
+        {
+          "name": "Edge of Night",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guardianangel.png"
+        },
+        {
+          "name": "Titan's Resolve",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_titansresolve.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.72,
+      "delta": -0.39,
+      "winRate": 19.2,
+      "games": 6975,
+      "playRate": "7.5%",
+      "source": "https://www.metatft.com/units/TFT17_Jax"
+    },
+    {
+      "id": "jax-metatft-2",
+      "items": [
+        "Protector's Vow",
+        "Gargoyle Stoneplate",
+        "Gargoyle Stoneplate"
+      ],
+      "itemImages": [
+        {
+          "name": "Protector's Vow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_frozenheart.png"
+        },
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.67,
+      "delta": -0.4,
+      "winRate": 17.7,
+      "games": 2409,
+      "playRate": "2.6%",
+      "source": "https://www.metatft.com/units/TFT17_Jax"
+    },
+    {
+      "id": "jax-metatft-3",
+      "items": [
+        "Crownguard",
+        "Gargoyle Stoneplate",
+        "Gargoyle Stoneplate"
+      ],
+      "itemImages": [
+        {
+          "name": "Crownguard",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_crownguard.png"
+        },
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.89,
+      "delta": -0.21,
+      "winRate": 14.8,
+      "games": 5625,
+      "playRate": "6.1%",
+      "source": "https://www.metatft.com/units/TFT17_Jax"
+    }
+  ],
+  "jinx": [
+    {
+      "id": "jinx-metatft-1",
+      "items": [
+        "Battle Bunny Crossbow",
+        "Guinsoo's Rageblade",
+        "Infinity Edge"
+      ],
+      "itemImages": [
+        {
+          "name": "Battle Bunny Crossbow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_battlebunnycrossbow.png"
+        },
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Infinity Edge",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.06,
+      "delta": -1.41,
+      "winRate": 38.4,
+      "games": 4886,
+      "playRate": "8.7%",
+      "source": "https://www.metatft.com/units/TFT17_Jinx"
+    },
+    {
+      "id": "jinx-metatft-2",
+      "items": [
+        "Echoing Batblades",
+        "Guinsoo's Rageblade",
+        "Infinity Edge"
+      ],
+      "itemImages": [
+        {
+          "name": "Echoing Batblades",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_echoingbatblades.png"
+        },
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Infinity Edge",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.45,
+      "delta": -0.79,
+      "winRate": 34.8,
+      "games": 517,
+      "playRate": "0.9%",
+      "source": "https://www.metatft.com/units/TFT17_Jinx"
+    },
+    {
+      "id": "jinx-metatft-3",
+      "items": [
+        "Battle Bunny Crossbow",
+        "Guinsoo's Rageblade",
+        "Last Whisper"
+      ],
+      "itemImages": [
+        {
+          "name": "Battle Bunny Crossbow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_battlebunnycrossbow.png"
+        },
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Last Whisper",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_lastwhisper.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.56,
+      "delta": -0.69,
+      "winRate": 28.9,
+      "games": 474,
+      "playRate": "0.8%",
+      "source": "https://www.metatft.com/units/TFT17_Jinx"
+    }
+  ],
+  "meepsie": [
+    {
+      "id": "meepsie-metatft-1",
+      "items": [
+        "Edge of Night",
+        "Jeweled Gauntlet",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Edge of Night",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guardianangel.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.1,
+      "delta": -0.15,
+      "winRate": 10.2,
+      "games": 7394,
+      "playRate": "17.3%",
+      "source": "https://www.metatft.com/units/TFT17_IvernMinion"
+    },
+    {
+      "id": "meepsie-metatft-2",
+      "items": [
+        "Zhonya's Paradox",
+        "Jeweled Gauntlet",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Zhonya's Paradox",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft4_item_ornnzhonyasparadox.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.29,
+      "delta": -0.61,
+      "winRate": 22,
+      "games": 59,
+      "playRate": "0.1%",
+      "source": "https://www.metatft.com/units/TFT17_IvernMinion"
+    },
+    {
+      "id": "meepsie-metatft-3",
+      "items": [
+        "Bloodthirster",
+        "Jeweled Gauntlet",
+        "Titan's Resolve"
+      ],
+      "itemImages": [
+        {
+          "name": "Bloodthirster",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bloodthirster.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Titan's Resolve",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_titansresolve.png"
+        }
+      ],
+      "tier": "A",
+      "avgPlace": 4.28,
+      "delta": 0.15,
+      "winRate": 6.7,
+      "games": 405,
+      "playRate": "0.9%",
+      "source": "https://www.metatft.com/units/TFT17_IvernMinion"
+    }
+  ],
+  "milio": [
+    {
+      "id": "milio-metatft-1",
+      "items": [
+        "Stargazer Emblem",
+        "Morellonomicon",
+        "Spear of Shojin"
+      ],
+      "itemImages": [
+        {
+          "name": "Stargazer Emblem",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_stargazeremblemitem.png"
+        },
+        {
+          "name": "Morellonomicon",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_morellonomicon.png"
+        },
+        {
+          "name": "Spear of Shojin",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.28,
+      "delta": -0.46,
+      "winRate": 25,
+      "games": 1508,
+      "playRate": "2.4%",
+      "source": "https://www.metatft.com/units/TFT17_Milio"
+    },
+    {
+      "id": "milio-metatft-2",
+      "items": [
+        "Morellonomicon",
+        "Rabadon's Deathcap",
+        "Spear of Shojin"
+      ],
+      "itemImages": [
+        {
+          "name": "Morellonomicon",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_morellonomicon.png"
+        },
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        },
+        {
+          "name": "Spear of Shojin",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.43,
+      "delta": -0.31,
+      "winRate": 20.5,
+      "games": 1491,
+      "playRate": "2.3%",
+      "source": "https://www.metatft.com/units/TFT17_Milio"
+    },
+    {
+      "id": "milio-metatft-3",
+      "items": [
+        "Stargazer Emblem",
+        "Rabadon's Deathcap",
+        "Spear of Shojin"
+      ],
+      "itemImages": [
+        {
+          "name": "Stargazer Emblem",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_stargazeremblemitem.png"
+        },
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        },
+        {
+          "name": "Spear of Shojin",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.31,
+      "delta": -0.38,
+      "winRate": 22,
+      "games": 546,
+      "playRate": "0.9%",
+      "source": "https://www.metatft.com/units/TFT17_Milio"
+    }
+  ],
+  "mordekaiser": [
+    {
+      "id": "mordekaiser-metatft-1",
+      "items": [
+        "Gargoyle Stoneplate",
+        "Ionic Spark",
+        "Sunfire Cape"
+      ],
+      "itemImages": [
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Ionic Spark",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_ionicspark.png"
+        },
+        {
+          "name": "Sunfire Cape",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redbuff.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.89,
+      "delta": -0.45,
+      "winRate": 12.7,
+      "games": 291,
+      "playRate": "0.6%",
+      "source": "https://www.metatft.com/units/TFT17_Mordekaiser"
+    },
+    {
+      "id": "mordekaiser-metatft-2",
+      "items": [
+        "Ionic Spark",
+        "Sunfire Cape",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Ionic Spark",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_ionicspark.png"
+        },
+        {
+          "name": "Sunfire Cape",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redbuff.png"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.99,
+      "delta": -0.36,
+      "winRate": 10,
+      "games": 310,
+      "playRate": "0.6%",
+      "source": "https://www.metatft.com/units/TFT17_Mordekaiser"
+    },
+    {
+      "id": "mordekaiser-metatft-3",
+      "items": [
+        "Ionic Spark",
+        "Sunfire Cape",
+        "Spirit Visage"
+      ],
+      "itemImages": [
+        {
+          "name": "Ionic Spark",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_ionicspark.png"
+        },
+        {
+          "name": "Sunfire Cape",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redbuff.png"
+        },
+        {
+          "name": "Spirit Visage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redemption.png?v=1"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.8,
+      "delta": -0.49,
+      "winRate": 19.6,
+      "games": 194,
+      "playRate": "0.4%",
+      "source": "https://www.metatft.com/units/TFT17_Mordekaiser"
+    }
+  ],
+  "pantheon": [],
+  "pyke": [
+    {
+      "id": "pyke-metatft-1",
+      "items": [
+        "Target-Lock Optics",
+        "Edge of Night",
+        "Infinity Edge"
+      ],
+      "itemImages": [
+        {
+          "name": "Target-Lock Optics",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_psyops_targetlockmod_radiant.png"
+        },
+        {
+          "name": "Edge of Night",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guardianangel.png"
+        },
+        {
+          "name": "Infinity Edge",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.79,
+      "delta": -0.43,
+      "winRate": 14.7,
+      "games": 2176,
+      "playRate": "3.5%",
+      "source": "https://www.metatft.com/units/TFT17_Pyke"
+    },
+    {
+      "id": "pyke-metatft-2",
+      "items": [
+        "Edge of Night",
+        "Infinity Edge",
+        "Striker's Flail"
+      ],
+      "itemImages": [
+        {
+          "name": "Edge of Night",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guardianangel.png"
+        },
+        {
+          "name": "Infinity Edge",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png"
+        },
+        {
+          "name": "Striker's Flail",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_powergauntlet.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.92,
+      "delta": -0.26,
+      "winRate": 8.8,
+      "games": 752,
+      "playRate": "1.2%",
+      "source": "https://www.metatft.com/units/TFT17_Pyke"
+    },
+    {
+      "id": "pyke-metatft-3",
+      "items": [
+        "Edge of Night",
+        "Infinity Edge",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Edge of Night",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guardianangel.png"
+        },
+        {
+          "name": "Infinity Edge",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "A",
+      "avgPlace": 4.16,
+      "delta": -0.09,
+      "winRate": 8.2,
+      "games": 7727,
+      "playRate": "12.3%",
+      "source": "https://www.metatft.com/units/TFT17_Pyke"
+    }
+  ],
+  "zoe": [
+    {
+      "id": "zoe-metatft-1",
+      "items": [
+        "Morellonomicon",
+        "Spear of Shojin",
+        "Void Staff"
+      ],
+      "itemImages": [
+        {
+          "name": "Morellonomicon",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_morellonomicon.png"
+        },
+        {
+          "name": "Spear of Shojin",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png"
+        },
+        {
+          "name": "Void Staff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_statikkshiv.png?v=1"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.97,
+      "delta": -0.62,
+      "winRate": 12.6,
+      "games": 1361,
+      "playRate": "4.7%",
+      "source": "https://www.metatft.com/units/TFT17_Zoe"
+    },
+    {
+      "id": "zoe-metatft-2",
+      "items": [
+        "Jeweled Gauntlet",
+        "Striker's Flail",
+        "Rabadon's Deathcap"
+      ],
+      "itemImages": [
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Striker's Flail",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_powergauntlet.png"
+        },
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.57,
+      "delta": -0.9,
+      "winRate": 19.8,
+      "games": 242,
+      "playRate": "0.8%",
+      "source": "https://www.metatft.com/units/TFT17_Zoe"
+    },
+    {
+      "id": "zoe-metatft-3",
+      "items": [
+        "Morellonomicon",
+        "Rabadon's Deathcap",
+        "Void Staff"
+      ],
+      "itemImages": [
+        {
+          "name": "Morellonomicon",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_morellonomicon.png"
+        },
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        },
+        {
+          "name": "Void Staff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_statikkshiv.png?v=1"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.82,
+      "delta": -0.64,
+      "winRate": 15,
+      "games": 233,
+      "playRate": "0.8%",
+      "source": "https://www.metatft.com/units/TFT17_Zoe"
+    }
+  ],
+  "aurora": [
+    {
+      "id": "aurora-metatft-1",
+      "items": [
+        "Searing Shortbow",
+        "Jeweled Gauntlet",
+        "Nashor's Tooth"
+      ],
+      "itemImages": [
+        {
+          "name": "Searing Shortbow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_searingshortbow.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Nashor's Tooth",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_leviathan.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.08,
+      "delta": -1.07,
+      "winRate": 38.8,
+      "games": 502,
+      "playRate": "0.9%",
+      "source": "https://www.metatft.com/units/TFT17_Aurora"
+    },
+    {
+      "id": "aurora-metatft-2",
+      "items": [
+        "Searing Shortbow",
+        "Jeweled Gauntlet",
+        "Spear of Shojin"
+      ],
+      "itemImages": [
+        {
+          "name": "Searing Shortbow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_searingshortbow.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Spear of Shojin",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.08,
+      "delta": -1.06,
+      "winRate": 39.8,
+      "games": 462,
+      "playRate": "0.9%",
+      "source": "https://www.metatft.com/units/TFT17_Aurora"
+    },
+    {
+      "id": "aurora-metatft-3",
+      "items": [
+        "The Annihilator",
+        "Jeweled Gauntlet",
+        "Nashor's Tooth"
+      ],
+      "itemImages": [
+        {
+          "name": "The Annihilator",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_annihilator.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Nashor's Tooth",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_leviathan.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.15,
+      "delta": -0.95,
+      "winRate": 41.1,
+      "games": 319,
+      "playRate": "0.6%",
+      "source": "https://www.metatft.com/units/TFT17_Aurora"
+    }
+  ],
+  "diana": [
+    {
+      "id": "diana-metatft-1",
+      "items": [
+        "Cyclonic Slicers",
+        "Bloodthirster",
+        "Titan's Resolve"
+      ],
+      "itemImages": [
+        {
+          "name": "Cyclonic Slicers",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_cyclonicslicers.png"
+        },
+        {
+          "name": "Bloodthirster",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bloodthirster.png"
+        },
+        {
+          "name": "Titan's Resolve",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_titansresolve.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.33,
+      "delta": -1,
+      "winRate": 37.3,
+      "games": 566,
+      "playRate": "0.7%",
+      "source": "https://www.metatft.com/units/TFT17_Diana"
+    },
+    {
+      "id": "diana-metatft-2",
+      "items": [
+        "Bloodthirster",
+        "Edge of Night",
+        "Titan's Resolve"
+      ],
+      "itemImages": [
+        {
+          "name": "Bloodthirster",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bloodthirster.png"
+        },
+        {
+          "name": "Edge of Night",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guardianangel.png"
+        },
+        {
+          "name": "Titan's Resolve",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_titansresolve.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.92,
+      "delta": -0.45,
+      "winRate": 20,
+      "games": 1101,
+      "playRate": "1.3%",
+      "source": "https://www.metatft.com/units/TFT17_Diana"
+    },
+    {
+      "id": "diana-metatft-3",
+      "items": [
+        "Bloodthirster",
+        "Guinsoo's Rageblade",
+        "Titan's Resolve"
+      ],
+      "itemImages": [
+        {
+          "name": "Bloodthirster",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bloodthirster.png"
+        },
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Titan's Resolve",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_titansresolve.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.31,
+      "delta": -0.19,
+      "winRate": 15.1,
+      "games": 26177,
+      "playRate": "31.6%",
+      "source": "https://www.metatft.com/units/TFT17_Diana"
+    }
+  ],
+  "fizz": [
+    {
+      "id": "fizz-metatft-1",
+      "items": [
+        "Jeweled Gauntlet",
+        "Quicksilver",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Quicksilver",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_quicksilver.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.53,
+      "delta": -0.39,
+      "winRate": 19.2,
+      "games": 78,
+      "playRate": "0.5%",
+      "source": "https://www.metatft.com/units/TFT17_Fizz"
+    },
+    {
+      "id": "fizz-metatft-2",
+      "items": [
+        "Edge of Night",
+        "Jeweled Gauntlet",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Edge of Night",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guardianangel.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.07,
+      "delta": 0.03,
+      "winRate": 11.5,
+      "games": 217,
+      "playRate": "1.3%",
+      "source": "https://www.metatft.com/units/TFT17_Fizz"
+    },
+    {
+      "id": "fizz-metatft-3",
+      "items": [
+        "Hextech Gunblade",
+        "Jeweled Gauntlet",
+        "Rabadon's Deathcap"
+      ],
+      "itemImages": [
+        {
+          "name": "Hextech Gunblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_hextechgunblade.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 2.93,
+      "delta": -0.85,
+      "winRate": 20.7,
+      "games": 29,
+      "playRate": "0.2%",
+      "source": "https://www.metatft.com/units/TFT17_Fizz"
+    }
+  ],
+  "illaoi": [
+    {
+      "id": "illaoi-metatft-1",
+      "items": [
+        "Crownguard",
+        "Gargoyle Stoneplate",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Crownguard",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_crownguard.png"
+        },
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.89,
+      "delta": -0.39,
+      "winRate": 15.5,
+      "games": 1731,
+      "playRate": "1.0%",
+      "source": "https://www.metatft.com/units/TFT17_Illaoi"
+    },
+    {
+      "id": "illaoi-metatft-2",
+      "items": [
+        "Bramble Vest",
+        "Gargoyle Stoneplate",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Bramble Vest",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bramblevest.png"
+        },
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.14,
+      "delta": -0.17,
+      "winRate": 15.3,
+      "games": 3763,
+      "playRate": "2.2%",
+      "source": "https://www.metatft.com/units/TFT17_Illaoi"
+    },
+    {
+      "id": "illaoi-metatft-3",
+      "items": [
+        "Gargoyle Stoneplate",
+        "Steadfast Heart",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Steadfast Heart",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_nightharvester.png"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.01,
+      "delta": -0.27,
+      "winRate": 17.2,
+      "games": 1341,
+      "playRate": "0.8%",
+      "source": "https://www.metatft.com/units/TFT17_Illaoi"
+    }
+  ],
+  "kaisa": [],
+  "lulu": [
+    {
+      "id": "lulu-metatft-1",
+      "items": [
+        "Dawncore",
+        "Jeweled Gauntlet",
+        "Nashor's Tooth"
+      ],
+      "itemImages": [
+        {
+          "name": "Dawncore",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_artifact_dawncore.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Nashor's Tooth",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_leviathan.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.52,
+      "delta": -0.61,
+      "winRate": 23.8,
+      "games": 820,
+      "playRate": "1.0%",
+      "source": "https://www.metatft.com/units/TFT17_Lulu"
+    },
+    {
+      "id": "lulu-metatft-2",
+      "items": [
+        "Jeweled Gauntlet",
+        "Nashor's Tooth",
+        "Nashor's Tooth"
+      ],
+      "itemImages": [
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Nashor's Tooth",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_leviathan.png"
+        },
+        {
+          "name": "Nashor's Tooth",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_leviathan.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.04,
+      "delta": -0.27,
+      "winRate": 15.7,
+      "games": 29978,
+      "playRate": "36.8%",
+      "source": "https://www.metatft.com/units/TFT17_Lulu"
+    },
+    {
+      "id": "lulu-metatft-3",
+      "items": [
+        "Radiant Nashor's Tooth",
+        "Jeweled Gauntlet",
+        "Nashor's Tooth"
+      ],
+      "itemImages": [
+        {
+          "name": "Radiant Nashor's Tooth",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft5_item_leviathanradiant.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Nashor's Tooth",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_leviathan.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.59,
+      "delta": -0.52,
+      "winRate": 19.9,
+      "games": 643,
+      "playRate": "0.8%",
+      "source": "https://www.metatft.com/units/TFT17_Lulu"
+    }
+  ],
+  "maokai": [
+    {
+      "id": "maokai-metatft-1",
+      "items": [
+        "Crownguard",
+        "Protector's Vow",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Crownguard",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_crownguard.png"
+        },
+        {
+          "name": "Protector's Vow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_frozenheart.png"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.54,
+      "delta": -0.34,
+      "winRate": 16.2,
+      "games": 1333,
+      "playRate": "0.8%",
+      "source": "https://www.metatft.com/units/TFT17_Maokai"
+    },
+    {
+      "id": "maokai-metatft-2",
+      "items": [
+        "Protector's Vow",
+        "Spirit Visage",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Protector's Vow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_frozenheart.png"
+        },
+        {
+          "name": "Spirit Visage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redemption.png?v=1"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.69,
+      "delta": -0.19,
+      "winRate": 14.7,
+      "games": 1662,
+      "playRate": "1.0%",
+      "source": "https://www.metatft.com/units/TFT17_Maokai"
+    },
+    {
+      "id": "maokai-metatft-3",
+      "items": [
+        "Stargazer Emblem",
+        "Spirit Visage",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Stargazer Emblem",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_stargazeremblemitem.png"
+        },
+        {
+          "name": "Spirit Visage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redemption.png?v=1"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 2.95,
+      "delta": -0.89,
+      "winRate": 29.6,
+      "games": 473,
+      "playRate": "0.3%",
+      "source": "https://www.metatft.com/units/TFT17_Maokai"
+    }
+  ],
+  "miss-fortune": [
+    {
+      "id": "miss-fortune-metatft-1",
+      "items": [
+        "Deathblade",
+        "Guinsoo's Rageblade",
+        "Infinity Edge"
+      ],
+      "itemImages": [
+        {
+          "name": "Deathblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_deathblade.png"
+        },
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Infinity Edge",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.87,
+      "delta": -0.3,
+      "winRate": 11.7,
+      "games": 34900,
+      "playRate": "24.7%",
+      "source": "https://www.metatft.com/units/TFT17_MissFortune"
+    },
+    {
+      "id": "miss-fortune-metatft-2",
+      "items": [
+        "Deathblade",
+        "Deathblade",
+        "Guinsoo's Rageblade"
+      ],
+      "itemImages": [
+        {
+          "name": "Deathblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_deathblade.png"
+        },
+        {
+          "name": "Deathblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_deathblade.png"
+        },
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.6,
+      "delta": -0.44,
+      "winRate": 17.7,
+      "games": 1675,
+      "playRate": "1.2%",
+      "source": "https://www.metatft.com/units/TFT17_MissFortune"
+    },
+    {
+      "id": "miss-fortune-metatft-3",
+      "items": [
+        "Deathblade",
+        "Infinity Edge",
+        "Striker's Flail"
+      ],
+      "itemImages": [
+        {
+          "name": "Deathblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_deathblade.png"
+        },
+        {
+          "name": "Infinity Edge",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png"
+        },
+        {
+          "name": "Striker's Flail",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_powergauntlet.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.79,
+      "delta": -0.26,
+      "winRate": 12.2,
+      "games": 2273,
+      "playRate": "1.6%",
+      "source": "https://www.metatft.com/units/TFT17_MissFortune"
+    }
+  ],
+  "ornn": [
+    {
+      "id": "ornn-metatft-1",
+      "items": [
+        "Gargoyle Stoneplate",
+        "Spirit Visage",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Spirit Visage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redemption.png?v=1"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.51,
+      "delta": -0.42,
+      "winRate": 20,
+      "games": 16233,
+      "playRate": "8.0%",
+      "source": "https://www.metatft.com/units/TFT17_Ornn"
+    },
+    {
+      "id": "ornn-metatft-2",
+      "items": [
+        "Dragon's Claw",
+        "Gargoyle Stoneplate",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Dragon's Claw",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_dragonsclaw.png"
+        },
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.64,
+      "delta": -0.26,
+      "winRate": 16.3,
+      "games": 8294,
+      "playRate": "4.1%",
+      "source": "https://www.metatft.com/units/TFT17_Ornn"
+    },
+    {
+      "id": "ornn-metatft-3",
+      "items": [
+        "Gargoyle Stoneplate",
+        "Steadfast Heart",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Steadfast Heart",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_nightharvester.png"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.64,
+      "delta": -0.22,
+      "winRate": 16.3,
+      "games": 2461,
+      "playRate": "1.2%",
+      "source": "https://www.metatft.com/units/TFT17_Ornn"
+    }
+  ],
+  "rhaast": [
+    {
+      "id": "rhaast-metatft-1",
+      "items": [
+        "Protector's Vow",
+        "Spirit Visage",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Protector's Vow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_frozenheart.png"
+        },
+        {
+          "name": "Spirit Visage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redemption.png?v=1"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.38,
+      "delta": -0.35,
+      "winRate": 15.1,
+      "games": 271,
+      "playRate": "0.5%",
+      "source": "https://www.metatft.com/units/TFT17_Rhaast"
+    },
+    {
+      "id": "rhaast-metatft-2",
+      "items": [
+        "Gargoyle Stoneplate",
+        "Steadfast Heart",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Steadfast Heart",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_nightharvester.png"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.61,
+      "delta": -0.12,
+      "winRate": 14.5,
+      "games": 317,
+      "playRate": "0.6%",
+      "source": "https://www.metatft.com/units/TFT17_Rhaast"
+    },
+    {
+      "id": "rhaast-metatft-3",
+      "items": [
+        "Bramble Vest",
+        "Steadfast Heart",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Bramble Vest",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bramblevest.png"
+        },
+        {
+          "name": "Steadfast Heart",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_nightharvester.png"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 2.94,
+      "delta": -0.71,
+      "winRate": 20.4,
+      "games": 93,
+      "playRate": "0.2%",
+      "source": "https://www.metatft.com/units/TFT17_Rhaast"
+    }
+  ],
+  "samira": [
+    {
+      "id": "samira-metatft-1",
+      "items": [
+        "Deathblade",
+        "Last Whisper",
+        "Spear of Shojin"
+      ],
+      "itemImages": [
+        {
+          "name": "Deathblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_deathblade.png"
+        },
+        {
+          "name": "Last Whisper",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_lastwhisper.png"
+        },
+        {
+          "name": "Spear of Shojin",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.54,
+      "delta": -0.39,
+      "winRate": 21.3,
+      "games": 14756,
+      "playRate": "19.0%",
+      "source": "https://www.metatft.com/units/TFT17_Samira"
+    },
+    {
+      "id": "samira-metatft-2",
+      "items": [
+        "Deathblade",
+        "Giant Slayer",
+        "Spear of Shojin"
+      ],
+      "itemImages": [
+        {
+          "name": "Deathblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_deathblade.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        },
+        {
+          "name": "Spear of Shojin",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.41,
+      "delta": -0.41,
+      "winRate": 22.2,
+      "games": 2053,
+      "playRate": "2.6%",
+      "source": "https://www.metatft.com/units/TFT17_Samira"
+    },
+    {
+      "id": "samira-metatft-3",
+      "items": [
+        "Last Whisper",
+        "Giant Slayer",
+        "Spear of Shojin"
+      ],
+      "itemImages": [
+        {
+          "name": "Last Whisper",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_lastwhisper.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        },
+        {
+          "name": "Spear of Shojin",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.43,
+      "delta": -0.39,
+      "winRate": 21.4,
+      "games": 1779,
+      "playRate": "2.3%",
+      "source": "https://www.metatft.com/units/TFT17_Samira"
+    }
+  ],
+  "urgot": [
+    {
+      "id": "urgot-metatft-1",
+      "items": [
+        "Bloodthirster",
+        "Giant Slayer",
+        "Sterak's Gage"
+      ],
+      "itemImages": [
+        {
+          "name": "Bloodthirster",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bloodthirster.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        },
+        {
+          "name": "Sterak's Gage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_steraksgage.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.42,
+      "delta": -0.5,
+      "winRate": 15.8,
+      "games": 4089,
+      "playRate": "4.9%",
+      "source": "https://www.metatft.com/units/TFT17_Urgot"
+    },
+    {
+      "id": "urgot-metatft-2",
+      "items": [
+        "Deathblade",
+        "Quicksilver",
+        "Sterak's Gage"
+      ],
+      "itemImages": [
+        {
+          "name": "Deathblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_deathblade.png"
+        },
+        {
+          "name": "Quicksilver",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_quicksilver.png"
+        },
+        {
+          "name": "Sterak's Gage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_steraksgage.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.46,
+      "delta": -0.4,
+      "winRate": 16.4,
+      "games": 896,
+      "playRate": "1.1%",
+      "source": "https://www.metatft.com/units/TFT17_Urgot"
+    },
+    {
+      "id": "urgot-metatft-3",
+      "items": [
+        "Giant Slayer",
+        "Sterak's Gage",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        },
+        {
+          "name": "Sterak's Gage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_steraksgage.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.31,
+      "delta": -0.54,
+      "winRate": 18.6,
+      "games": 619,
+      "playRate": "0.7%",
+      "source": "https://www.metatft.com/units/TFT17_Urgot"
+    }
+  ],
+  "viktor": [
+    {
+      "id": "viktor-metatft-1",
+      "items": [
+        "Drone Uplink",
+        "Jeweled Gauntlet",
+        "Rabadon's Deathcap"
+      ],
+      "itemImages": [
+        {
+          "name": "Drone Uplink",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_psyops_dronemod.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.98,
+      "delta": -0.36,
+      "winRate": 11.7,
+      "games": 3107,
+      "playRate": "5.6%",
+      "source": "https://www.metatft.com/units/TFT17_Viktor"
+    },
+    {
+      "id": "viktor-metatft-2",
+      "items": [
+        "Jeweled Gauntlet",
+        "Giant Slayer",
+        "Rabadon's Deathcap"
+      ],
+      "itemImages": [
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        },
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.84,
+      "delta": -0.44,
+      "winRate": 11.5,
+      "games": 713,
+      "playRate": "1.3%",
+      "source": "https://www.metatft.com/units/TFT17_Viktor"
+    },
+    {
+      "id": "viktor-metatft-3",
+      "items": [
+        "Archangel's Staff",
+        "Jeweled Gauntlet",
+        "Rabadon's Deathcap"
+      ],
+      "itemImages": [
+        {
+          "name": "Archangel's Staff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_archangelsstaff.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.98,
+      "delta": -0.31,
+      "winRate": 11.2,
+      "games": 878,
+      "playRate": "1.6%",
+      "source": "https://www.metatft.com/units/TFT17_Viktor"
+    }
+  ],
+  "aurelion-sol": [
+    {
+      "id": "aurelion-sol-metatft-1",
+      "items": [
+        "The Annihilator",
+        "Jeweled Gauntlet",
+        "Rabadon's Deathcap"
+      ],
+      "itemImages": [
+        {
+          "name": "The Annihilator",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_annihilator.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 2.77,
+      "delta": -1.51,
+      "winRate": 46.1,
+      "games": 438,
+      "playRate": "0.5%",
+      "source": "https://www.metatft.com/units/TFT17_AurelionSol"
+    },
+    {
+      "id": "aurelion-sol-metatft-2",
+      "items": [
+        "Searing Shortbow",
+        "Jeweled Gauntlet",
+        "Rabadon's Deathcap"
+      ],
+      "itemImages": [
+        {
+          "name": "Searing Shortbow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_searingshortbow.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 2.74,
+      "delta": -1.53,
+      "winRate": 44.8,
+      "games": 375,
+      "playRate": "0.4%",
+      "source": "https://www.metatft.com/units/TFT17_AurelionSol"
+    },
+    {
+      "id": "aurelion-sol-metatft-3",
+      "items": [
+        "Jeweled Gauntlet",
+        "Rabadon's Deathcap",
+        "Rabadon's Deathcap"
+      ],
+      "itemImages": [
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        },
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.98,
+      "delta": -0.4,
+      "winRate": 17,
+      "games": 3621,
+      "playRate": "3.8%",
+      "source": "https://www.metatft.com/units/TFT17_AurelionSol"
+    }
+  ],
+  "corki": [
+    {
+      "id": "corki-metatft-1",
+      "items": [
+        "Deathblade",
+        "Last Whisper",
+        "Striker's Flail"
+      ],
+      "itemImages": [
+        {
+          "name": "Deathblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_deathblade.png"
+        },
+        {
+          "name": "Last Whisper",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_lastwhisper.png"
+        },
+        {
+          "name": "Striker's Flail",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_powergauntlet.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.03,
+      "delta": -0.19,
+      "winRate": 11,
+      "games": 24703,
+      "playRate": "14.6%",
+      "source": "https://www.metatft.com/units/TFT17_Corki"
+    },
+    {
+      "id": "corki-metatft-2",
+      "items": [
+        "Rogue Emblem",
+        "Deathblade",
+        "Last Whisper"
+      ],
+      "itemImages": [
+        {
+          "name": "Rogue Emblem",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_assassintraitemblemitem.png"
+        },
+        {
+          "name": "Deathblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_deathblade.png"
+        },
+        {
+          "name": "Last Whisper",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_lastwhisper.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.93,
+      "delta": -0.26,
+      "winRate": 11.5,
+      "games": 7001,
+      "playRate": "4.1%",
+      "source": "https://www.metatft.com/units/TFT17_Corki"
+    },
+    {
+      "id": "corki-metatft-3",
+      "items": [
+        "Deathblade",
+        "Last Whisper",
+        "Giant Slayer"
+      ],
+      "itemImages": [
+        {
+          "name": "Deathblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_deathblade.png"
+        },
+        {
+          "name": "Last Whisper",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_lastwhisper.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4,
+      "delta": -0.2,
+      "winRate": 11.3,
+      "games": 8856,
+      "playRate": "5.2%",
+      "source": "https://www.metatft.com/units/TFT17_Corki"
+    }
+  ],
+  "karma": [
+    {
+      "id": "karma-metatft-1",
+      "items": [
+        "Shepherd Emblem",
+        "Morellonomicon",
+        "Void Staff"
+      ],
+      "itemImages": [
+        {
+          "name": "Shepherd Emblem",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_summontraitemblemitem.png"
+        },
+        {
+          "name": "Morellonomicon",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_morellonomicon.png"
+        },
+        {
+          "name": "Void Staff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_statikkshiv.png?v=1"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.55,
+      "delta": -0.57,
+      "winRate": 17.5,
+      "games": 1001,
+      "playRate": "0.7%",
+      "source": "https://www.metatft.com/units/TFT17_Karma"
+    },
+    {
+      "id": "karma-metatft-2",
+      "items": [
+        "Blue Buff",
+        "Morellonomicon",
+        "Void Staff"
+      ],
+      "itemImages": [
+        {
+          "name": "Blue Buff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bluebuff.png"
+        },
+        {
+          "name": "Morellonomicon",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_morellonomicon.png"
+        },
+        {
+          "name": "Void Staff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_statikkshiv.png?v=1"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.81,
+      "delta": -0.31,
+      "winRate": 18.1,
+      "games": 1429,
+      "playRate": "0.9%",
+      "source": "https://www.metatft.com/units/TFT17_Karma"
+    },
+    {
+      "id": "karma-metatft-3",
+      "items": [
+        "Morellonomicon",
+        "Spear of Shojin",
+        "Void Staff"
+      ],
+      "itemImages": [
+        {
+          "name": "Morellonomicon",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_morellonomicon.png"
+        },
+        {
+          "name": "Spear of Shojin",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png"
+        },
+        {
+          "name": "Void Staff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_statikkshiv.png?v=1"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.99,
+      "delta": -0.18,
+      "winRate": 14,
+      "games": 4834,
+      "playRate": "3.2%",
+      "source": "https://www.metatft.com/units/TFT17_Karma"
+    }
+  ],
+  "kindred": [
+    {
+      "id": "kindred-metatft-1",
+      "items": [
+        "Battle Bunny Crossbow",
+        "Guinsoo's Rageblade",
+        "Infinity Edge"
+      ],
+      "itemImages": [
+        {
+          "name": "Battle Bunny Crossbow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_battlebunnycrossbow.png"
+        },
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Infinity Edge",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 2.74,
+      "delta": -1.21,
+      "winRate": 44.7,
+      "games": 508,
+      "playRate": "0.4%",
+      "source": "https://www.metatft.com/units/TFT17_Kindred"
+    },
+    {
+      "id": "kindred-metatft-2",
+      "items": [
+        "Marauder Emblem",
+        "Guinsoo's Rageblade",
+        "Kraken's Fury"
+      ],
+      "itemImages": [
+        {
+          "name": "Marauder Emblem",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_meleetraitemblemitem.png"
+        },
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Kraken's Fury",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_runaanshurricane.png?v=1"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.68,
+      "delta": -0.34,
+      "winRate": 16.8,
+      "games": 1584,
+      "playRate": "1.2%",
+      "source": "https://www.metatft.com/units/TFT17_Kindred"
+    },
+    {
+      "id": "kindred-metatft-3",
+      "items": [
+        "Marauder Emblem",
+        "Guinsoo's Rageblade",
+        "Last Whisper"
+      ],
+      "itemImages": [
+        {
+          "name": "Marauder Emblem",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_meleetraitemblemitem.png"
+        },
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Last Whisper",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_lastwhisper.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.59,
+      "delta": -0.41,
+      "winRate": 19,
+      "games": 1067,
+      "playRate": "0.8%",
+      "source": "https://www.metatft.com/units/TFT17_Kindred"
+    }
+  ],
+  "leblanc": [
+    {
+      "id": "leblanc-metatft-1",
+      "items": [
+        "Guinsoo's Rageblade",
+        "Giant Slayer",
+        "Rabadon's Deathcap"
+      ],
+      "itemImages": [
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        },
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.04,
+      "delta": -0.35,
+      "winRate": 13,
+      "games": 6964,
+      "playRate": "6.2%",
+      "source": "https://www.metatft.com/units/TFT17_Leblanc"
+    },
+    {
+      "id": "leblanc-metatft-2",
+      "items": [
+        "Archangel's Staff",
+        "Guinsoo's Rageblade",
+        "Giant Slayer"
+      ],
+      "itemImages": [
+        {
+          "name": "Archangel's Staff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_archangelsstaff.png"
+        },
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.08,
+      "delta": -0.26,
+      "winRate": 12,
+      "games": 1815,
+      "playRate": "1.6%",
+      "source": "https://www.metatft.com/units/TFT17_Leblanc"
+    },
+    {
+      "id": "leblanc-metatft-3",
+      "items": [
+        "Guinsoo's Rageblade",
+        "Jeweled Gauntlet",
+        "Rabadon's Deathcap"
+      ],
+      "itemImages": [
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.15,
+      "delta": -0.2,
+      "winRate": 11.7,
+      "games": 2763,
+      "playRate": "2.4%",
+      "source": "https://www.metatft.com/units/TFT17_Leblanc"
+    }
+  ],
+  "master-yi": [
+    {
+      "id": "master-yi-metatft-1",
+      "items": [
+        "Malware Matrix",
+        "Edge of Night",
+        "Giant Slayer"
+      ],
+      "itemImages": [
+        {
+          "name": "Malware Matrix",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_psyops_chemicalcapacitormod.png"
+        },
+        {
+          "name": "Edge of Night",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guardianangel.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.08,
+      "delta": -0.23,
+      "winRate": 12.4,
+      "games": 8176,
+      "playRate": "6.3%",
+      "source": "https://www.metatft.com/units/TFT17_MasterYi"
+    },
+    {
+      "id": "master-yi-metatft-2",
+      "items": [
+        "Target-Lock Optics",
+        "Edge of Night",
+        "Giant Slayer"
+      ],
+      "itemImages": [
+        {
+          "name": "Target-Lock Optics",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_psyops_targetlockmod_radiant.png"
+        },
+        {
+          "name": "Edge of Night",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guardianangel.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.94,
+      "delta": -0.31,
+      "winRate": 14.2,
+      "games": 1464,
+      "playRate": "1.1%",
+      "source": "https://www.metatft.com/units/TFT17_MasterYi"
+    },
+    {
+      "id": "master-yi-metatft-3",
+      "items": [
+        "Brawler Emblem",
+        "Edge of Night",
+        "Giant Slayer"
+      ],
+      "itemImages": [
+        {
+          "name": "Brawler Emblem",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_hptankemblemitem.png"
+        },
+        {
+          "name": "Edge of Night",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guardianangel.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.05,
+      "delta": -0.23,
+      "winRate": 12.5,
+      "games": 3475,
+      "playRate": "2.7%",
+      "source": "https://www.metatft.com/units/TFT17_MasterYi"
+    }
+  ],
+  "morgana": [
+    {
+      "id": "morgana-metatft-1",
+      "items": [
+        "Crownguard",
+        "Spirit Visage",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Crownguard",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_crownguard.png"
+        },
+        {
+          "name": "Spirit Visage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redemption.png?v=1"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.41,
+      "delta": -0.43,
+      "winRate": 23.7,
+      "games": 169,
+      "playRate": "0.3%",
+      "source": "https://www.metatft.com/units/TFT17_Morgana"
+    },
+    {
+      "id": "morgana-metatft-2",
+      "items": [
+        "Bramble Vest",
+        "Gargoyle Stoneplate",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Bramble Vest",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bramblevest.png"
+        },
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.77,
+      "delta": -0.11,
+      "winRate": 17.6,
+      "games": 279,
+      "playRate": "0.5%",
+      "source": "https://www.metatft.com/units/TFT17_Morgana"
+    },
+    {
+      "id": "morgana-metatft-3",
+      "items": [
+        "Gargoyle Stoneplate",
+        "Steadfast Heart",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Steadfast Heart",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_nightharvester.png"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.82,
+      "delta": -0.04,
+      "winRate": 16.8,
+      "games": 238,
+      "playRate": "0.5%",
+      "source": "https://www.metatft.com/units/TFT17_Morgana"
+    }
+  ],
+  "nami": [
+    {
+      "id": "nami-metatft-1",
+      "items": [
+        "Morellonomicon",
+        "Spear of Shojin",
+        "Void Staff"
+      ],
+      "itemImages": [
+        {
+          "name": "Morellonomicon",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_morellonomicon.png"
+        },
+        {
+          "name": "Spear of Shojin",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png"
+        },
+        {
+          "name": "Void Staff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_statikkshiv.png?v=1"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.41,
+      "delta": -0.42,
+      "winRate": 17.4,
+      "games": 1377,
+      "playRate": "1.1%",
+      "source": "https://www.metatft.com/units/TFT17_Nami"
+    },
+    {
+      "id": "nami-metatft-2",
+      "items": [
+        "Morellonomicon",
+        "Rabadon's Deathcap",
+        "Spear of Shojin"
+      ],
+      "itemImages": [
+        {
+          "name": "Morellonomicon",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_morellonomicon.png"
+        },
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        },
+        {
+          "name": "Spear of Shojin",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.33,
+      "delta": -0.47,
+      "winRate": 21,
+      "games": 753,
+      "playRate": "0.6%",
+      "source": "https://www.metatft.com/units/TFT17_Nami"
+    },
+    {
+      "id": "nami-metatft-3",
+      "items": [
+        "Jeweled Gauntlet",
+        "Nashor's Tooth",
+        "Nashor's Tooth"
+      ],
+      "itemImages": [
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Nashor's Tooth",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_leviathan.png"
+        },
+        {
+          "name": "Nashor's Tooth",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_leviathan.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.89,
+      "delta": 0.03,
+      "winRate": 17.9,
+      "games": 30619,
+      "playRate": "23.9%",
+      "source": "https://www.metatft.com/units/TFT17_Nami"
+    }
+  ],
+  "nunu-and-willump": [
+    {
+      "id": "nunu-and-willump-metatft-1",
+      "items": [
+        "Adaptive Helm",
+        "Protector's Vow",
+        "Protector's Vow"
+      ],
+      "itemImages": [
+        {
+          "name": "Adaptive Helm",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_adaptivehelm.png"
+        },
+        {
+          "name": "Protector's Vow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_frozenheart.png"
+        },
+        {
+          "name": "Protector's Vow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_frozenheart.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.81,
+      "delta": -0.2,
+      "winRate": 22.6,
+      "games": 25932,
+      "playRate": "5.5%",
+      "source": "https://www.metatft.com/units/TFT17_Nunu"
+    },
+    {
+      "id": "nunu-and-willump-metatft-2",
+      "items": [
+        "Protector's Vow",
+        "Protector's Vow",
+        "Protector's Vow"
+      ],
+      "itemImages": [
+        {
+          "name": "Protector's Vow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_frozenheart.png"
+        },
+        {
+          "name": "Protector's Vow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_frozenheart.png"
+        },
+        {
+          "name": "Protector's Vow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_frozenheart.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.76,
+      "delta": -0.24,
+      "winRate": 22.7,
+      "games": 10220,
+      "playRate": "2.2%",
+      "source": "https://www.metatft.com/units/TFT17_Nunu"
+    },
+    {
+      "id": "nunu-and-willump-metatft-3",
+      "items": [
+        "Adaptive Helm",
+        "Crownguard",
+        "Protector's Vow"
+      ],
+      "itemImages": [
+        {
+          "name": "Adaptive Helm",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_adaptivehelm.png"
+        },
+        {
+          "name": "Crownguard",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_crownguard.png"
+        },
+        {
+          "name": "Protector's Vow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_frozenheart.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.72,
+      "delta": -0.26,
+      "winRate": 22.8,
+      "games": 5112,
+      "playRate": "1.1%",
+      "source": "https://www.metatft.com/units/TFT17_Nunu"
+    }
+  ],
+  "rammus": [
+    {
+      "id": "rammus-metatft-1",
+      "items": [
+        "Bramble Vest",
+        "Protector's Vow",
+        "Gargoyle Stoneplate"
+      ],
+      "itemImages": [
+        {
+          "name": "Bramble Vest",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bramblevest.png"
+        },
+        {
+          "name": "Protector's Vow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_frozenheart.png"
+        },
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.71,
+      "delta": -0.32,
+      "winRate": 13.5,
+      "games": 2020,
+      "playRate": "0.9%",
+      "source": "https://www.metatft.com/units/TFT17_Rammus"
+    },
+    {
+      "id": "rammus-metatft-2",
+      "items": [
+        "Bramble Vest",
+        "Crownguard",
+        "Gargoyle Stoneplate"
+      ],
+      "itemImages": [
+        {
+          "name": "Bramble Vest",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bramblevest.png"
+        },
+        {
+          "name": "Crownguard",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_crownguard.png"
+        },
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.86,
+      "delta": -0.19,
+      "winRate": 12.1,
+      "games": 3924,
+      "playRate": "1.8%",
+      "source": "https://www.metatft.com/units/TFT17_Rammus"
+    },
+    {
+      "id": "rammus-metatft-3",
+      "items": [
+        "Crownguard",
+        "Protector's Vow",
+        "Gargoyle Stoneplate"
+      ],
+      "itemImages": [
+        {
+          "name": "Crownguard",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_crownguard.png"
+        },
+        {
+          "name": "Protector's Vow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_frozenheart.png"
+        },
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.93,
+      "delta": -0.14,
+      "winRate": 12,
+      "games": 8169,
+      "playRate": "3.8%",
+      "source": "https://www.metatft.com/units/TFT17_Rammus"
+    }
+  ],
+  "riven": [
+    {
+      "id": "riven-metatft-1",
+      "items": [
+        "Bloodthirster",
+        "Giant Slayer",
+        "Sterak's Gage"
+      ],
+      "itemImages": [
+        {
+          "name": "Bloodthirster",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bloodthirster.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        },
+        {
+          "name": "Sterak's Gage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_steraksgage.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.63,
+      "delta": -0.26,
+      "winRate": 12.7,
+      "games": 3271,
+      "playRate": "2.0%",
+      "source": "https://www.metatft.com/units/TFT17_Riven"
+    },
+    {
+      "id": "riven-metatft-2",
+      "items": [
+        "Bloodthirster",
+        "Quicksilver",
+        "Sterak's Gage"
+      ],
+      "itemImages": [
+        {
+          "name": "Bloodthirster",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bloodthirster.png"
+        },
+        {
+          "name": "Quicksilver",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_quicksilver.png"
+        },
+        {
+          "name": "Sterak's Gage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_steraksgage.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.62,
+      "delta": -0.24,
+      "winRate": 14.7,
+      "games": 1627,
+      "playRate": "1.0%",
+      "source": "https://www.metatft.com/units/TFT17_Riven"
+    },
+    {
+      "id": "riven-metatft-3",
+      "items": [
+        "Meeple Emblem",
+        "Bloodthirster",
+        "Sterak's Gage"
+      ],
+      "itemImages": [
+        {
+          "name": "Meeple Emblem",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_astronautemblemitem.png"
+        },
+        {
+          "name": "Bloodthirster",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bloodthirster.png"
+        },
+        {
+          "name": "Sterak's Gage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_steraksgage.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.66,
+      "delta": -0.2,
+      "winRate": 18.8,
+      "games": 1604,
+      "playRate": "1.0%",
+      "source": "https://www.metatft.com/units/TFT17_Riven"
+    }
+  ],
+  "tahm-kench": [
+    {
+      "id": "tahm-kench-metatft-1",
+      "items": [
+        "Sunfire Cape",
+        "Evenshroud",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Sunfire Cape",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redbuff.png"
+        },
+        {
+          "name": "Evenshroud",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spectralgauntlet.png"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.54,
+      "delta": -0.33,
+      "winRate": 19,
+      "games": 2588,
+      "playRate": "1.0%",
+      "source": "https://www.metatft.com/units/TFT17_TahmKench"
+    },
+    {
+      "id": "tahm-kench-metatft-2",
+      "items": [
+        "Sunfire Cape",
+        "Spirit Visage",
+        "Evenshroud"
+      ],
+      "itemImages": [
+        {
+          "name": "Sunfire Cape",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redbuff.png"
+        },
+        {
+          "name": "Spirit Visage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redemption.png?v=1"
+        },
+        {
+          "name": "Evenshroud",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spectralgauntlet.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.61,
+      "delta": -0.27,
+      "winRate": 16.8,
+      "games": 5137,
+      "playRate": "2.0%",
+      "source": "https://www.metatft.com/units/TFT17_TahmKench"
+    },
+    {
+      "id": "tahm-kench-metatft-3",
+      "items": [
+        "Bramble Vest",
+        "Spirit Visage",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Bramble Vest",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bramblevest.png"
+        },
+        {
+          "name": "Spirit Visage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redemption.png?v=1"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.6,
+      "delta": -0.26,
+      "winRate": 21.9,
+      "games": 2431,
+      "playRate": "1.0%",
+      "source": "https://www.metatft.com/units/TFT17_TahmKench"
+    }
+  ],
+  "the-mighty-mech": [
+    {
+      "id": "the-mighty-mech-metatft-1",
+      "items": [
+        "Lioness's Lament",
+        "Gargoyle Stoneplate",
+        "Gargoyle Stoneplate"
+      ],
+      "itemImages": [
+        {
+          "name": "Lioness's Lament",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_lionesslament.png"
+        },
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 2.4,
+      "delta": -1.48,
+      "winRate": 57,
+      "games": 249,
+      "playRate": "0.2%",
+      "source": "https://www.metatft.com/units/TFT17_Galio"
+    },
+    {
+      "id": "the-mighty-mech-metatft-2",
+      "items": [
+        "Lioness's Lament",
+        "Gargoyle Stoneplate",
+        "Sterak's Gage"
+      ],
+      "itemImages": [
+        {
+          "name": "Lioness's Lament",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_lionesslament.png"
+        },
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Sterak's Gage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_steraksgage.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 2.46,
+      "delta": -1.41,
+      "winRate": 56.3,
+      "games": 224,
+      "playRate": "0.2%",
+      "source": "https://www.metatft.com/units/TFT17_Galio"
+    },
+    {
+      "id": "the-mighty-mech-metatft-3",
+      "items": [
+        "Iceblast Armor",
+        "Gargoyle Stoneplate",
+        "Sterak's Gage"
+      ],
+      "itemImages": [
+        {
+          "name": "Iceblast Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_iceblastarmor.png"
+        },
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Sterak's Gage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_steraksgage.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 2.8,
+      "delta": -1.05,
+      "winRate": 46.6,
+      "games": 223,
+      "playRate": "0.2%",
+      "source": "https://www.metatft.com/units/TFT17_Galio"
+    }
+  ],
+  "xayah": [
+    {
+      "id": "xayah-metatft-1",
+      "items": [
+        "Battle Bunny Crossbow",
+        "Guinsoo's Rageblade",
+        "Infinity Edge"
+      ],
+      "itemImages": [
+        {
+          "name": "Battle Bunny Crossbow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_battlebunnycrossbow.png"
+        },
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Infinity Edge",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 2.93,
+      "delta": -1.35,
+      "winRate": 47.2,
+      "games": 3543,
+      "playRate": "1.8%",
+      "source": "https://www.metatft.com/units/TFT17_Xayah"
+    },
+    {
+      "id": "xayah-metatft-2",
+      "items": [
+        "Red Buff",
+        "Kraken's Fury",
+        "Kraken's Fury"
+      ],
+      "itemImages": [
+        {
+          "name": "Red Buff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rapidfirecannon.png"
+        },
+        {
+          "name": "Kraken's Fury",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_runaanshurricane.png?v=1"
+        },
+        {
+          "name": "Kraken's Fury",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_runaanshurricane.png?v=1"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.87,
+      "delta": -0.52,
+      "winRate": 22.1,
+      "games": 33319,
+      "playRate": "17.4%",
+      "source": "https://www.metatft.com/units/TFT17_Xayah"
+    },
+    {
+      "id": "xayah-metatft-3",
+      "items": [
+        "Guinsoo's Rageblade",
+        "Red Buff",
+        "Kraken's Fury"
+      ],
+      "itemImages": [
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Red Buff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rapidfirecannon.png"
+        },
+        {
+          "name": "Kraken's Fury",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_runaanshurricane.png?v=1"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 4.02,
+      "delta": -0.27,
+      "winRate": 19.3,
+      "games": 8580,
+      "playRate": "4.5%",
+      "source": "https://www.metatft.com/units/TFT17_Xayah"
+    }
+  ],
+  "bard": [
+    {
+      "id": "bard-metatft-1",
+      "items": [
+        "Rabadon's Deathcap",
+        "Spear of Shojin",
+        "Void Staff"
+      ],
+      "itemImages": [
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        },
+        {
+          "name": "Spear of Shojin",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png"
+        },
+        {
+          "name": "Void Staff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_statikkshiv.png?v=1"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.16,
+      "delta": -0.38,
+      "winRate": 28.4,
+      "games": 1788,
+      "playRate": "1.2%",
+      "source": "https://www.metatft.com/units/TFT17_Bard"
+    },
+    {
+      "id": "bard-metatft-2",
+      "items": [
+        "Morellonomicon",
+        "Spear of Shojin",
+        "Void Staff"
+      ],
+      "itemImages": [
+        {
+          "name": "Morellonomicon",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_morellonomicon.png"
+        },
+        {
+          "name": "Spear of Shojin",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png"
+        },
+        {
+          "name": "Void Staff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_statikkshiv.png?v=1"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.25,
+      "delta": -0.3,
+      "winRate": 26.3,
+      "games": 2753,
+      "playRate": "1.9%",
+      "source": "https://www.metatft.com/units/TFT17_Bard"
+    },
+    {
+      "id": "bard-metatft-3",
+      "items": [
+        "Giant Slayer",
+        "Morellonomicon",
+        "Void Staff"
+      ],
+      "itemImages": [
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        },
+        {
+          "name": "Morellonomicon",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_morellonomicon.png"
+        },
+        {
+          "name": "Void Staff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_statikkshiv.png?v=1"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.03,
+      "delta": -0.49,
+      "winRate": 30.5,
+      "games": 1017,
+      "playRate": "0.7%",
+      "source": "https://www.metatft.com/units/TFT17_Bard"
+    }
+  ],
+  "blitzcrank": [
+    {
+      "id": "blitzcrank-metatft-1",
+      "items": [
+        "Ionic Spark",
+        "Jeweled Gauntlet",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Ionic Spark",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_ionicspark.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 2.86,
+      "delta": -0.4,
+      "winRate": 30.8,
+      "games": 1762,
+      "playRate": "1.1%",
+      "source": "https://www.metatft.com/units/TFT17_Blitzcrank"
+    },
+    {
+      "id": "blitzcrank-metatft-2",
+      "items": [
+        "Jeweled Gauntlet",
+        "Striker's Flail",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Striker's Flail",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_powergauntlet.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.07,
+      "delta": -0.18,
+      "winRate": 29.2,
+      "games": 1995,
+      "playRate": "1.2%",
+      "source": "https://www.metatft.com/units/TFT17_Blitzcrank"
+    },
+    {
+      "id": "blitzcrank-metatft-3",
+      "items": [
+        "Jeweled Gauntlet",
+        "Rabadon's Deathcap",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.08,
+      "delta": -0.17,
+      "winRate": 27.2,
+      "games": 1613,
+      "playRate": "1.0%",
+      "source": "https://www.metatft.com/units/TFT17_Blitzcrank"
+    }
+  ],
+  "fiora": [
+    {
+      "id": "fiora-metatft-1",
+      "items": [
+        "Edge of Night",
+        "Giant Slayer",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Edge of Night",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guardianangel.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.13,
+      "delta": -0.4,
+      "winRate": 27.5,
+      "games": 1906,
+      "playRate": "1.3%",
+      "source": "https://www.metatft.com/units/TFT17_Fiora"
+    },
+    {
+      "id": "fiora-metatft-2",
+      "items": [
+        "Edge of Night",
+        "Sterak's Gage",
+        "Hand Of Justice"
+      ],
+      "itemImages": [
+        {
+          "name": "Edge of Night",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guardianangel.png"
+        },
+        {
+          "name": "Sterak's Gage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_steraksgage.png"
+        },
+        {
+          "name": "Hand Of Justice",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.2,
+      "delta": -0.33,
+      "winRate": 26.4,
+      "games": 2151,
+      "playRate": "1.5%",
+      "source": "https://www.metatft.com/units/TFT17_Fiora"
+    },
+    {
+      "id": "fiora-metatft-3",
+      "items": [
+        "Bloodthirster",
+        "Giant Slayer",
+        "Sterak's Gage"
+      ],
+      "itemImages": [
+        {
+          "name": "Bloodthirster",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bloodthirster.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        },
+        {
+          "name": "Sterak's Gage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_steraksgage.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.16,
+      "delta": -0.36,
+      "winRate": 26.9,
+      "games": 1378,
+      "playRate": "0.9%",
+      "source": "https://www.metatft.com/units/TFT17_Fiora"
+    }
+  ],
+  "graves": [
+    {
+      "id": "graves-metatft-1",
+      "items": [
+        "Battle Bunny Crossbow",
+        "Guinsoo's Rageblade",
+        "Infinity Edge"
+      ],
+      "itemImages": [
+        {
+          "name": "Battle Bunny Crossbow",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_battlebunnycrossbow.png"
+        },
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Infinity Edge",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 2.49,
+      "delta": -1.51,
+      "winRate": 56.3,
+      "games": 1706,
+      "playRate": "1.1%",
+      "source": "https://www.metatft.com/units/TFT17_Graves"
+    },
+    {
+      "id": "graves-metatft-2",
+      "items": [
+        "Deathblade",
+        "Quicksilver",
+        "Sterak's Gage"
+      ],
+      "itemImages": [
+        {
+          "name": "Deathblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_deathblade.png"
+        },
+        {
+          "name": "Quicksilver",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_quicksilver.png"
+        },
+        {
+          "name": "Sterak's Gage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_steraksgage.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.46,
+      "delta": -0.52,
+      "winRate": 34.2,
+      "games": 1545,
+      "playRate": "1.0%",
+      "source": "https://www.metatft.com/units/TFT17_Graves"
+    },
+    {
+      "id": "graves-metatft-3",
+      "items": [
+        "Giant Slayer",
+        "Quicksilver",
+        "Sterak's Gage"
+      ],
+      "itemImages": [
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        },
+        {
+          "name": "Quicksilver",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_quicksilver.png"
+        },
+        {
+          "name": "Sterak's Gage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_steraksgage.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.6,
+      "delta": -0.41,
+      "winRate": 30.2,
+      "games": 3571,
+      "playRate": "2.3%",
+      "source": "https://www.metatft.com/units/TFT17_Graves"
+    }
+  ],
+  "jhin": [
+    {
+      "id": "jhin-metatft-1",
+      "items": [
+        "Deathblade",
+        "Infinity Edge",
+        "Giant Slayer"
+      ],
+      "itemImages": [
+        {
+          "name": "Deathblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_deathblade.png"
+        },
+        {
+          "name": "Infinity Edge",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.17,
+      "delta": -0.32,
+      "winRate": 26.4,
+      "games": 8309,
+      "playRate": "4.5%",
+      "source": "https://www.metatft.com/units/TFT17_Jhin"
+    },
+    {
+      "id": "jhin-metatft-2",
+      "items": [
+        "Deathblade",
+        "Infinity Edge",
+        "Striker's Flail"
+      ],
+      "itemImages": [
+        {
+          "name": "Deathblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_deathblade.png"
+        },
+        {
+          "name": "Infinity Edge",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png"
+        },
+        {
+          "name": "Striker's Flail",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_powergauntlet.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.16,
+      "delta": -0.32,
+      "winRate": 27.6,
+      "games": 7120,
+      "playRate": "3.9%",
+      "source": "https://www.metatft.com/units/TFT17_Jhin"
+    },
+    {
+      "id": "jhin-metatft-3",
+      "items": [
+        "Infinity Edge",
+        "Last Whisper",
+        "Giant Slayer"
+      ],
+      "itemImages": [
+        {
+          "name": "Infinity Edge",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png"
+        },
+        {
+          "name": "Last Whisper",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_lastwhisper.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.23,
+      "delta": -0.24,
+      "winRate": 24.8,
+      "games": 4695,
+      "playRate": "2.6%",
+      "source": "https://www.metatft.com/units/TFT17_Jhin"
+    }
+  ],
+  "shen": [
+    {
+      "id": "shen-metatft-1",
+      "items": [
+        "Sunfire Cape",
+        "Spirit Visage",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Sunfire Cape",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redbuff.png"
+        },
+        {
+          "name": "Spirit Visage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redemption.png?v=1"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.25,
+      "delta": -0.09,
+      "winRate": 24.3,
+      "games": 148,
+      "playRate": "0.3%",
+      "source": "https://www.metatft.com/units/TFT17_Shen"
+    },
+    {
+      "id": "shen-metatft-2",
+      "items": [
+        "Adaptive Helm",
+        "Sunfire Cape",
+        "Warmog's Armor"
+      ],
+      "itemImages": [
+        {
+          "name": "Adaptive Helm",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_adaptivehelm.png"
+        },
+        {
+          "name": "Sunfire Cape",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redbuff.png"
+        },
+        {
+          "name": "Warmog's Armor",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 2.65,
+      "delta": -0.59,
+      "winRate": 34.6,
+      "games": 52,
+      "playRate": "0.1%",
+      "source": "https://www.metatft.com/units/TFT17_Shen"
+    },
+    {
+      "id": "shen-metatft-3",
+      "items": [
+        "Bramble Vest",
+        "Gargoyle Stoneplate",
+        "Spirit Visage"
+      ],
+      "itemImages": [
+        {
+          "name": "Bramble Vest",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bramblevest.png"
+        },
+        {
+          "name": "Gargoyle Stoneplate",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png"
+        },
+        {
+          "name": "Spirit Visage",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redemption.png?v=1"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 2.92,
+      "delta": -0.39,
+      "winRate": 19.4,
+      "games": 72,
+      "playRate": "0.2%",
+      "source": "https://www.metatft.com/units/TFT17_Shen"
+    }
+  ],
+  "sona": [
+    {
+      "id": "sona-metatft-1",
+      "items": [
+        "Blue Buff",
+        "Morellonomicon",
+        "Void Staff"
+      ],
+      "itemImages": [
+        {
+          "name": "Blue Buff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bluebuff.png"
+        },
+        {
+          "name": "Morellonomicon",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_morellonomicon.png"
+        },
+        {
+          "name": "Void Staff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_statikkshiv.png?v=1"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.47,
+      "delta": -0.25,
+      "winRate": 27.2,
+      "games": 4504,
+      "playRate": "4.5%",
+      "source": "https://www.metatft.com/units/TFT17_Sona"
+    },
+    {
+      "id": "sona-metatft-2",
+      "items": [
+        "Morellonomicon",
+        "Spear of Shojin",
+        "Void Staff"
+      ],
+      "itemImages": [
+        {
+          "name": "Morellonomicon",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_morellonomicon.png"
+        },
+        {
+          "name": "Spear of Shojin",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png"
+        },
+        {
+          "name": "Void Staff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_statikkshiv.png?v=1"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.56,
+      "delta": -0.15,
+      "winRate": 22.5,
+      "games": 4984,
+      "playRate": "4.9%",
+      "source": "https://www.metatft.com/units/TFT17_Sona"
+    },
+    {
+      "id": "sona-metatft-3",
+      "items": [
+        "Adaptive Helm",
+        "Morellonomicon",
+        "Void Staff"
+      ],
+      "itemImages": [
+        {
+          "name": "Adaptive Helm",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_adaptivehelm.png"
+        },
+        {
+          "name": "Morellonomicon",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_morellonomicon.png"
+        },
+        {
+          "name": "Void Staff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_statikkshiv.png?v=1"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.22,
+      "delta": -0.43,
+      "winRate": 23.3,
+      "games": 634,
+      "playRate": "0.6%",
+      "source": "https://www.metatft.com/units/TFT17_Sona"
+    }
+  ],
+  "vex": [
+    {
+      "id": "vex-metatft-1",
+      "items": [
+        "Guinsoo's Rageblade",
+        "Giant Slayer",
+        "Red Buff"
+      ],
+      "itemImages": [
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Giant Slayer",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
+        },
+        {
+          "name": "Red Buff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rapidfirecannon.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.83,
+      "delta": -0.29,
+      "winRate": 25,
+      "games": 8206,
+      "playRate": "2.9%",
+      "source": "https://www.metatft.com/units/TFT17_Vex"
+    },
+    {
+      "id": "vex-metatft-2",
+      "items": [
+        "Guinsoo's Rageblade",
+        "Rabadon's Deathcap",
+        "Red Buff"
+      ],
+      "itemImages": [
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Rabadon's Deathcap",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png"
+        },
+        {
+          "name": "Red Buff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rapidfirecannon.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.86,
+      "delta": -0.26,
+      "winRate": 26.2,
+      "games": 10170,
+      "playRate": "3.7%",
+      "source": "https://www.metatft.com/units/TFT17_Vex"
+    },
+    {
+      "id": "vex-metatft-3",
+      "items": [
+        "Guinsoo's Rageblade",
+        "Jeweled Gauntlet",
+        "Red Buff"
+      ],
+      "itemImages": [
+        {
+          "name": "Guinsoo's Rageblade",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png"
+        },
+        {
+          "name": "Jeweled Gauntlet",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
+        },
+        {
+          "name": "Red Buff",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rapidfirecannon.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.87,
+      "delta": -0.23,
+      "winRate": 23.1,
+      "games": 5994,
+      "playRate": "2.2%",
+      "source": "https://www.metatft.com/units/TFT17_Vex"
+    }
+  ],
+  "zed": [
+    {
+      "id": "zed-metatft-1",
+      "items": [
+        "Adaptive Helm",
+        "Edge of Night",
+        "Spear of Shojin"
+      ],
+      "itemImages": [
+        {
+          "name": "Adaptive Helm",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_adaptivehelm.png"
+        },
+        {
+          "name": "Edge of Night",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guardianangel.png"
+        },
+        {
+          "name": "Spear of Shojin",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.86,
+      "delta": -0.58,
+      "winRate": 22.5,
+      "games": 8611,
+      "playRate": "27.0%",
+      "source": "https://www.metatft.com/units/TFT17_Zed"
+    },
+    {
+      "id": "zed-metatft-2",
+      "items": [
+        "Brawler Emblem",
+        "Edge of Night",
+        "Spear of Shojin"
+      ],
+      "itemImages": [
+        {
+          "name": "Brawler Emblem",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_hptankemblemitem.png"
+        },
+        {
+          "name": "Edge of Night",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guardianangel.png"
+        },
+        {
+          "name": "Spear of Shojin",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 3.4,
+      "delta": -0.74,
+      "winRate": 21.3,
+      "games": 216,
+      "playRate": "0.7%",
+      "source": "https://www.metatft.com/units/TFT17_Zed"
+    },
+    {
+      "id": "zed-metatft-3",
+      "items": [
+        "Radiant Edge of Night",
+        "Adaptive Helm",
+        "Spear of Shojin"
+      ],
+      "itemImages": [
+        {
+          "name": "Radiant Edge of Night",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft5_item_guardianangelradiant.png"
+        },
+        {
+          "name": "Adaptive Helm",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_adaptivehelm.png"
+        },
+        {
+          "name": "Spear of Shojin",
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png"
+        }
+      ],
+      "tier": "S",
+      "avgPlace": 2.94,
+      "delta": -1.13,
+      "winRate": 30.8,
+      "games": 120,
+      "playRate": "0.4%",
+      "source": "https://www.metatft.com/units/TFT17_Zed"
+    }
+  ]
+}

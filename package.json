@@ -1,0 +1,34 @@
+{
+  "name": "tft-combo-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm:server\" \"npm:client\"",
+    "client": "vite --host 0.0.0.0 --port 5173",
+    "server": "node server/src/index.js",
+    "build": "vite build",
+    "import:tft": "node scripts/import-tft-data.mjs",
+    "preview": "vite preview --port 5173",
+    "import:unit-meta": "node scripts/import-unit-meta-from-text.mjs",
+    "validate:data": "node scripts/validate-data.mjs",
+    "import:metatft-units": "node scripts/import-metatft-units.mjs",
+    "import:item-sets": "node scripts/import-metatft-item-sets.mjs"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "4.3.4",
+    "concurrently": "9.1.0",
+    "cors": "2.8.5",
+    "express": "4.21.2",
+    "lucide-react": "0.468.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "vite": "5.4.11"
+  },
+  "devDependencies": {
+    "autoprefixer": "10.4.20",
+    "playwright": "^1.60.0",
+    "postcss": "8.4.49",
+    "tailwindcss": "3.4.17"
+  }
+}

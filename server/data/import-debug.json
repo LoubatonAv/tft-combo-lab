@@ -1,0 +1,55 @@
+{
+  "source": "https://raw.communitydragon.org/latest/cdragon/tft/en_us.json",
+  "set": "Set17",
+  "rawChampions": 83,
+  "rawTraits": 44,
+  "champions": 63,
+  "traits": 36,
+  "sampleChampion": {
+    "id": "aatrox",
+    "apiName": "TFT17_Aatrox",
+    "characterName": "TFT17_Aatrox",
+    "name": "Aatrox",
+    "cost": 1,
+    "tier": "C",
+    "role": "tank",
+    "traits": [
+      "N.O.V.A.",
+      "Bastion"
+    ],
+    "items": [],
+    "carryScore": 37,
+    "icon": "",
+    "imageUrl": "https://raw.communitydragon.org/latest/game/assets/characters/tft17_aatrox/skins/base/images/tft17_aatrox_splash_tile_30.tft_set17.png",
+    "splashUrl": "https://raw.communitydragon.org/latest/game/assets/characters/tft17_aatrox/skins/base/images/tft17_aatrox_splash_centered_30.tft_set17.png",
+    "stats": {
+      "armor": 45,
+      "attackSpeed": 0.6000000238418579,
+      "critChance": 0.25,
+      "critMultiplier": 1.399999976158142,
+      "damage": 50,
+      "hp": 700,
+      "initialMana": 30,
+      "magicResist": 45,
+      "mana": 90,
+      "range": 1
+    },
+    "ability": {
+      "name": "Stellar Slash",
+      "desc": "Heal <scaleHealth>@ModifiedHeal@&nbsp;(%i:scaleAP%)</scaleHealth>, then deal <physicalDamage>@ModifiedDamage@&nbsp;(%i:scaleAD%%i:scaleArmor%)</physicalDamage> physical damage to the current target.<br><br><ShowIf.TFT17_DRX_CapstoneActive><scaleLevel enabled=TFT17_DRX_isSelected alternate=TFTGuildInactive>N.O.V.A. Strike: Cleave the battlefield, briefly knocking up all enemies and dealing <physicalDamage enabled=TFT17_DRX_isSelected>@ModifiedNovaDamage@&nbsp;(%i:scaleAD%%i:scaleArmor%)</physicalDamage> physical damage.</scaleLevel></ShowIf.TFT17_DRX_CapstoneActive>",
+      "icon": "https://raw.communitydragon.org/latest/game/assets/characters/tft17_aatrox/hud/icons2d/tft17_aatrox_q2.tft_set17.png"
+    }
+  },
+  "sampleTrait": {
+    "name": "Anima",
+    "apiName": "TFT17_AnimaSquad",
+    "type": "Trait",
+    "breakpoints": [
+      3,
+      6
+    ],
+    "isUnique": false,
+    "imageUrl": "https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_17_animatech.tft_set17.png",
+    "desc": "After losing a player combat, gain @TechPerCombat@ Tech, plus additional Tech equal to @TechPerLoss@ times the length of your loss streak. Additionally, gain @TechPerKill@ Tech per Anima takedown.<br><br>Each time Animas get @TechBreakpoint@ Tech, they prototype new Anima Weapons. You can take them, or save your Tech to get more powerful weapons next time.<br><br><row>(@MinUnits@) Start Researching! </row><br><row>(@MinUnits@) After each player combat, gain loot!</row><br><br><ShowIf.TFT17_AnimaSquad_IsDoubleUp><rules>Gain @PairsPartnerWinMultiplier*100@% Tech from losing if your partner wins a combat in Double Up.</rules></ShowIf.TFT17_AnimaSquad_IsDoubleUp>"
+  }
+}

@@ -1,0 +1,137 @@
+[
+  {
+    "tier": "S",
+    "name": "Doomer Vanguards",
+    "style": "Fast 9",
+    "units": [
+      "meepsie",
+      "mordekaiser",
+      "illaoi",
+      "karma",
+      "nunu-and-willump",
+      "blitzcrank",
+      "bard",
+      "sona",
+      "vex"
+    ]
+  },
+  {
+    "tier": "S",
+    "name": "Meeple Fateweavers",
+    "style": "Fast 8",
+    "units": [
+      "poppy",
+      "milio",
+      "meepsie",
+      "fizz",
+      "corki",
+      "rammus",
+      "riven",
+      "the-mighty-mech"
+    ]
+  },
+  {
+    "tier": "A",
+    "name": "Dark Stars",
+    "style": "Fast 8",
+    "units": [
+      "chogath",
+      "mordekaiser",
+      "kaisa",
+      "aurelion-sol",
+      "karma",
+      "tahm-kench",
+      "the-mighty-mech",
+      "jhin"
+    ]
+  },
+  {
+    "tier": "A",
+    "name": "Psionic Marauders",
+    "style": "Fast 8",
+    "units": [
+      "belveth",
+      "gragas",
+      "maokai",
+      "urgot",
+      "kindred",
+      "master-yi",
+      "tahm-kench",
+      "fiora"
+    ]
+  },
+  {
+    "tier": "A",
+    "name": "Arbiter Vanguards",
+    "style": "Fast 8",
+    "units": [
+      "leona",
+      "meepsie",
+      "mordekaiser",
+      "zoe",
+      "illaoi",
+      "karma",
+      "leblanc",
+      "nunu-and-willump"
+    ]
+  },
+  {
+    "tier": "A",
+    "name": "Dark Star Snipers",
+    "style": "Fast 9",
+    "units": [
+      "jax",
+      "mordekaiser",
+      "nunu-and-willump",
+      "xayah",
+      "bard",
+      "jhin",
+      "morgana",
+      "shen",
+      "vex"
+    ]
+  },
+  {
+    "tier": "A",
+    "name": "Mecha Brawlers",
+    "style": "Slow Roll 7",
+    "units": [
+      "akali",
+      "aurora",
+      "maokai",
+      "rhaast",
+      "urgot",
+      "the-mighty-mech"
+    ]
+  },
+  {
+    "tier": "A",
+    "name": "N.O.V.A. Marauders",
+    "style": "Fast 8",
+    "units": [
+      "aatrox",
+      "akali",
+      "maokai",
+      "urgot",
+      "kindred",
+      "master-yi",
+      "fiora",
+      "shen"
+    ]
+  },
+  {
+    "tier": "A",
+    "name": "Anima Challengers",
+    "style": "Fast 8/9",
+    "units": [
+      "briar",
+      "jinx",
+      "aurora",
+      "illaoi",
+      "fiora",
+      "belveth",
+      "kindred",
+      "zed"
+    ]
+  }
+]

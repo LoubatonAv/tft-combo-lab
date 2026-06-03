@@ -1,0 +1,183 @@
+{
+  "aurelion-sol": [
+    {
+      "item": "Spear of Shojin",
+      "tier": "S",
+      "score": 96,
+      "tags": ["mana", "castFrequency"]
+    },
+    {
+      "item": "Jeweled Gauntlet",
+      "tier": "S",
+      "score": 92,
+      "tags": ["spellDamage", "crit", "magic"]
+    },
+    {
+      "item": "Rabadon's Deathcap",
+      "tier": "A",
+      "score": 88,
+      "tags": ["abilityPower", "spellDamage"]
+    },
+    {
+      "item": "Blue Buff",
+      "tier": "A",
+      "score": 84,
+      "tags": ["mana", "castFrequency"]
+    },
+    {
+      "item": "Nashor's Tooth",
+      "tier": "A",
+      "score": 80,
+      "tags": ["castFrequency", "tempo"]
+    },
+    {
+      "item": "Archangel's Staff",
+      "tier": "A",
+      "score": 78,
+      "tags": ["abilityPower", "scaling"]
+    }
+  ],
+  "karma": [
+    {
+      "item": "Blue Buff",
+      "tier": "S",
+      "score": 94,
+      "tags": ["mana", "castFrequency"]
+    },
+    {
+      "item": "Jeweled Gauntlet",
+      "tier": "S",
+      "score": 90,
+      "tags": ["spellDamage", "crit"]
+    },
+    {
+      "item": "Rabadon's Deathcap",
+      "tier": "A",
+      "score": 86,
+      "tags": ["abilityPower", "spellDamage"]
+    },
+    { "item": "Spear of Shojin", "tier": "A", "score": 82, "tags": ["mana"] }
+  ],
+  "jhin": [
+    {
+      "item": "Infinity Edge",
+      "tier": "S",
+      "score": 94,
+      "tags": ["crit", "attackDamage"]
+    },
+    {
+      "item": "Last Whisper",
+      "tier": "S",
+      "score": 90,
+      "tags": ["armorShred", "physicalDamage"]
+    },
+    {
+      "item": "Deathblade",
+      "tier": "A",
+      "score": 86,
+      "tags": ["attackDamage"]
+    },
+    { "item": "Giant Slayer", "tier": "A", "score": 82, "tags": ["damageAmp"] }
+  ],
+  "fiora": [
+    {
+      "item": "Bloodthirster",
+      "tier": "S",
+      "score": 92,
+      "tags": ["lifesteal", "survivability"]
+    },
+    {
+      "item": "Titan's Resolve",
+      "tier": "S",
+      "score": 90,
+      "tags": ["dueling", "survivability"]
+    },
+    {
+      "item": "Hand of Justice",
+      "tier": "A",
+      "score": 84,
+      "tags": ["lifesteal", "damageAmp"]
+    },
+    {
+      "item": "Sterak's Gage",
+      "tier": "A",
+      "score": 82,
+      "tags": ["survivability"]
+    }
+  ],
+  "vex": [
+    {
+      "item": "Jeweled Gauntlet",
+      "tier": "S",
+      "score": 90,
+      "tags": ["spellDamage", "crit"]
+    },
+    {
+      "item": "Rabadon's Deathcap",
+      "tier": "A",
+      "score": 86,
+      "tags": ["abilityPower"]
+    },
+    { "item": "Spear of Shojin", "tier": "A", "score": 82, "tags": ["mana"] }
+  ],
+  "bard": [
+    { "item": "Spear of Shojin", "tier": "A", "score": 84, "tags": ["mana"] },
+    {
+      "item": "Nashor's Tooth",
+      "tier": "A",
+      "score": 82,
+      "tags": ["castFrequency"]
+    },
+    { "item": "Morellonomicon", "tier": "B", "score": 72, "tags": ["utility"] }
+  ],
+  "sona": [
+    { "item": "Spear of Shojin", "tier": "A", "score": 84, "tags": ["mana"] },
+    {
+      "item": "Nashor's Tooth",
+      "tier": "A",
+      "score": 82,
+      "tags": ["castFrequency"]
+    },
+    {
+      "item": "Archangel's Staff",
+      "tier": "B",
+      "score": 74,
+      "tags": ["abilityPower", "scaling"]
+    }
+  ],
+  "blitzcrank": [
+    {
+      "item": "Warmog's Armor",
+      "tier": "S",
+      "score": 90,
+      "tags": ["health", "tank"]
+    },
+    {
+      "item": "Gargoyle Stoneplate",
+      "tier": "S",
+      "score": 88,
+      "tags": ["tank", "survivability"]
+    },
+    {
+      "item": "Dragon's Claw",
+      "tier": "A",
+      "score": 82,
+      "tags": ["magicResist", "tank"]
+    }
+  ],
+  "shen": [
+    {
+      "item": "Gargoyle Stoneplate",
+      "tier": "S",
+      "score": 90,
+      "tags": ["tank", "survivability"]
+    },
+    { "item": "Warmog's Armor", "tier": "A", "score": 84, "tags": ["health"] },
+    {
+      "item": "Dragon's Claw",
+      "tier": "A",
+      "score": 82,
+      "tags": ["magicResist"]
+    }
+  ]
+}

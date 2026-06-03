@@ -1,0 +1,237 @@
+{
+  "aurelion-sol": {
+    "archetype": "mana-caster",
+    "damageType": "magic",
+    "scalesWith": [
+      "mana",
+      "abilityPower",
+      "spellDamage",
+      "castFrequency",
+      "magic"
+    ],
+    "needs": ["frontline", "timeToCast", "survivability", "casterSupport"],
+    "preferredTraits": [
+      "Conduit",
+      "Oracle",
+      "Mecha",
+      "Voyager",
+      "Dark Star",
+      "Brawler"
+    ],
+    "preferredItems": [
+      "Spear of Shojin",
+      "Jeweled Gauntlet",
+      "Rabadon's Deathcap",
+      "Blue Buff",
+      "Nashor's Tooth",
+      "Archangel's Staff"
+    ],
+    "badTraitTags": ["physicalOnly", "attackDamageOnly"],
+    "notes": "Aurelion Sol is a Mecha/Conduit AP mana caster. Prioritize mana/cast traits, AP damage amp, and frontline/time-to-cast."
+  },
+  "karma": {
+    "archetype": "mana-caster",
+    "damageType": "magic",
+    "scalesWith": [
+      "mana",
+      "abilityPower",
+      "spellDamage",
+      "castFrequency",
+      "magic"
+    ],
+    "needs": ["frontline", "timeToCast"],
+    "preferredTraits": ["Voyager", "Dark Star", "Conduit", "Oracle"],
+    "preferredItems": [
+      "Blue Buff",
+      "Jeweled Gauntlet",
+      "Rabadon's Deathcap",
+      "Spear of Shojin",
+      "Nashor's Tooth"
+    ],
+    "badTraitTags": ["physicalOnly"]
+  },
+  "jhin": {
+    "archetype": "ad-ranged-carry",
+    "damageType": "physical",
+    "scalesWith": [
+      "attackDamage",
+      "crit",
+      "range",
+      "damageAmp",
+      "physicalDamage"
+    ],
+    "needs": ["frontline", "timeToCast"],
+    "preferredTraits": [
+      "Sniper",
+      "Dark Star",
+      "Eradicator",
+      "Vanguard",
+      "Brawler"
+    ],
+    "preferredItems": [
+      "Infinity Edge",
+      "Last Whisper",
+      "Deathblade",
+      "Giant Slayer",
+      "Guardbreaker"
+    ],
+    "badTraitTags": ["manaOnly"]
+  },
+  "fiora": {
+    "archetype": "melee-ad-carry",
+    "damageType": "physical",
+    "scalesWith": [
+      "attackDamage",
+      "attackSpeed",
+      "crit",
+      "lifesteal",
+      "physicalDamage"
+    ],
+    "needs": ["survivability", "frontline", "dueling"],
+    "preferredTraits": ["Marauder", "Anima", "Divine Duelist", "Brawler"],
+    "preferredItems": [
+      "Bloodthirster",
+      "Titan's Resolve",
+      "Hand of Justice",
+      "Sterak's Gage",
+      "Infinity Edge"
+    ],
+    "badTraitTags": ["manaOnly"]
+  },
+  "vex": {
+    "archetype": "ap-caster",
+    "damageType": "magic",
+    "scalesWith": ["abilityPower", "spellDamage", "castFrequency", "magic"],
+    "needs": ["frontline", "timeToCast"],
+    "preferredTraits": ["Doomer", "Conduit", "Oracle", "Dark Star"],
+    "preferredItems": [
+      "Jeweled Gauntlet",
+      "Rabadon's Deathcap",
+      "Spear of Shojin",
+      "Archangel's Staff"
+    ],
+    "badTraitTags": ["physicalOnly"]
+  },
+  "miss-fortune": {
+    "archetype": "mixed-ranged-carry",
+    "damageType": "mixed",
+    "scalesWith": [
+      "attackDamage",
+      "abilityPower",
+      "damageAmp",
+      "castFrequency",
+      "mixedDamage"
+    ],
+    "needs": ["frontline", "timeToCast"],
+    "preferredTraits": ["Gun Goddess", "Eradicator", "Sniper", "Conduit"],
+    "preferredItems": [
+      "Spear of Shojin",
+      "Jeweled Gauntlet",
+      "Infinity Edge",
+      "Giant Slayer",
+      "Guardbreaker"
+    ],
+    "badTraitTags": []
+  },
+  "zed": {
+    "archetype": "assassin-ad-carry",
+    "damageType": "physical",
+    "scalesWith": [
+      "attackDamage",
+      "attackSpeed",
+      "crit",
+      "physicalDamage",
+      "backlineAccess"
+    ],
+    "needs": ["survivability", "dueling"],
+    "preferredTraits": ["Galaxy Hunter", "Rogue", "Challenger", "Dark Star"],
+    "preferredItems": [
+      "Infinity Edge",
+      "Hand of Justice",
+      "Bloodthirster",
+      "Titan's Resolve"
+    ],
+    "badTraitTags": ["manaOnly"]
+  },
+  "bard": {
+    "archetype": "utility-caster",
+    "damageType": "magic",
+    "scalesWith": ["mana", "abilityPower", "utility", "castFrequency"],
+    "needs": ["frontline", "timeToCast"],
+    "preferredTraits": ["Meeple", "Conduit", "Voyager", "Oracle"],
+    "preferredItems": [
+      "Spear of Shojin",
+      "Nashor's Tooth",
+      "Archangel's Staff",
+      "Morellonomicon"
+    ],
+    "badTraitTags": ["physicalOnly"]
+  },
+  "blitzcrank": {
+    "archetype": "frontline-tank",
+    "damageType": "magic",
+    "scalesWith": ["health", "tank", "survivability"],
+    "needs": ["teamAmp"],
+    "preferredTraits": ["Vanguard", "Brawler", "Space Groove", "Party Animal"],
+    "preferredItems": [
+      "Warmog's Armor",
+      "Gargoyle Stoneplate",
+      "Dragon's Claw",
+      "Bramble Vest"
+    ],
+    "badTraitTags": []
+  },
+  "graves": {
+    "archetype": "ad-bruiser-carry",
+    "damageType": "physical",
+    "scalesWith": [
+      "attackDamage",
+      "attackSpeed",
+      "physicalDamage",
+      "survivability"
+    ],
+    "needs": ["frontline", "dueling"],
+    "preferredTraits": ["Factory New", "Brawler", "Marauder", "Rogue"],
+    "preferredItems": [
+      "Bloodthirster",
+      "Titan's Resolve",
+      "Infinity Edge",
+      "Hand of Justice"
+    ],
+    "badTraitTags": ["manaOnly"]
+  },
+  "shen": {
+    "archetype": "frontline-tank",
+    "damageType": "magic",
+    "scalesWith": ["health", "tank", "survivability", "frontline"],
+    "needs": ["teamAmp"],
+    "preferredTraits": ["Bulwark", "Bastion", "Brawler"],
+    "preferredItems": [
+      "Warmog's Armor",
+      "Gargoyle Stoneplate",
+      "Dragon's Claw",
+      "Bramble Vest"
+    ],
+    "badTraitTags": []
+  },
+  "sona": {
+    "archetype": "utility-caster",
+    "damageType": "magic",
+    "scalesWith": ["mana", "utility", "castFrequency", "abilityPower"],
+    "needs": ["frontline", "timeToCast"],
+    "preferredTraits": [
+      "Commander",
+      "Psionic",
+      "Shepherd",
+      "Conduit",
+      "Oracle"
+    ],
+    "preferredItems": [
+      "Spear of Shojin",
+      "Nashor's Tooth",
+      "Archangel's Staff",
+      "Morellonomicon"
+    ],
+    "badTraitTags": ["physicalOnly"]
+  }
+}
