@@ -41,6 +41,26 @@ http://localhost:3001
 ```bash
 npm run validate:data
 ```
+## Import current MetaTFT snapshot
+
+The app does **not** scrape during normal use. To update the local meta snapshot manually, run:
+
+```bash
+npx playwright install chromium
+npm run import:meta
+npm run validate:data
+```
+
+`npm run import:meta` updates:
+
+- `server/data/itemSetStats.json`
+- `server/data/itemCatalog.json`
+- `server/data/championMeta.json`
+- `server/data/unitUpgradeMeta.json`
+- `server/data/unitBuildMeta.json`
+
+The importer now attempts to collect normal item builds and star-filtered builds (`1★`, `2★`, `3★`) from MetaTFT unit pages. If MetaTFT changes its markup, the importer may still finish but some star rows can be empty; the app falls back to existing local rules instead of breaking.
+
 
 ## Important data note
 

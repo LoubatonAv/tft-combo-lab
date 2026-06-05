@@ -47,7 +47,8 @@ function getMetaScore(champ, championMeta = {}) {
 }
 
 function getItemSetScore(champ, itemSetStats = {}) {
-  const sets = itemSetStats?.[champ?.id] || itemSetStats?.[champ?.apiName] || [];
+  const sets =
+    itemSetStats?.[champ?.id] || itemSetStats?.[champ?.apiName] || [];
 
   if (!Array.isArray(sets) || !sets.length) return 0;
 
@@ -73,12 +74,16 @@ function getItemSetScore(champ, itemSetStats = {}) {
 
   if (!best) return 0;
 
-  return Math.max(0, Math.min(110,
-    (tierToScore(best.tier) || 50) +
-      Number(best.winRate || 0) * 1.2 -
-      Number(best.avgPlace || 4.5) * 5 +
-      Math.min(Number(best.games || 0) / 150, 10),
-  ));
+  return Math.max(
+    0,
+    Math.min(
+      110,
+      (tierToScore(best.tier) || 50) +
+        Number(best.winRate || 0) * 1.2 -
+        Number(best.avgPlace || 4.5) * 5 +
+        Math.min(Number(best.games || 0) / 150, 10),
+    ),
+  );
 }
 
 function getUsefulTraitNamesForCarry({
@@ -142,7 +147,9 @@ function championPriority({
 
   if (carryId && carryId !== "auto" && champ.id === carryId) score += 500;
 
-  const isTargetTraitUnit = Boolean(targetTrait && champ.traits.includes(targetTrait));
+  const isTargetTraitUnit = Boolean(
+    targetTrait && champ.traits.includes(targetTrait),
+  );
   let usefulTraitOverlap = 0;
 
   if (isTargetTraitUnit) score += 120;
@@ -189,49 +196,328 @@ function championPriority({
   return score;
 }
 
-function chooseCarry({ units, targetTrait, carryId, championMeta, itemStats, itemSetStats }) {
+function getCarryStarMultiplier(starLevel) {
+  if (starLevel === 3) return 2.25;
+  if (starLevel === 2) return 1.55;
+  return 1;
+}
+
+function scoreMetaBuild(build = {}) {
+  const tierBase = tierToScore(build.tier || "C");
+  const avgPlace = Number(build.avgPlace || 0);
+  const winRate = Number(build.winRate || 0);
+  const games = Number(build.games || 0);
+
+  let score = Number(build.score || 0) || tierBase;
+
+  if (avgPlace > 0) score += (4.5 - avgPlace) * 15;
+  if (winRate > 0) score += winRate * 0.85;
+  if (games > 0) score += Math.min(games / 180, 14);
+
+  return Math.max(0, Math.min(125, score));
+}
+
+function getUnitBuildMetaEntry(unit, unitBuildMeta = {}) {
+  return unitBuildMeta?.[unit.id] || unitBuildMeta?.[unit.apiName] || null;
+}
+
+function getBestBuildForStar(unit, starLevel, unitBuildMeta = {}) {
+  const entry = getUnitBuildMetaEntry(unit, unitBuildMeta);
+  const builds =
+    entry?.byStar?.[starLevel] || entry?.byStar?.[String(starLevel)] || [];
+
+  return (
+    [...builds].sort((a, b) => scoreMetaBuild(b) - scoreMetaBuild(a))[0] || null
+  );
+}
+
+function getBestOverallMetaBuild(unit, unitBuildMeta = {}) {
+  const entry = getUnitBuildMetaEntry(unit, unitBuildMeta);
+  const builds = [
+    ...(entry?.allBuilds || []),
+    ...Object.values(entry?.byStar || {}).flat(),
+  ];
+
+  return (
+    [...builds].sort((a, b) => scoreMetaBuild(b) - scoreMetaBuild(a))[0] || null
+  );
+}
+
+function hasPremiumCarryCandidate(units) {
+  return units.some((unit) => {
+    const cost = Number(unit.cost || 1);
+    const carryScore = Number(unit.carryScore || 0);
+
+    return (
+      isCarryCandidateUnit(unit) &&
+      (cost >= 4 || (cost === 3 && carryScore >= 80))
+    );
+  });
+}
+
+function getBestCarryStarPlan(unit, context = {}) {
+  const {
+    targetTrait,
+    itemSetStats = {},
+    championMeta = {},
+    unitBuildMeta = {},
+    hasPremiumCarry = false,
+  } = context;
+
+  const cost = Number(unit.cost || 1);
+  const carryScore = Number(unit.carryScore || 0);
+  const metaScore = getMetaScore(unit, championMeta);
+  const itemSetScore = getItemSetScore(unit, itemSetStats);
+  const isTargetUnit = Boolean(
+    targetTrait && unit.traits?.includes(targetTrait),
+  );
+
+  const best1 = getBestBuildForStar(unit, 1, unitBuildMeta);
+  const best2 = getBestBuildForStar(unit, 2, unitBuildMeta);
+  const best3 = getBestBuildForStar(unit, 3, unitBuildMeta);
+  const best1Score = best1 ? scoreMetaBuild(best1) : 0;
+  const best2Score = best2 ? scoreMetaBuild(best2) : 0;
+  const best3Score = best3 ? scoreMetaBuild(best3) : 0;
+
+  if (cost === 1) {
+    const isRealRerollCarry =
+      best3Score >= Math.max(78, best2Score + 8) ||
+      (!hasPremiumCarry &&
+        carryScore >= 60 &&
+        (metaScore >= 70 || itemSetScore >= 78 || isTargetUnit));
+
+    if (isRealRerollCarry) {
+      return {
+        starLevel: 3,
+        realism: hasPremiumCarry ? 0.78 : 0.95,
+        label: best3 ? "3★ MetaTFT reroll carry" : "3★ reroll carry",
+        build: best3 || getBestOverallMetaBuild(unit, unitBuildMeta),
+      };
+    }
+
+    return {
+      starLevel: 2,
+      realism: 1,
+      label: "2★ trait/filler",
+      build: best2 || getBestOverallMetaBuild(unit, unitBuildMeta),
+    };
+  }
+
+  if (cost === 2) {
+    const isRealRerollCarry =
+      best3Score >= Math.max(76, best2Score + 6) ||
+      (!hasPremiumCarry &&
+        carryScore >= 70 &&
+        (metaScore >= 68 || itemSetScore >= 74 || isTargetUnit));
+
+    if (isRealRerollCarry) {
+      return {
+        starLevel: 3,
+        realism: hasPremiumCarry ? 0.68 : 0.82,
+        label: best3 ? "3★ MetaTFT viable reroll" : "3★ viable reroll carry",
+        build: best3 || getBestOverallMetaBuild(unit, unitBuildMeta),
+      };
+    }
+
+    return {
+      starLevel: 2,
+      realism: 1,
+      label: "2★ expected",
+      build: best2 || getBestOverallMetaBuild(unit, unitBuildMeta),
+    };
+  }
+
+  if (cost === 3) {
+    const isRealRerollCarry =
+      best3Score >= Math.max(80, best2Score + 8) ||
+      (carryScore >= 80 &&
+        (metaScore >= 74 || itemSetScore >= 80 || !hasPremiumCarry));
+
+    if (isRealRerollCarry) {
+      return {
+        starLevel: 3,
+        realism: hasPremiumCarry ? 0.45 : 0.55,
+        label: best3 ? "3★ MetaTFT possible carry" : "3★ possible carry",
+        build: best3 || getBestOverallMetaBuild(unit, unitBuildMeta),
+      };
+    }
+
+    return {
+      starLevel: 2,
+      realism: 0.95,
+      label: "2★ expected",
+      build: best2 || getBestOverallMetaBuild(unit, unitBuildMeta),
+    };
+  }
+
+  if (cost === 4) {
+    return {
+      starLevel: 2,
+      realism: 0.9,
+      label: best2
+        ? "2★ MetaTFT late-game carry"
+        : "2★ realistic late-game carry",
+      build: best2 || getBestOverallMetaBuild(unit, unitBuildMeta),
+    };
+  }
+
+  if (cost === 5) {
+    return {
+      starLevel: 2,
+      realism: 0.5,
+      label: best2 ? "2★ MetaTFT luxury carry" : "2★ luxury late-game carry",
+      build: best2 || getBestOverallMetaBuild(unit, unitBuildMeta),
+    };
+  }
+
+  return {
+    starLevel: 1,
+    realism: 1,
+    label: "1★ expected",
+    build: best1 || getBestOverallMetaBuild(unit, unitBuildMeta),
+  };
+}
+
+function getAutoCarryCombatPower(unit, carryPlan) {
+  const stats = unit.stats || {};
+  const cost = Number(unit.cost || 1);
+
+  const raw =
+    Number(unit.carryScore || 0) * 1.4 +
+    cost * 22 +
+    Number(stats.damage || 0) * 0.85 +
+    Number(stats.attackSpeed || 0) * 26 +
+    Number(stats.hp || 0) / 72 +
+    Number(stats.armor || 0) * 0.22 +
+    Number(stats.magicResist || 0) * 0.22;
+
+  const buildScore = carryPlan.build ? scoreMetaBuild(carryPlan.build) : 0;
+
+  return (
+    raw *
+      getCarryStarMultiplier(carryPlan.starLevel) *
+      Number(carryPlan.realism || 1) +
+    buildScore * 1.25
+  );
+}
+
+function getAutoCarryPenalty(unit, carryPlan, targetTrait) {
+  const cost = Number(unit.cost || 1);
+  const isTargetUnit = Boolean(
+    targetTrait && unit.traits?.includes(targetTrait),
+  );
+  let penalty = 0;
+
+  if (cost === 1 && carryPlan.starLevel < 3) penalty += 85;
+  if (cost === 2 && carryPlan.starLevel < 3) penalty += 42;
+  if (cost <= 2 && isTargetUnit && carryPlan.starLevel < 3) penalty += 16;
+
+  return penalty;
+}
+
+function getActiveTraitNamesForCarry(units) {
+  const counts = new Map();
+
+  for (const unit of units || []) {
+    for (const trait of unit.traits || []) {
+      counts.set(trait, (counts.get(trait) || 0) + 1);
+    }
+  }
+
+  return new Set(
+    [...counts.entries()]
+      .filter(([, count]) => count >= 2)
+      .map(([trait]) => trait),
+  );
+}
+
+function getCarryShellFitScore(unit, activeTraitNames, targetTrait) {
+  const traits = unit.traits || [];
+  const sharedActiveTraits = traits.filter((trait) =>
+    activeTraitNames.has(trait),
+  ).length;
+
+  let score = 0;
+
+  if (targetTrait) {
+    if (traits.includes(targetTrait)) {
+      score += 45;
+    } else {
+      score -= 65;
+    }
+  }
+
+  if (sharedActiveTraits >= 2) {
+    score += 45;
+  } else if (sharedActiveTraits === 1) {
+    score += 12;
+  } else {
+    score -= 90;
+  }
+
+  return score;
+}
+
+function chooseCarry({
+  units,
+  targetTrait,
+  carryId,
+  championMeta,
+  itemStats,
+  itemSetStats,
+  unitBuildMeta = {},
+}) {
   if (carryId && carryId !== "auto") {
     return units.find((unit) => unit.id === carryId) || null;
   }
 
-  const candidates = units.filter((unit) => {
-    return /carry|caster|assassin|damage|ad|ap/i.test(unit.role || "");
+  const candidates = units.filter((unit) => isCarryCandidateUnit(unit));
+  const pool = candidates.length ? candidates : units;
+  const hasPremiumCarry = pool.some((unit) => {
+    const cost = Number(unit.cost || 1);
+    const carryScore = Number(unit.carryScore || 0);
+
+    return cost >= 3 && carryScore >= 65;
   });
 
-  const pool = candidates.length ? candidates : units;
+  const activeTraitNames = getActiveTraitNamesForCarry(units);
 
-  return (
-    [...pool].sort((a, b) => {
-      const aItemSets = Array.isArray(itemSetStats?.[a.id]) ? itemSetStats[a.id].length : 0;
-      const bItemSets = Array.isArray(itemSetStats?.[b.id]) ? itemSetStats[b.id].length : 0;
-      const aItems = Array.isArray(itemStats[a.id])
-        ? itemStats[a.id].length
-        : a.items?.length || 0;
-      const bItems = Array.isArray(itemStats[b.id])
-        ? itemStats[b.id].length
-        : b.items?.length || 0;
+  const scored = [...pool].map((unit) => {
+    const itemSets = Array.isArray(itemSetStats?.[unit.id])
+      ? itemSetStats[unit.id].length
+      : 0;
+    const items = Array.isArray(itemStats?.[unit.id])
+      ? itemStats[unit.id].length
+      : unit.items?.length || 0;
+    const carryPlan = getBestCarryStarPlan(unit, {
+      targetTrait,
+      itemSetStats,
+      championMeta,
+      unitBuildMeta,
+      hasPremiumCarry,
+    });
+    const targetBonus =
+      targetTrait && unit.traits?.includes(targetTrait) ? 6 : 0;
+    const shellFitScore = getCarryShellFitScore(
+      unit,
+      activeTraitNames,
+      targetTrait,
+    );
+    const score =
+      getAutoCarryCombatPower(unit, carryPlan) +
+      getMetaScore(unit, championMeta) * 1.2 +
+      getItemSetScore(unit, itemSetStats) * 0.65 +
+      shellFitScore +
+      itemSets * 3 +
+      items * 1.5 +
+      targetBonus -
+      getAutoCarryPenalty(unit, carryPlan, targetTrait);
 
-      const aScore =
-        (targetTrait && a.traits.includes(targetTrait) ? 35 : 0) +
-        getMetaScore(a, championMeta) +
-        getItemSetScore(a, itemSetStats) * 0.55 +
-        (a.carryScore || 0) +
-        aItemSets * 10 +
-        aItems * 7 +
-        a.cost * 5;
+    return { unit, score, carryPlan };
+  });
 
-      const bScore =
-        (targetTrait && b.traits.includes(targetTrait) ? 35 : 0) +
-        getMetaScore(b, championMeta) +
-        getItemSetScore(b, itemSetStats) * 0.55 +
-        (b.carryScore || 0) +
-        bItemSets * 10 +
-        bItems * 7 +
-        b.cost * 5;
-
-      return bScore - aScore;
-    })[0] || null
-  );
+  scored.sort((a, b) => b.score - a.score);
+  return scored[0]?.unit || null;
 }
 
 function buildCandidatePool({
@@ -263,6 +549,20 @@ function buildCandidatePool({
     ? champions.filter((champ) => champ.traits.includes(targetTrait))
     : [];
 
+  const targetLinkedTraitNames = new Set(
+    targetUnits.flatMap((unit) =>
+      (unit.traits || []).filter((trait) => trait !== targetTrait),
+    ),
+  );
+
+  for (const trait of targetLinkedTraitNames) {
+    usefulTraitNames.add(trait);
+  }
+
+  const targetLinkedUnits = champions.filter((champ) => {
+    return champ.traits?.some((trait) => targetLinkedTraitNames.has(trait));
+  });
+
   const helpfulUnits = champions.filter((champ) => {
     return champ.traits.some((trait) => usefulTraitNames.has(trait));
   });
@@ -278,12 +578,56 @@ function buildCandidatePool({
     return tier === "S" || tier === "A" || champ.cost >= 4;
   });
 
+  function getActiveTraitNamesForCarry(units) {
+    const counts = new Map();
+
+    for (const unit of units || []) {
+      for (const trait of unit.traits || []) {
+        counts.set(trait, (counts.get(trait) || 0) + 1);
+      }
+    }
+
+    return new Set(
+      [...counts.entries()]
+        .filter(([, count]) => count >= 2)
+        .map(([trait]) => trait),
+    );
+  }
+
+  function getCarryShellFitScore(unit, activeTraitNames, targetTrait) {
+    const traits = unit.traits || [];
+    const sharedActiveTraits = traits.filter((trait) =>
+      activeTraitNames.has(trait),
+    ).length;
+
+    let score = 0;
+
+    if (targetTrait) {
+      if (traits.includes(targetTrait)) {
+        score += 45;
+      } else {
+        score -= 65;
+      }
+    }
+
+    if (sharedActiveTraits >= 2) {
+      score += 45;
+    } else if (sharedActiveTraits === 1) {
+      score += 12;
+    } else {
+      score -= 90;
+    }
+
+    return score;
+  }
+
   const frontlineUnits = champions.filter((champ) => isFrontlineUnit(champ));
 
   const byId = new Map(
     [
       ...lockedUnits,
       ...targetUnits,
+      ...targetLinkedUnits,
       ...helpfulUnits,
       ...lockedLinkedUnits,
       ...premiumUnits,
@@ -447,6 +791,53 @@ function isCarryLikeUnit(unit) {
   );
 }
 
+function abilityMentionsDamage(unit) {
+  const desc = String(unit?.ability?.desc || "").toLowerCase();
+
+  return (
+    desc.includes("physicaldamage") ||
+    desc.includes("magicdamage") ||
+    desc.includes("truedamage") ||
+    /\bdeal\b.*\bdamage\b/i.test(desc)
+  );
+}
+
+function isCarryCandidateUnit(unit) {
+  const role = String(unit?.role || "").toLowerCase();
+  const carryScore = Number(unit?.carryScore || 0);
+  const cost = Number(unit?.cost || 1);
+  const stats = unit?.stats || {};
+  const range = Number(stats.range ?? unit?.range ?? 1);
+  const damage = Number(stats.damage || 0);
+  const attackSpeed = Number(stats.attackSpeed || 0);
+
+  if (/carry|caster|assassin|damage|sniper|marksman|ad|ap/i.test(role)) {
+    return true;
+  }
+
+  if (role.includes("flex") && carryScore >= 55) {
+    return true;
+  }
+
+  if (carryScore >= 65) {
+    return true;
+  }
+
+  if (abilityMentionsDamage(unit) && carryScore >= 50) {
+    return true;
+  }
+
+  if (cost >= 3 && abilityMentionsDamage(unit)) {
+    return true;
+  }
+
+  if (range >= 3 && damage > 0 && attackSpeed >= 0.65) {
+    return true;
+  }
+
+  return false;
+}
+
 function getTankinessScore(unit) {
   const stats = unit?.stats || {};
 
@@ -532,6 +923,7 @@ export function optimize({
   itemStats = {},
   itemSetStats = {},
   unitUpgradeMeta = {},
+  unitBuildMeta = {},
   matchHistory = [],
   carryProfiles = {},
   traitProfiles = {},
@@ -560,7 +952,9 @@ export function optimize({
     );
   }
 
-  const availableFrontlineCount = champions.filter((unit) => isFrontlineUnit(unit)).length;
+  const availableFrontlineCount = champions.filter((unit) =>
+    isFrontlineUnit(unit),
+  ).length;
 
   if (minFrontline > availableFrontlineCount) {
     throw new Error(
@@ -603,12 +997,10 @@ export function optimize({
     traitMeta,
   });
 
-  const requiredFrontlineUnits = pickBestFrontlineUnits({
-    champions,
-    baseUnits: [...lockedUnits, ...requiredTargetUnits],
-    minFrontline,
-    championMeta,
-  });
+  // Do NOT greedily lock frontline units.
+  // Frontline is a hard constraint, but the optimizer should decide
+  // which frontline units fit the whole comp best.
+  const requiredFrontlineUnits = [];
 
   const candidatePool = buildCandidatePool({
     champions,
@@ -714,6 +1106,7 @@ export function optimize({
       championMeta,
       itemStats,
       itemSetStats,
+      unitBuildMeta,
     });
 
     const evaluation = scoreComp(
@@ -726,11 +1119,13 @@ export function optimize({
         targetCount: wantedCount,
         specialPlan,
         gameMode,
+        minFrontline,
         championMeta,
         traitMeta,
         itemStats,
         itemSetStats,
         unitUpgradeMeta,
+        unitBuildMeta,
         matchHistory,
         carryProfiles,
         traitProfiles,

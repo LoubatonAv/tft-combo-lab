@@ -72,6 +72,57 @@ function isCarryLikeUnit(unit) {
   );
 }
 
+function abilityMentionsDamage(unit) {
+  const desc = String(unit?.ability?.desc || "").toLowerCase();
+
+  return (
+    desc.includes("physicaldamage") ||
+    desc.includes("magicdamage") ||
+    desc.includes("truedamage") ||
+    /\bdeal\b.*\bdamage\b/i.test(desc)
+  );
+}
+
+function isCarryCandidateUnit(unit) {
+  const role = String(unit?.role || "").toLowerCase();
+  const carryScore = Number(unit?.carryScore || 0);
+  const cost = Number(unit?.cost || 1);
+  const stats = unit?.stats || {};
+  const range = Number(stats.range ?? unit?.range ?? 1);
+  const damage = Number(stats.damage || 0);
+  const attackSpeed = Number(stats.attackSpeed || 0);
+
+  if (/carry|caster|assassin|damage|sniper|marksman|ad|ap/i.test(role)) {
+    return true;
+  }
+
+  if (role.includes("flex") && carryScore >= 60) {
+    return true;
+  }
+
+  if (carryScore >= 75) {
+    return true;
+  }
+
+  if (abilityMentionsDamage(unit) && carryScore >= 55) {
+    return true;
+  }
+
+  if (
+    abilityMentionsDamage(unit) &&
+    cost >= 3 &&
+    (damage > 0 || attackSpeed >= 0.7)
+  ) {
+    return true;
+  }
+
+  if (range >= 3 && damage > 0 && attackSpeed >= 0.65) {
+    return true;
+  }
+
+  return false;
+}
+
 function isFrontlineUnit(unit) {
   const role = String(unit?.role || "").toLowerCase();
 
@@ -612,13 +663,12 @@ function ItemIcon({ item, itemCatalog = {}, size = "md" }) {
   };
 
   const tooltip = (
-    <div className="pointer-events-none absolute left-1/2 top-full z-[9999] mt-2 hidden w-72 -translate-x-1/2 rounded-2xl border border-cyan-300/40 bg-slate-950 px-4 py-3 text-left text-sm text-slate-100 opacity-100 shadow-2xl ring-1 ring-black/80 group-hover:block">
+    <div className="pointer-events-none fixed z-[9999] mt-2 hidden w-72 rounded-2xl border border-cyan-300/40 bg-slate-950 px-4 py-3 text-left text-sm text-slate-100 opacity-100 shadow-2xl ring-1 ring-black/80 group-hover:block">
+      {/* תוכן ה-Tooltip נשאר אותו דבר */}
       <div className="text-base font-black text-white">{item}</div>
-
       <div className="mt-2 text-xs font-bold uppercase tracking-wide text-cyan-200">
         Components
       </div>
-
       <div className="mt-1 text-sm font-semibold text-slate-100">
         {components.length ? components.join(" + ") : "No component data"}
       </div>
@@ -740,7 +790,7 @@ function ItemSetList({ itemSets = [], itemCatalog = {}, compact = false }) {
 
 function ItemSetInfoCard({ icon, title, itemSets, itemCatalog = {} }) {
   return (
-    <div className="rounded-3xl border border-white/10 bg-white/6 p-4">
+    <div className="rounded-2xl border border-white/10 bg-white/6 p-3">
       <div className="mb-3 flex items-center gap-2 font-black text-cyan-100">
         {icon}
         {title}
@@ -752,7 +802,7 @@ function ItemSetInfoCard({ icon, title, itemSets, itemCatalog = {} }) {
 }
 
 function chooseDisplayCarry(units = [], itemStats = {}, itemSetStats = {}) {
-  const carryLike = units.filter((unit) => isCarryLikeUnit(unit));
+  const carryLike = units.filter((unit) => isCarryCandidateUnit(unit));
   const pool = carryLike.length ? carryLike : units;
 
   return (
@@ -789,6 +839,7 @@ function buildImportedComp({
   traitsConfig,
   itemStats,
   itemSetStats,
+  unitUpgradeMeta = {},
   parseResult,
 }) {
   const activeTraits = getTraitRowsFromBoard(
@@ -812,6 +863,27 @@ function buildImportedComp({
     units,
     carry,
     activeTraits,
+    starPlans: Object.fromEntries(
+      units.map((unit) => {
+        const meta =
+          unitUpgradeMeta?.[unit.id] || unitUpgradeMeta?.[unit.apiName] || {};
+        return [
+          unit.id,
+          {
+            starLevel: Number(
+              meta.recommendedStarLevel ||
+                (Number(unit.cost || 1) <= 4 ? 2 : 1),
+            ),
+            label:
+              meta.label ||
+              (Number(unit.cost || 1) <= 4
+                ? "2★ expected"
+                : "1★ expected / 2★ luxury"),
+            source: meta.source || "local",
+          },
+        ];
+      }),
+    ),
     lockedUnitIds: units.map((unit) => unit.id),
     gameMode: null,
     boardSlotsUsed: units.length,
@@ -852,7 +924,7 @@ function EmblemTray({ traitsConfig = [] }) {
     .sort((a, b) => a.name.localeCompare(b.name));
 
   return (
-    <div className="mb-4 rounded-3xl border border-amber-300/30 bg-amber-300/10 p-4">
+    <div className="mb-3 rounded-2xl border border-amber-300/20 bg-amber-300/5 p-3">
       <div className="mb-3">
         <div className="text-sm font-black text-amber-100">Emblems</div>
         <div className="text-xs text-amber-100/75">
@@ -953,7 +1025,7 @@ function App() {
 
     const coreFirst = data.champions.filter((champ) => lockedSet.has(champ.id));
     const carries = data.champions.filter((champ) =>
-      /carry|caster|assassin|damage|ad|ap/i.test(champ.role || ""),
+      isCarryCandidateUnit(champ),
     );
 
     const byId = new Map(
@@ -1007,6 +1079,7 @@ function App() {
       traitsConfig: data.traits,
       itemStats: data.itemStats || {},
       itemSetStats: data.itemSetStats || {},
+      unitUpgradeMeta: data.unitUpgradeMeta || {},
       parseResult: json,
     });
 
@@ -1076,30 +1149,30 @@ function App() {
   }
 
   return (
-    <main className="mx-auto max-w-[1800px] p-3 md:p-5">
-      <header className="mb-5 grid gap-4 rounded-[2rem] border border-white/10 bg-gradient-to-br from-slate-900 via-slate-950 to-cyan-950/40 p-5 shadow-2xl backdrop-blur md:grid-cols-[1fr_auto]">
+    <main className="mx-auto max-w-[1440px] px-3 py-3 md:px-4">
+      <header className="tft-glow-panel mb-3 grid gap-3 rounded-2xl border border-amber-200/15 bg-slate-950/75 p-4 shadow-2xl shadow-black/35 backdrop-blur md:grid-cols-[1fr_auto]">
         <div>
-          <div className="mb-2 flex items-center gap-2 text-sm text-cyan-200">
+          <div className="mb-1 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.22em] text-amber-200/80">
             <Sparkles size={18} />
             Set 17 Combo Optimizer
           </div>
 
-          <h1 className="text-3xl font-black tracking-tight md:text-5xl">
+          <h1 className="bg-gradient-to-r from-amber-100 via-cyan-100 to-amber-200 bg-clip-text text-2xl font-black tracking-tight text-transparent md:text-4xl">
             TFT Combo Lab
           </h1>
 
-          <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-300">
+          <p className="mt-2 max-w-3xl text-xs leading-5 text-slate-400 md:text-sm">
             בחר Core Units, יעד Trait, כמות Frontline ו־Emblems. המנוע ישלים
             קומפ לפי constraints, MetaTFT unit tiers, breakpoints, carry fit
             ו־Best Items.
           </p>
         </div>
 
-        <div className="rounded-2xl border border-cyan-300/20 bg-cyan-400/10 p-4 text-sm text-cyan-100">
-          <div className="font-bold">Data mode</div>
-          <div>Local snapshot + optional importer</div>
+        <div className="rounded-xl border border-amber-200/15 bg-black/25 px-3 py-2 text-xs text-amber-100">
+          <div className="font-bold">Meta mode</div>
+          <div>Local MetaTFT snapshot</div>
           <div className="mt-1 text-xs text-cyan-200/80">
-            No scraping on every app load.
+            Unit builds · star builds · item sets.
           </div>
         </div>
       </header>
@@ -1113,7 +1186,7 @@ function App() {
 
       <PasteCompBox onImport={importTeamPlannerCode} />
 
-      <section className="mb-4 rounded-[2rem] border border-white/10 bg-slate-950/80 p-4 shadow-2xl shadow-black/20">
+      <section className="tft-glow-panel mb-3 rounded-2xl border border-amber-200/10 bg-slate-950/70 p-3 shadow-xl shadow-black/25">
         <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
           <div>
             <div className="text-sm font-black text-cyan-100">
@@ -1136,8 +1209,7 @@ function App() {
             </span>
           </div>
         </div>
-
-        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-9">
+        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-8">
           <Control label="Game Mode">
             <select
               value={gameModeId}
@@ -1157,7 +1229,6 @@ function App() {
               <option value="capped">Capped - allow 5-cost</option>
             </select>
           </Control>
-
           <Control label="Max Unit Cost">
             <select
               value={maxUnitCost}
@@ -1171,7 +1242,6 @@ function App() {
               <option value={5}>Allow 5-costs</option>
             </select>
           </Control>
-
           <Control label="Special Sources">
             <label className="mb-2 flex items-center gap-2 text-xs text-slate-200">
               <input
@@ -1203,7 +1273,6 @@ function App() {
               Mecha Transformer
             </label>
           </Control>
-
           <Control label="Target Trait">
             <select
               value={targetTrait}
@@ -1227,7 +1296,6 @@ function App() {
               ))}
             </select>
           </Control>
-
           <Control label="Target Count">
             {targetTrait ? (
               <select
@@ -1247,7 +1315,6 @@ function App() {
               </div>
             )}
           </Control>
-
           <Control label="Board Size">
             <select
               value={boardSize}
@@ -1271,7 +1338,6 @@ function App() {
               ))}
             </select>
           </Control>
-
           <Control label="Frontline">
             <select
               value={minFrontline}
@@ -1289,7 +1355,6 @@ function App() {
               )}
             </select>
           </Control>
-
           <Control label="Carry Focus">
             <select
               value={carryId}
@@ -1305,7 +1370,6 @@ function App() {
               ))}
             </select>
           </Control>
-
           <Control label="Results">
             <select
               value={maxResults}
@@ -1317,11 +1381,10 @@ function App() {
               ))}
             </select>
           </Control>
-
           <button
             type="button"
             onClick={optimize}
-            className="flex h-full min-h-[76px] items-center justify-center gap-2 rounded-2xl bg-cyan-300 px-4 py-3 font-black text-slate-950 shadow-lg shadow-cyan-950/30 transition hover:bg-cyan-200 md:col-span-2 xl:col-span-2"
+            className="flex min-h-[42px] items-center justify-center gap-2 rounded-xl border border-amber-100/50 bg-gradient-to-r from-amber-300 to-cyan-200 px-4 py-2 text-sm font-black text-slate-950 shadow-lg shadow-amber-950/20 transition hover:brightness-110 lg:col-span-2 2xl:col-span-1"
           >
             <RefreshCw className={loading ? "animate-spin" : ""} size={18} />
             Optimize
@@ -1345,14 +1408,14 @@ function App() {
         allowMechaTransformer={allowMechaTransformer}
       />
 
-      <div className="grid gap-5 xl:grid-cols-[360px_minmax(0,1fr)]">
-        <aside className="space-y-3 xl:sticky xl:top-4 xl:max-h-[calc(100vh-2rem)] xl:overflow-auto xl:pr-1">
+      <div className="grid gap-4 2xl:grid-cols-[290px_minmax(0,1fr)]">
+        <aside className="space-y-2 2xl:sticky 2xl:top-4 2xl:max-h-[calc(100vh-2rem)] 2xl:overflow-auto 2xl:pr-1">
           {results.map((r, idx) => (
             <button
               key={r.id}
               onClick={() => setSelected(r)}
               className={cx(
-                "w-full rounded-2xl border p-3 text-left transition hover:scale-[1.01]",
+                "w-full rounded-xl border p-2.5 text-left transition hover:border-amber-200/30 hover:bg-amber-200/5",
                 selected?.id === r.id
                   ? "border-cyan-200 bg-cyan-300/15"
                   : "border-white/10 bg-white/6",
@@ -1411,6 +1474,13 @@ function App() {
               allowEmblems={allowEmblems}
               allowMechaTransformer={allowMechaTransformer}
               matchHistory={data.matchHistory || []}
+              onLockCompUnits={(units, lockedComp) => {
+                setLockedUnitIds(units.map((unit) => unit.id));
+                setPreTransformedMechaIds([]);
+                setCarryId(
+                  lockedComp?.carry?.id || selected?.carry?.id || "auto",
+                );
+              }}
               onMatchHistorySaved={(nextHistory) => {
                 setData((current) => ({
                   ...current,
@@ -1553,13 +1623,12 @@ function CoreUnitPicker({
   }
 
   return (
-    <section className="mb-5 rounded-[2rem] border border-white/10 bg-slate-950/75 p-4 shadow-xl shadow-black/20">
+    <section className="mb-4 rounded-2xl border border-white/10 bg-slate-950/62 p-3 shadow-xl shadow-black/25">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div>
-          <div className="text-lg font-black text-cyan-100">Core Units</div>
-
-          <div className="text-sm text-slate-400">
-            Pick the units you want to build around, then press Optimize.
+          <div className="tft-section-title text-xs">Core Units</div>
+          <div className="text-xs text-slate-500">
+            Pick units, then optimize.
           </div>
         </div>
 
@@ -1571,14 +1640,12 @@ function CoreUnitPicker({
           Clear core
         </button>
       </div>
-
       <input
         value={search}
         onChange={(event) => setSearch(event.target.value)}
         placeholder="Search champion or trait..."
-        className="input mb-4 max-w-md"
+        className="input mb-3 max-w-sm"
       />
-
       <div className="mb-4 flex flex-wrap gap-2">
         {lockedUnitIds.length === 0 ? (
           <div className="rounded-2xl border border-dashed border-white/10 px-3 py-2 text-sm text-slate-500">
@@ -1688,7 +1755,7 @@ function CoreUnitPicker({
           )}
         </div>
       )}
-      <div className="grid max-h-[360px] gap-2 overflow-auto pr-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-6">
+      <div className="grid max-h-[280px] gap-1.5 overflow-auto pr-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-7">
         {filteredChampions.map((unit) => {
           const selected = lockedSet.has(unit.id);
 
@@ -1698,7 +1765,7 @@ function CoreUnitPicker({
               type="button"
               onClick={() => toggleUnit(unit.id)}
               className={cx(
-                "flex items-center gap-3 rounded-2xl border p-2 text-left transition hover:scale-[1.01]",
+                "flex items-center gap-2 rounded-xl border p-1.5 text-left transition hover:bg-white/10",
                 selected
                   ? "border-cyan-200 bg-cyan-300/15"
                   : "border-white/10 bg-white/5",
@@ -1736,8 +1803,8 @@ function CoreUnitPicker({
 }
 function Control({ label, children }) {
   return (
-    <label className="block rounded-2xl border border-white/10 bg-white/[0.06] p-3 text-sm shadow-inner shadow-white/5">
-      <div className="mb-2 text-xs font-bold uppercase tracking-widest text-slate-400">
+    <label className="block rounded-xl border border-white/10 bg-white/[0.045] p-2 text-xs shadow-inner shadow-white/5">
+      <div className="mb-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500">
         {label}
       </div>
 
@@ -1773,7 +1840,7 @@ function PasteCompBox({ onImport }) {
   }
 
   return (
-    <div className="mb-4 rounded-[2rem] border border-cyan-300/20 bg-cyan-400/10 p-4">
+    <div className="mb-3 rounded-2xl border border-cyan-300/15 bg-cyan-400/5 p-3">
       <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
         <div>
           <div className="text-sm font-black text-cyan-100">Paste Comp</div>
@@ -1801,7 +1868,7 @@ function PasteCompBox({ onImport }) {
           type="button"
           onClick={handlePasteComp}
           disabled={status === "loading"}
-          className="rounded-2xl bg-cyan-300 px-4 py-3 font-black text-slate-950 transition hover:bg-cyan-200 disabled:cursor-not-allowed disabled:opacity-60"
+          className="rounded-xl border border-amber-100/40 bg-gradient-to-r from-amber-300 to-cyan-200 px-4 py-2 text-sm font-black text-slate-950 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {status === "loading" ? "Loading..." : "Load Comp"}
         </button>
@@ -1875,7 +1942,7 @@ function CopyCompButton({ units }) {
   return (
     <div
       className={cx(
-        "rounded-2xl border px-4 py-3",
+        "rounded-xl border px-3 py-2",
         status === "error"
           ? "border-red-300/40 bg-red-500/15 text-red-100"
           : status === "copied"
@@ -1908,7 +1975,6 @@ function CopyCompButton({ units }) {
   );
 }
 
-
 function getCompUnitKey(units = []) {
   return units
     .map((unit) => unit.id || unit.name)
@@ -1933,7 +1999,7 @@ function PersonalCompStats({ comp, matchHistory = [] }) {
 
   if (!entries.length) {
     return (
-      <div className="rounded-3xl border border-white/10 bg-white/6 p-4 text-sm text-slate-300">
+      <div className="rounded-2xl border border-white/10 bg-white/6 p-3 text-sm text-slate-300">
         <div className="mb-1 font-black text-cyan-100">Personal stats</div>
         No saved games for this exact comp yet.
       </div>
@@ -1953,7 +2019,7 @@ function PersonalCompStats({ comp, matchHistory = [] }) {
     100;
 
   return (
-    <div className="rounded-3xl border border-cyan-300/20 bg-cyan-400/10 p-4 text-sm text-cyan-100">
+    <div className="rounded-2xl border border-cyan-300/15 bg-cyan-400/5 p-3 text-sm text-cyan-100">
       <div className="mb-3 font-black">Personal stats</div>
 
       <div className="grid grid-cols-3 gap-2 text-center text-xs">
@@ -2033,7 +2099,7 @@ function LogResultBox({ comp, units = [], activeTraits = [], onSaved }) {
   }
 
   return (
-    <div className="rounded-3xl border border-emerald-300/20 bg-emerald-400/10 p-4">
+    <div className="rounded-2xl border border-emerald-300/15 bg-emerald-400/5 p-3">
       <div className="mb-3 font-black text-emerald-100">Log Result</div>
 
       <div className="grid gap-2 md:grid-cols-3">
@@ -2069,7 +2135,7 @@ function LogResultBox({ comp, units = [], activeTraits = [], onSaved }) {
           type="button"
           onClick={saveResult}
           disabled={status === "saving"}
-          className="rounded-2xl bg-emerald-300 px-4 py-3 font-black text-slate-950 transition hover:bg-emerald-200 disabled:opacity-60"
+          className="rounded-xl bg-emerald-300 px-4 py-2 text-sm font-black text-slate-950 transition hover:bg-emerald-200 disabled:opacity-60"
         >
           {status === "saving" ? "Saving..." : "Save Result"}
         </button>
@@ -2113,6 +2179,7 @@ function CompDetail({
   allowMechaTransformer = true,
   matchHistory = [],
   onMatchHistorySaved,
+  onLockCompUnits,
 }) {
   const [boardUnits, setBoardUnits] = useState(comp.units);
   const [upgradedMechaIds, setUpgradedMechaIds] = useState(new Set());
@@ -2272,12 +2339,14 @@ function CompDetail({
 
   return (
     <div className="space-y-5">
-      <div className="rounded-[2rem] border border-white/10 bg-slate-950/70 p-4 shadow-2xl shadow-black/25">
+      <div className="tft-glow-panel rounded-2xl border border-amber-200/10 bg-slate-950/72 p-3 shadow-2xl shadow-black/30">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <div className="text-sm text-cyan-200">Recommended Composition</div>
+            <div className="tft-section-title text-[11px]">
+              Recommended Composition
+            </div>
 
-            <h2 className="text-3xl font-black">
+            <h2 className="text-xl font-black text-slate-50 md:text-2xl">
               {targetTrait && targetTraitCount
                 ? `${targetTrait} ${currentTargetTraitCount}/${targetTraitCount} · ${
                     manualTraitRows.filter(
@@ -2288,14 +2357,14 @@ function CompDetail({
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 text-sm sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-2 text-sm sm:grid-cols-5">
             <div className="rounded-2xl border border-amber-200/40 bg-amber-300/10 px-4 py-3 text-amber-100">
               <div className="text-xs">Carry</div>
               <div className="font-black">{comp.carry?.name || "Auto"}</div>
             </div>
             <div
               className={cx(
-                "rounded-2xl border px-4 py-3",
+                "rounded-xl border px-3 py-2",
                 frontlineMissing
                   ? "border-red-300/40 bg-red-500/15 text-red-100"
                   : "border-emerald-300/30 bg-emerald-400/10 text-emerald-100",
@@ -2313,6 +2382,15 @@ function CompDetail({
               </div>
             </div>
             <CopyCompButton units={effectiveBoardUnits} />
+            <button
+              type="button"
+              onClick={() => onLockCompUnits?.(effectiveBoardUnits, comp)}
+              className="rounded-2xl border border-amber-300/30 bg-amber-300/10 px-4 py-3 text-left text-amber-100 transition hover:bg-amber-300/20"
+              title="Use this visible board as locked core units for the next optimization"
+            >
+              <div className="text-xs">Planning</div>
+              <div className="font-black">Lock Board</div>
+            </button>
           </div>
         </div>
 
@@ -2371,20 +2449,22 @@ function CompDetail({
           </div>
         )}
 
-        <TftBoard
-          units={effectiveBoardUnits}
-          carryId={comp.carry?.id}
-          upgradedMechaIds={upgradedMechaIds}
-          upgradedMechaUnits={upgradedMechaUnits}
-          armedTool={armedTool}
-          onToggleMechaTransformer={toggleMechaTransformer}
-          onRemoveUnit={removeBoardUnit}
-          onAddEmblem={toggleEmblemOnUnit}
-          boardSlotLimit={boardSlotLimit}
-          starPlans={starPlans}
-        />
+        <div className="relative z-[200] overflow-visible">
+          <TftBoard
+            units={effectiveBoardUnits}
+            carryId={comp.carry?.id}
+            upgradedMechaIds={upgradedMechaIds}
+            upgradedMechaUnits={upgradedMechaUnits}
+            armedTool={armedTool}
+            onToggleMechaTransformer={toggleMechaTransformer}
+            onRemoveUnit={removeBoardUnit}
+            onAddEmblem={toggleEmblemOnUnit}
+            boardSlotLimit={boardSlotLimit}
+            starPlans={starPlans}
+          />
+        </div>
 
-        <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px]">
+        <div className="relative z-0 mt-4 grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px]">
           <LogResultBox
             comp={comp}
             units={effectiveBoardUnits}
@@ -2395,7 +2475,7 @@ function CompDetail({
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
         {effectiveBoardUnits.map((unit) => (
           <ChampionCard
             key={unit.id}
@@ -2410,7 +2490,7 @@ function CompDetail({
         ))}
       </div>
 
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-3 md:grid-cols-3">
         <InfoCard
           icon={<Star />}
           title="Why this ranked high"
@@ -2471,7 +2551,7 @@ function CompDetail({
 
 function TraitBar({ traits, traitProfiles = {}, traitsConfig = [] }) {
   return (
-    <div className="my-4 flex flex-wrap gap-2">
+    <div className="my-3 flex flex-wrap gap-1.5">
       {traits.map((trait) => {
         const profile = traitProfiles[trait.name] || {};
         const config = traitsConfig.find((t) => t.name === trait.name) || {};
@@ -2482,7 +2562,7 @@ function TraitBar({ traits, traitProfiles = {}, traitsConfig = [] }) {
           <span
             key={trait.name}
             className={cx(
-              "group relative rounded-xl border px-3 py-2 text-sm",
+              "group relative rounded-lg border px-2.5 py-1.5 text-xs",
               trait.isActive
                 ? "border-cyan-200/60 bg-cyan-300/10 text-cyan-100"
                 : "border-white/10 bg-white/5 text-slate-400",
@@ -2608,7 +2688,7 @@ function MechaTransformerTool({
   targetOvercapped,
 }) {
   return (
-    <div className="mb-4 rounded-3xl border border-amber-300/30 bg-amber-300/10 p-4">
+    <div className="mb-3 rounded-2xl border border-amber-300/20 bg-amber-300/5 p-3">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
         <div>
           <div className="text-sm font-black text-amber-100">
@@ -2705,7 +2785,6 @@ function EmblemNotice({ plan }) {
   );
 }
 
-
 function getUnitStarPlan(unit, starPlans = {}) {
   const direct = starPlans?.[unit.id] || starPlans?.[unit.apiName];
 
@@ -2770,12 +2849,21 @@ function StarBadge({ starLevel = 1, compact = false }) {
   );
 }
 
+function formatMetaNumber(value, suffix = "") {
+  if (value === null || value === undefined || value === "") return null;
+  const number = Number(value);
+  if (!Number.isFinite(number)) return `${value}${suffix}`;
+  return `${number.toFixed(number % 1 === 0 ? 0 : 2)}${suffix}`;
+}
+
 function UnitHoverCard({ unit, starPlan = null }) {
   const traits = unit?.traits || [];
   const emblems = unit?.emblems || [];
+  const metaBuild = starPlan?.build || starPlan?.bestBuild || null;
 
   return (
-    <div className="pointer-events-none absolute left-1/2 top-full z-[9999] mt-2 hidden w-72 -translate-x-1/2 rounded-2xl border border-cyan-300/40 bg-slate-950 px-4 py-3 text-left text-sm text-slate-100 opacity-100 shadow-2xl ring-1 ring-black/80 group-hover:block">
+    <div className="pointer-events-none absolute bottom-full left-1/2 z-[10001] mb-1 hidden w-72 -translate-x-1/2 translate-y-3 rounded-2xl border border-cyan-300/40 bg-slate-950 px-4 py-3 text-left text-sm text-slate-100 opacity-100 shadow-2xl ring-1 ring-black/80 group-hover:block">
+      {" "}
       <div className="flex items-start justify-between gap-3">
         <div>
           <div className="text-lg font-black text-white">{unit.name}</div>
@@ -2791,6 +2879,20 @@ function UnitHoverCard({ unit, starPlan = null }) {
               </span>
             </div>
           )}
+
+          {metaBuild && (
+            <div className="mt-2 grid grid-cols-3 gap-1 text-[11px] text-slate-300">
+              <div className="rounded-lg bg-amber-300/10 px-2 py-1 text-amber-100">
+                Avg <b>{formatMetaNumber(metaBuild.avgPlace) || "-"}</b>
+              </div>
+              <div className="rounded-lg bg-cyan-300/10 px-2 py-1 text-cyan-100">
+                WR <b>{formatMetaNumber(metaBuild.winRate, "%") || "-"}</b>
+              </div>
+              <div className="rounded-lg bg-white/5 px-2 py-1">
+                Games <b>{formatMetaNumber(metaBuild.games) || "-"}</b>
+              </div>
+            </div>
+          )}
         </div>
 
         <span
@@ -2802,7 +2904,6 @@ function UnitHoverCard({ unit, starPlan = null }) {
           {unit.cost}
         </span>
       </div>
-
       <div className="mt-3">
         <div className="text-xs font-bold uppercase tracking-wide text-cyan-200">
           Role / Class
@@ -2811,7 +2912,6 @@ function UnitHoverCard({ unit, starPlan = null }) {
           {unit.role || "Unknown"}
         </div>
       </div>
-
       <div className="mt-3">
         <div className="text-xs font-bold uppercase tracking-wide text-cyan-200">
           Traits
@@ -2838,7 +2938,6 @@ function UnitHoverCard({ unit, starPlan = null }) {
           )}
         </div>
       </div>
-
       {unit.stats && (
         <div className="mt-3 grid grid-cols-3 gap-1 text-xs text-slate-300">
           <div className="rounded-lg bg-white/5 px-2 py-1">
@@ -2890,13 +2989,14 @@ function TftBoard({
   }
 
   return (
-    <div className="mx-auto grid max-w-4xl grid-cols-4 gap-2 rounded-[2rem] border border-white/10 bg-gradient-to-b from-slate-900/80 to-black/30 p-3 shadow-inner shadow-black/40 sm:grid-cols-5 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-5">
+    <div className="relative z-[200] mx-auto grid max-w-3xl grid-cols-5 gap-1.5 overflow-visible rounded-2xl border border-amber-200/10 bg-gradient-to-b from-slate-900/85 to-black/45 p-2 shadow-inner shadow-black/50">
+      {" "}
       {slots.map((slot, i) => {
         if (!slot) {
           return (
             <div
               key={i}
-              className="relative flex aspect-square items-center justify-center rounded-2xl border border-dashed border-white/10 bg-white/5 text-center text-xs"
+              className="relative flex aspect-square items-center justify-center rounded-xl border border-dashed border-white/10 bg-white/5 text-center text-[10px]"
             >
               <span className="text-slate-600">empty</span>
             </div>
@@ -2965,9 +3065,9 @@ function TftBoard({
               }
             }}
             className={cx(
-              "group relative z-0 flex aspect-square items-center justify-center rounded-2xl border text-center text-xs transition hover:z-[300]",
+              "group relative z-10 flex aspect-square items-center justify-center rounded-2xl border text-center text-xs transition hover:z-[1000]",
               costColor(unit.cost),
-              "cursor-pointer hover:scale-[1.03]",
+              "cursor-pointer hover:scale-[1.02]",
               isArmedTarget
                 ? "ring-2 ring-amber-200 ring-offset-2 ring-offset-slate-950"
                 : "",
@@ -2975,12 +3075,12 @@ function TftBoard({
                 ? "border-amber-200 bg-amber-300/20 shadow-amber-500/30"
                 : "",
             )}
-            title={
+            aria-label={
               isArmedTarget
                 ? isUpgraded
                   ? `${unit.name} is transformed. Click/drop again to remove Transformer.`
                   : `Click/drop to transform ${unit.name}.`
-                : `Click to remove ${unit.name}. Hover to see role and traits.`
+                : `Click to remove ${unit.name}`
             }
           >
             <ChampionPortrait unit={unit} size="board" />
@@ -3063,14 +3163,17 @@ function ChampionCard({
 }) {
   return (
     <article
-      className={cx("rounded-2xl border p-3 shadow-xl", costColor(unit.cost))}
+      className={cx(
+        "rounded-xl border p-2.5 shadow-lg backdrop-blur",
+        costColor(unit.cost),
+      )}
     >
       <div className="flex items-start gap-3">
         <ChampionPortrait unit={unit} size="md" />
 
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
-            <h3 className="truncate text-lg font-black">{unit.name}</h3>
+            <h3 className="truncate text-base font-black">{unit.name}</h3>
 
             <span
               className={cx(
@@ -3104,10 +3207,27 @@ function ChampionCard({
           </div>
 
           {starPlan && (
-            <div className="mt-1 flex items-center gap-2 text-xs text-slate-300">
-              <StarBadge starLevel={starPlan.starLevel} />
-              <span>{starPlan.label}</span>
-            </div>
+            <>
+              <div className="mt-1 flex items-center gap-2 text-xs text-slate-300">
+                <StarBadge starLevel={starPlan.starLevel} />
+                <span>{starPlan.label}</span>
+              </div>
+
+              {(starPlan.build || starPlan.bestBuild) && (
+                <div className="mt-1 flex flex-wrap gap-1 text-[10px] text-slate-300">
+                  {(starPlan.build || starPlan.bestBuild).avgPlace != null && (
+                    <span className="rounded-full bg-amber-300/10 px-2 py-0.5 text-amber-100">
+                      Avg {(starPlan.build || starPlan.bestBuild).avgPlace}
+                    </span>
+                  )}
+                  {(starPlan.build || starPlan.bestBuild).winRate != null && (
+                    <span className="rounded-full bg-cyan-300/10 px-2 py-0.5 text-cyan-100">
+                      WR {(starPlan.build || starPlan.bestBuild).winRate}%
+                    </span>
+                  )}
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>
@@ -3149,13 +3269,13 @@ function ChampionCard({
 
 function InfoCard({ icon, title, items }) {
   return (
-    <div className="rounded-3xl border border-white/10 bg-white/6 p-4">
+    <div className="rounded-2xl border border-white/10 bg-white/6 p-3">
       <div className="mb-3 flex items-center gap-2 font-black text-cyan-100">
         {icon}
         {title}
       </div>
 
-      <ul className="space-y-2 text-sm text-slate-300">
+      <ul className="space-y-1.5 text-xs leading-5 text-slate-300">
         {(items?.length ? items : ["No notes."]).map((x, i) => (
           <li key={i}>• {x}</li>
         ))}

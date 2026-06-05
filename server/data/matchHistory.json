@@ -1,1 +1,446 @@
-[]
+[
+  {
+    "id": "1780660850334-9cf33fa5d6ffa",
+    "createdAt": "2026-06-05T12:00:50.334Z",
+    "compId": "caitlyn|chogath|corki|gnar|jhin|maokai|milio|rammus|twisted-fate",
+    "placement": 2,
+    "rating": "okay",
+    "carryId": "corki",
+    "carryName": "Corki",
+    "units": [
+      {
+        "id": "corki",
+        "name": "Corki",
+        "cost": 4,
+        "traits": [
+          "Meeple",
+          "Fateweaver"
+        ]
+      },
+      {
+        "id": "milio",
+        "name": "Milio",
+        "cost": 2,
+        "traits": [
+          "Timebreaker",
+          "Fateweaver"
+        ]
+      },
+      {
+        "id": "caitlyn",
+        "name": "Caitlyn",
+        "cost": 1,
+        "traits": [
+          "N.O.V.A.",
+          "Fateweaver"
+        ]
+      },
+      {
+        "id": "twisted-fate",
+        "name": "Twisted Fate",
+        "cost": 1,
+        "traits": [
+          "Stargazer",
+          "Fateweaver"
+        ]
+      },
+      {
+        "id": "jhin",
+        "name": "Jhin",
+        "cost": 5,
+        "traits": [
+          "Dark Star",
+          "Eradicator",
+          "Sniper"
+        ]
+      },
+      {
+        "id": "rammus",
+        "name": "Rammus",
+        "cost": 4,
+        "traits": [
+          "Meeple",
+          "Bastion"
+        ]
+      },
+      {
+        "id": "maokai",
+        "name": "Maokai",
+        "cost": 3,
+        "traits": [
+          "N.O.V.A.",
+          "Brawler"
+        ]
+      },
+      {
+        "id": "gnar",
+        "name": "Gnar",
+        "cost": 2,
+        "traits": [
+          "Meeple",
+          "Sniper"
+        ]
+      },
+      {
+        "id": "chogath",
+        "name": "Cho'Gath",
+        "cost": 1,
+        "traits": [
+          "Dark Star",
+          "Brawler"
+        ]
+      }
+    ],
+    "traits": [
+      {
+        "name": "Fateweaver",
+        "count": 4,
+        "activeAt": 4
+      },
+      {
+        "name": "Meeple",
+        "count": 3,
+        "activeAt": 3
+      },
+      {
+        "name": "N.O.V.A.",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Dark Star",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Sniper",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Brawler",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Eradicator",
+        "count": 1,
+        "activeAt": 1
+      },
+      {
+        "name": "Timebreaker",
+        "count": 1,
+        "activeAt": 0
+      },
+      {
+        "name": "Stargazer",
+        "count": 1,
+        "activeAt": 0
+      },
+      {
+        "name": "Bastion",
+        "count": 1,
+        "activeAt": 0
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "id": "1780621744746-51b3405aed923",
+    "createdAt": "2026-06-05T01:09:04.746Z",
+    "compId": "akali|belveth|blitzcrank|briar|illaoi|jinx|maokai|nunu-and-willump|reksai",
+    "placement": 1,
+    "rating": "good",
+    "carryId": "belveth",
+    "carryName": "Bel'Veth",
+    "units": [
+      {
+        "id": "blitzcrank",
+        "name": "Blitzcrank",
+        "cost": 5,
+        "traits": [
+          "Party Animal",
+          "Space Groove",
+          "Vanguard"
+        ]
+      },
+      {
+        "id": "nunu-and-willump",
+        "name": "Nunu & Willump",
+        "cost": 4,
+        "traits": [
+          "Stargazer",
+          "Vanguard"
+        ]
+      },
+      {
+        "id": "illaoi",
+        "name": "Illaoi",
+        "cost": 3,
+        "traits": [
+          "Anima",
+          "Vanguard",
+          "Shepherd"
+        ]
+      },
+      {
+        "id": "maokai",
+        "name": "Maokai",
+        "cost": 3,
+        "traits": [
+          "N.O.V.A.",
+          "Brawler"
+        ]
+      },
+      {
+        "id": "jinx",
+        "name": "Jinx",
+        "cost": 2,
+        "traits": [
+          "Anima",
+          "Challenger"
+        ]
+      },
+      {
+        "id": "briar",
+        "name": "Briar",
+        "cost": 1,
+        "traits": [
+          "Anima",
+          "Primordian",
+          "Rogue"
+        ]
+      },
+      {
+        "id": "reksai",
+        "name": "Rek'Sai",
+        "cost": 1,
+        "traits": [
+          "Primordian",
+          "Brawler"
+        ]
+      },
+      {
+        "id": "akali",
+        "name": "Akali",
+        "cost": 2,
+        "traits": [
+          "N.O.V.A.",
+          "Marauder"
+        ]
+      },
+      {
+        "id": "belveth",
+        "name": "Bel'Veth",
+        "cost": 2,
+        "traits": [
+          "Primordian",
+          "Challenger",
+          "Marauder"
+        ]
+      }
+    ],
+    "traits": [
+      {
+        "name": "Anima",
+        "count": 3,
+        "activeAt": 3
+      },
+      {
+        "name": "Primordian",
+        "count": 3,
+        "activeAt": 3
+      },
+      {
+        "name": "Vanguard",
+        "count": 3,
+        "activeAt": 2
+      },
+      {
+        "name": "N.O.V.A.",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Brawler",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Challenger",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Marauder",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Party Animal",
+        "count": 1,
+        "activeAt": 1
+      },
+      {
+        "name": "Space Groove",
+        "count": 1,
+        "activeAt": 1
+      },
+      {
+        "name": "Stargazer",
+        "count": 1,
+        "activeAt": 0
+      },
+      {
+        "name": "Shepherd",
+        "count": 1,
+        "activeAt": 0
+      },
+      {
+        "name": "Rogue",
+        "count": 1,
+        "activeAt": 0
+      }
+    ],
+    "notes": "items hit\n3 star bel+jinx+briar+reksai\ngot fast 2 star nunu"
+  },
+  {
+    "id": "1780615805827-dfebc82f2b3c2",
+    "createdAt": "2026-06-04T23:30:05.827Z",
+    "compId": "akali|belveth|briar|illaoi|jinx|maokai|nunu-and-willump|reksai",
+    "placement": 7,
+    "rating": "okay",
+    "carryId": "belveth",
+    "carryName": "Bel'Veth",
+    "units": [
+      {
+        "id": "briar",
+        "name": "Briar",
+        "cost": 1,
+        "traits": [
+          "Anima",
+          "Primordian",
+          "Rogue"
+        ]
+      },
+      {
+        "id": "reksai",
+        "name": "Rek'Sai",
+        "cost": 1,
+        "traits": [
+          "Primordian",
+          "Brawler"
+        ]
+      },
+      {
+        "id": "belveth",
+        "name": "Bel'Veth",
+        "cost": 2,
+        "traits": [
+          "Primordian",
+          "Challenger",
+          "Marauder"
+        ]
+      },
+      {
+        "id": "nunu-and-willump",
+        "name": "Nunu & Willump",
+        "cost": 4,
+        "traits": [
+          "Stargazer",
+          "Vanguard"
+        ]
+      },
+      {
+        "id": "illaoi",
+        "name": "Illaoi",
+        "cost": 3,
+        "traits": [
+          "Anima",
+          "Vanguard",
+          "Shepherd"
+        ]
+      },
+      {
+        "id": "maokai",
+        "name": "Maokai",
+        "cost": 3,
+        "traits": [
+          "N.O.V.A.",
+          "Brawler"
+        ]
+      },
+      {
+        "id": "jinx",
+        "name": "Jinx",
+        "cost": 2,
+        "traits": [
+          "Anima",
+          "Challenger"
+        ]
+      },
+      {
+        "id": "akali",
+        "name": "Akali",
+        "cost": 2,
+        "traits": [
+          "N.O.V.A.",
+          "Marauder"
+        ]
+      }
+    ],
+    "traits": [
+      {
+        "name": "Anima",
+        "count": 3,
+        "activeAt": 3
+      },
+      {
+        "name": "Primordian",
+        "count": 3,
+        "activeAt": 3
+      },
+      {
+        "name": "Brawler",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Challenger",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Marauder",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Vanguard",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "N.O.V.A.",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Rogue",
+        "count": 1,
+        "activeAt": 0
+      },
+      {
+        "name": "Stargazer",
+        "count": 1,
+        "activeAt": 0
+      },
+      {
+        "name": "Shepherd",
+        "count": 1,
+        "activeAt": 0
+      }
+    ],
+    "notes": ""
+  }
+]

@@ -1,317 +1,884 @@
 {
-  "jhin": {
+  "aatrox": {
     "tier": "S",
-    "score": 95,
-    "source": "metatft/units-dom"
+    "score": 116,
+    "avgPlace": 4.39,
+    "winRate": 6.5,
+    "games": 10707,
+    "bestItems": [
+      "Bloodthirster",
+      "Sterak's Gage",
+      "Titan's Resolve"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Aatrox"
   },
-  "shen": {
+  "briar": {
     "tier": "S",
-    "score": 95,
-    "source": "metatft/units-dom"
+    "score": 125,
+    "avgPlace": 3.56,
+    "winRate": 19.5,
+    "games": 261,
+    "bestItems": [
+      "Brawler Emblem",
+      "Bloodthirster",
+      "Titan's Resolve"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Briar"
   },
-  "sona": {
+  "caitlyn": {
     "tier": "S",
-    "score": 95,
-    "source": "metatft/units-dom"
+    "score": 121,
+    "avgPlace": 4.23,
+    "winRate": 9.1,
+    "games": 6744,
+    "bestItems": [
+      "Deathblade",
+      "Guinsoo's Rageblade",
+      "Giant Slayer"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Caitlyn"
   },
-  "bard": {
+  "chogath": {
     "tier": "S",
-    "score": 95,
-    "source": "metatft/units-dom"
+    "score": 125,
+    "avgPlace": 3.98,
+    "winRate": 18.9,
+    "games": 12710,
+    "bestItems": [
+      "Protector's Vow",
+      "Spirit Visage",
+      "Warmog's Armor"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Chogath"
   },
-  "blitzcrank": {
+  "ezreal": {
     "tier": "S",
-    "score": 95,
-    "source": "metatft/units-dom"
+    "score": 125,
+    "avgPlace": 3.51,
+    "winRate": 26.8,
+    "games": 1200,
+    "bestItems": [
+      "Dawncore",
+      "Deathblade",
+      "Infinity Edge"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Ezreal"
+  },
+  "leona": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 4.16,
+    "winRate": 12.5,
+    "games": 9413,
+    "bestItems": [
+      "Gargoyle Stoneplate",
+      "Gargoyle Stoneplate",
+      "Gargoyle Stoneplate"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Leona"
+  },
+  "lissandra": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.57,
+    "winRate": 20.9,
+    "games": 1222,
+    "bestItems": [
+      "Dawncore",
+      "Jeweled Gauntlet",
+      "Nashor's Tooth"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Lissandra"
+  },
+  "nasus": {
+    "tier": "S",
+    "score": 123,
+    "avgPlace": 3.78,
+    "winRate": 14.7,
+    "games": 682,
+    "bestItems": [
+      "Gargoyle Stoneplate",
+      "Sunfire Cape",
+      "Warmog's Armor"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Nasus"
+  },
+  "poppy": {
+    "tier": "A",
+    "score": 117,
+    "avgPlace": 3.56,
+    "winRate": 19.7,
+    "games": 122,
+    "bestItems": [
+      "Adaptive Helm",
+      "Sunfire Cape",
+      "Warmog's Armor"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Poppy"
+  },
+  "reksai": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.88,
+    "winRate": 12.2,
+    "games": 3073,
+    "bestItems": [
+      "Protector's Vow",
+      "Sunfire Cape",
+      "Evenshroud"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_RekSai"
+  },
+  "talon": {
+    "tier": "S",
+    "score": 122,
+    "avgPlace": 4.12,
+    "winRate": 8.8,
+    "games": 3132,
+    "bestItems": [
+      "Edge of Night",
+      "Hextech Gunblade",
+      "Spear of Shojin"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Talon"
+  },
+  "teemo": {
+    "tier": "S",
+    "score": 117,
+    "avgPlace": 4.4,
+    "winRate": 8.1,
+    "games": 4442,
+    "bestItems": [
+      "Guinsoo's Rageblade",
+      "Giant Slayer",
+      "Rabadon's Deathcap"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Teemo"
+  },
+  "twisted-fate": {
+    "tier": "S",
+    "score": 120,
+    "avgPlace": 4.27,
+    "winRate": 9.6,
+    "games": 16106,
+    "bestItems": [
+      "Nashor's Tooth",
+      "Nashor's Tooth",
+      "Rabadon's Deathcap"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_TwistedFate"
+  },
+  "veigar": {
+    "tier": "S",
+    "score": 115,
+    "avgPlace": 4.64,
+    "winRate": 10.6,
+    "games": 6728,
+    "bestItems": [
+      "Jeweled Gauntlet",
+      "Nashor's Tooth",
+      "Nashor's Tooth"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Veigar"
+  },
+  "akali": {
+    "tier": "S",
+    "score": 121,
+    "avgPlace": 4.2,
+    "winRate": 9.6,
+    "games": 4793,
+    "bestItems": [
+      "Edge of Night",
+      "Striker's Flail",
+      "Hand Of Justice"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Akali"
+  },
+  "belveth": {
+    "tier": "S",
+    "score": 121,
+    "avgPlace": 4.25,
+    "winRate": 9.8,
+    "games": 28098,
+    "bestItems": [
+      "Giant Slayer",
+      "Quicksilver",
+      "Kraken's Fury"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Belveth"
+  },
+  "gnar": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.92,
+    "winRate": 15.8,
+    "games": 19775,
+    "bestItems": [
+      "Deathblade",
+      "Guinsoo's Rageblade",
+      "Infinity Edge"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Gnar"
+  },
+  "gragas": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.23,
+    "winRate": 22.6,
+    "games": 17330,
+    "bestItems": [
+      "Sympathetic Implant",
+      "Jeweled Gauntlet",
+      "Hand Of Justice"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Gragas"
+  },
+  "gwen": {
+    "tier": "S",
+    "score": 124,
+    "avgPlace": 3.99,
+    "winRate": 10.3,
+    "games": 2245,
+    "bestItems": [
+      "Jeweled Gauntlet",
+      "Striker's Flail",
+      "Hand Of Justice"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Gwen"
+  },
+  "jax": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.66,
+    "winRate": 17.9,
+    "games": 9893,
+    "bestItems": [
+      "Protector's Vow",
+      "Gargoyle Stoneplate",
+      "Gargoyle Stoneplate"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Jax"
+  },
+  "jinx": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.11,
+    "winRate": 37.6,
+    "games": 17924,
+    "bestItems": [
+      "Battle Bunny Crossbow",
+      "Guinsoo's Rageblade",
+      "Infinity Edge"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Jinx"
+  },
+  "meepsie": {
+    "tier": "S",
+    "score": 123,
+    "avgPlace": 4.12,
+    "winRate": 9.5,
+    "games": 27297,
+    "bestItems": [
+      "Edge of Night",
+      "Jeweled Gauntlet",
+      "Hand Of Justice"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_IvernMinion"
+  },
+  "milio": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.31,
+    "winRate": 24.5,
+    "games": 6136,
+    "bestItems": [
+      "Stargazer Emblem",
+      "Morellonomicon",
+      "Spear of Shojin"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Milio"
+  },
+  "mordekaiser": {
+    "tier": "S",
+    "score": 122,
+    "avgPlace": 3.91,
+    "winRate": 13.4,
+    "games": 1138,
+    "bestItems": [
+      "Gargoyle Stoneplate",
+      "Ionic Spark",
+      "Sunfire Cape"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Mordekaiser"
+  },
+  "pantheon": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.37,
+    "winRate": 22.9,
+    "games": 962,
+    "bestItems": [
+      "Stargazer Emblem",
+      "Gargoyle Stoneplate",
+      "Warmog's Armor"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Pantheon"
+  },
+  "pyke": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.77,
+    "winRate": 14.9,
+    "games": 7857,
+    "bestItems": [
+      "Target-Lock Optics",
+      "Edge of Night",
+      "Infinity Edge"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Pyke"
+  },
+  "zoe": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 4.06,
+    "winRate": 11.4,
+    "games": 4881,
+    "bestItems": [
+      "Morellonomicon",
+      "Spear of Shojin",
+      "Void Staff"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Zoe"
+  },
+  "aurora": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.16,
+    "winRate": 38.7,
+    "games": 1961,
+    "bestItems": [
+      "Searing Shortbow",
+      "Jeweled Gauntlet",
+      "Nashor's Tooth"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Aurora"
+  },
+  "diana": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.32,
+    "winRate": 35.8,
+    "games": 2026,
+    "bestItems": [
+      "Cyclonic Slicers",
+      "Bloodthirster",
+      "Titan's Resolve"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Diana"
+  },
+  "fizz": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.57,
+    "winRate": 18,
+    "games": 372,
+    "bestItems": [
+      "Jeweled Gauntlet",
+      "Quicksilver",
+      "Hand Of Justice"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Fizz"
+  },
+  "illaoi": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.95,
+    "winRate": 15,
+    "games": 6310,
+    "bestItems": [
+      "Crownguard",
+      "Gargoyle Stoneplate",
+      "Warmog's Armor"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Illaoi"
+  },
+  "kaisa": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 4.08,
+    "winRate": 13.2,
+    "games": 9768,
+    "bestItems": [
+      "Blue Buff",
+      "Infinity Edge",
+      "Striker's Flail"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Kaisa"
+  },
+  "lulu": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 4.03,
+    "winRate": 16,
+    "games": 115881,
+    "bestItems": [
+      "Jeweled Gauntlet",
+      "Nashor's Tooth",
+      "Nashor's Tooth"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Lulu"
+  },
+  "maokai": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.66,
+    "winRate": 15.3,
+    "games": 6293,
+    "bestItems": [
+      "Protector's Vow",
+      "Spirit Visage",
+      "Warmog's Armor"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Maokai"
+  },
+  "miss-fortune": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.89,
+    "winRate": 11.4,
+    "games": 122592,
+    "bestItems": [
+      "Deathblade",
+      "Guinsoo's Rageblade",
+      "Infinity Edge"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_MissFortune"
+  },
+  "ornn": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.45,
+    "winRate": 21.5,
+    "games": 97183,
+    "bestItems": [
+      "Gargoyle Stoneplate",
+      "Spirit Visage",
+      "Warmog's Armor"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Ornn"
   },
   "rhaast": {
     "tier": "S",
-    "score": 95,
-    "source": "metatft/units-dom"
+    "score": 125,
+    "avgPlace": 3.64,
+    "winRate": 13.5,
+    "games": 1107,
+    "bestItems": [
+      "Bramble Vest",
+      "Gargoyle Stoneplate",
+      "Spirit Visage"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Rhaast"
   },
-  "fiora": {
+  "samira": {
     "tier": "S",
-    "score": 95,
-    "source": "metatft/units-dom"
+    "score": 125,
+    "avgPlace": 3.52,
+    "winRate": 22.4,
+    "games": 129070,
+    "bestItems": [
+      "Deathblade",
+      "Last Whisper",
+      "Spear of Shojin"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Samira"
   },
-  "vex": {
+  "urgot": {
     "tier": "S",
-    "score": 95,
-    "source": "metatft/units-dom"
+    "score": 125,
+    "avgPlace": 3.46,
+    "winRate": 15.6,
+    "games": 15204,
+    "bestItems": [
+      "Bloodthirster",
+      "Giant Slayer",
+      "Sterak's Gage"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Urgot"
   },
-  "morgana": {
+  "viktor": {
     "tier": "S",
-    "score": 95,
-    "source": "metatft/units-dom"
+    "score": 125,
+    "avgPlace": 3.99,
+    "winRate": 10.6,
+    "games": 10280,
+    "bestItems": [
+      "Drone Uplink",
+      "Jeweled Gauntlet",
+      "Rabadon's Deathcap"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Viktor"
+  },
+  "aurelion-sol": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 2.79,
+    "winRate": 47.2,
+    "games": 1776,
+    "bestItems": [
+      "The Annihilator",
+      "Jeweled Gauntlet",
+      "Rabadon's Deathcap"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_AurelionSol"
+  },
+  "corki": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.94,
+    "winRate": 11.3,
+    "games": 24761,
+    "bestItems": [
+      "Rogue Emblem",
+      "Deathblade",
+      "Last Whisper"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Corki"
+  },
+  "karma": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.61,
+    "winRate": 18,
+    "games": 3422,
+    "bestItems": [
+      "Shepherd Emblem",
+      "Morellonomicon",
+      "Void Staff"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Karma"
   },
   "kindred": {
     "tier": "S",
-    "score": 95,
-    "source": "metatft/units-dom"
+    "score": 125,
+    "avgPlace": 2.74,
+    "winRate": 45.6,
+    "games": 1783,
+    "bestItems": [
+      "Battle Bunny Crossbow",
+      "Guinsoo's Rageblade",
+      "Infinity Edge"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Kindred"
+  },
+  "leblanc": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 4.06,
+    "winRate": 13,
+    "games": 25028,
+    "bestItems": [
+      "Guinsoo's Rageblade",
+      "Giant Slayer",
+      "Rabadon's Deathcap"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Leblanc"
+  },
+  "master-yi": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 4.08,
+    "winRate": 12.7,
+    "games": 29099,
+    "bestItems": [
+      "Malware Matrix",
+      "Edge of Night",
+      "Giant Slayer"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_MasterYi"
+  },
+  "morgana": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.56,
+    "winRate": 19.7,
+    "games": 579,
+    "bestItems": [
+      "Crownguard",
+      "Spirit Visage",
+      "Warmog's Armor"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Morgana"
+  },
+  "nami": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.07,
+    "winRate": 27.9,
+    "games": 6968,
+    "bestItems": [
+      "Morellonomicon",
+      "Rabadon's Deathcap",
+      "Spear of Shojin"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Nami"
+  },
+  "nunu-and-willump": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.75,
+    "winRate": 22.7,
+    "games": 34516,
+    "bestItems": [
+      "Protector's Vow",
+      "Protector's Vow",
+      "Protector's Vow"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Nunu"
+  },
+  "rammus": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.74,
+    "winRate": 13.2,
+    "games": 8041,
+    "bestItems": [
+      "Bramble Vest",
+      "Protector's Vow",
+      "Gargoyle Stoneplate"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Rammus"
+  },
+  "tahm-kench": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.56,
+    "winRate": 19,
+    "games": 9183,
+    "bestItems": [
+      "Sunfire Cape",
+      "Evenshroud",
+      "Warmog's Armor"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_TahmKench"
   },
   "riven": {
     "tier": "S",
-    "score": 95,
-    "source": "metatft/units-dom"
-  },
-  "zed": {
-    "tier": "A",
-    "score": 82,
-    "source": "metatft/units-dom"
-  },
-  "karma": {
-    "tier": "A",
-    "score": 82,
-    "source": "metatft/units-dom"
-  },
-  "nami": {
-    "tier": "A",
-    "score": 82,
-    "source": "metatft/units-dom"
+    "score": 125,
+    "avgPlace": 3.58,
+    "winRate": 14.8,
+    "games": 5762,
+    "bestItems": [
+      "Bloodthirster",
+      "Quicksilver",
+      "Sterak's Gage"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Riven"
   },
   "the-mighty-mech": {
-    "tier": "A",
-    "score": 82,
-    "source": "metatft/units-dom"
-  },
-  "miss-fortune": {
-    "tier": "A",
-    "score": 82,
-    "source": "metatft/units-dom"
-  },
-  "aatrox": {
-    "tier": "A",
-    "score": 82,
-    "source": "metatft/units-dom"
-  },
-  "corki": {
-    "tier": "A",
-    "score": 82,
-    "source": "metatft/units-dom"
-  },
-  "maokai": {
-    "tier": "A",
-    "score": 82,
-    "source": "metatft/units-dom"
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 2.37,
+    "winRate": 57.7,
+    "games": 968,
+    "bestItems": [
+      "Lioness's Lament",
+      "Gargoyle Stoneplate",
+      "Gargoyle Stoneplate"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Galio"
   },
   "xayah": {
-    "tier": "A",
-    "score": 82,
-    "source": "metatft/units-dom"
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 2.9,
+    "winRate": 47.3,
+    "games": 12514,
+    "bestItems": [
+      "Battle Bunny Crossbow",
+      "Guinsoo's Rageblade",
+      "Infinity Edge"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Xayah"
   },
-  "urgot": {
-    "tier": "A",
-    "score": 82,
-    "source": "metatft/units-dom"
+  "bard": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.17,
+    "winRate": 28.9,
+    "games": 5870,
+    "bestItems": [
+      "Rabadon's Deathcap",
+      "Spear of Shojin",
+      "Void Staff"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Bard"
   },
-  "milio": {
-    "tier": "A",
-    "score": 82,
-    "source": "metatft/units-dom"
+  "blitzcrank": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 2.92,
+    "winRate": 30.3,
+    "games": 9111,
+    "bestItems": [
+      "Jeweled Gauntlet",
+      "Striker's Flail",
+      "Hand Of Justice"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Blitzcrank"
+  },
+  "fiora": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.17,
+    "winRate": 26.5,
+    "games": 6524,
+    "bestItems": [
+      "Edge of Night",
+      "Giant Slayer",
+      "Hand Of Justice"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Fiora"
+  },
+  "jhin": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.12,
+    "winRate": 28.2,
+    "games": 25061,
+    "bestItems": [
+      "Deathblade",
+      "Infinity Edge",
+      "Striker's Flail"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Jhin"
   },
   "graves": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 2.56,
+    "winRate": 55.4,
+    "games": 5885,
+    "bestItems": [
+      "Battle Bunny Crossbow",
+      "Guinsoo's Rageblade",
+      "Infinity Edge"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Graves"
   },
-  "meepsie": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
+  "sona": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.47,
+    "winRate": 26.9,
+    "games": 17886,
+    "bestItems": [
+      "Blue Buff",
+      "Morellonomicon",
+      "Void Staff"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Sona"
   },
-  "nunu-and-willump": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
+  "shen": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 2.88,
+    "winRate": 27.4,
+    "games": 277,
+    "bestItems": [
+      "Bramble Vest",
+      "Spirit Visage",
+      "Warmog's Armor"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Shen"
   },
-  "fizz": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
+  "vex": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.83,
+    "winRate": 26.6,
+    "games": 33355,
+    "bestItems": [
+      "Guinsoo's Rageblade",
+      "Rabadon's Deathcap",
+      "Red Buff"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Vex"
   },
-  "ornn": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
-  },
-  "belveth": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
-  },
-  "tahm-kench": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
-  },
-  "master-yi": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
-  },
-  "rammus": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
-  },
-  "jax": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
-  },
-  "gwen": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
-  },
-  "akali": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
-  },
-  "pyke": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
-  },
-  "mordekaiser": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
-  },
-  "aurelion-sol": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
-  },
-  "gragas": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
-  },
-  "kaisa": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
-  },
-  "samira": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
-  },
-  "viktor": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
-  },
-  "leblanc": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
-  },
-  "poppy": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
-  },
-  "lulu": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
-  },
-  "teemo": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
-  },
-  "chogath": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
-  },
-  "lissandra": {
-    "tier": "B",
-    "score": 68,
-    "source": "metatft/units-dom"
-  },
-  "pantheon": {
-    "tier": "C",
-    "score": 52,
-    "source": "metatft/units-dom"
-  },
-  "illaoi": {
-    "tier": "C",
-    "score": 52,
-    "source": "metatft/units-dom"
-  },
-  "twisted-fate": {
-    "tier": "C",
-    "score": 52,
-    "source": "metatft/units-dom"
-  },
-  "caitlyn": {
-    "tier": "C",
-    "score": 52,
-    "source": "metatft/units-dom"
-  },
-  "gnar": {
-    "tier": "C",
-    "score": 52,
-    "source": "metatft/units-dom"
-  },
-  "diana": {
-    "tier": "C",
-    "score": 52,
-    "source": "metatft/units-dom"
-  },
-  "leona": {
-    "tier": "C",
-    "score": 52,
-    "source": "metatft/units-dom"
-  },
-  "nasus": {
-    "tier": "C",
-    "score": 52,
-    "source": "metatft/units-dom"
-  },
-  "ezreal": {
-    "tier": "D",
-    "score": 35,
-    "source": "metatft/units-dom"
-  },
-  "zoe": {
-    "tier": "D",
-    "score": 35,
-    "source": "metatft/units-dom"
-  },
-  "reksai": {
-    "tier": "D",
-    "score": 35,
-    "source": "metatft/units-dom"
-  },
-  "talon": {
-    "tier": "D",
-    "score": 35,
-    "source": "metatft/units-dom"
-  },
-  "veigar": {
-    "tier": "D",
-    "score": 35,
-    "source": "metatft/units-dom"
-  },
-  "aurora": {
-    "tier": "D",
-    "score": 35,
-    "source": "metatft/units-dom"
-  },
-  "jinx": {
-    "tier": "D",
-    "score": 35,
-    "source": "metatft/units-dom"
-  },
-  "briar": {
-    "tier": "D",
-    "score": 35,
-    "source": "metatft/units-dom"
+  "zed": {
+    "tier": "S",
+    "score": 125,
+    "avgPlace": 3.89,
+    "winRate": 22.5,
+    "games": 30833,
+    "bestItems": [
+      "Adaptive Helm",
+      "Edge of Night",
+      "Spear of Shojin"
+    ],
+    "bestStarLevel": null,
+    "source": "https://www.metatft.com/units/TFT17_Zed"
   }
 }

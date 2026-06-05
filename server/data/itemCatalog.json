@@ -1,83 +1,83 @@
 {
   "Spear of Shojin": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Spear_of_Shojin.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spearofshojin.png",
     "components": [
       "B.F. Sword",
       "Tear of the Goddess"
     ]
   },
   "Jeweled Gauntlet": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Jeweled_Gauntlet.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png",
     "components": [
       "Needlessly Large Rod",
       "Sparring Gloves"
     ]
   },
   "Rabadon's Deathcap": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Rabadons_Deathcap.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rabadonsdeathcap.png",
     "components": [
       "Needlessly Large Rod",
       "Needlessly Large Rod"
     ]
   },
   "Blue Buff": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Blue_Buff.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bluebuff.png",
     "components": [
       "Tear of the Goddess",
       "Tear of the Goddess"
     ]
   },
   "Nashor's Tooth": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Nashors_Tooth.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_leviathan.png",
     "components": [
       "Needlessly Large Rod",
       "Giant's Belt"
     ]
   },
   "Archangel's Staff": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Archangels_Staff.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_archangelsstaff.png",
     "components": [
       "Needlessly Large Rod",
       "Tear of the Goddess"
     ]
   },
   "Infinity Edge": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Infinity_Edge.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png",
     "components": [
       "B.F. Sword",
       "Sparring Gloves"
     ]
   },
   "Last Whisper": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Last_Whisper.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_lastwhisper.png",
     "components": [
       "Recurve Bow",
       "Sparring Gloves"
     ]
   },
   "Deathblade": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Deathblade.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_deathblade.png",
     "components": [
       "B.F. Sword",
       "B.F. Sword"
     ]
   },
   "Giant Slayer": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Giant_Slayer.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png",
     "components": [
       "B.F. Sword",
       "Recurve Bow"
     ]
   },
   "Bloodthirster": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Bloodthirster.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bloodthirster.png",
     "components": [
       "B.F. Sword",
       "Negatron Cloak"
     ]
   },
   "Titan's Resolve": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Titans_Resolve.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_titansresolve.png",
     "components": [
       "Recurve Bow",
       "Chain Vest"
@@ -91,35 +91,35 @@
     ]
   },
   "Sterak's Gage": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Steraks_Gage.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_steraksgage.png",
     "components": [
       "B.F. Sword",
       "Giant's Belt"
     ]
   },
   "Warmog's Armor": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Warmogs_Armor.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_warmogsarmor.png",
     "components": [
       "Giant's Belt",
       "Giant's Belt"
     ]
   },
   "Gargoyle Stoneplate": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Gargoyle_Stoneplate.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_gargoylestoneplate.png",
     "components": [
       "Chain Vest",
       "Negatron Cloak"
     ]
   },
   "Dragon's Claw": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Dragons_Claw.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_dragonsclaw.png",
     "components": [
       "Negatron Cloak",
       "Negatron Cloak"
     ]
   },
   "Morellonomicon": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Morellonomicon.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_morellonomicon.png",
     "components": [
       "Needlessly Large Rod",
       "Giant's Belt"
@@ -133,14 +133,14 @@
     ]
   },
   "Sunfire Cape": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Sunfire_Cape.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redbuff.png",
     "components": [
       "Chain Vest",
       "Giant's Belt"
     ]
   },
   "Ionic Spark": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Ionic_Spark.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_ionicspark.png",
     "components": [
       "Needlessly Large Rod",
       "Negatron Cloak"
@@ -154,96 +154,96 @@
     ]
   },
   "Striker's Flail": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Strikers_Flail.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_powergauntlet.png",
     "components": []
   },
   "Stargazer Emblem": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Stargazer_Emblem.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_stargazeremblemitem.png",
     "components": []
   },
   "Kraken's Fury": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Krakens_Fury.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_runaanshurricane.png?v=1",
     "components": []
   },
   "Red Buff": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Red_Buff.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_rapidfirecannon.png",
     "components": [
       "Recurve Bow",
       "Recurve Bow"
     ]
   },
   "Guinsoo's Rageblade": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Guinsoos_Rageblade.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guinsoosrageblade.png",
     "components": [
       "Recurve Bow",
       "Needlessly Large Rod"
     ]
   },
   "Hextech Gunblade": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Hextech_Gunblade.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_hextechgunblade.png",
     "components": [
       "B.F. Sword",
       "Needlessly Large Rod"
     ]
   },
   "Hand Of Justice": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Hand_Of_Justice.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png",
     "components": [
       "Tear of the Goddess",
       "Sparring Gloves"
     ]
   },
   "Edge of Night": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Edge_of_Night.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_guardianangel.png",
     "components": [
       "B.F. Sword",
       "Chain Vest"
     ]
   },
   "Quicksilver": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Quicksilver.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_quicksilver.png",
     "components": [
       "Negatron Cloak",
       "Sparring Gloves"
     ]
   },
   "Bramble Vest": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Bramble_Vest.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_bramblevest.png",
     "components": [
       "Chain Vest",
       "Chain Vest"
     ]
   },
   "Crownguard": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Crownguard.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_crownguard.png",
     "components": [
       "Needlessly Large Rod",
       "Chain Vest"
     ]
   },
   "Protector's Vow": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Protectors_Vow.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_frozenheart.png",
     "components": [
       "Tear of the Goddess",
       "Chain Vest"
     ]
   },
   "Adaptive Helm": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Adaptive_Helm.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_adaptivehelm.png",
     "components": [
       "Tear of the Goddess",
       "Negatron Cloak"
     ]
   },
   "Void Staff": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Void_Staff.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_statikkshiv.png?v=1",
     "components": [
       "Needlessly Large Rod",
       "Recurve Bow"
     ]
   },
   "Spirit Visage": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Spirit_Visage.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redemption.png?v=1",
     "components": [
       "Giant's Belt",
       "Negatron Cloak"
@@ -263,7 +263,7 @@
     ]
   },
   "Radiant Deathblade": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Radiant_Deathblade.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft5_item_deathbladeradiant.png",
     "components": [
       "Radiant item"
     ]
@@ -275,7 +275,7 @@
     ]
   },
   "Rogue Emblem": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Rogue_Emblem.png",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_assassintraitemblemitem.png",
     "components": [
       "Frying Pan",
       "Sparring Gloves"
@@ -293,5 +293,141 @@
     "components": [
       "Special modifier"
     ]
+  },
+  "Brawler Emblem": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_hptankemblemitem.png",
+    "components": []
+  },
+  "Steadfast Heart": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_nightharvester.png",
+    "components": []
+  },
+  "Titanic Hydra": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_artifact_titanichydra.png?v=1",
+    "components": []
+  },
+  "Radiant Titan's Resolve": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft5_item_titansresolveradiant.png",
+    "components": []
+  },
+  "Dawncore": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_artifact_dawncore.png",
+    "components": []
+  },
+  "Evenshroud": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spectralgauntlet.png",
+    "components": []
+  },
+  "Evelynn's Instinct": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_artifact_evelynnartifact.png",
+    "components": []
+  },
+  "Sympathetic Implant": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_psyops_sympatheticimplantmod.png",
+    "components": []
+  },
+  "Drone Uplink": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_psyops_dronemod.png",
+    "components": []
+  },
+  "Radiant Hand of Justice": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft5_item_handofjusticeradiant.png",
+    "components": []
+  },
+  "Battle Bunny Crossbow": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_battlebunnycrossbow.png",
+    "components": []
+  },
+  "Echoing Batblades": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_echoingbatblades.png",
+    "components": []
+  },
+  "Zhonya's Paradox": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft4_item_ornnzhonyasparadox.png",
+    "components": []
+  },
+  "Searing Shortbow": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_searingshortbow.png",
+    "components": []
+  },
+  "The Annihilator": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_annihilator.png",
+    "components": []
+  },
+  "Evolved Embershot": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier3_searingshortbow.png",
+    "components": []
+  },
+  "Cyclonic Slicers": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_cyclonicslicers.png",
+    "components": []
+  },
+  "Wit's End": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_artifact_witsend.png",
+    "components": []
+  },
+  "Target-Lock Optics": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_psyops_targetlockmod_radiant.png",
+    "components": []
+  },
+  "Radiant Field": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_radiantfield.png",
+    "components": []
+  },
+  "Iceblast Armor": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_iceblastarmor.png",
+    "components": []
+  },
+  "Shepherd Emblem": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_summontraitemblemitem.png",
+    "components": []
+  },
+  "Marauder Emblem": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_meleetraitemblemitem.png",
+    "components": []
+  },
+  "Gold Collector": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft4_item_ornnthecollector.png",
+    "components": []
+  },
+  "Malware Matrix": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_psyops_chemicalcapacitormod.png",
+    "components": []
+  },
+  "Dark Star Emblem": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_darkstaremblemitem.png",
+    "components": []
+  },
+  "Ahri's Aura": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_artifact_ahriartifact.png",
+    "components": []
+  },
+  "Meeple Emblem": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_astronautemblemitem.png",
+    "components": []
+  },
+  "Space Groove Emblem": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_spacegrooveemblemitem.png",
+    "components": []
+  },
+  "Lioness's Lament": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_animasquaditem_tier2_lionesslament.png",
+    "components": []
+  },
+  "Radiant Edge of Night": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft5_item_guardianangelradiant.png",
+    "components": []
+  },
+  "Rapid Firecannon": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_artifact_rapidfirecannon.png",
+    "components": []
+  },
+  "Radiant Nashor's Tooth": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft5_item_leviathanradiant.png",
+    "components": []
+  },
+  "Radiant Jeweled Gauntlet": {
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft5_item_jeweledgauntletradiant.png",
+    "components": []
   }
 }

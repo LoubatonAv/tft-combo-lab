@@ -407,16 +407,76 @@ function getUpgradeValueScore({
   return Math.round(score);
 }
 
-function getRecommendedStarPlan(unit, { carry, targetTrait, unitUpgradeMeta = {} }) {
+function scoreMetaBuild(build = {}) {
+  const tierScore = tierToScore(build.tier || "C");
+  const avgPlace = Number(build.avgPlace || 0);
+  const winRate = Number(build.winRate || 0);
+  const games = Number(build.games || 0);
+
+  let score = Number(build.score || 0) || tierScore;
+  if (avgPlace > 0) score += (4.5 - avgPlace) * 15;
+  if (winRate > 0) score += winRate * 0.85;
+  if (games > 0) score += Math.min(games / 180, 14);
+
+  return Math.max(0, Math.min(125, score));
+}
+
+function getUnitBuildMetaEntry(unit, unitBuildMeta = {}) {
+  return unitBuildMeta?.[unit.id] || unitBuildMeta?.[unit.apiName] || null;
+}
+
+function getBestMetaBuildForStar(unit, starLevel, unitBuildMeta = {}) {
+  const entry = getUnitBuildMetaEntry(unit, unitBuildMeta);
+  const builds =
+    entry?.byStar?.[starLevel] || entry?.byStar?.[String(starLevel)] || [];
+
+  return (
+    [...builds].sort((a, b) => scoreMetaBuild(b) - scoreMetaBuild(a))[0] || null
+  );
+}
+
+function getBestOverallMetaBuild(unit, unitBuildMeta = {}) {
+  const entry = getUnitBuildMetaEntry(unit, unitBuildMeta);
+  const builds = [
+    ...(entry?.allBuilds || []),
+    ...Object.values(entry?.byStar || {}).flat(),
+  ];
+
+  return (
+    [...builds].sort((a, b) => scoreMetaBuild(b) - scoreMetaBuild(a))[0] || null
+  );
+}
+
+function getRecommendedStarPlan(
+  unit,
+  { carry, targetTrait, unitUpgradeMeta = {}, unitBuildMeta = {} },
+) {
   const cost = Number(unit.cost || 1);
   const meta = unitUpgradeMeta?.[unit.id] || unitUpgradeMeta?.[unit.apiName];
 
+  const best2 = getBestMetaBuildForStar(unit, 2, unitBuildMeta);
+  const best3 = getBestMetaBuildForStar(unit, 3, unitBuildMeta);
+  const bestOverall = getBestOverallMetaBuild(unit, unitBuildMeta);
+
   if (meta?.recommendedStarLevel) {
+    const starLevel = Math.max(
+      1,
+      Math.min(Number(meta.recommendedStarLevel), 3),
+    );
+    const build =
+      starLevel === 3
+        ? best3 || bestOverall
+        : starLevel === 2
+          ? best2 || bestOverall
+          : bestOverall;
+
     return {
-      starLevel: Math.max(1, Math.min(Number(meta.recommendedStarLevel), 3)),
+      starLevel,
       label: meta.label || meta.reason || "Meta recommendation",
       realism: Number(meta.realism ?? 1),
       source: meta.source || "unitUpgradeMeta",
+      build,
+      buildScore: build ? scoreMetaBuild(build) : Number(meta.buildScore || 0),
     };
   }
 
@@ -425,106 +485,119 @@ function getRecommendedStarPlan(unit, { carry, targetTrait, unitUpgradeMeta = {}
   const carryLike = isCarryLikeUnit(unit);
 
   if (cost === 1) {
-    if (isCarry || isTargetUnit || carryLike) {
-      return {
-        starLevel: 3,
-        label: "3★ realistic reroll",
-        realism: 1,
-        source: "rules",
-      };
-    }
-
-    return {
-      starLevel: 2,
-      label: "2★ easy",
-      realism: 1,
-      source: "rules",
-    };
+    const useReroll = isCarry && best3 && scoreMetaBuild(best3) >= 78;
+    return useReroll || (!best2 && (isCarry || isTargetUnit || carryLike))
+      ? {
+          starLevel: 3,
+          label: "3★ reroll possible",
+          realism: 0.95,
+          source: "rules",
+          build: best3 || bestOverall,
+        }
+      : {
+          starLevel: 2,
+          label: "2★ expected",
+          realism: 1,
+          source: "rules",
+          build: best2 || bestOverall,
+        };
   }
 
   if (cost === 2) {
-    if (isCarry || isTargetUnit || carryLike) {
-      return {
-        starLevel: 3,
-        label: "3★ viable reroll",
-        realism: 0.82,
-        source: "rules",
-      };
-    }
-
-    return {
-      starLevel: 2,
-      label: "2★ expected",
-      realism: 1,
-      source: "rules",
-    };
+    const useReroll = isCarry && best3 && scoreMetaBuild(best3) >= 76;
+    return useReroll || (!best2 && (isCarry || isTargetUnit || carryLike))
+      ? {
+          starLevel: 3,
+          label: "3★ viable reroll",
+          realism: 0.82,
+          source: "rules",
+          build: best3 || bestOverall,
+        }
+      : {
+          starLevel: 2,
+          label: "2★ expected",
+          realism: 1,
+          source: "rules",
+          build: best2 || bestOverall,
+        };
   }
 
   if (cost === 3) {
-    if (isCarry) {
-      return {
-        starLevel: 3,
-        label: "3★ possible, needs commitment",
-        realism: 0.55,
-        source: "rules",
-      };
-    }
-
-    return {
-      starLevel: 2,
-      label: "2★ expected",
-      realism: 0.9,
-      source: "rules",
-    };
+    const useReroll = isCarry && best3 && scoreMetaBuild(best3) >= 80;
+    return useReroll
+      ? {
+          starLevel: 3,
+          label: "3★ possible carry",
+          realism: 0.55,
+          source: "rules",
+          build: best3 || bestOverall,
+        }
+      : {
+          starLevel: 2,
+          label: "2★ expected",
+          realism: 0.95,
+          source: "rules",
+          build: best2 || bestOverall,
+        };
   }
 
   if (cost === 4) {
     return {
       starLevel: 2,
-      label: "2★ realistic late-game",
-      realism: 0.85,
+      label: best2 ? "2★ MetaTFT late-game" : "2★ realistic late-game",
+      realism: 0.9,
       source: "rules",
+      build: best2 || bestOverall,
     };
   }
 
   if (cost === 5) {
     return {
       starLevel: 2,
-      label: "2★ luxury late-game",
-      realism: 0.45,
+      label: best2 ? "2★ MetaTFT luxury" : "2★ luxury late-game",
+      realism: 0.5,
       source: "rules",
+      build: best2 || bestOverall,
     };
   }
 
   return {
     starLevel: 1,
-    label: "1★ expected / 2★ luxury",
-    realism: 0.35,
+    label: "1★ expected",
+    realism: 1,
     source: "rules",
+    build: bestOverall,
   };
 }
 
 function getStarPlanScore(unit, plan) {
   const base = getUnitRawCombatScore(unit);
   const starPower = base * getStarMultiplier(Number(plan.starLevel || 1));
+  const buildScore = plan.build ? scoreMetaBuild(plan.build) * 0.24 : 0;
 
-  return Math.round(starPower * Number(plan.realism || 1) * 0.06);
+  return Math.round(starPower * Number(plan.realism || 1) * 0.06 + buildScore);
 }
 
-function buildStarPlans(units, { carry, targetTrait, unitUpgradeMeta = {} }) {
+function buildStarPlans(
+  units,
+  { carry, targetTrait, unitUpgradeMeta = {}, unitBuildMeta = {} },
+) {
   return Object.fromEntries(
     units.map((unit) => {
       const plan = getRecommendedStarPlan(unit, {
         carry,
         targetTrait,
         unitUpgradeMeta,
+        unitBuildMeta,
       });
 
       return [
         unit.id,
         {
           ...plan,
-          score: getStarPlanScore(unit, plan) + Number(unitUpgradeMeta?.[unit.id]?.scoreBonus || 0),
+          score:
+            getStarPlanScore(unit, plan) +
+            Number(unitUpgradeMeta?.[unit.id]?.scoreBonus || 0),
         },
       ];
     }),
@@ -556,17 +629,245 @@ function getPersonalHistoryScore(units, carry, matchHistory = []) {
   if (!matchingEntries.length) return 0;
 
   const avgPlacement =
-    matchingEntries.reduce((sum, entry) => sum + Number(entry.placement || 8), 0) /
-    matchingEntries.length;
+    matchingEntries.reduce(
+      (sum, entry) => sum + Number(entry.placement || 8),
+      0,
+    ) / matchingEntries.length;
   const top4Rate =
-    matchingEntries.filter((entry) => Number(entry.placement || 8) <= 4).length /
-    matchingEntries.length;
+    matchingEntries.filter((entry) => Number(entry.placement || 8) <= 4)
+      .length / matchingEntries.length;
   const gamesWeight = Math.min(matchingEntries.length / 6, 1);
 
   const placementScore = (4.5 - avgPlacement) * 18;
   const top4Score = (top4Rate - 0.5) * 36;
 
   return Math.round((placementScore + top4Score) * gamesWeight);
+}
+
+function getFrontlineConstraintScore({ units, minFrontline = 0 }) {
+  const required = Number(minFrontline || 0);
+  const frontlineCount = units.filter((unit) => isFrontlineUnit(unit)).length;
+
+  if (!required) {
+    return Math.min(frontlineCount, 3) * 8;
+  }
+
+  const missing = Math.max(0, required - frontlineCount);
+  const extra = Math.max(0, frontlineCount - required);
+
+  let score = 0;
+
+  // Hard reward for meeting the requested frontline.
+  if (missing === 0) {
+    score += 55;
+  } else {
+    score -= missing * 95;
+  }
+
+  // One extra front can be okay.
+  // Too much extra frontline often means the comp loses damage/synergy.
+  if (extra === 1) {
+    score += 6;
+  } else if (extra > 1) {
+    score -= (extra - 1) * 34;
+  }
+
+  return score;
+}
+
+function getCarryTraitActivationScore({ carry, activeTraits, targetTrait }) {
+  if (!carry) return 0;
+
+  const carryTraits = carry.traits || [];
+  let score = 0;
+
+  for (const traitName of carryTraits) {
+    const trait = activeTraits.find(
+      (candidate) => candidate.name === traitName,
+    );
+
+    if (!trait || trait.isUnique) {
+      continue;
+    }
+
+    const isTargetTrait = traitName === targetTrait;
+
+    if (isTargetTrait) {
+      if (trait.isActive) score += 18;
+      continue;
+    }
+
+    // Secondary carry trait, e.g. Riven's Rogue.
+    if (trait.isActive) {
+      if (trait.activeAt >= 4) {
+        score += 115;
+      } else if (trait.activeAt >= 3) {
+        score += 88;
+      } else if (trait.activeAt >= 2) {
+        score += 70;
+      } else {
+        score += 18;
+      }
+    } else {
+      score -= 45;
+    }
+  }
+
+  return score;
+}
+
+function getBreakpointWastePenalty({ activeTraits, targetTrait, carry }) {
+  const carryTraitNames = new Set(carry?.traits || []);
+
+  return activeTraits.reduce((penalty, trait) => {
+    if (trait.isUnique) return penalty;
+    if (!trait.isActive) return penalty;
+    if (!trait.nextBreakpoint) return penalty;
+
+    const count = Number(trait.count || 0);
+    const activeAt = Number(trait.activeAt || 0);
+    const next = Number(trait.nextBreakpoint || 0);
+
+    if (!activeAt || !next) return penalty;
+
+    // Example: Brawler 3 when activeAt is 2 and next is 4.
+    // That 1 extra count currently gives no breakpoint value.
+    const wastedCount = count > activeAt && count < next ? count - activeAt : 0;
+
+    if (wastedCount <= 0) return penalty;
+
+    if (trait.name === targetTrait) {
+      return penalty + wastedCount * 4;
+    }
+
+    if (carryTraitNames.has(trait.name)) {
+      return penalty + wastedCount * 8;
+    }
+
+    return penalty + wastedCount * 26;
+  }, 0);
+}
+
+function getLateGameLowCostPenalty({
+  units,
+  carry,
+  targetTrait,
+  activeTraits,
+  gameMode,
+  minFrontline = 0,
+}) {
+  if (!gameMode || Number(gameMode.maxUnitCost || 0) < 4) {
+    return 0;
+  }
+
+  const usefulTraits = new Set(
+    activeTraits
+      .filter(
+        (trait) => trait.isActive && !trait.isUnique && trait.activeAt >= 2,
+      )
+      .map((trait) => trait.name),
+  );
+
+  const carryTraitNames = new Set(carry?.traits || []);
+  const frontlineUnits = units.filter((unit) => isFrontlineUnit(unit));
+  const frontlineNeeded = Number(minFrontline || 0);
+
+  return units.reduce((penalty, unit) => {
+    const cost = Number(unit.cost || 1);
+
+    if (cost > 2) return penalty;
+    if (carry?.id === unit.id) return penalty;
+
+    const isTargetUnit = targetTrait && unit.traits?.includes(targetTrait);
+    const isCarryTraitActivator = (unit.traits || []).some(
+      (trait) => carryTraitNames.has(trait) && trait !== targetTrait,
+    );
+    const isFrontline = isFrontlineUnit(unit);
+    const sharedUsefulTraits = getTraitOverlapCount(unit, usefulTraits);
+
+    let unitPenalty = cost === 1 ? 42 : 18;
+
+    // Target units may be required to hit the requested trait.
+    if (isTargetUnit) unitPenalty -= 26;
+
+    // Carry secondary activators are useful, but 1-cost activators should
+    // still lose to stronger activators if available.
+    if (isCarryTraitActivator) unitPenalty -= 14;
+
+    // Frontline is useful only until the requested amount is met.
+    if (isFrontline && frontlineUnits.length <= frontlineNeeded) {
+      unitPenalty -= 18;
+    }
+
+    // Do not reward random soup too much.
+    if (sharedUsefulTraits >= 2) unitPenalty -= 6;
+
+    return penalty + Math.max(0, unitPenalty);
+  }, 0);
+}
+
+function getLateGameTraitBotPenalty({
+  units,
+  carry,
+  targetTrait,
+  activeTraits,
+  gameMode,
+}) {
+  if (!gameMode || Number(gameMode.maxUnitCost || 0) < 4) {
+    return 0;
+  }
+
+  const carryTraitNames = new Set(carry?.traits || []);
+
+  const activeTraitNames = new Set(
+    activeTraits
+      .filter((trait) => trait.isActive && !trait.isUnique)
+      .map((trait) => trait.name),
+  );
+
+  return units.reduce((penalty, unit) => {
+    const cost = Number(unit.cost || 1);
+
+    if (cost > 2) return penalty;
+    if (carry?.id === unit.id) return penalty;
+
+    const traits = unit.traits || [];
+    const isTargetUnit = targetTrait && traits.includes(targetTrait);
+
+    const supportsCarryTrait = traits.some((trait) => {
+      return trait !== targetTrait && carryTraitNames.has(trait);
+    });
+
+    const isFront = isFrontlineUnit(unit);
+
+    const activeTraitLinks = traits.filter((trait) =>
+      activeTraitNames.has(trait),
+    ).length;
+
+    /*
+      Late board rule:
+      Low-cost units are allowed if they are essential:
+      - target trait unit
+      - carry secondary trait activator, e.g. Rogue for Riven
+      - real frontline
+      Otherwise, they are trait bots.
+    */
+    const isEssential = isTargetUnit || supportsCarryTrait || isFront;
+
+    if (isEssential) {
+      return penalty;
+    }
+
+    let unitPenalty = cost === 1 ? 70 : 34;
+
+    // If a 1-cost is opening multiple random 2-piece traits,
+    // that is exactly trait soup, not real late-game power.
+    if (activeTraitLinks >= 2) {
+      unitPenalty += cost === 1 ? 35 : 18;
+    }
+
+    return penalty + unitPenalty;
+  }, 0);
 }
 
 export function scoreComp(
@@ -586,11 +887,13 @@ export function scoreComp(
       isPossible: true,
     },
     gameMode = null,
+    minFrontline = 0,
     championMeta = {},
     traitMeta = {},
     itemStats = {},
     itemSetStats = {},
     unitUpgradeMeta = {},
+    unitBuildMeta = {},
     matchHistory = [],
     carryProfiles = {},
     traitProfiles = {},
@@ -635,6 +938,7 @@ export function scoreComp(
     carry,
     targetTrait,
     unitUpgradeMeta,
+    unitBuildMeta,
   });
 
   const targetTraitScore = getTargetTraitScore({
@@ -650,15 +954,36 @@ export function scoreComp(
     return trait.isActive && !trait.isUnique;
   });
 
-  const activeTraitCountBonus = activeNonUniqueTraits.length * 20;
+  const carryTraitNamesForBonus = new Set(carry?.traits || []);
+
+  const activeTraitCountBonus = activeNonUniqueTraits.reduce((sum, trait) => {
+    if (trait.name === targetTrait) return sum + 8;
+    if (carryTraitNamesForBonus.has(trait.name)) return sum + 12;
+
+    // Random 2-piece traits are nice, but should not drive the comp.
+    if (trait.activeAt >= 4) return sum + 10;
+    if (trait.activeAt >= 3) return sum + 7;
+    if (trait.activeAt >= 2) return sum + 3;
+
+    return sum;
+  }, 0);
 
   const meaningfulBreakpointBonus = activeNonUniqueTraits.reduce(
     (sum, trait) => {
       if (trait.name === targetTrait) return sum;
 
-      if (trait.activeAt >= 4) return sum + 35;
-      if (trait.activeAt >= 3) return sum + 26;
-      if (trait.activeAt >= 2) return sum + 16;
+      const isCarryTrait = carry?.traits?.includes(trait.name);
+
+      if (isCarryTrait) {
+        if (trait.activeAt >= 4) return sum + 50;
+        if (trait.activeAt >= 3) return sum + 38;
+        if (trait.activeAt >= 2) return sum + 28;
+      }
+
+      // Non-carry random traits should help only a little.
+      if (trait.activeAt >= 4) return sum + 18;
+      if (trait.activeAt >= 3) return sum + 10;
+      if (trait.activeAt >= 2) return sum + 4;
 
       return sum;
     },
@@ -686,13 +1011,23 @@ export function scoreComp(
       getTraitMetaScore(trait.name, traitMeta, traitProfiles) * 0.34;
     const targetBonus = trait.name === targetTrait ? 45 : 0;
 
+    const isCarryTrait = carry?.traits?.includes(trait.name);
+
     const secondaryTraitBonus =
       trait.name !== targetTrait && !trait.isUnique
-        ? trait.activeAt >= 3
-          ? 28
-          : trait.activeAt >= 2
-            ? 16
-            : 0
+        ? isCarryTrait
+          ? trait.activeAt >= 3
+            ? 26
+            : trait.activeAt >= 2
+              ? 18
+              : 0
+          : trait.activeAt >= 4
+            ? 12
+            : trait.activeAt >= 3
+              ? 7
+              : trait.activeAt >= 2
+                ? 3
+                : 0
         : 0;
 
     const nonTargetUniquePenalty =
@@ -738,7 +1073,11 @@ export function scoreComp(
     return sum + Number(plan.score || 0);
   }, 0);
 
-  const personalHistoryScore = getPersonalHistoryScore(units, carry, matchHistory);
+  const personalHistoryScore = getPersonalHistoryScore(
+    units,
+    carry,
+    matchHistory,
+  );
 
   const itemPlan = getCarryItemPlan({
     carry,
@@ -762,8 +1101,39 @@ export function scoreComp(
   });
 
   const carryTraitFitScore = carryFit.score * 1.65;
-
+  const carryTraitActivationScore = getCarryTraitActivationScore({
+    carry,
+    activeTraits,
+    targetTrait,
+  });
   const roleBalanceScore = getRoleBalanceScore(units);
+  const frontlineConstraintScore = getFrontlineConstraintScore({
+    units,
+    minFrontline,
+  });
+  const lateGameLowCostPenalty = getLateGameLowCostPenalty({
+    units,
+    carry,
+    targetTrait,
+    activeTraits,
+    gameMode,
+    minFrontline,
+  });
+
+  const lateGameTraitBotPenalty = getLateGameTraitBotPenalty({
+    units,
+    carry,
+    targetTrait,
+    activeTraits,
+    gameMode,
+  });
+
+  const breakpointWastePenalty = getBreakpointWastePenalty({
+    activeTraits,
+    targetTrait,
+    carry,
+  });
+
   const stageFitScore = getStageFitScore(units, gameMode);
 
   const unitIds = new Set(units.map((unit) => unit.id));
@@ -809,10 +1179,15 @@ export function scoreComp(
       starPlanScore +
       carryScore +
       carryTraitFitScore +
+      carryTraitActivationScore +
       roleBalanceScore +
+      frontlineConstraintScore +
       stageFitScore +
       metaShellScore +
       personalHistoryScore -
+      breakpointWastePenalty -
+      lateGameLowCostPenalty -
+      lateGameTraitBotPenalty -
       uniqueTraitNoisePenalty -
       deadTraitPenalty -
       tooManyFiveCostPenalty -
@@ -821,6 +1196,26 @@ export function scoreComp(
   );
 
   const reasons = [];
+
+  const warnings = [];
+
+  if (lateGameTraitBotPenalty > 0) {
+    warnings.push(
+      `Late-game trait-bot penalty applied: ${lateGameTraitBotPenalty} points. Low-cost units that only open random small traits are being discounted.`,
+    );
+  }
+
+  if (lateGameLowCostPenalty > 0) {
+    warnings.push(
+      `Late-game low-cost filler penalty applied: ${lateGameLowCostPenalty} points. The solver is discounting weak 1/2-cost units unless they are required.`,
+    );
+  }
+
+  if (breakpointWastePenalty > 0) {
+    warnings.push(
+      "Some traits have extra units that do not reach the next breakpoint, so the score penalized wasted trait count.",
+    );
+  }
 
   if (targetCount) {
     reasons.push(
@@ -839,6 +1234,13 @@ export function scoreComp(
   if (carry) {
     reasons.push(`${carry.name} is the item focus.`);
   }
+
+  if (carryTraitActivationScore > 0 && carry) {
+    reasons.push(
+      `${carry.name}'s own traits are supported, increasing carry value.`,
+    );
+  }
+
   if (upgradeValueScore > 0) {
     reasons.push(
       "Low-cost upgrade value is included, so strong 1/2/3-cost units can beat random expensive goodstuff when they are realistic reroll candidates.",
@@ -888,7 +1290,17 @@ export function scoreComp(
     );
   }
 
-  const warnings = [];
+  if (carryTraitActivationScore < 0 && carry) {
+    const unsupported = (carry.traits || [])
+      .filter((trait) => trait !== targetTrait)
+      .join(" / ");
+
+    if (unsupported) {
+      warnings.push(
+        `${carry.name} has an unsupported secondary trait; consider activating ${unsupported} if possible.`,
+      );
+    }
+  }
 
   if (boardSlotsUsed > 10) {
     warnings.push(`Illegal board: uses ${boardSlotsUsed}/10 slots.`);

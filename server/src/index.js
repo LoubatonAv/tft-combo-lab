@@ -36,6 +36,7 @@ async function loadData() {
   const itemStats = await readJson("data/itemStats.json", {});
   const itemSetStats = await readJson("data/itemSetStats.json", {});
   const unitUpgradeMeta = await readJson("data/unitUpgradeMeta.json", {});
+  const unitBuildMeta = await readJson("data/unitBuildMeta.json", {});
   const itemCatalog = await readJson("data/itemCatalog.json", {});
   const matchHistory = await readJson("data/matchHistory.json", []);
   const augments = await readJson("data/augments.json", []);
@@ -52,6 +53,7 @@ async function loadData() {
     itemStats,
     itemSetStats,
     unitUpgradeMeta,
+    unitBuildMeta,
     itemCatalog,
     matchHistory,
     augments,
@@ -160,6 +162,7 @@ app.post("/api/optimize", async (req, res) => {
       itemStats: data.itemStats,
       itemSetStats: data.itemSetStats,
       unitUpgradeMeta: data.unitUpgradeMeta,
+      unitBuildMeta: data.unitBuildMeta,
       matchHistory: data.matchHistory,
       carryProfiles: data.carryProfiles,
       traitProfiles: data.traitProfiles,
