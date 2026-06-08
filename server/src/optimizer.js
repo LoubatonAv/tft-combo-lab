@@ -3,33 +3,35 @@ import { getSpecialTraitPlan } from "./specialSources.js";
 import { getAllowedMaxCost, getGameMode, tierToScore } from "./rules.js";
 import { getChampionFitToCarry, getCarryProfile } from "./carryFit.js";
 
-function combinations(arr, size, hardLimit = 120000) {
-  const output = [];
-  const combo = [];
-  let produced = 0;
+function combinations(items, size, limit = 25000) {
+  const results = [];
+  const picked = [];
 
-  function walk(start) {
-    if (produced >= hardLimit) return;
+  if (size <= 0) return [[]];
+  if (!Array.isArray(items) || items.length < size) return [];
 
-    if (combo.length === size) {
-      output.push([...combo]);
-      produced += 1;
+  function walk(startIndex) {
+    if (results.length >= limit) return;
+
+    if (picked.length === size) {
+      results.push([...picked]);
       return;
     }
 
-    const needed = size - combo.length;
+    const slotsLeft = size - picked.length;
+    const maxIndex = items.length - slotsLeft;
 
-    for (let i = start; i <= arr.length - needed; i += 1) {
-      combo.push(arr[i]);
+    for (let i = startIndex; i <= maxIndex; i += 1) {
+      picked.push(items[i]);
       walk(i + 1);
-      combo.pop();
+      picked.pop();
 
-      if (produced >= hardLimit) return;
+      if (results.length >= limit) return;
     }
   }
 
   walk(0);
-  return output;
+  return results;
 }
 
 function getMetaScore(champ, championMeta = {}) {
@@ -137,6 +139,7 @@ function championPriority({
   carryId,
   lockedTraitNames,
   usefulTraitNames,
+  minFrontline = 0,
   championMeta = {},
   itemSetStats = {},
   carryProfiles = {},
@@ -162,18 +165,41 @@ function championPriority({
     }
   }
 
-  if (
-    targetTrait &&
-    !isTargetTraitUnit &&
-    isCarryLikeUnit(champ) &&
-    usefulTraitOverlap === 0 &&
-    (!carryId || carryId === "auto" || champ.id !== carryId)
-  ) {
-    score -= 80;
+  const sharesCarryTrait = Boolean(
+    carry &&
+      champ.id !== carry.id &&
+      (champ.traits || []).some((trait) => (carry.traits || []).includes(trait)),
+  );
+  const isFrontline = isFrontlineUnit(champ);
+
+  // Candidate pool must not cut out the units that make the actual shell work.
+  // Example: Corki wants Fateweaver + Meeple. Bard/Rammus are much more relevant
+  // to that shell than a random high-cost carry like Jhin, even if Jhin has strong
+  // standalone MetaTFT unit data.
+  if (sharesCarryTrait) {
+    score += 135;
+    if (Number(champ.cost || 1) >= 4) score += 45;
   }
 
-  if (targetTrait && !isTargetTraitUnit && usefulTraitOverlap === 0) {
-    score -= 24;
+  if (Number(minFrontline || 0) > 0 && isFrontline) {
+    score += 95;
+    score += Math.min(45, getTankinessScore(champ) * 0.55);
+  }
+
+  if (
+    targetTrait &&
+    carry &&
+    !isTargetTraitUnit &&
+    !sharesCarryTrait &&
+    !isFrontline &&
+    isCarryLikeUnit(champ) &&
+    (!carryId || carryId === "auto" || champ.id !== carryId)
+  ) {
+    score -= 185;
+  }
+
+  if (targetTrait && !isTargetTraitUnit && !sharesCarryTrait && !isFrontline && usefulTraitOverlap === 0) {
+    score -= 60;
   }
 
   score += getMetaScore(champ, championMeta) * 2.2;
@@ -527,6 +553,8 @@ function buildCandidatePool({
   carry,
   carryId,
   boardSize,
+  minFrontline = 0,
+  maxUnitCost = null,
   championMeta,
   itemSetStats,
   carryProfiles,
@@ -643,6 +671,7 @@ function buildCandidatePool({
       carryId,
       lockedTraitNames,
       usefulTraitNames,
+      minFrontline,
       championMeta,
       itemSetStats,
       carryProfiles,
@@ -656,7 +685,13 @@ function buildCandidatePool({
     );
   });
 
-  return pool.slice(0, Math.min(36, Math.max(boardSize + 20, 28)));
+  const isCappedSearch = Number(maxUnitCost || 0) >= 5;
+
+  const poolLimit = isCappedSearch
+    ? Math.min(38, Math.max(boardSize + 20, 32))
+    : Math.min(34, Math.max(boardSize + 16, 28));
+
+  return pool.slice(0, poolLimit);
 }
 
 function makeLabel({ targetTrait, evaluation }) {
@@ -922,11 +957,19 @@ export function optimize({
   traitMeta = {},
   itemStats = {},
   itemSetStats = {},
+  itemCatalog = {},
   unitUpgradeMeta = {},
   unitBuildMeta = {},
   matchHistory = [],
   carryProfiles = {},
   traitProfiles = {},
+  augments = [],
+  selectedAugmentIds = [],
+  offeredAugmentIds = [],
+  components = [],
+  playStyle = "first",
+  unitStars = {},
+  liveState = {},
 }) {
   boardSize = Math.max(2, Math.min(Number(boardSize || 8), 10));
   minFrontline = Math.max(0, Math.min(Number(minFrontline || 0), boardSize));
@@ -1009,6 +1052,8 @@ export function optimize({
     carry,
     carryId,
     boardSize,
+    minFrontline,
+    maxUnitCost: allowedMaxCost,
     championMeta,
     itemSetStats,
     carryProfiles,
@@ -1040,8 +1085,12 @@ export function optimize({
       `Your locked/transformed core already uses ${locked.length + lockedExtraSlots}/${boardSize} slots.`,
     );
   }
+  const comboLimit = Number(allowedMaxCost || 0) >= 5 ? 30000 : 16000;
+
   const rawCombos =
-    remainingSlots > 0 ? combinations(available, remainingSlots) : [[]];
+    remainingSlots > 0
+      ? combinations(available, remainingSlots, comboLimit)
+      : [[]];
 
   const seen = new Set();
   const results = [];
@@ -1124,11 +1173,20 @@ export function optimize({
         traitMeta,
         itemStats,
         itemSetStats,
+        itemCatalog,
         unitUpgradeMeta,
         unitBuildMeta,
         matchHistory,
         carryProfiles,
         traitProfiles,
+        augments,
+        selectedAugmentIds,
+        offeredAugmentIds,
+        components,
+        playStyle,
+        unitStars,
+        liveState,
+        includeAdvice: false,
       },
     );
 
@@ -1160,5 +1218,63 @@ export function optimize({
 
   return results
     .sort((a, b) => b.score - a.score)
-    .slice(0, Number(maxResults || 12));
+    .slice(0, Number(maxResults || 12))
+    .map((result) => {
+      const specialPlan =
+        targetTrait || transformedMechaIds.length > 0
+          ? getSpecialTraitPlan({
+              targetTrait: targetTrait || "Mecha",
+              targetCount: targetTrait ? wantedCount : 0,
+              boardSize,
+              selectedUnits: result.units,
+              transformedMechaIds,
+              allowEmblems,
+              maxEmblems,
+              allowMechaTransformer,
+            })
+          : {
+              virtualTraits: {},
+              extraBoardSlots: 0,
+              specialSources: [],
+              isPossible: true,
+            };
+
+      const evaluation = scoreComp(
+        result.units,
+        traits,
+        metaComps,
+        targetTrait,
+        result.carry,
+        {
+          targetCount: wantedCount,
+          specialPlan,
+          gameMode,
+          minFrontline,
+          championMeta,
+          traitMeta,
+          itemStats,
+          itemSetStats,
+          itemCatalog,
+          unitUpgradeMeta,
+          unitBuildMeta,
+          matchHistory,
+          carryProfiles,
+          traitProfiles,
+          augments,
+          selectedAugmentIds,
+          offeredAugmentIds,
+          components,
+          playStyle,
+          unitStars,
+          liveState,
+          includeAdvice: true,
+        },
+      );
+
+      return {
+        ...result,
+        label: makeLabel({ targetTrait, evaluation }),
+        ...evaluation,
+      };
+    });
 }

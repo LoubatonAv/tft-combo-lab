@@ -127,3 +127,27 @@ https://sunderarmor.com/characters/Skin/17/{ChampionNameWithoutSpaces}.png
 
 If an image fails to load, the UI falls back to the old emoji icon so the app does not break.
 You can override any champion manually by adding `imageUrl` or `imageName` to that champion in `server/data/champions.json`.
+
+## 2026-06 Coach + Augments update
+
+Added a live-coach layer on top of the existing optimizer without replacing the core board logic.
+
+New runtime inputs:
+
+- **Playstyle**: `First place / capped` or `Top 4 / stable`.
+- **Live state**: stage, HP, gold and level.
+- **Components**: click components, including duplicate copies, so the advisor can value item/econ augments better.
+- **Augments**: click augments as `Selected` or `Offered`.
+- **Unit stars**: selected core units can be marked as 1★ / 2★ / 3★.
+
+New data and logic:
+
+- `server/data/augments.json` contains a local Set 17 augment snapshot with tier, description, tags and icon slugs.
+- `server/src/augmentAdvisor.js` enriches augments and scores them against the current comp shape.
+- `server/src/scoring.js` now adds augment fit into the comp score and shows augment warnings/reasons.
+- First-place mode is stricter with weak 1/2-cost trait bots, unless they are 3★, required, or clearly useful.
+- The UI has a new Augment Advisor card and Live Coach card in the comp details.
+
+Icon note:
+
+Augment icons are referenced through remote CDN URLs at runtime. They are not bundled as local binary image files, so the app remains lightweight and does not break if an icon is missing; the UI falls back to initials.

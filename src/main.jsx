@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
-  Sparkles,
   Shield,
   Sword,
   Star,
   RefreshCw,
   AlertTriangle,
+  Sparkles,
 } from "lucide-react";
 import "./styles.css";
 const MECHA_TRANSFORMER_TOOL = "MECHA_TRANSFORMER";
@@ -470,7 +470,7 @@ function getFallbackItemsForUnit(unit) {
     return ["Spear of Shojin", "Jeweled Gauntlet", "Rabadon's Deathcap"];
   }
 
-  return ["Guardbreaker", "Giant Slayer", "Hand of Justice"];
+  return ["Striker's Flail", "Giant Slayer", "Hand of Justice"];
 }
 
 function normalizeItemSet(set, index = 0) {
@@ -571,77 +571,172 @@ function normalizeItemName(value) {
     .trim();
 }
 
-function getItemCatalogEntry(itemName, itemCatalog = {}) {
-  const direct = itemCatalog?.[itemName];
-  if (direct) return direct;
+const ITEM_NAME_ALIASES = {
+  guardbreaker: "Striker's Flail",
+  powergauntlet: "Striker's Flail",
+  strikersflail: "Striker's Flail",
+  handofjustice: "Hand of Justice",
+  handofofjustice: "Hand of Justice",
+};
 
+const ITEM_ICON_OVERRIDES = {
+  "Striker's Flail":
+    "https://cdn.metatft.com/file/metatft/items/tft_item_powergauntlet.png",
+  "Hand of Justice":
+    "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Hand_of_Justice.png",
+  "Spirit Visage":
+    "https://cdn.metatft.com/file/metatft/items/tft_item_spiritvisage.png",
+  Quicksilver:
+    "https://cdn.metatft.com/file/metatft/items/tft_item_quicksilver.png",
+  "Last Whisper":
+    "https://cdn.metatft.com/file/metatft/items/tft_item_lastwhisper.png",
+  "Giant Slayer":
+    "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png",
+  "Infinity Edge":
+    "https://cdn.metatft.com/file/metatft/items/tft_item_infinityedge.png",
+  "Jeweled Gauntlet":
+    "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png",
+  "Archangel's Staff":
+    "https://cdn.metatft.com/file/metatft/items/tft_item_archangelsstaff.png",
+};
+
+function canonicalItemName(itemName) {
   const normalized = normalizeItemName(itemName);
+  return ITEM_NAME_ALIASES[normalized] || itemName;
+}
 
-  return (
-    Object.entries(itemCatalog || {}).find(
-      ([name]) => normalizeItemName(name) === normalized,
-    )?.[1] || {}
-  );
+function withItemIconOverride(itemName, details = {}) {
+  const canonical = canonicalItemName(itemName);
+
+  return {
+    ...details,
+    iconUrl: ITEM_ICON_OVERRIDES[canonical] || details.iconUrl,
+  };
+}
+
+function getCarryDamageProfile(unit = {}) {
+  const role = String(unit.role || "").toLowerCase();
+  const abilityText = String(unit.ability?.desc || "").toLowerCase();
+
+  // Role is more reliable than ability text because many abilities contain both scaleAD and scaleAP.
+  if (
+    /ad carry|attack damage|physical|marksman|sniper|attack-speed|attack speed/.test(
+      role,
+    )
+  ) {
+    return "ad";
+  }
+
+  if (/ap carry|caster|magic|spell|ability power/.test(role)) {
+    return "ap";
+  }
+
+  const physicalSignals = [
+    "physicaldamage",
+    "physical damage",
+    "scalead",
+    "attack damage",
+  ].filter((term) => abilityText.includes(term)).length;
+
+  const magicSignals = ["magicdamage", "magic damage", "ability power"].filter(
+    (term) => abilityText.includes(term),
+  ).length;
+
+  if (physicalSignals > magicSignals) return "ad";
+  if (magicSignals > physicalSignals) return "ap";
+
+  return "flex";
+}
+
+function getItemDamageProfile(itemName = "", details = {}) {
+  const name = canonicalItemName(itemName);
+  const text =
+    `${name} ${details.description || ""} ${(details.tags || []).join(" ")}`.toLowerCase();
+
+  const explicitAdItems = new Set([
+    "Last Whisper",
+    "Infinity Edge",
+    "Deathblade",
+    "Giant Slayer",
+    "Guinsoo's Rageblade",
+    "Runaan's Hurricane",
+    "Red Buff",
+    "Edge of Night",
+    "Bloodthirster",
+    "Titan's Resolve",
+    "Sterak's Gage",
+  ]);
+
+  const explicitApItems = new Set([
+    "Jeweled Gauntlet",
+    "Archangel's Staff",
+    "Rabadon's Deathcap",
+    "Blue Buff",
+    "Nashor's Tooth",
+    "Morellonomicon",
+    "Ionic Spark",
+    "Hextech Gunblade",
+  ]);
+
+  const explicitFlexItems = new Set([
+    "Hand of Justice",
+    "Striker's Flail",
+    "Spear of Shojin",
+    "Adaptive Helm",
+  ]);
+
+  if (explicitAdItems.has(name)) return "ad";
+  if (explicitApItems.has(name)) return "ap";
+  if (explicitFlexItems.has(name)) return "flex";
+
+  if (
+    /last whisper|infinity|deathblade|giant slayer|guinsoo|runaan|red buff|attack damage|attack speed|physical/.test(
+      text,
+    )
+  ) {
+    return "ad";
+  }
+
+  if (
+    /jeweled|archangel|rabadon|blue buff|nashor|ability power|magic damage|caster/.test(
+      text,
+    )
+  ) {
+    return "ap";
+  }
+
+  return "flex";
+}
+
+function getItemCatalogEntry(itemName, itemCatalog = {}) {
+  const canonical = canonicalItemName(itemName);
+
+  const direct = itemCatalog?.[canonical] || itemCatalog?.[itemName];
+
+  if (direct) {
+    return {
+      ...direct,
+      iconUrl: ITEM_ICON_OVERRIDES[canonical] || direct.iconUrl,
+    };
+  }
+
+  const normalized = normalizeItemName(canonical);
+
+  const found =
+    Object.entries(itemCatalog || {}).find(([name]) => {
+      return normalizeItemName(canonicalItemName(name)) === normalized;
+    })?.[1] || {};
+
+  return {
+    ...found,
+    iconUrl: ITEM_ICON_OVERRIDES[canonical] || found.iconUrl,
+  };
 }
 
 function getItemImageCandidates(item, details = {}) {
-  const itemIdMap = {
-    "Adaptive Helm": "3190",
-    "Archangel's Staff": "3003",
-    Bloodthirster: "3072",
-    "Blue Buff": "3124",
-    "Bramble Vest": "3075",
-    Crownguard: "4644",
-    Deathblade: "6676",
-    "Dragon's Claw": "3065",
-    "Edge of Night": "3814",
-    Evenshroud: "3001",
-    "Gargoyle Stoneplate": "3193",
-    "Giant Slayer": "3036",
-    Guardbreaker: "4633",
-    "Guinsoo's Rageblade": "3124",
-    "Hand of Justice": "3094",
-    "Hand Of Justice": "3094",
-    "Hextech Gunblade": "3146",
-    "Infinity Edge": "3031",
-    "Ionic Spark": "8020",
-    "Jeweled Gauntlet": "3135",
-    "Kraken's Fury": "6672",
-    "Last Whisper": "3035",
-    Morellonomicon: "3165",
-    "Nashor's Tooth": "3115",
-    "Protector's Vow": "3109",
-    Quicksilver: "3140",
-    "Rabadon's Deathcap": "3089",
-    "Red Buff": "3071",
-    Redemption: "3107",
-    "Spear of Shojin": "3161",
-    "Spirit Visage": "3065",
-    "Sterak's Gage": "3053",
-    "Striker's Flail": "6692",
-    "Sunfire Cape": "3068",
-    "Thief's Gloves": "3095",
-    "Titan's Resolve": "3742",
-    "Void Staff": "3135",
-    "Warmog's Armor": "3083",
-  };
+  const canonical = canonicalItemName(item);
 
-  const version = "15.24.1";
-  const candidates = [];
-
-  if (details.iconUrl) {
-    candidates.push(details.iconUrl);
-  }
-
-  const itemId = itemIdMap[item];
-
-  if (itemId) {
-    candidates.push(
-      `https://ddragon.leagueoflegends.com/cdn/${version}/img/item/${itemId}.png`,
-    );
-  }
-
-  return [...new Set(candidates)];
+  return [ITEM_ICON_OVERRIDES[canonical], details.iconUrl].filter(Boolean);
 }
 
 function ItemIcon({ item, itemCatalog = {}, size = "md" }) {
@@ -663,7 +758,7 @@ function ItemIcon({ item, itemCatalog = {}, size = "md" }) {
   };
 
   const tooltip = (
-    <div className="pointer-events-none fixed z-[9999] mt-2 hidden w-72 rounded-2xl border border-cyan-300/40 bg-slate-950 px-4 py-3 text-left text-sm text-slate-100 opacity-100 shadow-2xl ring-1 ring-black/80 group-hover:block">
+    <div className="pointer-events-none absolute bottom-full left-0 z-[99999] mb-2 hidden w-72 rounded-2xl border border-cyan-300/40 bg-slate-950 px-4 py-3 text-left text-sm text-slate-100 opacity-100 shadow-2xl ring-1 ring-black/80 group-hover:block">
       {/* תוכן ה-Tooltip נשאר אותו דבר */}
       <div className="text-base font-black text-white">{item}</div>
       <div className="mt-2 text-xs font-bold uppercase tracking-wide text-cyan-200">
@@ -691,7 +786,7 @@ function ItemIcon({ item, itemCatalog = {}, size = "md" }) {
   }
 
   return (
-    <span className="group relative inline-flex">
+    <span className="group relative z-[9999] inline-flex overflow-visible">
       <img
         src={currentUrl}
         alt={item}
@@ -974,6 +1069,17 @@ function App() {
   const [maxUnitCost, setMaxUnitCost] = useState(5);
   const [allowEmblems, setAllowEmblems] = useState(false);
   const [allowMechaTransformer, setAllowMechaTransformer] = useState(false);
+  const [playStyle, setPlayStyle] = useState("first");
+  const [selectedAugmentIds, setSelectedAugmentIds] = useState([]);
+  const [offeredAugmentIds, setOfferedAugmentIds] = useState([]);
+  const [components, setComponents] = useState([]);
+  const [unitStars, setUnitStars] = useState({});
+  const [liveState, setLiveState] = useState({
+    stage: "4-2",
+    hp: 70,
+    gold: 40,
+    level: 8,
+  });
 
   async function loadData() {
     try {
@@ -1068,6 +1174,7 @@ function App() {
 
     setLockedUnitIds(units.map((unit) => unit.id));
     setPreTransformedMechaIds([]);
+    setUnitStars({});
     setTargetTrait("");
     setTargetCount(0);
     setBoardSize(Math.max(2, Math.min(10, units.length)));
@@ -1120,6 +1227,12 @@ function App() {
           allowMechaTransformer,
           maxEmblems: Number(maxEmblems),
           transformedMechaIds: preTransformedMechaIds,
+          selectedAugmentIds,
+          offeredAugmentIds,
+          components,
+          playStyle,
+          unitStars,
+          liveState,
         }),
       });
 
@@ -1152,11 +1265,6 @@ function App() {
     <main className="mx-auto max-w-[1440px] px-3 py-3 md:px-4">
       <header className="tft-glow-panel mb-3 grid gap-3 rounded-2xl border border-amber-200/15 bg-slate-950/75 p-4 shadow-2xl shadow-black/35 backdrop-blur md:grid-cols-[1fr_auto]">
         <div>
-          <div className="mb-1 flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.22em] text-amber-200/80">
-            <Sparkles size={18} />
-            Set 17 Combo Optimizer
-          </div>
-
           <h1 className="bg-gradient-to-r from-amber-100 via-cyan-100 to-amber-200 bg-clip-text text-2xl font-black tracking-tight text-transparent md:text-4xl">
             TFT Combo Lab
           </h1>
@@ -1207,6 +1315,9 @@ function App() {
             <span className="rounded-full bg-white/10 px-3 py-1">
               Max cost {maxUnitCost}
             </span>
+            <span className="rounded-full bg-white/10 px-3 py-1">
+              {playStyle === "first" ? "Playing for 1st" : "Playing Top 4"}
+            </span>
           </div>
         </div>
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-8">
@@ -1229,18 +1340,27 @@ function App() {
               <option value="capped">Capped - allow 5-cost</option>
             </select>
           </Control>
-          <Control label="Max Unit Cost">
+          <Control label="Playstyle">
             <select
-              value={maxUnitCost}
-              onChange={(e) => setMaxUnitCost(Number(e.target.value))}
+              value={playStyle}
+              onChange={(event) => setPlayStyle(event.target.value)}
               className="input"
             >
-              <option value={1}>Only 1-cost</option>
-              <option value={2}>Max 2-cost</option>
-              <option value={3}>Max 3-cost</option>
-              <option value={4}>Max 4-cost</option>
-              <option value={5}>Allow 5-costs</option>
+              <option value="first">First place / capped</option>
+              <option value="top4">Top 4 / stable</option>
             </select>
+          </Control>
+          <Control label="Max Unit Cost">
+            <input
+              type="number"
+              min="1"
+              max="5"
+              value={maxUnitCost}
+              onChange={(e) =>
+                setMaxUnitCost(clampNumber(e.target.value, 1, 5, 5))
+              }
+              className="input"
+            />
           </Control>
           <Control label="Special Sources">
             <label className="mb-2 flex items-center gap-2 text-xs text-slate-200">
@@ -1251,18 +1371,17 @@ function App() {
               />
               Emblems
             </label>
-            <select
+            <input
+              type="number"
+              min="0"
+              max="5"
               value={maxEmblems}
               disabled={!allowEmblems}
-              onChange={(e) => setMaxEmblems(Number(e.target.value))}
+              onChange={(e) =>
+                setMaxEmblems(clampNumber(e.target.value, 0, 5, 0))
+              }
               className="input mt-2 disabled:opacity-40"
-            >
-              {[0, 1, 2, 3, 4, 5].map((n) => (
-                <option key={n} value={n}>
-                  Max {n} emblem{n === 1 ? "" : "s"}
-                </option>
-              ))}
-            </select>
+            />
 
             <label className="flex items-center gap-2 text-xs text-slate-200">
               <input
@@ -1298,28 +1417,37 @@ function App() {
           </Control>
           <Control label="Target Count">
             {targetTrait ? (
-              <select
+              <input
+                type="number"
+                min="1"
+                max={Math.max(1, Number(boardSize || 10))}
                 value={targetCount}
-                onChange={(event) => setTargetCount(Number(event.target.value))}
+                onChange={(event) =>
+                  setTargetCount(
+                    clampNumber(
+                      event.target.value,
+                      1,
+                      Number(boardSize || 10),
+                      1,
+                    ),
+                  )
+                }
                 className="input"
-              >
-                {targetCountOptions.map((number) => (
-                  <option key={number} value={number}>
-                    {number}
-                  </option>
-                ))}
-              </select>
+              />
             ) : (
               <div className="rounded-xl bg-black/20 px-3 py-2 text-sm text-slate-400">
-                Disabled in unit-core mode
+                Disabled
               </div>
             )}
           </Control>
           <Control label="Board Size">
-            <select
+            <input
+              type="number"
+              min="2"
+              max="10"
               value={boardSize}
               onChange={(e) => {
-                const nextSize = Number(e.target.value);
+                const nextSize = clampNumber(e.target.value, 2, 10, 8);
 
                 setBoardSize(nextSize);
                 setMinFrontline((current) =>
@@ -1330,30 +1458,21 @@ function App() {
                 );
               }}
               className="input"
-            >
-              {[2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
-                <option key={n} value={n}>
-                  {n} slots
-                </option>
-              ))}
-            </select>
+            />
           </Control>
           <Control label="Frontline">
-            <select
+            <input
+              type="number"
+              min="0"
+              max={Number(boardSize || 10)}
               value={minFrontline}
-              onChange={(e) => setMinFrontline(Number(e.target.value))}
+              onChange={(e) =>
+                setMinFrontline(
+                  clampNumber(e.target.value, 0, Number(boardSize || 10), 0),
+                )
+              }
               className="input"
-            >
-              {Array.from({ length: Number(boardSize) + 1 }, (_, i) => i).map(
-                (n) => (
-                  <option key={n} value={n}>
-                    {n === 0
-                      ? "No minimum"
-                      : `${n} front unit${n === 1 ? "" : "s"}`}
-                  </option>
-                ),
-              )}
-            </select>
+            />
           </Control>
           <Control label="Carry Focus">
             <select
@@ -1371,15 +1490,16 @@ function App() {
             </select>
           </Control>
           <Control label="Results">
-            <select
+            <input
+              type="number"
+              min="1"
+              max="30"
               value={maxResults}
-              onChange={(e) => setMaxResults(e.target.value)}
+              onChange={(e) =>
+                setMaxResults(clampNumber(e.target.value, 1, 30, 12))
+              }
               className="input"
-            >
-              {[6, 12, 20, 30].map((n) => (
-                <option key={n}>{n}</option>
-              ))}
-            </select>
+            />
           </Control>
           <button
             type="button"
@@ -1392,72 +1512,7 @@ function App() {
         </div>
       </section>
 
-      <CoreUnitPicker
-        champions={data.champions}
-        lockedUnitIds={lockedUnitIds}
-        setLockedUnitIds={setLockedUnitIds}
-        preTransformedMechaIds={preTransformedMechaIds}
-        setPreTransformedMechaIds={setPreTransformedMechaIds}
-        carryId={carryId}
-        setCarryId={setCarryId}
-        maxUnitCost={maxUnitCost}
-        boardSize={Number(boardSize)}
-        minFrontline={Number(minFrontline)}
-        targetTrait={targetTrait}
-        targetCount={Number(targetCount)}
-        allowMechaTransformer={allowMechaTransformer}
-      />
-
-      <div className="grid gap-4 2xl:grid-cols-[290px_minmax(0,1fr)]">
-        <aside className="space-y-2 2xl:sticky 2xl:top-4 2xl:max-h-[calc(100vh-2rem)] 2xl:overflow-auto 2xl:pr-1">
-          {results.map((r, idx) => (
-            <button
-              key={r.id}
-              onClick={() => setSelected(r)}
-              className={cx(
-                "w-full rounded-xl border p-2.5 text-left transition hover:border-amber-200/30 hover:bg-amber-200/5",
-                selected?.id === r.id
-                  ? "border-cyan-200 bg-cyan-300/15"
-                  : "border-white/10 bg-white/6",
-              )}
-            >
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <div className="text-xs text-slate-400">
-                    #{idx + 1} · {r.label}
-                  </div>
-
-                  <div className="text-lg font-black">Score {r.score}</div>
-                </div>
-
-                {formatTraitProgress(r.primaryTrait) ? (
-                  <div className="rounded-full bg-white/10 px-3 py-1 text-sm font-bold">
-                    {formatTraitProgress(r.primaryTrait)}
-                  </div>
-                ) : (
-                  <div className="rounded-full bg-white/10 px-3 py-1 text-sm font-bold text-slate-400">
-                    Unit-core
-                  </div>
-                )}
-              </div>
-
-              <div className="mt-3 flex flex-wrap gap-1">
-                {r.activeTraits.slice(0, 7).map((t) => (
-                  <span
-                    key={t.name}
-                    className="rounded-full bg-slate-800 px-2 py-1 text-xs text-slate-200"
-                  >
-                    {t.name}{" "}
-                    {t.isUnique
-                      ? "Unique"
-                      : `${t.count}${t.activeAt ? ` · active ${t.activeAt}` : ""}`}
-                  </span>
-                ))}
-              </div>
-            </button>
-          ))}
-        </aside>
-
+      <div className="grid gap-4 2xl:grid-cols-[minmax(0,1fr)_300px]">
         <section className="min-w-0">
           {selected ? (
             <CompDetail
@@ -1474,9 +1529,19 @@ function App() {
               allowEmblems={allowEmblems}
               allowMechaTransformer={allowMechaTransformer}
               matchHistory={data.matchHistory || []}
+              augments={data.augments || []}
+              selectedAugmentIds={selectedAugmentIds}
+              offeredAugmentIds={offeredAugmentIds}
+              components={components}
+              setComponents={setComponents}
+              liveState={liveState}
+              playStyle={playStyle}
               onLockCompUnits={(units, lockedComp) => {
                 setLockedUnitIds(units.map((unit) => unit.id));
                 setPreTransformedMechaIds([]);
+                setUnitStars(
+                  Object.fromEntries(units.map((unit) => [unit.id, 2])),
+                );
                 setCarryId(
                   lockedComp?.carry?.id || selected?.carry?.id || "auto",
                 );
@@ -1487,6 +1552,25 @@ function App() {
                   matchHistory: nextHistory,
                 }));
               }}
+              coreUnitPickerNode={
+                <CoreUnitPicker
+                  champions={data.champions}
+                  lockedUnitIds={lockedUnitIds}
+                  setLockedUnitIds={setLockedUnitIds}
+                  preTransformedMechaIds={preTransformedMechaIds}
+                  setPreTransformedMechaIds={setPreTransformedMechaIds}
+                  carryId={carryId}
+                  setCarryId={setCarryId}
+                  maxUnitCost={maxUnitCost}
+                  boardSize={Number(boardSize)}
+                  minFrontline={Number(minFrontline)}
+                  targetTrait={targetTrait}
+                  targetCount={Number(targetCount)}
+                  allowMechaTransformer={allowMechaTransformer}
+                  unitStars={unitStars}
+                  setUnitStars={setUnitStars}
+                />
+              }
             />
           ) : (
             <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
@@ -1494,7 +1578,84 @@ function App() {
             </div>
           )}
         </section>
+
+        <aside className="space-y-2 2xl:sticky 2xl:top-4 2xl:max-h-[calc(100vh-2rem)] 2xl:overflow-auto 2xl:pl-1">
+          <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-3">
+            <div className="text-xs font-black uppercase tracking-[0.16em] text-cyan-100/75">
+              Composition options
+            </div>
+            <div className="mt-1 text-xs text-slate-500">
+              Click a result to inspect it.
+            </div>
+          </div>
+          {results.length ? (
+            results.map((r, idx) => (
+              <button
+                key={r.id}
+                onClick={() => setSelected(r)}
+                className={cx(
+                  "w-full rounded-xl border p-2.5 text-left transition hover:border-amber-200/30 hover:bg-amber-200/5",
+                  selected?.id === r.id
+                    ? "border-cyan-200 bg-cyan-300/15"
+                    : "border-white/10 bg-white/6",
+                )}
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <div className="text-xs text-slate-400">
+                      #{idx + 1} · {r.label}
+                    </div>
+
+                    <div className="text-lg font-black">Score {r.score}</div>
+                  </div>
+
+                  {formatTraitProgress(r.primaryTrait) ? (
+                    <div className="rounded-full bg-white/10 px-3 py-1 text-sm font-bold">
+                      {formatTraitProgress(r.primaryTrait)}
+                    </div>
+                  ) : (
+                    <div className="rounded-full bg-white/10 px-3 py-1 text-sm font-bold text-slate-400">
+                      Unit-core
+                    </div>
+                  )}
+                </div>
+
+                <div className="mt-3 flex flex-wrap gap-1">
+                  {r.activeTraits.slice(0, 7).map((t) => (
+                    <span
+                      key={t.name}
+                      className="rounded-full bg-slate-800 px-2 py-1 text-xs text-slate-200"
+                    >
+                      {t.name}{" "}
+                      {t.isUnique
+                        ? "Unique"
+                        : `${t.count}${t.activeAt ? ` · active ${t.activeAt}` : ""}`}
+                    </span>
+                  ))}
+                </div>
+              </button>
+            ))
+          ) : (
+            <div className="rounded-2xl border border-dashed border-white/10 bg-white/[0.03] p-4 text-sm text-slate-500">
+              Optimize to generate options.
+            </div>
+          )}
+        </aside>
       </div>
+
+      <AugmentAndItemPanel
+        augments={data.augments || []}
+        itemCatalog={data.itemCatalog || {}}
+        selectedAugmentIds={selectedAugmentIds}
+        setSelectedAugmentIds={setSelectedAugmentIds}
+        offeredAugmentIds={offeredAugmentIds}
+        setOfferedAugmentIds={setOfferedAugmentIds}
+        components={components}
+        setComponents={setComponents}
+        liveState={liveState}
+        setLiveState={setLiveState}
+        showComponents={false}
+      />
     </main>
   );
 }
@@ -1512,6 +1673,8 @@ function CoreUnitPicker({
   targetTrait,
   targetCount,
   allowMechaTransformer,
+  unitStars = {},
+  setUnitStars,
 }) {
   const [search, setSearch] = useState("");
 
@@ -1606,10 +1769,16 @@ function CoreUnitPicker({
     setLockedUnitIds((prev) => {
       if (prev.includes(unitId)) {
         setPreTransformedMechaIds((old) => old.filter((id) => id !== unitId));
+        setUnitStars?.((old) => {
+          const next = { ...old };
+          delete next[unitId];
+          return next;
+        });
 
         return prev.filter((id) => id !== unitId);
       }
 
+      setUnitStars?.((old) => ({ ...old, [unitId]: old[unitId] || 2 }));
       return [...prev, unitId];
     });
   }
@@ -1617,9 +1786,17 @@ function CoreUnitPicker({
   function clearCore() {
     setLockedUnitIds([]);
     setPreTransformedMechaIds([]);
+    setUnitStars?.({});
     if (carryId !== "auto") {
       setCarryId("auto");
     }
+  }
+
+  function setUnitStarLevel(unitId, stars) {
+    setUnitStars?.((prev) => ({
+      ...prev,
+      [unitId]: Number(stars),
+    }));
   }
 
   return (
@@ -1675,6 +1852,28 @@ function CoreUnitPicker({
                   <span className="font-bold">{unit.name}</span>
                   <span className="text-xs opacity-80">×</span>
                 </button>
+
+                <div className="flex rounded-full border border-white/10 bg-black/25 p-0.5 text-[10px] font-black text-slate-300">
+                  {[1, 2, 3].map((stars) => (
+                    <button
+                      key={stars}
+                      type="button"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        setUnitStarLevel(unit.id, stars);
+                      }}
+                      className={cx(
+                        "rounded-full px-1.5 py-0.5 transition",
+                        Number(unitStars[unit.id] || 2) === stars
+                          ? "bg-amber-300 text-slate-950"
+                          : "hover:bg-white/10",
+                      )}
+                      title={`Mark ${unit.name} as ${stars} star`}
+                    >
+                      {stars}★
+                    </button>
+                  ))}
+                </div>
 
                 {allowMechaTransformer && unit.traits?.includes("Mecha") && (
                   <button
@@ -1820,37 +2019,29 @@ function PasteCompBox({ onImport }) {
 
   async function handlePasteComp() {
     try {
-      const trimmed = code.trim();
-
-      if (!trimmed) {
-        throw new Error("Paste a Team Planner code first.");
-      }
-
       setStatus("loading");
       setMessage("");
 
-      const resultMessage = await onImport(trimmed);
+      if (!code.trim()) {
+        throw new Error("Paste a Team Planner code first.");
+      }
 
+      const result = await onImport(code.trim());
       setStatus("success");
-      setMessage(resultMessage || "Comp loaded.");
+      setMessage(result || "Comp loaded.");
     } catch (error) {
       setStatus("error");
-      setMessage(error.message || "Could not load comp.");
+      setMessage(error.message || "Failed to import comp.");
     }
   }
 
   return (
-    <div className="mb-3 rounded-2xl border border-cyan-300/15 bg-cyan-400/5 p-3">
-      <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
-        <div>
-          <div className="text-sm font-black text-cyan-100">Paste Comp</div>
-          <div className="text-xs text-cyan-100/70">
-            Paste a TFT Team Planner code to load that board into the app.
-          </div>
+    <div className="mb-2 rounded-xl border border-cyan-300/12 bg-cyan-400/[0.035] p-2">
+      <div className="flex flex-col gap-2 md:flex-row md:items-center">
+        <div className="shrink-0 text-xs font-black uppercase tracking-[0.14em] text-cyan-100/80">
+          Paste Comp
         </div>
-      </div>
 
-      <div className="flex flex-col gap-2 md:flex-row">
         <input
           value={code}
           onChange={(event) => setCode(event.target.value)}
@@ -1860,24 +2051,24 @@ function PasteCompBox({ onImport }) {
               handlePasteComp();
             }
           }}
-          placeholder="0201d01b00d03601e05801f000000000TFTSet17"
-          className="input flex-1"
+          placeholder="Team Planner code"
+          className="input min-h-[34px] flex-1 py-1.5 text-xs"
         />
 
         <button
           type="button"
           onClick={handlePasteComp}
           disabled={status === "loading"}
-          className="rounded-xl border border-amber-100/40 bg-gradient-to-r from-amber-300 to-cyan-200 px-4 py-2 text-sm font-black text-slate-950 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
+          className="rounded-lg border border-amber-100/40 bg-gradient-to-r from-amber-300 to-cyan-200 px-3 py-1.5 text-xs font-black text-slate-950 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {status === "loading" ? "Loading..." : "Load Comp"}
+          {status === "loading" ? "Loading..." : "Load"}
         </button>
       </div>
 
       {message && (
         <div
           className={cx(
-            "mt-2 rounded-xl px-3 py-2 text-xs",
+            "mt-2 rounded-lg px-2 py-1 text-xs",
             status === "error"
               ? "bg-red-500/15 text-red-100"
               : "bg-emerald-400/10 text-emerald-100",
@@ -1887,6 +2078,1605 @@ function PasteCompBox({ onImport }) {
         </div>
       )}
     </div>
+  );
+}
+
+const BASE_COMPONENTS = [
+  "B.F. Sword",
+  "Recurve Bow",
+  "Needlessly Large Rod",
+  "Tear of the Goddess",
+  "Chain Vest",
+  "Negatron Cloak",
+  "Giant's Belt",
+  "Sparring Gloves",
+  "Spatula",
+  "Frying Pan",
+];
+
+const COMPONENT_ICONS = {
+  "B.F. Sword": "⚔️",
+  "Recurve Bow": "🏹",
+  "Needlessly Large Rod": "✨",
+  "Tear of the Goddess": "💧",
+  "Chain Vest": "🛡️",
+  "Negatron Cloak": "🧥",
+  "Giant's Belt": "❤️",
+  "Sparring Gloves": "🥊",
+  Spatula: "🍳",
+  "Frying Pan": "🍳",
+};
+
+const COMPONENT_META = {
+  "B.F. Sword": {
+    iconUrl:
+      "https://ddragon.leagueoflegends.com/cdn/15.24.1/img/item/1038.png",
+  },
+  "Recurve Bow": {
+    iconUrl:
+      "https://ddragon.leagueoflegends.com/cdn/15.24.1/img/item/1043.png",
+  },
+  "Needlessly Large Rod": {
+    iconUrl:
+      "https://ddragon.leagueoflegends.com/cdn/15.24.1/img/item/1058.png",
+  },
+  "Tear of the Goddess": {
+    iconUrl:
+      "https://ddragon.leagueoflegends.com/cdn/15.24.1/img/item/3070.png",
+  },
+  "Chain Vest": {
+    iconUrl:
+      "https://ddragon.leagueoflegends.com/cdn/15.24.1/img/item/1031.png",
+  },
+  "Negatron Cloak": {
+    iconUrl:
+      "https://ddragon.leagueoflegends.com/cdn/15.24.1/img/item/1057.png",
+  },
+  "Giant's Belt": {
+    iconUrl:
+      "https://ddragon.leagueoflegends.com/cdn/15.24.1/img/item/1011.png",
+  },
+  "Sparring Gloves": {
+    iconUrl:
+      "https://ddragon.leagueoflegends.com/cdn/15.24.1/img/item/3086.png",
+  },
+  Spatula: {
+    iconUrl: "https://cdn.metatft.com/file/metatft/items/tft_item_spatula.png",
+  },
+  "Frying Pan": {
+    iconUrl:
+      "https://cdn.metatft.com/file/metatft/items/tft_item_fryingpan.png",
+  },
+};
+
+function ComponentIcon({ component, size = "md" }) {
+  const [failed, setFailed] = useState(false);
+  const meta = COMPONENT_META[component] || {};
+  const sizeClass = size === "sm" ? "h-7 w-7" : "h-11 w-11";
+
+  return (
+    <div
+      className={cx(
+        "shrink-0 overflow-hidden rounded-xl border border-white/10 bg-black/30 shadow-inner shadow-white/5",
+        sizeClass,
+      )}
+      title={component}
+    >
+      {meta.iconUrl && !failed ? (
+        <img
+          src={meta.iconUrl}
+          alt=""
+          className="h-full w-full object-cover"
+          loading="lazy"
+          onError={() => setFailed(true)}
+        />
+      ) : (
+        <div className="flex h-full w-full items-center justify-center text-sm">
+          {COMPONENT_ICONS[component] || "🔹"}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ComponentIconRow({ components = [], size = "sm" }) {
+  if (!components.length) return null;
+
+  return (
+    <div className="flex flex-wrap gap-1">
+      {components.map((component, index) => (
+        <ComponentIcon
+          key={`${component}-${index}`}
+          component={component}
+          size={size}
+        />
+      ))}
+    </div>
+  );
+}
+
+function clampNumber(value, min, max, fallback = min) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return fallback;
+  return Math.max(min, Math.min(max, number));
+}
+
+function countSelectedComponents(components = []) {
+  return components.reduce((map, component) => {
+    map[component] = (map[component] || 0) + 1;
+    return map;
+  }, {});
+}
+
+function canBuildFromComponents(required = [], selectedCounts = {}) {
+  const needed = countSelectedComponents(required);
+
+  return Object.entries(needed).every(([component, count]) => {
+    return (selectedCounts[component] || 0) >= count;
+  });
+}
+
+function getClientItemTags(itemName = "", details = {}) {
+  const canonical = canonicalItemName(itemName);
+  const text =
+    `${canonical} ${details.description || ""} ${(details.tags || []).join(" ")}`.toLowerCase();
+  const components = details.components || [];
+  const tags = new Set();
+
+  const explicitAdItems = new Set([
+    "Striker's Flail",
+    "Last Whisper",
+    "Infinity Edge",
+    "Deathblade",
+    "Giant Slayer",
+    "Guinsoo's Rageblade",
+    "Runaan's Hurricane",
+    "Red Buff",
+    "Edge of Night",
+    "Bloodthirster",
+    "Titan's Resolve",
+    "Sterak's Gage",
+  ]);
+
+  const explicitApItems = new Set([
+    "Jeweled Gauntlet",
+    "Archangel's Staff",
+    "Rabadon's Deathcap",
+    "Blue Buff",
+    "Nashor's Tooth",
+    "Morellonomicon",
+    "Ionic Spark",
+    "Hextech Gunblade",
+  ]);
+
+  const explicitFlexItems = new Set([
+    "Hand of Justice",
+    "Striker's Flail",
+    "Spear of Shojin",
+    "Adaptive Helm",
+    "Quicksilver",
+  ]);
+
+  if (explicitAdItems.has(canonical)) tags.add("ad");
+  if (explicitApItems.has(canonical)) tags.add("ap");
+  if (explicitFlexItems.has(canonical)) tags.add("flex");
+
+  if (
+    /crit|flail|striker|infinity|last whisper|jeweled|hand of justice/.test(
+      text,
+    )
+  ) {
+    tags.add("crit");
+  }
+
+  if (
+    /attack speed|guinsoo|runaan|red buff|nashor|flail/.test(text) ||
+    components.includes("Recurve Bow")
+  ) {
+    tags.add("attackSpeed");
+  }
+
+  if (
+    /blue buff|shojin|archangel|adaptive|mana/.test(text) ||
+    components.includes("Tear of the Goddess")
+  ) {
+    tags.add("mana");
+  }
+
+  if (
+    /warmog|gargoyle|dragon|bramble|spirit visage|protector|steadfast|sunfire|evenshroud|cloak|armor|health|shield|tank/.test(
+      text,
+    )
+  ) {
+    tags.add("tank");
+  }
+
+  if (
+    /last whisper|statikk|shiv|ionic|evenshroud|sunfire|red buff|morello|shred|sunder|burn|wound|anti-heal|utility/.test(
+      text,
+    )
+  ) {
+    tags.add("utility");
+  }
+
+  if (
+    /bloodthirster|hand of justice|edge of night|sterak|titan|quicksilver|omnivamp|survivability/.test(
+      text,
+    )
+  ) {
+    tags.add("survivability");
+  }
+
+  if (
+    /emblem/.test(text) ||
+    components.includes("Spatula") ||
+    components.includes("Frying Pan")
+  ) {
+    tags.add("emblem");
+  }
+
+  return [...tags];
+}
+
+function getUnitRoleText(unit = {}) {
+  return `${unit.name || ""} ${unit.role || ""} ${(unit.traits || []).join(" ")} ${unit.ability?.desc || ""}`.toLowerCase();
+}
+
+function getBestItemNamesForCarry(carry, itemSetStats = {}, itemStats = {}) {
+  if (!carry) return [];
+
+  const sets = getBestItemSetsForUnit(carry, itemSetStats, itemStats);
+  const names = [];
+
+  sets.forEach((set) => {
+    (set.items || []).forEach((item) => {
+      if (item && !names.includes(item)) names.push(item);
+    });
+  });
+
+  getBestItemsForUnit(carry, itemStats, itemSetStats).forEach((item) => {
+    if (item && !names.includes(item)) names.push(item);
+  });
+
+  return names.slice(0, 9);
+}
+
+function chooseClientItemHolder(tags = [], units = [], carry = null) {
+  const tagSet = new Set(tags);
+
+  if (tagSet.has("tank") && !tagSet.has("ap") && !tagSet.has("ad")) {
+    const front = units.filter(isFrontlineUnit).sort((a, b) => {
+      return (
+        Number(b.cost || 0) - Number(a.cost || 0) ||
+        String(a.name).localeCompare(String(b.name))
+      );
+    })[0];
+    return { unit: front || units[0] || null, role: "frontline" };
+  }
+
+  if (tagSet.has("utility") && !tagSet.has("ap") && !tagSet.has("ad")) {
+    const utilityHolder = units.find(
+      (unit) =>
+        unit.id !== carry?.id &&
+        Number(unit?.stats?.range ?? unit?.range ?? 1) >= 3,
+    );
+    return {
+      unit: utilityHolder || carry || units[0] || null,
+      role: "utility",
+    };
+  }
+
+  return { unit: carry || units[0] || null, role: "carry" };
+}
+
+function getLiveItemBuildAdvice({
+  itemCatalog = {},
+  components = [],
+  units = [],
+  carry = null,
+  itemSetStats = {},
+  itemStats = {},
+  minFrontline = 0,
+} = {}) {
+  const selectedCounts = countSelectedComponents(components);
+  const carryBestNames = getBestItemNamesForCarry(
+    carry,
+    itemSetStats,
+    itemStats,
+  ).map(canonicalItemName);
+
+  const carryText = getUnitRoleText(carry);
+  const frontlineCount = units.filter(isFrontlineUnit).length;
+
+  const isAdCarry = /ad|attack|physical|marksman|sniper|crit/.test(carryText);
+  const isApCarry =
+    /ap|caster|magic|spell|mana|ability/.test(carryText) && !isAdCarry;
+
+  const carryBestItems = carryBestNames.map((name, index) => {
+    const canonical = canonicalItemName(name);
+    const details = getItemCatalogEntry(canonical, itemCatalog);
+    const needed = details.components || [];
+
+    return {
+      name: canonical,
+      score: Math.max(40, 120 - index * 8),
+      iconUrl: ITEM_ICON_OVERRIDES[canonical] || details.iconUrl,
+      components: needed,
+      canBuildNow:
+        needed.length > 0 && canBuildFromComponents(needed, selectedCounts),
+    };
+  });
+
+  const craftableByName = new Map();
+
+  Object.entries(itemCatalog || {}).forEach(([rawItemName, rawDetails]) => {
+    const itemName = canonicalItemName(rawItemName);
+    const details = getItemCatalogEntry(itemName, itemCatalog);
+    const required = details.components || [];
+
+    if (
+      required.length === 2 &&
+      required.every((component) => BASE_COMPONENTS.includes(component)) &&
+      canBuildFromComponents(required, selectedCounts)
+    ) {
+      const key = normalizeItemName(itemName);
+
+      if (!craftableByName.has(key)) {
+        craftableByName.set(key, {
+          itemName,
+          details,
+        });
+      }
+    }
+  });
+
+  const recommendations = [...craftableByName.values()]
+    .map(({ itemName, details }) => {
+      const tags = getClientItemTags(itemName, details);
+      const tagSet = new Set(tags);
+      const reasons = [];
+      let score = 45;
+
+      const carryIndex = carryBestNames.findIndex(
+        (name) => normalizeItemName(name) === normalizeItemName(itemName),
+      );
+
+      if (carryIndex >= 0) {
+        score += Math.max(52, 96 - carryIndex * 10);
+        reasons.push(
+          `${itemName} appears in ${carry?.name || "your carry"}'s best item data.`,
+        );
+      }
+
+      if (isAdCarry) {
+        if (
+          tagSet.has("ad") ||
+          tagSet.has("crit") ||
+          tagSet.has("attackSpeed")
+        ) {
+          score += 36;
+          reasons.push("Fits an AD / physical carry.");
+        }
+
+        if (tagSet.has("ap") && !tagSet.has("flex")) {
+          score -= 45;
+          reasons.push(
+            `Weak fit: ${carry?.name || "this carry"} is AD, not AP.`,
+          );
+        }
+      }
+
+      if (isApCarry) {
+        if (tagSet.has("ap") || tagSet.has("mana")) {
+          score += 36;
+          reasons.push("Fits an AP / caster carry.");
+        }
+
+        if (tagSet.has("ad") && !tagSet.has("flex")) {
+          score -= 45;
+          reasons.push(
+            `Weak fit: ${carry?.name || "this carry"} is AP, not AD.`,
+          );
+        }
+      }
+
+      if (tagSet.has("tank")) {
+        score += frontlineCount <= Number(minFrontline || 2) ? 18 : 8;
+        reasons.push(
+          "Tank stats are useful, but do not over-prioritize tank items on the carry.",
+        );
+      }
+
+      if (tagSet.has("utility")) {
+        score += 16;
+        reasons.push("Utility shred, burn or anti-heal is rarely wasted.");
+      }
+
+      if (tagSet.has("flex")) {
+        score += 8;
+        reasons.push("Flexible item; acceptable if you need to slam now.");
+      }
+
+      const holder = chooseClientItemHolder(tags, units, carry);
+
+      return {
+        item: {
+          name: itemName,
+          iconUrl: ITEM_ICON_OVERRIDES[itemName] || details.iconUrl,
+          components: details.components || [],
+          tags,
+        },
+        score: Math.round(score),
+        holder: holder.unit
+          ? { id: holder.unit.id, name: holder.unit.name, role: holder.role }
+          : null,
+        priority:
+          score >= 125
+            ? "Slam now"
+            : score >= 100
+              ? "Strong build"
+              : score >= 78
+                ? "Playable"
+                : "Hold / low priority",
+        reasons: reasons.slice(0, 3),
+      };
+    })
+    .sort((a, b) => b.score - a.score || a.item.name.localeCompare(b.item.name))
+    .slice(0, 8);
+
+  return {
+    components: Object.entries(selectedCounts)
+      .filter(([component]) => BASE_COMPONENTS.includes(component))
+      .map(
+        ([component, count]) => `${component}${count > 1 ? ` x${count}` : ""}`,
+      ),
+    carry: carry ? { id: carry.id, name: carry.name } : null,
+    carryBestItems,
+    recommendations,
+    notes: recommendations.length
+      ? [
+          `Build now: ${recommendations[0].item.name}${recommendations[0].holder?.name ? ` on ${recommendations[0].holder.name}` : ""}.`,
+        ]
+      : components.length
+        ? ["The clicked components do not complete a normal item yet."]
+        : [
+            "Click components to instantly see what to build for the selected comp.",
+          ],
+  };
+}
+
+function getLiveAugmentAdvice({
+  augments = [],
+  selectedAugmentIds = [],
+  offeredAugmentIds = [],
+  units = [],
+  carry = null,
+  activeTraits = [],
+  targetTrait = "",
+  minFrontline = 0,
+  components = [],
+  liveState = {},
+  playStyle = "first",
+} = {}) {
+  const normalized = augments.map(normalizeAugment);
+  const byId = new Map(normalized.map((augment) => [augment.id, augment]));
+  const selected = selectedAugmentIds.map((id) => byId.get(id)).filter(Boolean);
+  const offeredPool = offeredAugmentIds.length
+    ? offeredAugmentIds.map((id) => byId.get(id)).filter(Boolean)
+    : normalized.filter((augment) => !selectedAugmentIds.includes(augment.id));
+
+  const activeTraitNames = (activeTraits || [])
+    .filter((trait) => trait.isActive)
+    .map((trait) => trait.name);
+  const carryText = getUnitRoleText(carry);
+  const frontlineCount = units.filter(isFrontlineUnit).length;
+  const lowCostCount = units.filter(
+    (unit) => Number(unit.cost || 1) <= 2,
+  ).length;
+  const highCostCount = units.filter(
+    (unit) => Number(unit.cost || 1) >= 4,
+  ).length;
+  const stageMajor = Number(String(liveState.stage || "").split("-")[0] || 0);
+  const hp = Number(liveState.hp || 0);
+
+  function scoreOne(augment) {
+    const text =
+      `${augment.name || ""} ${augment.description || ""} ${(augment.tags || []).join(" ")}`.toLowerCase();
+    const tags = new Set(augment.tags || []);
+    const reasons = [];
+    let score = 50;
+
+    if (Number(augment.tier) === 3) score += 4;
+    if (Number(augment.tier) === 2) score += 2;
+
+    if (targetTrait && text.includes(String(targetTrait).toLowerCase())) {
+      score += 42;
+      reasons.push(`Directly supports ${targetTrait}.`);
+    }
+
+    (carry?.traits || []).forEach((trait) => {
+      if (text.includes(String(trait).toLowerCase())) {
+        score += 24;
+        reasons.push(`Supports ${carry?.name || "carry"}'s ${trait} trait.`);
+      }
+    });
+
+    activeTraitNames.forEach((trait) => {
+      if (trait !== targetTrait && text.includes(String(trait).toLowerCase())) {
+        score += 12;
+        reasons.push(`Mentions active trait ${trait}.`);
+      }
+    });
+
+    units.forEach((unit) => {
+      const unitName = String(unit.name || "").toLowerCase();
+      if (!unitName || !text.includes(unitName)) return;
+      score += unit.id === carry?.id ? 44 : 20;
+      reasons.push(
+        unit.id === carry?.id
+          ? `Directly supports carry ${unit.name}.`
+          : `Supports board unit ${unit.name}.`,
+      );
+    });
+
+    if (tags.has("reroll")) {
+      if (lowCostCount >= 3 || Number(carry?.cost || 0) <= 3) {
+        score += 24;
+        reasons.push("Fits a reroll / upgrade-heavy board.");
+      } else {
+        score -= playStyle === "first" ? 24 : 12;
+        reasons.push("Reroll value is lower for a capped expensive board.");
+      }
+    }
+
+    if (tags.has("econ")) {
+      if (stageMajor <= 3 || highCostCount >= 2) {
+        score += 16;
+        reasons.push("Econ can convert into stronger level/roll timings.");
+      } else if (hp > 0 && hp <= 40) {
+        score -= 12;
+        reasons.push("Low HP usually needs combat power now.");
+      } else {
+        score += 4;
+      }
+    }
+
+    if (tags.has("combat")) {
+      score += playStyle === "first" ? 18 : 12;
+      reasons.push("Combat power helps convert the comp into fight wins.");
+    }
+
+    if (tags.has("defensive")) {
+      score += frontlineCount < Number(minFrontline || 2) ? 22 : 8;
+      reasons.push("Defensive value gives carries more time to deal damage.");
+    }
+
+    if (tags.has("offensive")) {
+      score += 12;
+      reasons.push("Offensive stats scale with your main carry.");
+    }
+
+    if (
+      tags.has("ap") &&
+      /ap|caster|magic|spell|mana|ability/.test(carryText)
+    ) {
+      score += 18;
+      reasons.push("AP/caster carry fit.");
+    }
+
+    if (
+      tags.has("ad") &&
+      /ad|attack|physical|marksman|sniper|crit/.test(carryText)
+    ) {
+      score += 18;
+      reasons.push("AD/attack-speed carry fit.");
+    }
+
+    if (tags.has("items")) {
+      score += components.length ? 12 : 5;
+      reasons.push(
+        "Item flexibility helps convert your components into a spike.",
+      );
+    }
+
+    if (tags.has("trait")) {
+      score += activeTraitNames.length >= 5 ? 16 : 8;
+      reasons.push("Trait-scaling augment has enough board context to matter.");
+    }
+
+    if (/pandora/.test(text) && components.length >= 2) {
+      score += 16;
+      reasons.push(
+        "Pandora-style item fixing is stronger with awkward components.",
+      );
+    }
+
+    if (
+      /tiny titans|tiniest titan|comeback|nine lives/.test(text) &&
+      hp > 0 &&
+      hp <= 45
+    ) {
+      score += 20;
+      reasons.push("Low HP increases comeback/health augment value.");
+    }
+
+    return {
+      augment,
+      score: Math.round(score),
+      reasons: reasons.slice(0, 4),
+    };
+  }
+
+  const selectedFit = selected.map(scoreOne);
+  const recommendations = offeredPool
+    .map(scoreOne)
+    .sort(
+      (a, b) =>
+        b.score - a.score || a.augment.name.localeCompare(b.augment.name),
+    )
+    .slice(0, offeredAugmentIds.length ? offeredAugmentIds.length : 8);
+
+  const warnings = selectedFit
+    .filter((entry) => entry.score < 48)
+    .map((entry) => `${entry.augment.name} looks low-fit for this comp.`);
+
+  return {
+    selected: selectedFit,
+    selectedScore: Math.round(
+      selectedFit.reduce((sum, entry) => sum + (entry.score - 50), 0),
+    ),
+    offeredCount: offeredAugmentIds.length,
+    recommendations,
+    warnings,
+  };
+}
+
+function normalizeSlug(value = "") {
+  return String(value)
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function normalizeAugment(augment = {}) {
+  const name = augment.name || augment.id || "Unknown Augment";
+  const id = augment.id || normalizeSlug(name);
+  const iconSlug = augment.iconSlug || id;
+
+  return {
+    ...augment,
+    id,
+    name,
+    tier: Number(augment.tier || 0) || 0,
+    tags: Array.isArray(augment.tags) ? augment.tags : [],
+    category: augment.category || "flex",
+    iconUrl:
+      augment.iconUrl ||
+      `https://cdn.mobalytics.gg/assets/tft/images/hextech-augments/set17/${iconSlug}.webp?v=5`,
+  };
+}
+
+function augmentTierLabel(tier) {
+  if (Number(tier) === 1) return "Silver";
+  if (Number(tier) === 2) return "Gold";
+  if (Number(tier) === 3) return "Prismatic";
+  return "Augment";
+}
+
+function augmentTierClasses(tier) {
+  if (Number(tier) === 1)
+    return "border-slate-300/40 bg-slate-300/10 text-slate-100";
+  if (Number(tier) === 2)
+    return "border-amber-300/40 bg-amber-300/10 text-amber-100";
+  if (Number(tier) === 3)
+    return "border-fuchsia-300/40 bg-fuchsia-400/10 text-fuchsia-100";
+  return "border-cyan-300/30 bg-cyan-300/10 text-cyan-100";
+}
+
+function AugmentIcon({ augment, size = "md" }) {
+  const normalized = normalizeAugment(augment);
+  const [failed, setFailed] = useState(false);
+  const sizeClass = size === "sm" ? "h-8 w-8" : "h-11 w-11";
+
+  return (
+    <div
+      className={cx(
+        "shrink-0 overflow-hidden rounded-xl border border-white/10 bg-black/25 shadow-inner shadow-white/5",
+        sizeClass,
+      )}
+      title={`${normalized.name}${normalized.description ? `\n${normalized.description}` : ""}`}
+    >
+      {!failed ? (
+        <img
+          src={normalized.iconUrl}
+          alt=""
+          className="h-full w-full object-cover"
+          loading="lazy"
+          onError={() => setFailed(true)}
+        />
+      ) : (
+        <div className="flex h-full w-full items-center justify-center text-xs font-black text-cyan-100">
+          {normalized.name.slice(0, 2).toUpperCase()}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function AugmentHoverTooltip({ augment }) {
+  const normalized = normalizeAugment(augment);
+
+  if (!normalized.description) return null;
+
+  return (
+    <div className="pointer-events-none absolute left-2 top-full z-[9999] mt-2 hidden w-80 rounded-2xl border border-fuchsia-300/35 bg-slate-950 px-4 py-3 text-left text-xs leading-5 text-fuchsia-50 shadow-2xl ring-1 ring-black/80 group-hover/augment:block">
+      <div className="mb-1 text-sm font-black text-white">
+        {normalized.name}
+      </div>
+      <div>{normalized.description}</div>
+    </div>
+  );
+}
+
+function ComponentPicker({
+  itemCatalog = {},
+  components = [],
+  setComponents,
+  compact = false,
+  title = "Components",
+  subtitle = "Click the component images you have.",
+}) {
+  const componentOptions = useMemo(() => {
+    const fromItems = new Set();
+
+    Object.values(itemCatalog || {}).forEach((item) => {
+      (item.components || []).forEach((component) => fromItems.add(component));
+    });
+
+    return [...new Set([...BASE_COMPONENTS, ...fromItems])].filter(
+      (component) => BASE_COMPONENTS.includes(component),
+    );
+  }, [itemCatalog]);
+
+  const componentCounts = useMemo(
+    () => countSelectedComponents(components),
+    [components],
+  );
+
+  function addComponent(component) {
+    setComponents?.((prev) => [...prev, component]);
+  }
+
+  function removeComponent(component) {
+    setComponents?.((prev) => {
+      const index = prev.indexOf(component);
+      if (index < 0) return prev;
+      return prev.filter((_, idx) => idx !== index);
+    });
+  }
+
+  return (
+    <div
+      className={cx(
+        "rounded-2xl border border-white/10 bg-black/15 p-3",
+        compact ? "" : "mb-4",
+      )}
+    >
+      <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+        <div>
+          <div className="text-sm font-black text-slate-100">{title}</div>
+          {subtitle && <div className="text-xs text-slate-500">{subtitle}</div>}
+        </div>
+        {components.length > 0 && (
+          <button
+            type="button"
+            onClick={() => setComponents?.([])}
+            className="rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-bold text-slate-300 hover:bg-white/10"
+          >
+            Clear
+          </button>
+        )}
+      </div>
+
+      <div
+        className={cx(
+          "grid gap-2",
+          compact
+            ? "grid-cols-5"
+            : "grid-cols-2 sm:grid-cols-5 lg:grid-cols-10",
+        )}
+      >
+        {componentOptions.map((component) => (
+          <div
+            key={component}
+            className={cx(
+              "relative rounded-2xl border p-1.5 text-center text-xs transition",
+              componentCounts[component]
+                ? "border-amber-300/50 bg-amber-400/10 text-amber-100"
+                : "border-white/10 bg-white/[0.035] text-slate-200 hover:bg-cyan-300/10",
+            )}
+          >
+            <button
+              type="button"
+              onClick={() => addComponent(component)}
+              className="flex w-full flex-col items-center gap-1"
+              title={`Add ${component}`}
+            >
+              <ComponentIcon
+                component={component}
+                size={compact ? "sm" : "md"}
+              />
+              {!compact && (
+                <span className="line-clamp-2 min-h-[2rem] font-black leading-4">
+                  {component}
+                </span>
+              )}
+              {componentCounts[component] ? (
+                <span className="absolute right-1 top-1 rounded-full bg-amber-300 px-1.5 py-0.5 text-[10px] font-black text-slate-950">
+                  ×{componentCounts[component]}
+                </span>
+              ) : null}
+            </button>
+            {componentCounts[component] ? (
+              <button
+                type="button"
+                onClick={() => removeComponent(component)}
+                className="mt-1 w-full rounded-lg border border-white/10 bg-black/20 px-1 py-0.5 text-[10px] font-black text-slate-200 hover:bg-red-400/15 hover:text-red-100"
+                title={`Remove one ${component}`}
+              >
+                −1
+              </button>
+            ) : null}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ComponentSidePanel({
+  itemCatalog = {},
+  components = [],
+  setComponents,
+  itemAdvice,
+}) {
+  const recommendedItems = itemAdvice?.recommendations?.slice(0, 6) || [];
+
+  return (
+    <aside className="relative z-[500] rounded-2xl border border-amber-300/20 bg-amber-400/[0.06] p-3 text-amber-50 xl:sticky xl:top-3 xl:self-start">
+      <ComponentPicker
+        itemCatalog={itemCatalog}
+        components={components}
+        setComponents={setComponents}
+        compact
+        title="Components → build now"
+        subtitle="Click components; item suggestions update instantly."
+      />
+
+      <div className="mt-3 rounded-2xl border border-white/10 bg-black/20 p-3">
+        <div className="mb-2 text-xs font-black uppercase tracking-[0.16em] text-amber-200/80">
+          Recommended items
+        </div>
+
+        {recommendedItems.length ? (
+          <div className="space-y-2">
+            {recommendedItems.map((entry, index) => (
+              <div
+                key={`${entry.item.name}-${index}`}
+                className={`rounded-2xl border p-2 ${
+                  index === 0
+                    ? "border-amber-300/35 bg-amber-300/10"
+                    : "border-white/10 bg-white/[0.03]"
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <ItemIcon item={entry.item.name} itemCatalog={itemCatalog} />
+
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <div className="truncate text-sm font-black text-white">
+                        {entry.item.name}
+                      </div>
+
+                      {index === 0 ? (
+                        <span className="rounded-full bg-amber-300/20 px-2 py-0.5 text-[10px] font-black uppercase text-amber-100">
+                          best
+                        </span>
+                      ) : null}
+                    </div>
+
+                    <div className="text-[11px] text-amber-100/75">
+                      {entry.priority}
+                      {entry.holder?.name
+                        ? ` · put on ${entry.holder.name}`
+                        : ""}
+                    </div>
+                  </div>
+
+                  <div className="rounded-full bg-white/10 px-2 py-0.5 text-[11px] font-black">
+                    {entry.score}
+                  </div>
+                </div>
+
+                <div className="mt-2 flex items-center gap-2">
+                  <ComponentIconRow components={entry.item.components || []} />
+                  <span className="text-[11px] text-amber-100/55">
+                    {entry.item.components?.join(" + ")}
+                  </span>
+                </div>
+
+                {entry.reasons?.length ? (
+                  <div className="mt-1 text-[11px] leading-4 text-amber-50/70">
+                    {entry.reasons[0]}
+                  </div>
+                ) : null}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-xs leading-5 text-amber-100/70">
+            {components.length
+              ? "No complete item from these components yet."
+              : "Click two components to see what to build."}
+          </div>
+        )}
+      </div>
+    </aside>
+  );
+}
+
+function AugmentAndItemPanel({
+  augments = [],
+  itemCatalog = {},
+  selectedAugmentIds,
+  setSelectedAugmentIds,
+  offeredAugmentIds,
+  setOfferedAugmentIds,
+  components,
+  setComponents,
+  liveState,
+  setLiveState,
+  showComponents = true,
+}) {
+  const [search, setSearch] = useState("");
+  const [tierFilter, setTierFilter] = useState("all");
+  const [categoryFilter, setCategoryFilter] = useState("all");
+
+  const normalizedAugments = useMemo(
+    () =>
+      augments
+        .map(normalizeAugment)
+        .sort((a, b) => a.tier - b.tier || a.name.localeCompare(b.name)),
+    [augments],
+  );
+
+  const categories = useMemo(() => {
+    const values = new Set(
+      normalizedAugments.map((augment) => augment.category).filter(Boolean),
+    );
+    return ["all", ...Array.from(values).sort()];
+  }, [normalizedAugments]);
+
+  const filteredAugments = useMemo(() => {
+    const query = search.trim().toLowerCase();
+
+    return normalizedAugments.filter((augment) => {
+      if (tierFilter !== "all" && Number(augment.tier) !== Number(tierFilter)) {
+        return false;
+      }
+
+      if (categoryFilter !== "all" && augment.category !== categoryFilter) {
+        return false;
+      }
+
+      if (!query) return true;
+
+      return `${augment.name} ${augment.description || ""} ${(augment.tags || []).join(" ")}`
+        .toLowerCase()
+        .includes(query);
+    });
+  }, [normalizedAugments, search, tierFilter, categoryFilter]);
+
+  function toggleSelectedAugment(id) {
+    setSelectedAugmentIds((prev) =>
+      prev.includes(id) ? prev.filter((value) => value !== id) : [...prev, id],
+    );
+  }
+
+  function toggleOfferedAugment(id) {
+    setOfferedAugmentIds((prev) =>
+      prev.includes(id) ? prev.filter((value) => value !== id) : [...prev, id],
+    );
+  }
+
+  function addComponent(component) {
+    setComponents((prev) => [...prev, component]);
+  }
+
+  function removeComponent(component) {
+    setComponents((prev) => {
+      const index = prev.indexOf(component);
+      if (index < 0) return prev;
+      return prev.filter((_, idx) => idx !== index);
+    });
+  }
+
+  return (
+    <section className="mb-4 rounded-2xl border border-cyan-300/15 bg-slate-950/62 p-3 shadow-xl shadow-black/25">
+      <div className="mb-3 flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <div className="tft-section-title text-xs">Live Coach Inputs</div>
+          <div className="max-w-3xl text-xs leading-5 text-slate-400">
+            Mark your offered/selected augments, components, stage and economy.
+            Optimize will score boards and augment choices around the same comp.
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-2 text-xs text-cyan-100/85">
+          <span className="rounded-full bg-cyan-300/10 px-3 py-1">
+            Selected augments {selectedAugmentIds.length}/3
+          </span>
+          <span className="rounded-full bg-amber-300/10 px-3 py-1">
+            Offered {offeredAugmentIds.length || "all"}
+          </span>
+          <span className="rounded-full bg-white/10 px-3 py-1">
+            Components {components.length}
+          </span>
+        </div>
+      </div>
+
+      <div className="mb-3 grid gap-2 md:grid-cols-4">
+        <Control label="Stage">
+          <input
+            value={liveState.stage || ""}
+            onChange={(event) =>
+              setLiveState((prev) => ({ ...prev, stage: event.target.value }))
+            }
+            placeholder="4-2"
+            className="input"
+          />
+        </Control>
+        <Control label="HP">
+          <input
+            type="number"
+            min="1"
+            max="100"
+            value={liveState.hp ?? ""}
+            onChange={(event) =>
+              setLiveState((prev) => ({
+                ...prev,
+                hp: Number(event.target.value),
+              }))
+            }
+            className="input"
+          />
+        </Control>
+        <Control label="Gold">
+          <input
+            type="number"
+            min="0"
+            value={liveState.gold ?? ""}
+            onChange={(event) =>
+              setLiveState((prev) => ({
+                ...prev,
+                gold: Number(event.target.value),
+              }))
+            }
+            className="input"
+          />
+        </Control>
+        <Control label="Level">
+          <input
+            type="number"
+            min="1"
+            max="10"
+            value={liveState.level ?? ""}
+            onChange={(event) =>
+              setLiveState((prev) => ({
+                ...prev,
+                level: Number(event.target.value),
+              }))
+            }
+            className="input"
+          />
+        </Control>
+      </div>
+
+      {showComponents && (
+        <ComponentPicker
+          itemCatalog={itemCatalog}
+          components={components}
+          setComponents={setComponents}
+          title="Components"
+          subtitle="Click the component images you have. The selected comp will recommend what to build from them."
+        />
+      )}
+
+      <div className="rounded-2xl border border-white/10 bg-black/15 p-3">
+        <div className="mb-3 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+          <div>
+            <div className="text-sm font-black text-slate-100">Augments</div>
+            <div className="text-xs text-slate-500">
+              Selected = you already took it. Offered = current augment choices
+              to rank.
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <input
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+              placeholder="Search augment, tag, trait..."
+              className="input w-56"
+            />
+            <select
+              value={tierFilter}
+              onChange={(event) => setTierFilter(event.target.value)}
+              className="input w-32"
+            >
+              <option value="all">All tiers</option>
+              <option value="1">Silver</option>
+              <option value="2">Gold</option>
+              <option value="3">Prismatic</option>
+            </select>
+            <select
+              value={categoryFilter}
+              onChange={(event) => setCategoryFilter(event.target.value)}
+              className="input w-36 capitalize"
+            >
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+            <button
+              type="button"
+              onClick={() => {
+                setSelectedAugmentIds([]);
+                setOfferedAugmentIds([]);
+              }}
+              className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold text-slate-300 hover:bg-white/10"
+            >
+              Clear augments
+            </button>
+          </div>
+        </div>
+
+        <div className="grid max-h-[390px] gap-2 overflow-auto pr-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+          {filteredAugments.map((augment) => {
+            const selected = selectedAugmentIds.includes(augment.id);
+            const offered = offeredAugmentIds.includes(augment.id);
+
+            return (
+              <div
+                key={augment.id}
+                className={cx(
+                  "group/augment relative rounded-2xl border p-2 transition",
+                  selected
+                    ? "border-emerald-300/50 bg-emerald-400/10"
+                    : offered
+                      ? "border-amber-300/50 bg-amber-400/10"
+                      : "border-white/10 bg-white/[0.035] hover:bg-white/[0.07]",
+                )}
+              >
+                <div className="flex gap-2">
+                  <AugmentIcon augment={augment} />
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-start justify-between gap-2">
+                      <div
+                        className="truncate text-sm font-black text-slate-100"
+                        title={augment.name}
+                      >
+                        {augment.name}
+                      </div>
+                      <span
+                        className={cx(
+                          "rounded-full border px-2 py-0.5 text-[10px] font-black",
+                          augmentTierClasses(augment.tier),
+                        )}
+                      >
+                        {augmentTierLabel(augment.tier)}
+                      </span>
+                    </div>
+                    <div className="mt-1 line-clamp-2 text-xs leading-4 text-slate-400">
+                      {augment.description}
+                    </div>
+                  </div>
+                </div>
+                <AugmentHoverTooltip augment={augment} />
+
+                <div className="mt-2 flex flex-wrap gap-1">
+                  {(augment.tags || []).slice(0, 4).map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full bg-black/25 px-2 py-0.5 text-[10px] text-cyan-100/80"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-2 grid grid-cols-2 gap-1.5">
+                  <button
+                    type="button"
+                    onClick={() => toggleSelectedAugment(augment.id)}
+                    className={cx(
+                      "rounded-xl px-2 py-1.5 text-xs font-black transition",
+                      selected
+                        ? "bg-emerald-300 text-slate-950"
+                        : "bg-white/8 text-slate-200 hover:bg-emerald-300/20",
+                    )}
+                  >
+                    {selected ? "Selected" : "Mark selected"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => toggleOfferedAugment(augment.id)}
+                    className={cx(
+                      "rounded-xl px-2 py-1.5 text-xs font-black transition",
+                      offered
+                        ? "bg-amber-300 text-slate-950"
+                        : "bg-white/8 text-slate-200 hover:bg-amber-300/20",
+                    )}
+                  >
+                    {offered ? "Offered" : "Offer"}
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AugmentAdviceCard({ advice }) {
+  const recommendations = advice?.recommendations || [];
+  const selected = advice?.selected || [];
+  const offeredCount = Number(advice?.offeredCount || 0);
+
+  return (
+    <div className="rounded-2xl border border-fuchsia-300/20 bg-fuchsia-400/7 p-3 text-sm text-fuchsia-50">
+      <div className="mb-2 flex items-center justify-between gap-2">
+        <div>
+          <div className="text-xs font-black uppercase tracking-[0.16em] text-fuchsia-200/80">
+            Augment advisor
+          </div>
+          <div className="text-xs text-fuchsia-100/65">
+            {offeredCount
+              ? "Ranks your offered choices for this exact board."
+              : "Shows best augments for this comp shape; mark Offered to rank a real shop."}
+          </div>
+        </div>
+        {typeof advice?.selectedScore === "number" && (
+          <div className="rounded-full bg-black/25 px-3 py-1 text-xs font-black">
+            Fit {advice.selectedScore}
+          </div>
+        )}
+      </div>
+
+      {selected.length > 0 && (
+        <div className="mb-3 rounded-xl bg-black/20 p-2">
+          <div className="mb-1 text-xs font-black text-fuchsia-100">
+            Already selected
+          </div>
+          <div className="space-y-1">
+            {selected.map((entry) => (
+              <div
+                key={entry.augment.id}
+                className="group/augment relative flex items-center gap-2 text-xs"
+              >
+                <AugmentIcon augment={entry.augment} size="sm" />
+                <span className="font-bold">{entry.augment.name}</span>
+                <span
+                  className={
+                    entry.score >= 65
+                      ? "text-emerald-200"
+                      : entry.score < 48
+                        ? "text-red-200"
+                        : "text-amber-200"
+                  }
+                >
+                  Score {entry.score}
+                </span>
+                <AugmentHoverTooltip augment={entry.augment} />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {recommendations.length > 0 ? (
+        <div className="space-y-2">
+          {recommendations.slice(0, 5).map((entry, index) => (
+            <div
+              key={entry.augment.id}
+              className="group/augment relative rounded-xl border border-white/10 bg-black/20 p-2"
+            >
+              <div className="flex gap-2">
+                <AugmentIcon augment={entry.augment} size="sm" />
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="truncate font-black">
+                      #{index + 1} {entry.augment.name}
+                    </div>
+                    <div className="rounded-full bg-white/10 px-2 py-0.5 text-[11px] font-black">
+                      {entry.score}
+                    </div>
+                  </div>
+                  <div className="text-xs text-fuchsia-100/70">
+                    {entry.augment.category || "flex"} ·{" "}
+                    {augmentTierLabel(entry.augment.tier)}
+                  </div>
+                </div>
+              </div>
+              <AugmentHoverTooltip augment={entry.augment} />
+              {entry.reasons?.length > 0 && (
+                <ul className="mt-2 list-disc space-y-1 pl-5 text-xs leading-4 text-fuchsia-50/80">
+                  {entry.reasons.slice(0, 2).map((reason) => (
+                    <li key={reason}>{reason}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="rounded-xl bg-black/20 p-2 text-xs text-fuchsia-100/70">
+          No augment data yet. Pick/optimize a comp, then mark Offered augments
+          to rank your real choices.
+        </div>
+      )}
+
+      {advice?.warnings?.length > 0 && (
+        <div className="mt-3 rounded-xl border border-red-300/30 bg-red-500/15 p-2 text-xs text-red-100">
+          {advice.warnings.join(" ")}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ItemBuildAdviceCard({ advice, itemCatalog = {} }) {
+  const recommendations = advice?.recommendations || [];
+  const carryBestItems = advice?.carryBestItems || [];
+  const notes = advice?.notes || [];
+
+  return (
+    <div className="rounded-2xl border border-amber-300/20 bg-amber-400/7 p-3 text-sm text-amber-50">
+      <div className="mb-2 flex items-center justify-between gap-2">
+        <div>
+          <div className="text-xs font-black uppercase tracking-[0.16em] text-amber-200/80">
+            Item builder
+          </div>
+          <div className="text-xs text-amber-100/65">
+            Recommends what to build from your clicked components for this comp.
+          </div>
+        </div>
+        {advice?.components?.length ? (
+          <div className="rounded-full bg-black/25 px-3 py-1 text-xs font-black">
+            {advice.components.length} comp.
+          </div>
+        ) : null}
+      </div>
+
+      {notes.length > 0 && (
+        <div className="mb-3 rounded-xl bg-black/20 p-2 text-xs leading-5 text-amber-50/85">
+          {notes.slice(0, 2).map((note) => (
+            <div key={note}>{note}</div>
+          ))}
+        </div>
+      )}
+
+      {recommendations.length > 0 ? (
+        <div className="space-y-2">
+          {recommendations.slice(0, 5).map((entry, index) => (
+            <div
+              key={entry.item.name}
+              className="rounded-xl border border-white/10 bg-black/20 p-2"
+            >
+              <div className="flex gap-2">
+                <ItemIcon
+                  item={entry.item.name}
+                  itemCatalog={itemCatalog}
+                  size="sm"
+                />
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="truncate font-black">
+                      #{index + 1} {entry.item.name}
+                    </div>
+                    <div className="rounded-full bg-white/10 px-2 py-0.5 text-[11px] font-black">
+                      {entry.score}
+                    </div>
+                  </div>
+                  <div className="text-xs text-amber-100/70">
+                    {entry.priority}
+                    {entry.holder?.name ? ` · on ${entry.holder.name}` : ""}
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-2 flex items-center justify-between gap-2">
+                <ComponentIconRow components={entry.item.components || []} />
+                <div className="text-[10px] uppercase tracking-[0.16em] text-amber-100/50">
+                  {entry.holder?.role || "item"}
+                </div>
+              </div>
+
+              {entry.reasons?.length > 0 && (
+                <ul className="mt-2 list-disc space-y-1 pl-5 text-xs leading-4 text-amber-50/80">
+                  {entry.reasons.slice(0, 2).map((reason) => (
+                    <li key={reason}>{reason}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="rounded-xl bg-black/20 p-2 text-xs text-amber-100/70">
+          Click component images to instantly see craftable item recommendations
+          for this comp.
+        </div>
+      )}
+
+      {carryBestItems.length > 0 && (
+        <div className="mt-3 rounded-xl border border-white/10 bg-black/20 p-2">
+          <div className="mb-2 text-xs font-black text-amber-100">
+            Carry targets
+            {advice?.carry?.name ? ` for ${advice.carry.name}` : ""}
+          </div>
+          <div className="space-y-1.5">
+            {carryBestItems.slice(0, 4).map((item) => (
+              <div
+                key={item.name}
+                className="flex items-center justify-between gap-2 text-xs"
+              >
+                <div className="flex min-w-0 items-center gap-2">
+                  <ItemIcon
+                    item={item.name}
+                    itemCatalog={itemCatalog}
+                    size="sm"
+                  />
+                  <span className="truncate font-bold">{item.name}</span>
+                </div>
+                <span
+                  className={
+                    item.canBuildNow
+                      ? "rounded-full bg-emerald-300/15 px-2 py-0.5 text-emerald-100"
+                      : "rounded-full bg-white/10 px-2 py-0.5 text-slate-300"
+                  }
+                >
+                  {item.canBuildNow ? "Build now" : "Target"}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function getLiveCoachNotes({
+  comp,
+  liveState = {},
+  components = [],
+  minFrontline = 0,
+  playStyle = "first",
+  targetTrait,
+}) {
+  const notes = [];
+  const stageMajor = Number(String(liveState.stage || "").split("-")[0] || 0);
+  const hp = Number(liveState.hp || 0);
+  const gold = Number(liveState.gold || 0);
+  const level = Number(liveState.level || 0);
+  const frontlineCount = countFrontlineUnits(comp?.units || []);
+  const carryCost = Number(comp?.carry?.cost || 0);
+  const lowCostUnits = (comp?.units || []).filter(
+    (unit) => Number(unit.cost || 1) <= 2,
+  );
+  const highCostUnits = (comp?.units || []).filter(
+    (unit) => Number(unit.cost || 1) >= 4,
+  );
+
+  if (playStyle === "first") {
+    notes.push(
+      "Goal is 1st: prioritize capped board quality over random extra active traits.",
+    );
+  }
+
+  if (targetTrait) {
+    notes.push(
+      `Do not force ${targetTrait} if the strongest temporary board is upgraded units + items. Treat the target as your cap, not every stage.`,
+    );
+  }
+
+  if (frontlineCount < Number(minFrontline || 0)) {
+    notes.push(
+      `Frontline is short (${frontlineCount}/${minFrontline}). Add real tank/CC before adding more backline damage.`,
+    );
+  } else if (
+    frontlineCount >= Number(minFrontline || 0) + 2 &&
+    highCostUnits.length < 2
+  ) {
+    notes.push(
+      "You may be over-investing in frontline. In capped boards, premium utility/damage can beat another low-impact tank.",
+    );
+  }
+
+  if (stageMajor <= 2) {
+    notes.push(
+      "Early game: play strongest upgraded board and slam flexible items; do not tunnel on final traits yet.",
+    );
+  } else if (stageMajor === 3) {
+    notes.push(
+      hp && hp < 60
+        ? "Stage 3 with lower HP: stabilize on level 6, roll lightly, then rebuild economy."
+        : "Stage 3: keep econ if stable; roll only for pairs/core upgrades or to stop heavy HP loss.",
+    );
+  } else if (stageMajor === 4) {
+    notes.push(
+      level < 8
+        ? "Stage 4: most first-place lines want level 8 access soon. Level/roll for your 4-cost carry or premium frontline."
+        : "Stage 4 at level 8: roll until board is stable, then preserve gold for cap upgrades.",
+    );
+  } else if (stageMajor >= 5) {
+    notes.push(
+      playStyle === "first"
+        ? "Late game for 1st: push level 9/10 only if stable; otherwise roll deep for 2★ 4-costs, frontline and itemized carry."
+        : "Late game: protect Top 4 first. Roll for upgrades if you are losing rounds hard.",
+    );
+  }
+
+  if (hp && hp <= 35) {
+    notes.push(
+      "Low HP: combat power now beats greedy econ. Pick augments/items that win the next fights.",
+    );
+  } else if (gold >= 50 && hp >= 65 && playStyle === "first") {
+    notes.push(
+      "Healthy with 50g+: greed toward a higher cap, but only if you are not bleeding multiple lives per round.",
+    );
+  }
+
+  if (components.length >= 2) {
+    notes.push(
+      `You marked ${components.length} components. Use the augment advisor to prefer item-flex/combat augments if they convert into an immediate spike.`,
+    );
+  }
+
+  if (carryCost <= 3 && carryCost > 0 && lowCostUnits.length >= 3) {
+    notes.push(
+      "This looks reroll-ish. Reroll/econ augments get better only if you are actually committing to 3★ upgrades.",
+    );
+  }
+
+  const topAugment = comp?.augmentAdvice?.recommendations?.[0];
+  if (topAugment) {
+    notes.push(
+      `Best offered augment for this comp: ${topAugment.augment.name} (${topAugment.score}).`,
+    );
+  }
+
+  return notes.slice(0, 7);
+}
+
+function LiveCoachCard({ notes = [] }) {
+  return (
+    <InfoCard
+      icon={<Sparkles />}
+      title="Live Coach"
+      items={
+        notes.length
+          ? notes
+          : [
+              "Set stage/HP/gold/items, then press Optimize to get stage-aware notes.",
+            ]
+      }
+    />
   );
 }
 
@@ -2017,7 +3807,9 @@ function PersonalCompStats({ comp, matchHistory = [] }) {
     (entries.filter((entry) => Number(entry.placement || 8) === 1).length /
       entries.length) *
     100;
-
+  const entriesWithNotes = entries
+    .filter((entry) => String(entry.notes || "").trim())
+    .slice(0, 5);
   return (
     <div className="rounded-2xl border border-cyan-300/15 bg-cyan-400/5 p-3 text-sm text-cyan-100">
       <div className="mb-3 font-black">Personal stats</div>
@@ -2040,6 +3832,34 @@ function PersonalCompStats({ comp, matchHistory = [] }) {
       <div className="mt-2 text-xs text-cyan-100/80">
         Win rate: <b>{winRate.toFixed(0)}%</b>
       </div>
+      {entriesWithNotes.length > 0 && (
+        <div className="mt-3 border-t border-white/10 pt-3">
+          <div className="mb-2 text-xs font-black uppercase tracking-wide text-cyan-100">
+            Saved notes
+          </div>
+
+          <div className="space-y-2">
+            {entriesWithNotes.map((entry) => (
+              <div
+                key={entry.id || `${entry.createdAt}-${entry.placement}`}
+                className="rounded-xl bg-black/20 p-2 text-xs text-slate-300"
+              >
+                <div className="mb-1 flex flex-wrap items-center gap-2 text-[11px] text-slate-400">
+                  <span>#{entry.placement}</span>
+                  <span>{entry.rating}</span>
+                  {entry.createdAt && (
+                    <span>
+                      {new Date(entry.createdAt).toLocaleDateString()}
+                    </span>
+                  )}
+                </div>
+
+                <div className="leading-5 text-slate-200">{entry.notes}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -2178,6 +3998,14 @@ function CompDetail({
   allowEmblems = true,
   allowMechaTransformer = true,
   matchHistory = [],
+  augments = [],
+  selectedAugmentIds = [],
+  offeredAugmentIds = [],
+  components = [],
+  setComponents,
+  liveState = {},
+  playStyle = "first",
+  coreUnitPickerNode = null,
   onMatchHistorySaved,
   onLockCompUnits,
 }) {
@@ -2237,6 +4065,43 @@ function CompDetail({
     upgradedMechaIds,
     traitsConfig || [],
   );
+
+  const liveItemAdvice = getLiveItemBuildAdvice({
+    itemCatalog,
+    components,
+    units: effectiveBoardUnits,
+    carry: comp.carry,
+    itemSetStats,
+    itemStats,
+    minFrontline,
+  });
+
+  const liveAugmentAdvice = getLiveAugmentAdvice({
+    augments,
+    selectedAugmentIds,
+    offeredAugmentIds,
+    units: effectiveBoardUnits,
+    carry: comp.carry,
+    activeTraits: manualTraitRows,
+    targetTrait,
+    minFrontline,
+    components,
+    liveState,
+    playStyle,
+  });
+
+  const liveCoachNotes = getLiveCoachNotes({
+    comp: {
+      ...comp,
+      units: effectiveBoardUnits,
+      augmentAdvice: liveAugmentAdvice,
+    },
+    liveState,
+    components,
+    minFrontline,
+    playStyle,
+    targetTrait,
+  });
 
   const targetTraitCount = Number(
     targetCount || comp.primaryTrait?.targetCount || 0,
@@ -2340,65 +4205,90 @@ function CompDetail({
   return (
     <div className="space-y-5">
       <div className="tft-glow-panel rounded-2xl border border-amber-200/10 bg-slate-950/72 p-3 shadow-2xl shadow-black/30">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <div className="tft-section-title text-[11px]">
-              Recommended Composition
-            </div>
+        <div className="grid items-start gap-4 xl:grid-cols-[minmax(0,1fr)_360px]">
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <div className="tft-section-title text-[11px]">
+                  Recommended Composition
+                </div>
 
-            <h2 className="text-xl font-black text-slate-50 md:text-2xl">
-              {targetTrait && targetTraitCount
-                ? `${targetTrait} ${currentTargetTraitCount}/${targetTraitCount} · ${
-                    manualTraitRows.filter(
-                      (trait) => trait.isActive && !trait.isUnique,
-                    ).length
-                  } active traits`
-                : comp.label}
-            </h2>
-          </div>
+                <h2 className="text-xl font-black text-slate-50 md:text-2xl">
+                  {targetTrait && targetTraitCount
+                    ? `${targetTrait} ${currentTargetTraitCount}/${targetTraitCount} · ${
+                        manualTraitRows.filter(
+                          (trait) => trait.isActive && !trait.isUnique,
+                        ).length
+                      } active traits`
+                    : comp.label}
+                </h2>
+              </div>
 
-          <div className="grid grid-cols-2 gap-2 text-sm sm:grid-cols-5">
-            <div className="rounded-2xl border border-amber-200/40 bg-amber-300/10 px-4 py-3 text-amber-100">
-              <div className="text-xs">Carry</div>
-              <div className="font-black">{comp.carry?.name || "Auto"}</div>
-            </div>
-            <div
-              className={cx(
-                "rounded-xl border px-3 py-2",
-                frontlineMissing
-                  ? "border-red-300/40 bg-red-500/15 text-red-100"
-                  : "border-emerald-300/30 bg-emerald-400/10 text-emerald-100",
-              )}
-            >
-              <div className="text-xs">Frontline</div>
-              <div className="font-black">
-                {frontlineCount}/{minFrontline}
+              <div className="grid grid-cols-2 gap-2 text-sm sm:grid-cols-5">
+                <div className="rounded-2xl border border-amber-200/40 bg-amber-300/10 px-4 py-3 text-amber-100">
+                  <div className="text-xs">Carry</div>
+                  <div className="font-black">{comp.carry?.name || "Auto"}</div>
+                </div>
+                <div
+                  className={cx(
+                    "rounded-xl border px-3 py-2",
+                    frontlineMissing
+                      ? "border-red-300/40 bg-red-500/15 text-red-100"
+                      : "border-emerald-300/30 bg-emerald-400/10 text-emerald-100",
+                  )}
+                >
+                  <div className="text-xs">Frontline</div>
+                  <div className="font-black">
+                    {frontlineCount}/{minFrontline}
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-cyan-300/20 bg-cyan-400/10 px-4 py-3 text-cyan-100">
+                  <div className="text-xs">Board</div>
+                  <div className="font-black">
+                    {boardSlotsUsed}/{boardSlotLimit}
+                  </div>
+                </div>
+                <CopyCompButton units={effectiveBoardUnits} />
+                <button
+                  type="button"
+                  onClick={() => onLockCompUnits?.(effectiveBoardUnits, comp)}
+                  className="rounded-2xl border border-amber-300/30 bg-amber-300/10 px-4 py-3 text-left text-amber-100 transition hover:bg-amber-300/20"
+                  title="Use this visible board as locked core units for the next optimization"
+                >
+                  <div className="text-xs">Planning</div>
+                  <div className="font-black">Lock Board</div>
+                </button>
               </div>
             </div>
-            <div className="rounded-2xl border border-cyan-300/20 bg-cyan-400/10 px-4 py-3 text-cyan-100">
-              <div className="text-xs">Board</div>
-              <div className="font-black">
-                {boardSlotsUsed}/{boardSlotLimit}
-              </div>
+
+            <TraitBar
+              traits={manualTraitRows}
+              traitProfiles={traitProfiles}
+              traitsConfig={traitsConfig}
+            />
+            <div className="relative z-[200] mt-4 overflow-visible">
+              <TftBoard
+                units={effectiveBoardUnits}
+                carryId={comp.carry?.id}
+                upgradedMechaIds={upgradedMechaIds}
+                upgradedMechaUnits={upgradedMechaUnits}
+                armedTool={armedTool}
+                onToggleMechaTransformer={toggleMechaTransformer}
+                onRemoveUnit={removeBoardUnit}
+                onAddEmblem={toggleEmblemOnUnit}
+                boardSlotLimit={boardSlotLimit}
+                starPlans={starPlans}
+              />
             </div>
-            <CopyCompButton units={effectiveBoardUnits} />
-            <button
-              type="button"
-              onClick={() => onLockCompUnits?.(effectiveBoardUnits, comp)}
-              className="rounded-2xl border border-amber-300/30 bg-amber-300/10 px-4 py-3 text-left text-amber-100 transition hover:bg-amber-300/20"
-              title="Use this visible board as locked core units for the next optimization"
-            >
-              <div className="text-xs">Planning</div>
-              <div className="font-black">Lock Board</div>
-            </button>
           </div>
+
+          <ComponentSidePanel
+            itemCatalog={itemCatalog}
+            components={components}
+            setComponents={setComponents}
+            itemAdvice={liveItemAdvice}
+          />
         </div>
-
-        <TraitBar
-          traits={manualTraitRows}
-          traitProfiles={traitProfiles}
-          traitsConfig={traitsConfig}
-        />
 
         {allowEmblems && <EmblemTray traitsConfig={traitsConfig || []} />}
 
@@ -2449,21 +4339,6 @@ function CompDetail({
           </div>
         )}
 
-        <div className="relative z-[200] overflow-visible">
-          <TftBoard
-            units={effectiveBoardUnits}
-            carryId={comp.carry?.id}
-            upgradedMechaIds={upgradedMechaIds}
-            upgradedMechaUnits={upgradedMechaUnits}
-            armedTool={armedTool}
-            onToggleMechaTransformer={toggleMechaTransformer}
-            onRemoveUnit={removeBoardUnit}
-            onAddEmblem={toggleEmblemOnUnit}
-            boardSlotLimit={boardSlotLimit}
-            starPlans={starPlans}
-          />
-        </div>
-
         <div className="relative z-0 mt-4 grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px]">
           <LogResultBox
             comp={comp}
@@ -2474,6 +4349,8 @@ function CompDetail({
           <PersonalCompStats comp={comp} matchHistory={matchHistory} />
         </div>
       </div>
+
+      {coreUnitPickerNode}
 
       <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
         {effectiveBoardUnits.map((unit) => (
@@ -2490,7 +4367,16 @@ function CompDetail({
         ))}
       </div>
 
-      <div className="grid gap-3 md:grid-cols-3">
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+        <AugmentAdviceCard advice={liveAugmentAdvice} />
+
+        <ItemBuildAdviceCard
+          advice={liveItemAdvice}
+          itemCatalog={itemCatalog}
+        />
+
+        <LiveCoachCard notes={liveCoachNotes} />
+
         <InfoCard
           icon={<Star />}
           title="Why this ranked high"

@@ -11,6 +11,8 @@ import {
   getCarryItemPlan,
   explainCarryFit,
 } from "./carryFit.js";
+import { getAugmentAdvice } from "./augmentAdvisor.js";
+import { getItemBuildAdvice } from "./itemAdvisor.js";
 
 export function countTraits(units, virtualTraits = {}) {
   const counts = new Map();
@@ -755,6 +757,8 @@ function getLateGameLowCostPenalty({
   activeTraits,
   gameMode,
   minFrontline = 0,
+  unitStars = {},
+  playStyle = "first",
 }) {
   if (!gameMode || Number(gameMode.maxUnitCost || 0) < 4) {
     return 0;
@@ -777,6 +781,7 @@ function getLateGameLowCostPenalty({
 
     if (cost > 2) return penalty;
     if (carry?.id === unit.id) return penalty;
+    if (Number(unitStars?.[unit.id] || 0) >= 3) return penalty;
 
     const isTargetUnit = targetTrait && unit.traits?.includes(targetTrait);
     const isCarryTraitActivator = (unit.traits || []).some(
@@ -786,6 +791,10 @@ function getLateGameLowCostPenalty({
     const sharedUsefulTraits = getTraitOverlapCount(unit, usefulTraits);
 
     let unitPenalty = cost === 1 ? 42 : 18;
+
+    if (playStyle === "first" && gameMode?.id === "capped") {
+      unitPenalty += cost === 1 ? 20 : 10;
+    }
 
     // Target units may be required to hit the requested trait.
     if (isTargetUnit) unitPenalty -= 26;
@@ -812,12 +821,22 @@ function getLateGameTraitBotPenalty({
   targetTrait,
   activeTraits,
   gameMode,
+  unitStars = {},
+  playStyle = "first",
 }) {
   if (!gameMode || Number(gameMode.maxUnitCost || 0) < 4) {
     return 0;
   }
 
+  const isCappedFirst =
+    playStyle === "first" ||
+    gameMode?.id === "capped" ||
+    Number(gameMode?.maxUnitCost || 0) >= 5;
+
   const carryTraitNames = new Set(carry?.traits || []);
+  const primaryTraits = new Set(
+    [targetTrait, ...carryTraitNames].filter(Boolean),
+  );
 
   const activeTraitNames = new Set(
     activeTraits
@@ -827,46 +846,221 @@ function getLateGameTraitBotPenalty({
 
   return units.reduce((penalty, unit) => {
     const cost = Number(unit.cost || 1);
-
-    if (cost > 2) return penalty;
-    if (carry?.id === unit.id) return penalty;
-
+    const starLevel = Number(unitStars?.[unit.id] || 0);
     const traits = unit.traits || [];
-    const isTargetUnit = targetTrait && traits.includes(targetTrait);
 
-    const supportsCarryTrait = traits.some((trait) => {
-      return trait !== targetTrait && carryTraitNames.has(trait);
-    });
+    if (carry?.id === unit.id) return penalty;
+    if (starLevel >= 3) return penalty;
 
+    // In capped/first-place mode, 3-cost glue units can be traps too.
+    // Do not only punish 1/2-cost units.
+    if (cost > (isCappedFirst ? 3 : 2)) return penalty;
+
+    const isTargetUnit = Boolean(targetTrait && traits.includes(targetTrait));
     const isFront = isFrontlineUnit(unit);
 
-    const activeTraitLinks = traits.filter((trait) =>
+    // Target units and real frontline units can be structurally required.
+    if (isTargetUnit || isFront) return penalty;
+
+    const activeLinks = traits.filter((trait) => activeTraitNames.has(trait));
+    const primaryLinks = activeLinks.filter((trait) =>
+      primaryTraits.has(trait),
+    );
+    const secondaryLinks = activeLinks.filter(
+      (trait) => !primaryTraits.has(trait),
+    );
+
+    let unitPenalty = cost === 1 ? 96 : cost === 2 ? 62 : 46;
+
+    if (isCappedFirst) {
+      unitPenalty += cost === 1 ? 54 : cost === 2 ? 38 : 42;
+    }
+
+    // A primary link matters, but should not give full immunity.
+    unitPenalty -= primaryLinks.length * 26;
+
+    // Secondary 2-piece soup should not protect a low/mid-cost unit in a capped board.
+    if (secondaryLinks.length >= 2) unitPenalty += isCappedFirst ? 50 : 24;
+    else if (secondaryLinks.length === 1) unitPenalty += isCappedFirst ? 22 : 8;
+
+    // Worst case: the unit only contributes active secondary traits.
+    if (activeLinks.length > 0 && primaryLinks.length === 0) {
+      unitPenalty += isCappedFirst ? 52 : 22;
+    }
+
+    return penalty + Math.max(0, unitPenalty);
+  }, 0);
+}
+
+function getUnitQualityScore(unit, championMeta = {}) {
+  const cost = Number(unit.cost || 1);
+  const metaScore = getChampionMetaScore(unit, championMeta);
+  const carryScore = Number(unit.carryScore || 0);
+  const tankScore = isFrontlineUnit(unit)
+    ? Math.min(52, getTankinessScore(unit) * 0.75)
+    : 0;
+
+  return cost * 18 + metaScore * 0.58 + carryScore * 0.2 + tankScore;
+}
+
+function getFrontlineQualityScore({
+  units,
+  minFrontline = 0,
+  gameMode,
+  championMeta = {},
+}) {
+  const frontliners = units
+    .filter(isFrontlineUnit)
+    .map((unit) => ({
+      unit,
+      quality:
+        Number(unit.cost || 1) * 20 +
+        getTankinessScore(unit) * 0.9 +
+        getChampionMetaScore(unit, championMeta) * 0.35,
+    }))
+    .sort((a, b) => b.quality - a.quality);
+
+  const needed = Number(minFrontline || 0);
+  const isLate = Number(gameMode?.maxUnitCost || 0) >= 4;
+  let score = 0;
+
+  frontliners.forEach((entry, index) => {
+    if (index < needed) {
+      score += Math.min(48, entry.quality * 0.34);
+    } else {
+      // Extra frontline is useful, but less than damage/utility in capped boards.
+      score += isLate
+        ? Math.min(8, entry.quality * 0.06)
+        : Math.min(14, entry.quality * 0.1);
+    }
+  });
+
+  if (needed > 0 && frontliners.length < needed) {
+    score -= (needed - frontliners.length) * 95;
+  }
+
+  return score;
+}
+
+function getCappedBoardQualityAdjustment({
+  units,
+  carry,
+  targetTrait,
+  activeTraits,
+  gameMode,
+  championMeta = {},
+  minFrontline = 0,
+  unitStars = {},
+  playStyle = "first",
+}) {
+  const isCappedFirst =
+    playStyle === "first" ||
+    gameMode?.id === "capped" ||
+    Number(gameMode?.maxUnitCost || 0) >= 5;
+
+  if (!isCappedFirst) return 0;
+
+  const carryTraitNames = new Set(carry?.traits || []);
+  const primaryTraits = new Set(
+    [targetTrait, ...carryTraitNames].filter(Boolean),
+  );
+
+  const activeTraitNames = new Set(
+    activeTraits
+      .filter((trait) => trait.isActive && !trait.isUnique)
+      .map((trait) => trait.name),
+  );
+
+  let score = getFrontlineQualityScore({
+    units,
+    minFrontline,
+    gameMode,
+    championMeta,
+  });
+
+  for (const unit of units) {
+    const cost = Number(unit.cost || 1);
+    const starLevel = Number(unitStars?.[unit.id] || 0);
+    const traits = unit.traits || [];
+
+    const isCarry = carry?.id === unit.id;
+    const isTargetUnit = Boolean(targetTrait && traits.includes(targetTrait));
+    const isFront = isFrontlineUnit(unit);
+
+    const primaryLinks = traits.filter((trait) =>
+      primaryTraits.has(trait),
+    ).length;
+
+    const activeLinks = traits.filter((trait) =>
       activeTraitNames.has(trait),
     ).length;
 
-    /*
-      Late board rule:
-      Low-cost units are allowed if they are essential:
-      - target trait unit
-      - carry secondary trait activator, e.g. Rogue for Riven
-      - real frontline
-      Otherwise, they are trait bots.
-    */
-    const isEssential = isTargetUnit || supportsCarryTrait || isFront;
+    const secondaryLinks = traits.filter(
+      (trait) => activeTraitNames.has(trait) && !primaryTraits.has(trait),
+    ).length;
 
-    if (isEssential) {
-      return penalty;
+    // Real unit quality matters. This pushes capped boards toward strong 4/5-cost value.
+    score +=
+      getUnitQualityScore(unit, championMeta) * (cost >= 4 ? 0.46 : 0.22);
+
+    if (cost >= 5) score += 72;
+    else if (cost === 4) score += 34;
+
+    if (isCarry) score += 46;
+    if (isTargetUnit) score += 18;
+    if (primaryLinks > 0) score += Math.min(38, primaryLinks * 20);
+    if (isFront)
+      score += Math.min(26, getTankinessScore(unit) * 0.32 + cost * 5);
+
+    // Legit reroll units are allowed if actually 3★.
+    if (starLevel >= 3 && cost <= 3) score += 92;
+
+    const isSuspiciousGlue =
+      cost <= 3 &&
+      !isCarry &&
+      !isFront &&
+      starLevel < 3 &&
+      !isTargetUnit &&
+      primaryLinks === 0 &&
+      activeLinks > 0;
+
+    if (isSuspiciousGlue) {
+      score -= cost === 1 ? 92 : cost === 2 ? 68 : 58;
+      score -= secondaryLinks >= 2 ? 42 : secondaryLinks === 1 ? 18 : 0;
     }
+  }
 
-    let unitPenalty = cost === 1 ? 70 : 34;
+  return score;
+}
 
-    // If a 1-cost is opening multiple random 2-piece traits,
-    // that is exactly trait soup, not real late-game power.
-    if (activeTraitLinks >= 2) {
-      unitPenalty += cost === 1 ? 35 : 18;
-    }
+function getSecondaryTraitSoupPenalty({
+  activeTraits,
+  targetTrait,
+  carry,
+  gameMode,
+  playStyle = "first",
+}) {
+  const isCappedFirst =
+    playStyle === "first" ||
+    gameMode?.id === "capped" ||
+    Number(gameMode?.maxUnitCost || 0) >= 5;
 
-    return penalty + unitPenalty;
+  if (!isCappedFirst) return 0;
+
+  const carryTraitNames = new Set(carry?.traits || []);
+
+  return activeTraits.reduce((penalty, trait) => {
+    if (!trait.isActive || trait.isUnique) return penalty;
+    if (trait.name === targetTrait) return penalty;
+    if (carryTraitNames.has(trait.name)) return penalty;
+
+    const activeAt = Number(trait.activeAt || 0);
+
+    // Random 2-piece traits are okay as a side effect, but should not beat unit quality.
+    if (activeAt <= 2) return penalty + 18;
+    if (activeAt === 3) return penalty + 10;
+
+    return penalty;
   }, 0);
 }
 
@@ -892,11 +1086,20 @@ export function scoreComp(
     traitMeta = {},
     itemStats = {},
     itemSetStats = {},
+    itemCatalog = {},
     unitUpgradeMeta = {},
     unitBuildMeta = {},
     matchHistory = [],
     carryProfiles = {},
     traitProfiles = {},
+    augments = [],
+    selectedAugmentIds = [],
+    offeredAugmentIds = [],
+    components = [],
+    playStyle = "first",
+    unitStars = {},
+    liveState = {},
+    includeAdvice = true,
   } = options;
 
   const virtualTraits = specialPlan.virtualTraits || {};
@@ -1086,6 +1289,25 @@ export function scoreComp(
     itemSetStats,
   });
 
+  const itemAdvice = includeAdvice
+    ? getItemBuildAdvice({
+        itemCatalog,
+        components,
+        units,
+        carry,
+        carryProfiles,
+        itemSetStats,
+        itemStats,
+        minFrontline,
+      })
+    : {
+        components: [],
+        carry: carry ? { id: carry.id, name: carry.name } : null,
+        carryBestItems: [],
+        recommendations: [],
+        notes: [],
+      };
+
   const carryScore = carry
     ? getChampionMetaScore(carry, championMeta) * 1.0 +
       (carry.carryScore || 0) * 0.6 +
@@ -1099,6 +1321,38 @@ export function scoreComp(
     traitProfiles,
     traitMeta,
   });
+
+  const shouldScoreAugments =
+    includeAdvice ||
+    (Array.isArray(selectedAugmentIds) && selectedAugmentIds.length > 0);
+
+  const augmentAdvice = shouldScoreAugments
+    ? getAugmentAdvice({
+        augments,
+        selectedAugmentIds,
+        offeredAugmentIds,
+        units,
+        carry,
+        activeTraits,
+        targetTrait,
+        minFrontline,
+        components,
+        playStyle,
+        gameModeId: gameMode?.id || "capped",
+        hp: liveState?.hp,
+        stage: liveState?.stage,
+      })
+    : {
+        selectedScore: 0,
+        selected: [],
+        recommendations: [],
+        warnings: [],
+      };
+
+  const augmentFitScore = Math.max(
+    -80,
+    Math.min(95, Number(augmentAdvice.selectedScore || 0) * 0.55),
+  );
 
   const carryTraitFitScore = carryFit.score * 1.65;
   const carryTraitActivationScore = getCarryTraitActivationScore({
@@ -1118,6 +1372,8 @@ export function scoreComp(
     activeTraits,
     gameMode,
     minFrontline,
+    unitStars,
+    playStyle,
   });
 
   const lateGameTraitBotPenalty = getLateGameTraitBotPenalty({
@@ -1126,12 +1382,34 @@ export function scoreComp(
     targetTrait,
     activeTraits,
     gameMode,
+    unitStars,
+    playStyle,
   });
 
   const breakpointWastePenalty = getBreakpointWastePenalty({
     activeTraits,
     targetTrait,
     carry,
+  });
+
+  const cappedBoardQualityAdjustment = getCappedBoardQualityAdjustment({
+    units,
+    carry,
+    targetTrait,
+    activeTraits,
+    gameMode,
+    championMeta,
+    minFrontline,
+    unitStars,
+    playStyle,
+  });
+
+  const secondaryTraitSoupPenalty = getSecondaryTraitSoupPenalty({
+    activeTraits,
+    targetTrait,
+    carry,
+    gameMode,
+    playStyle,
   });
 
   const stageFitScore = getStageFitScore(units, gameMode);
@@ -1180,12 +1458,15 @@ export function scoreComp(
       carryScore +
       carryTraitFitScore +
       carryTraitActivationScore +
+      augmentFitScore +
       roleBalanceScore +
       frontlineConstraintScore +
+      cappedBoardQualityAdjustment +
       stageFitScore +
       metaShellScore +
       personalHistoryScore -
       breakpointWastePenalty -
+      secondaryTraitSoupPenalty -
       lateGameLowCostPenalty -
       lateGameTraitBotPenalty -
       uniqueTraitNoisePenalty -
@@ -1251,6 +1532,18 @@ export function scoreComp(
     reasons.push(
       "Star plans are included in the score, so realistic 2★/3★ upgrade paths affect board strength.",
     );
+  }
+
+  if (augmentAdvice.selected?.length) {
+    reasons.push(
+      `Selected augments adjusted this board by ${Math.round(augmentFitScore) > 0 ? "+" : ""}${Math.round(augmentFitScore)} points.`,
+    );
+
+    for (const entry of augmentAdvice.selected.slice(0, 3)) {
+      reasons.push(
+        `${entry.augment.name}: ${entry.reasons?.[0] || "usable augment fit for this board."}`,
+      );
+    }
   }
 
   if (personalHistoryScore !== 0) {
@@ -1342,6 +1635,20 @@ export function scoreComp(
     );
   }
 
+  for (const warning of augmentAdvice.warnings || []) {
+    warnings.push(warning);
+  }
+
+  if (
+    playStyle === "first" &&
+    gameMode?.id === "capped" &&
+    lateGameLowCostPenalty + lateGameTraitBotPenalty > 0
+  ) {
+    warnings.push(
+      "First-place mode is stricter: weak 1/2-cost trait bots should usually be replaced by premium units unless they are 3★ or essential.",
+    );
+  }
+
   if (carryFit.badFits?.length) {
     warnings.push(
       `Some active traits are weak fits for ${carry?.name}: ${carryFit.badFits.map((t) => t.name).join(", ")}.`,
@@ -1357,6 +1664,9 @@ export function scoreComp(
     specialSources: specialPlan.specialSources || [],
     carryFit,
     itemPlan,
+    itemAdvice,
+    augmentAdvice,
+    playStyle,
     primaryTrait: {
       name: targetTrait,
       count: primaryCount,

@@ -1,10 +1,2204 @@
 [
   {
+    "id": "afk",
+    "name": "AFK",
+    "tier": 1,
+    "description": "You cannot perform actions for the next 3 rounds. Afterwards, gain 17 gold.",
+    "iconSlug": "afk1",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "augmented-power",
+    "name": "Augmented Power",
+    "tier": 1,
+    "description": "Your next augment is one tier higher.",
+    "iconSlug": "powerup_i",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "backup-bows",
+    "name": "Backup Bows",
+    "tier": 1,
+    "description": "Gain a Recurve Bow. After your team attacks enough times, gain more Bows.",
+    "iconSlug": "backup-bows",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "band-of-thieves",
+    "name": "Band of Thieves",
+    "tier": 1,
+    "description": "Gain 1 Thief's Gloves.",
+    "iconSlug": "bandofthieves1",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "best-friends-i",
+    "name": "Best Friends I",
+    "tier": 1,
+    "description": "Allies isolated in pairs gain Attack Speed and Armor at combat start.",
+    "iconSlug": "bestfriends1",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "bonk",
+    "name": "Bonk!",
+    "tier": 1,
+    "description": "Gain a Nasus. Your strongest Nasus becomes an Attack Fighter carry.",
+    "iconSlug": "tft17_augment_nasuscarry",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "boxing-lessons",
+    "name": "Boxing Lessons",
+    "tier": 1,
+    "description": "Your team gains Health for each ally that starts combat in the front row.",
+    "iconSlug": "boxing-lessons",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "branching-out",
+    "name": "Branching Out+",
+    "tier": 1,
+    "description": "Gain a random Emblem and a Reforger.",
+    "iconSlug": "branching-out-i",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "caretaker-s-ally",
+    "name": "Caretaker's Ally",
+    "tier": 1,
+    "description": "Gain a random 2-cost champion now and again when you level up.",
+    "iconSlug": "caretakers-ally",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "carve-a-path",
+    "name": "Carve a Path",
+    "tier": 1,
+    "description": "Gain a B.F. Sword. After your team deals physical damage, gain more Swords.",
+    "iconSlug": "carve-a-path",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "charge-transfer-i",
+    "name": "Charge Transfer I",
+    "tier": 1,
+    "description": "Your team gains Damage Amp. Overkill damage splashes as magic damage.",
+    "iconSlug": "tft_augment_chargetransfer1",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "climb-the-ladder-i",
+    "name": "Climb The Ladder I",
+    "tier": 1,
+    "description": "When an ally dies, allies sharing a trait gain AP, AD, Armor, and MR.",
+    "iconSlug": "climbtheladder_i",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "cognitive-tax",
+    "name": "Cognitive Tax+",
+    "tier": 1,
+    "description": "Gain more gold and XP.",
+    "iconSlug": "tft_augment_cognitivetaxplus",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "continuous-conjuration",
+    "name": "Continuous Conjuration",
+    "tier": 1,
+    "description": "Gain a Needlessly Large Rod. After magic damage, gain more Rods.",
+    "iconSlug": "continuous-conjuration",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "corrosion",
+    "name": "Corrosion",
+    "tier": 1,
+    "description": "Enemies in the first rows lose Armor and Magic Resist over time.",
+    "iconSlug": "corrosion_i",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "crafted-crafting",
+    "name": "Crafted Crafting",
+    "tier": 1,
+    "description": "Whenever you craft a completed item, gain rerolls.",
+    "iconSlug": "craftedcrafting_i",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "critical-success",
+    "name": "Critical Success",
+    "tier": 1,
+    "description": "Gain a Sparring Glove. After critical strikes, gain more Gloves.",
+    "iconSlug": "critical-success",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "dummify",
+    "name": "Dummify",
+    "tier": 1,
+    "description": "Lose board/bench units and gain a scaling Training Dummy and a 2-star 2-cost.",
+    "iconSlug": "dummify_i",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "electrocharge-i",
+    "name": "Electrocharge I",
+    "tier": 1,
+    "description": "Every few attacks taken, allies deal stage-scaling magic damage nearby.",
+    "iconSlug": "electrocharge1",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "exiles-i",
+    "name": "Exiles I",
+    "tier": 1,
+    "description": "Isolated champions gain a max Health shield at combat start.",
+    "iconSlug": "exiles1",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "expedition",
+    "name": "Expedition",
+    "tier": 1,
+    "description": "Lose the rightmost bench champion each round to progress toward a reward.",
+    "iconSlug": "tft_augment_expedition",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "extra-buckles",
+    "name": "Extra Buckles",
+    "tier": 1,
+    "description": "Gain a Giant's Belt. After taking damage, gain more Belts.",
+    "iconSlug": "extra-buckles",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "feeling-lucky",
+    "name": "Feeling Lucky",
+    "tier": 1,
+    "description": "Gain gold and flip a coin for more gold.",
+    "iconSlug": "tft_augment_feelinglucky",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "find-your-center",
+    "name": "Find Your Center",
+    "tier": 1,
+    "description": "The champion in the center front row gains Damage Amp and max Health.",
+    "iconSlug": "find-your-center",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "firesale",
+    "name": "Firesale",
+    "tier": 1,
+    "description": "Each round, steal a random low-cost champion from the shop and gain gold.",
+    "iconSlug": "firesale_i",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "flowing-tears",
+    "name": "Flowing Tears",
+    "tier": 1,
+    "description": "Gain a Tear. After your team spends Mana, gain more Tears.",
+    "iconSlug": "flowing-tears",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "focused-fire",
+    "name": "Focused Fire",
+    "tier": 1,
+    "description": "Your team gains Attack Damage and gains more over time.",
+    "iconSlug": "focused-fire",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "forge-a-friend",
+    "name": "Forge a Friend",
+    "tier": 1,
+    "description": "The next 1-cost champion you buy becomes 3-star. Gain gold.",
+    "iconSlug": "t1",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "glass-cannon-i",
+    "name": "Glass Cannon I",
+    "tier": 1,
+    "description": "Back row allies start with less Health but gain Damage Amp.",
+    "iconSlug": "glasscannon_i",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "good-for-something-i",
+    "name": "Good For Something I",
+    "tier": 1,
+    "description": "Champions without items can drop gold on death.",
+    "iconSlug": "good-for-something-i",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "group-hug-i",
+    "name": "Group Hug I",
+    "tier": 1,
+    "description": "Adjacent allies grant Armor and Magic Resist at combat start.",
+    "iconSlug": "tft_augment_grouphug1",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "healing-orbs-i",
+    "name": "Healing Orbs I",
+    "tier": 1,
+    "description": "When an enemy dies, the nearest ally is healed.",
+    "iconSlug": "healing-orbs-i",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "iron-assets",
+    "name": "Iron Assets",
+    "tier": 1,
+    "description": "Gain a component anvil and gold.",
+    "iconSlug": "iron-assets-i",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "item-grab-bag",
+    "name": "Item Grab Bag",
+    "tier": 1,
+    "description": "Gain 1 random completed item.",
+    "iconSlug": "item-grab-bag-1",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "kick-start",
+    "name": "Kick Start",
+    "tier": 1,
+    "description": "Gain a random 2-star 2-cost champion and gold.",
+    "iconSlug": "tft_augment_kickstart",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "late-game-specialist",
+    "name": "Late Game Specialist",
+    "tier": 1,
+    "description": "When you reach Level 9, gain a large gold payout.",
+    "iconSlug": "lategamespecialist1",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "latent-forge",
+    "name": "Latent Forge",
+    "tier": 1,
+    "description": "After player combats, gain an Artifact anvil.",
+    "iconSlug": "latentforge1",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "lineup",
+    "name": "Lineup",
+    "tier": 1,
+    "description": "Your team gains Armor and Magic Resist for allies in the front two rows.",
+    "iconSlug": "lineup-i",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "lunch-money",
+    "name": "Lunch Money",
+    "tier": 1,
+    "description": "Damage dealt to enemy tacticians pays out gold.",
+    "iconSlug": "lunch-money",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "makeshift-armor-i",
+    "name": "Makeshift Armor I",
+    "tier": 1,
+    "description": "Allies without items gain Armor and Magic Resist.",
+    "iconSlug": "makeshift",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "missed-connections",
+    "name": "Missed Connections",
+    "tier": 1,
+    "description": "Gain a copy of each 1-cost champion.",
+    "iconSlug": "missed-connections-i",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "on-a-roll",
+    "name": "On a Roll",
+    "tier": 1,
+    "description": "When you star up a fielded champion, gain free rerolls. Gain gold.",
+    "iconSlug": "on-a-roll-i",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "one-two-five",
+    "name": "One, Two, Five!",
+    "tier": 1,
+    "description": "Gain a component, gold, and a random 5-cost champion.",
+    "iconSlug": "one-two-five-i",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "one-two-three",
+    "name": "One Two Three",
+    "tier": 1,
+    "description": "Gain 1-cost, 2-cost, and 3-cost champions.",
+    "iconSlug": "onetwosthree1",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "pandora-s-items",
+    "name": "Pandora's Items",
+    "tier": 1,
+    "description": "Round start: bench items are randomized. Gain a component.",
+    "iconSlug": "pandora",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "partial-ascension",
+    "name": "Partial Ascension",
+    "tier": 1,
+    "description": "After 12 seconds of combat, your team gains Damage Amp.",
+    "iconSlug": "ascension1",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "patience-is-a-virtue",
+    "name": "Patience is a Virtue",
+    "tier": 1,
+    "description": "Gain rerolls now and free rerolls when you do not buy a champion.",
+    "iconSlug": "patience-is-a-virtue",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "recombobulator",
+    "name": "Recombobulator",
+    "tier": 1,
+    "description": "Board champions transform into random champions one cost tier higher.",
+    "iconSlug": "recombobulator1",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "restart-mission",
+    "name": "Restart Mission",
+    "tier": 1,
+    "description": "Remove board/bench, gain upgraded random units and stabilize.",
+    "iconSlug": "restartmission_i",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "risky-moves",
+    "name": "Risky Moves",
+    "tier": 1,
+    "description": "Lose player Health now; after combats, gain a large gold payout.",
+    "iconSlug": "risky-moves-i",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "rolling-for-days-i",
+    "name": "Rolling For Days I",
+    "tier": 1,
+    "description": "Gain 10 free Shop rerolls.",
+    "iconSlug": "rolling-for-days-1",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "second-wind",
+    "name": "Second Wind",
+    "tier": 1,
+    "description": "After 10 seconds, your team heals missing Health.",
+    "iconSlug": "secondwind1",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "shieldmaiden",
+    "name": "Shieldmaiden",
+    "tier": 1,
+    "description": "Gain a Leona. Your strongest Leona becomes an Attack Fighter.",
+    "iconSlug": "shieldmaiden",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "silver-spoon",
+    "name": "Silver Spoon",
+    "tier": 1,
+    "description": "Gain XP.",
+    "iconSlug": "silver-spoon-i",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "size-matters",
+    "name": "Size Matters",
+    "tier": 1,
+    "description": "Gain a Belt. High max Health itemization leads to Warmog's Armor.",
+    "iconSlug": "tft_augment_sizematters",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "slice-of-life",
+    "name": "Slice of Life",
+    "tier": 1,
+    "description": "Twice per stage, gain a random champion with scaling cost.",
+    "iconSlug": "tft_augment_sliceoflife",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "slightly-magic-roll",
+    "name": "Slightly Magic Roll",
+    "tier": 1,
+    "description": "Roll a die and gain rewards based on the result.",
+    "iconSlug": "slightly-magic-roll",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "small-grab-bag",
+    "name": "Small Grab Bag",
+    "tier": 1,
+    "description": "Gain 2 random item components.",
+    "iconSlug": "small-grab-bag",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "stand-united",
+    "name": "Stand United",
+    "tier": 1,
+    "description": "Gain AD and AP for each active non-unique trait.",
+    "iconSlug": "standunited1",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "stellar-combo",
+    "name": "Stellar Combo",
+    "tier": 1,
+    "description": "Gain an Aatrox. Your strongest Aatrox becomes an Attack Fighter carry.",
+    "iconSlug": "tft17_augment_aatroxcarry",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "survivor",
+    "name": "Survivor",
+    "tier": 1,
+    "description": "Gain gold. After players are eliminated, gain a huge gold payout.",
+    "iconSlug": "lonesurvivor_i",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "team-building",
+    "name": "Team Building",
+    "tier": 1,
+    "description": "Gain a Lesser Champion Duplicator now and later.",
+    "iconSlug": "building-an-army-i",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "teaming-up",
+    "name": "Teaming Up",
+    "tier": 1,
+    "description": "Gain a component and random 3-cost champions.",
+    "iconSlug": "teaming-up-1-new",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "termeepnal-velocity",
+    "name": "Termeepnal Velocity",
+    "tier": 1,
+    "description": "Gain a Poppy. Your strongest Poppy becomes a ranged Attack Caster.",
+    "iconSlug": "tft17_augment_poppycarry",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "the-tower",
+    "name": "The Tower",
+    "tier": 1,
+    "description": "Gain a giant Training Dummy that zaps nearby enemies.",
+    "iconSlug": "tft_augment_thetower",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "tiny-titans",
+    "name": "Tiny Titans",
+    "tier": 1,
+    "description": "Increase current and max player Health.",
+    "iconSlug": "tinytitans1",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "twin-guardians",
+    "name": "Twin Guardians",
+    "tier": 1,
+    "description": "Exactly two front-row allies gain Health, Armor, and Magic Resist.",
+    "iconSlug": "twin-guardians",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "vampiric-vitality-i",
+    "name": "Vampiric Vitality I",
+    "tier": 1,
+    "description": "Heal from damage dealt to enemy Tacticians and gain Omnivamp.",
+    "iconSlug": "t1",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "advanced-loan",
+    "name": "Advanced Loan+",
+    "tier": 2,
+    "description": "Gain more gold. Your next augment is one tier lower.",
+    "iconSlug": "advanced-loan",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "a-magic-roll",
+    "name": "A Magic Roll",
+    "tier": 2,
+    "description": "Roll dice and gain rewards based on their total.",
+    "iconSlug": "a-magical-roll-ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "anima-commander",
+    "name": "Anima Commander",
+    "tier": 2,
+    "description": "Gain Briar, Jinx, and Illaoi. Increase player Health.",
+    "iconSlug": "tft17_augment_animasquad_commander",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "apotheotic-forge",
+    "name": "Apotheotic Forge",
+    "tier": 2,
+    "description": "Choose 1 of 4 Divine Artifacts.",
+    "iconSlug": "tft17_augment_apotheoticforge",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "arcane-viktor-y",
+    "name": "Arcane Viktor-y",
+    "tier": 2,
+    "description": "After combat starts, stun the enemy team twice.",
+    "iconSlug": "arcane-viktor-y",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "ascension",
+    "name": "Ascension",
+    "tier": 2,
+    "description": "After 12 seconds of combat, your team gains Damage Amp.",
+    "iconSlug": "ascension2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "aura-farming",
+    "name": "Aura Farming",
+    "tier": 2,
+    "description": "Gain a 2-star 5-cost holding a recommended item, locked until Stage 4-3.",
+    "iconSlug": "aurafarming_ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "backline-blueprint",
+    "name": "Backline Blueprint",
+    "tier": 2,
+    "description": "Gain a 3-cost non-Tank champion and an Emblem matching their last-listed trait.",
+    "iconSlug": "tft_augment_backlineblueprint",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "best-friends-ii",
+    "name": "Best Friends II",
+    "tier": 2,
+    "description": "Allies isolated in pairs gain Attack Speed and Armor.",
+    "iconSlug": "bestfriends2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "big-grab-bag",
+    "name": "Big Grab Bag",
+    "tier": 2,
+    "description": "Gain 3 random components, gold, and a Reforger.",
+    "iconSlug": "big-grab-bag",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "birthday-reunion",
+    "name": "Birthday Reunion",
+    "tier": 2,
+    "description": "Gain units on level 7 and level 9 rewards.",
+    "iconSlug": "birthday-reunion",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "blood-offering",
+    "name": "Blood Offering",
+    "tier": 2,
+    "description": "Gain Bloodthirster. Bloodthirster holders trade Health for shield and AD.",
+    "iconSlug": "blood-offering",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "bodyguard-training",
+    "name": "Bodyguard Training",
+    "tier": 2,
+    "description": "Allies gain Armor and MR scaling with player level.",
+    "iconSlug": "bodyguard-training",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "booster-pack",
+    "name": "Booster Pack++",
+    "tier": 2,
+    "description": "Gain more gold value of random champions with 5-cost guaranteed.",
+    "iconSlug": "tft_augment_boosterpackplusplus",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "bronze-for-life-i",
+    "name": "Bronze For Life I",
+    "tier": 2,
+    "description": "Team gains Damage Amp for each Bronze-tier trait.",
+    "iconSlug": "bronzeforlife_ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "calculated-loss",
+    "name": "Calculated Loss",
+    "tier": 2,
+    "description": "After losing combat, gain gold and a free Shop reroll.",
+    "iconSlug": "calculatedloss2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "care-package",
+    "name": "Care Package",
+    "tier": 2,
+    "description": "Now and next stages, receive loot and gold.",
+    "iconSlug": "carepackage_ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "charge-transfer-ii",
+    "name": "Charge Transfer II",
+    "tier": 2,
+    "description": "Your team gains Damage Amp and stronger overkill splash.",
+    "iconSlug": "tft_augment_chargetransfer2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "clear-mind",
+    "name": "Clear Mind",
+    "tier": 2,
+    "description": "If bench is empty after player combat, gain XP.",
+    "iconSlug": "clearmind2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "climb-the-ladder-ii",
+    "name": "Climb The Ladder II",
+    "tier": 2,
+    "description": "When an ally dies, allies sharing a trait gain stats.",
+    "iconSlug": "climbtheladder_ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "clockwork-accelerator",
+    "name": "Clockwork Accelerator",
+    "tier": 2,
+    "description": "Your team gains Attack Speed every few seconds in combat.",
+    "iconSlug": "clockwork-accelerator",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "cluttered-mind",
+    "name": "Cluttered Mind",
+    "tier": 2,
+    "description": "Gain random 1-costs; full bench after combat gives XP.",
+    "iconSlug": "clutteredmind2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "cognitive-overload",
+    "name": "Cognitive Overload",
+    "tier": 2,
+    "description": "Gain gold, upgraded units, XP, and rerolls.",
+    "iconSlug": "tft_augment_cognitiveoverload",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "contract-killer",
+    "name": "Contract Killer",
+    "tier": 2,
+    "description": "Gain a Pyke. Your strongest Pyke becomes a gold-generating Attack Fighter.",
+    "iconSlug": "tft17_augment_pykecarry",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "cosmic-restart",
+    "name": "Cosmic Restart",
+    "tier": 2,
+    "description": "Sell all units, gain random Emblems and free Shop rerolls.",
+    "iconSlug": "tft_augment_cosmicrestart",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "crash-test-dummies",
+    "name": "Crash Test Dummies",
+    "tier": 2,
+    "description": "Gain Training Dummies that stun enemy groups.",
+    "iconSlug": "crashdummies",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "cry-me-a-river",
+    "name": "Cry Me A River",
+    "tier": 2,
+    "description": "Gain Tear. Team gains Mana Regen after time in combat.",
+    "iconSlug": "cry-me-a-river",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "cybernetic-implants",
+    "name": "Cybernetic Implants",
+    "tier": 2,
+    "description": "Item holders gain Health and Attack Damage. Gain a Sword.",
+    "iconSlug": "cybernetic2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "cybernetic-uplink-ii",
+    "name": "Cybernetic Uplink II",
+    "tier": 2,
+    "description": "Item holders gain Health and Mana per second.",
+    "iconSlug": "cyberneticuplink2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "duo-queue",
+    "name": "Duo Queue",
+    "tier": 2,
+    "description": "Gain random 5-cost champions and component copies.",
+    "iconSlug": "duo-queue",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "early-learnings",
+    "name": "Early Learnings",
+    "tier": 2,
+    "description": "Team gains AD and AP scaling after each combat; 1-costs gain double.",
+    "iconSlug": "early-learnings",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "electrocharge-ii",
+    "name": "Electrocharge II",
+    "tier": 2,
+    "description": "Every few attacks taken, allies deal higher stage-scaling magic damage.",
+    "iconSlug": "electrocharge2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "epic-rolldown",
+    "name": "Epic Rolldown",
+    "tier": 2,
+    "description": "At level 8, gain many Shop rerolls.",
+    "iconSlug": "epic-rolldown",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "epoch",
+    "name": "Epoch+",
+    "tier": 2,
+    "description": "Now and each stage, gain more XP and free rerolls.",
+    "iconSlug": "epoch",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "exclusive-customization",
+    "name": "Exclusive Customization",
+    "tier": 2,
+    "description": "Gain a Lucky Item Chest, Magnetic Remover, and gold.",
+    "iconSlug": "exclusivecustomization_ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "exiles-ii",
+    "name": "Exiles II",
+    "tier": 2,
+    "description": "Isolated champions gain a larger max Health shield.",
+    "iconSlug": "exiles2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "explosive-growth",
+    "name": "Explosive Growth+",
+    "tier": 2,
+    "description": "Now and next rounds, gain more XP.",
+    "iconSlug": "explosive-growth",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "feed-the-flames",
+    "name": "Feed the Flames",
+    "tier": 2,
+    "description": "Gain a Sunfire Cape; team gains Omnivamp when attacking Burning enemies.",
+    "iconSlug": "tft_augment_feedtheflames",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "forward-thinking",
+    "name": "Forward Thinking",
+    "tier": 2,
+    "description": "Lose all gold; after one combat gain it back plus a large payout.",
+    "iconSlug": "forwardthinking_ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "frontline-foundation",
+    "name": "Frontline Foundation",
+    "tier": 2,
+    "description": "Gain a 2-star 1-cost Tank and an Emblem matching their trait.",
+    "iconSlug": "tft_augment_frontlinefoundation",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "gain-21-gold",
+    "name": "Gain 21 Gold",
+    "tier": 2,
+    "description": "Gain 21 gold.",
+    "iconSlug": "gain-21-gold",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "gilded-steel",
+    "name": "Gilded Steel",
+    "tier": 2,
+    "description": "Gain 5-costs; fielding 5-costs gives low-cost units Durability.",
+    "iconSlug": "t2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "glass-cannon-ii",
+    "name": "Glass Cannon II",
+    "tier": 2,
+    "description": "Back row allies start with less Health but gain more Damage Amp.",
+    "iconSlug": "glasscannon_ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "group-hug-ii",
+    "name": "Group Hug II",
+    "tier": 2,
+    "description": "Adjacent allies grant more Armor and Magic Resist.",
+    "iconSlug": "tft_augment_grouphug2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "healing-orbs-ii",
+    "name": "Healing Orbs II",
+    "tier": 2,
+    "description": "When an enemy dies, nearest ally heals for more.",
+    "iconSlug": "healing-orbs-ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "heart-of-steel",
+    "name": "Heart of Steel",
+    "tier": 2,
+    "description": "Gain Steadfast Heart; it scales permanent max Health in combat.",
+    "iconSlug": "heart-of-steel",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "heavy-is-the-crown",
+    "name": "Heavy Is the Crown",
+    "tier": 2,
+    "description": "Gain a Crown item with huge holder bonuses but lose if holder dies.",
+    "iconSlug": "t2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "heroic-grab-bag",
+    "name": "Heroic Grab Bag++",
+    "tier": 2,
+    "description": "Gain Lesser Champion Duplicators and much more gold.",
+    "iconSlug": "heroic-grab-bag",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "high-voltage",
+    "name": "High Voltage",
+    "tier": 2,
+    "description": "Gain Ionic Spark. Ionic Sparks have larger radius and more damage.",
+    "iconSlug": "high-voltage",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "hustler",
+    "name": "Hustler",
+    "tier": 2,
+    "description": "No interest, but gain gold every player combat.",
+    "iconSlug": "hustler2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "indiscriminate-killer",
+    "name": "Indiscriminate Killer",
+    "tier": 2,
+    "description": "Gain Giant Slayer. Giant Slayers work against all enemies.",
+    "iconSlug": "indiscriminate-killer",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "infinity-protection",
+    "name": "Infinity Protection",
+    "tier": 2,
+    "description": "Gain gold now and an Infinity Force later.",
+    "iconSlug": "infinity-protection",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "invader-zed",
+    "name": "Invader Zed",
+    "tier": 2,
+    "description": "Gain Shojin; later gain Zed and unlock him in shops.",
+    "iconSlug": "tft17_augment_invaderzed",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "jeweled-lotus-i",
+    "name": "Jeweled Lotus I",
+    "tier": 2,
+    "description": "Team gains Critical Strike Chance and Precision.",
+    "iconSlug": "jeweledlotus2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "kahunahuna",
+    "name": "Kahunahuna",
+    "tier": 2,
+    "description": "Every 5th attack deals bonus true damage.",
+    "iconSlug": "t2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "know-your-enemy",
+    "name": "Know Your Enemy",
+    "tier": 2,
+    "description": "Scout next opponent. Team gains Damage Amp, more if traits overlap.",
+    "iconSlug": "know-your-enemy-ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "last-second-save",
+    "name": "Last Second Save",
+    "tier": 2,
+    "description": "The first time allies drop low, they restore max Health.",
+    "iconSlug": "last-second-save",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "late-game-scaling",
+    "name": "Late Game Scaling",
+    "tier": 2,
+    "description": "Gain XP every combat. 5-costs gain Health and Attack Speed.",
+    "iconSlug": "late-game-scaling",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "legion-of-threes",
+    "name": "Legion of Threes",
+    "tier": 2,
+    "description": "Gain Emblem. 3-costs and Emblem holders gain Health and Attack Speed.",
+    "iconSlug": "legion-of-threes",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "little-buddies",
+    "name": "Little Buddies",
+    "tier": 2,
+    "description": "4/5-costs gain Health and Attack Speed for every 1/2-cost on board.",
+    "iconSlug": "little-buddies",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "mace-s-will",
+    "name": "Mace's Will",
+    "tier": 2,
+    "description": "Gain Gloves. Team gains Attack Speed and Critical Strike Chance.",
+    "iconSlug": "will-of-the-flail-ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "makeshift-armor-ii",
+    "name": "Makeshift Armor II",
+    "tier": 2,
+    "description": "Allies without items gain more Armor and Magic Resist.",
+    "iconSlug": "makeshift2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "malicious-monetization",
+    "name": "Malicious Monetization",
+    "tier": 2,
+    "description": "Gain gold; enemies drop gold when killed for two rounds.",
+    "iconSlug": "mirroredmonetization_ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "may-the-fours-be-with-you",
+    "name": "May the Fours Be With You",
+    "tier": 2,
+    "description": "4-cost champions and Jhin gain Health and Attack Speed. Gain Jhin.",
+    "iconSlug": "tft_augment_maythefoursbewithyou",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "misfits",
+    "name": "Misfits",
+    "tier": 2,
+    "description": "Gain Health for each active Unique trait. Gain Rhaast and Miss Fortune.",
+    "iconSlug": "tft_augment_misfits",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "money-hungry",
+    "name": "Money Hungry",
+    "tier": 2,
+    "description": "Gain gold now and every stage.",
+    "iconSlug": "money-hungry",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "no-scout-no-pivot",
+    "name": "NO SCOUT NO PIVOT",
+    "tier": 2,
+    "description": "Units that fight cannot be benched or sold; team gains scaling stats after combat.",
+    "iconSlug": "noscoutnopivot_ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "pandora-s-items-ii",
+    "name": "Pandora's Items II",
+    "tier": 2,
+    "description": "Round start: bench items are randomized. Gain 2 components.",
+    "iconSlug": "pandorasitems2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "patient-study",
+    "name": "Patient Study",
+    "tier": 2,
+    "description": "After combat, gain XP; more if you lost.",
+    "iconSlug": "patientstudy2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "pilfer",
+    "name": "Pilfer",
+    "tier": 2,
+    "description": "Gain copies of first champion killed; later gain Thief's Gloves.",
+    "iconSlug": "pilfer_ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "plot-armor",
+    "name": "Plot Armor",
+    "tier": 2,
+    "description": "Team gains Armor/MR and much more below 50% Health.",
+    "iconSlug": "plot-armor",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "portable-forge",
+    "name": "Portable Forge",
+    "tier": 2,
+    "description": "Choose 1 of 4 Artifacts.",
+    "iconSlug": "portable-forge2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "prizefighter",
+    "name": "Prizefighter",
+    "tier": 2,
+    "description": "Gain components; every 5 wins gives another component.",
+    "iconSlug": "prizefighter",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "pyromaniac",
+    "name": "Pyromaniac",
+    "tier": 2,
+    "description": "Gain Red Buff; Burns deal increased damage.",
+    "iconSlug": "pyromaniac_ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "reach-for-the-stars",
+    "name": "Reach for the Stars",
+    "tier": 2,
+    "description": "Gain Jax. Your strongest Jax becomes a Magic Fighter.",
+    "iconSlug": "tft17_augment_jaxcarry",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "reinfourcement",
+    "name": "ReinFOURcement",
+    "tier": 2,
+    "description": "Next 4-cost bought with gold is instantly 2-star. Gain gold.",
+    "iconSlug": "reinfourcement",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "replication",
+    "name": "Replication",
+    "tier": 2,
+    "description": "Choose a component and gain copies over the next rounds.",
+    "iconSlug": "replication-ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "salvage-bin",
+    "name": "Salvage Bin+",
+    "tier": 2,
+    "description": "Gain completed item and faster component; selling breaks items into components.",
+    "iconSlug": "salvagebin2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "savings-account",
+    "name": "Savings Account",
+    "tier": 2,
+    "description": "Interest threshold gives gold. Max interest increased.",
+    "iconSlug": "savings-account",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "second-wind-ii",
+    "name": "Second Wind II",
+    "tier": 2,
+    "description": "After 10 seconds, your team heals more missing Health.",
+    "iconSlug": "secondwind2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "self-destruct",
+    "name": "Self Destruct",
+    "tier": 2,
+    "description": "Gain Gragas. Strongest Gragas becomes a Magic Fighter with self-damage explosion.",
+    "iconSlug": "self-destruct",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "seraphim-s-staff",
+    "name": "Seraphim's Staff",
+    "tier": 2,
+    "description": "Gain Archangel's Staff with extra Mana Regen condition.",
+    "iconSlug": "seraphim's-staff",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "side-effects",
+    "name": "Side Effects",
+    "tier": 2,
+    "description": "Healing deals damage. Team heals periodically.",
+    "iconSlug": "tft_augment_sideeffects",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "slammin",
+    "name": "Slammin'+",
+    "tier": 2,
+    "description": "Gain gold and XP now. If no bench items after combat, gain XP.",
+    "iconSlug": "slammin",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "solo-leveling",
+    "name": "Solo Leveling",
+    "tier": 2,
+    "description": "For several combats team size is 1 with massive stats; kills grant XP.",
+    "iconSlug": "solo-leveling",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "solo-plate",
+    "name": "Solo Plate",
+    "tier": 2,
+    "description": "Gain Gargoyle. Lone-row holder grants max Health.",
+    "iconSlug": "solo-plate",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "speedy-double-kill",
+    "name": "Speedy Double Kill",
+    "tier": 2,
+    "description": "Gain Guinsoo. When players are eliminated, gain gold.",
+    "iconSlug": "speedy-double-kill",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "spirit-of-redemption",
+    "name": "Spirit of Redemption",
+    "tier": 2,
+    "description": "Gain Spirit Visage; it heals nearby allies periodically.",
+    "iconSlug": "spirit-of-redemption",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "spreading-roots",
+    "name": "Spreading Roots+",
+    "tier": 2,
+    "description": "Gain 2 random Emblems, Reforger, and gold.",
+    "iconSlug": "spreading-roots",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "staffsmith",
+    "name": "Staffsmith",
+    "tier": 2,
+    "description": "Gain 2 completed items that build from Rod.",
+    "iconSlug": "staffsmith",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "sunfire-board",
+    "name": "Sunfire Board",
+    "tier": 2,
+    "description": "Combat start: burn all enemies and reduce healing.",
+    "iconSlug": "sunfireboard",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "swordsmith",
+    "name": "Swordsmith",
+    "tier": 2,
+    "description": "Gain 2 completed items that build from Sword.",
+    "iconSlug": "swordsmith",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "the-big-bang",
+    "name": "The Big Bang",
+    "tier": 2,
+    "description": "Gain a Meepsie. Strongest Meepsie becomes a Magic Fighter.",
+    "iconSlug": "t2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "timestream",
+    "name": "Timestream",
+    "tier": 2,
+    "description": "Timebreakers gain Health and Attack Speed every reroll. Gain Ezreal and Pantheon.",
+    "iconSlug": "t2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "tons-of-stats",
+    "name": "Tons of Stats!",
+    "tier": 2,
+    "description": "Your team gains a broad package of stats.",
+    "iconSlug": "tons-of-stats-ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "tour-of-the-galaxy",
+    "name": "Tour of the Galaxy",
+    "tier": 2,
+    "description": "Voyagers gain stats, scaling when fighting new players. Gain Pyke and Meepsie.",
+    "iconSlug": "t2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "trade-sector",
+    "name": "Trade Sector",
+    "tier": 2,
+    "description": "Gain a free Shop reroll every round and gold.",
+    "iconSlug": "tradesector2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "treasure-hunt",
+    "name": "Treasure Hunt",
+    "tier": 2,
+    "description": "Gain locked chests that unlock when you spend gold on rerolls.",
+    "iconSlug": "treasurehunt_ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "trifecta-i",
+    "name": "Trifecta I",
+    "tier": 2,
+    "description": "Gain 3-cost champions; random 3-costs gain Health and Attack Speed.",
+    "iconSlug": "trifecta-ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "two-much-value",
+    "name": "Two Much Value",
+    "tier": 2,
+    "description": "Gain rerolls based on unique 2-costs fielded. Gain 2-cost champions.",
+    "iconSlug": "twomuchvalue_ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "two-tanky",
+    "name": "Two Tanky",
+    "tier": 2,
+    "description": "Exactly 2 copies of a champion gain Health and shield; 3-star grants extra 2-star copy.",
+    "iconSlug": "two-tanky-ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "u-r-f",
+    "name": "U.R.F",
+    "tier": 2,
+    "description": "Gain Spatula. Spatula/Pan item holders gain Attack Speed and Mana Regen.",
+    "iconSlug": "u.r.f.",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "urf-s-gambit",
+    "name": "Urf's Gambit",
+    "tier": 2,
+    "description": "Win next combat for Spatula; lose for Frying Pan. Gain component anvil and gold.",
+    "iconSlug": "tft_augment_urfsgambit",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "vampiric-vitality-ii",
+    "name": "Vampiric Vitality II",
+    "tier": 2,
+    "description": "Heal from damage dealt to tacticians and gain stronger Omnivamp.",
+    "iconSlug": "dhampyr_ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "warlord-s-honor",
+    "name": "Warlord's Honor",
+    "tier": 2,
+    "description": "Team gains stacking AD and AP each round up to a cap.",
+    "iconSlug": "tft_augment_unforgotten",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "warpath",
+    "name": "Warpath",
+    "tier": 2,
+    "description": "Gain upgraded 2-cost; after player damage, gain high-cost loot chest.",
+    "iconSlug": "warpath_ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "worth-the-wait",
+    "name": "Worth the Wait",
+    "tier": 2,
+    "description": "Gain a random 1-cost and a copy every round.",
+    "iconSlug": "worth-the-wait",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "woven-magic",
+    "name": "Woven Magic",
+    "tier": 2,
+    "description": "Gain a component. Mana spent grants more components.",
+    "iconSlug": "woven-magic",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "you-have-my-bow",
+    "name": "You Have My Bow",
+    "tier": 2,
+    "description": "Gain a Recurve Bow. Team gains Attack Speed.",
+    "iconSlug": "you-have-my-bow-ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "an-exalted-adventure",
+    "name": "An Exalted Adventure",
+    "tier": 3,
+    "description": "Gain 2-costs; 3-starring two grants loot. Gain duplicators next stages.",
+    "iconSlug": "exaltedadventure_iii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "at-what-cost",
+    "name": "At What Cost",
+    "tier": 3,
+    "description": "Immediately go to level 6 and gain XP, but lose future augment choice.",
+    "iconSlug": "at-what-cost",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "band-of-thieves-ii",
+    "name": "Band of Thieves II++",
+    "tier": 3,
+    "description": "Gain 2 Thief's Gloves and another fastest.",
+    "iconSlug": "band-of-thieves-ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "baron-s-lair",
+    "name": "Baron's Lair",
+    "tier": 3,
+    "description": "Gain a Tank item. After time in combat, team ramps AD and AP every second.",
+    "iconSlug": "tft_augment_thebaronslair",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "belt-overflow",
+    "name": "Belt Overflow",
+    "tier": 3,
+    "description": "Gain 4 Giant's Belts. Belts grant extra Health.",
+    "iconSlug": "beltoverflow_iii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "birthday-present",
+    "name": "Birthday Present",
+    "tier": 3,
+    "description": "Gain a 2-star champion and gold whenever you level up.",
+    "iconSlug": "birthdaypresent3",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "bronze-for-life-ii",
+    "name": "Bronze For Life II",
+    "tier": 3,
+    "description": "Team gains Damage Amp, Armor, and MR for each Bronze-tier trait.",
+    "iconSlug": "bronzeforlife_iii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "build-a-bud",
+    "name": "Build a Bud",
+    "tier": 3,
+    "description": "Gain a random 3-star 1-cost champion and gold.",
+    "iconSlug": "build-a-bud",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "buried-treasures",
+    "name": "Buried Treasures",
+    "tier": 3,
+    "description": "Gain a component now and at the start of the next rounds.",
+    "iconSlug": "buriedtreasures3",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "call-to-chaos",
+    "name": "Call to Chaos",
+    "tier": 3,
+    "description": "Gain a powerful random reward.",
+    "iconSlug": "call-to-chaos",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "celestial-blessing-iii",
+    "name": "Celestial Blessing III",
+    "tier": 3,
+    "description": "Team gains Omnivamp; excess healing becomes a shield.",
+    "iconSlug": "celestialblessing3",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "comeback-story",
+    "name": "Comeback Story",
+    "tier": 3,
+    "description": "Team gains Health and Attack Speed per missing player Health.",
+    "iconSlug": "comeback-story",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "commerce-core",
+    "name": "Commerce Core",
+    "tier": 3,
+    "description": "Gain many free Shop rerolls now and every round.",
+    "iconSlug": "tft6_augment_tradesector2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "component-heist",
+    "name": "Component Heist",
+    "tier": 3,
+    "description": "After combats, gain one of every component. Gain a component now.",
+    "iconSlug": "component-heist",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "construct-a-companion",
+    "name": "Construct a Companion",
+    "tier": 3,
+    "description": "Next 1-cost bought is 3-star. Gain gold.",
+    "iconSlug": "construct-a-companion",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "cursed-crown",
+    "name": "Cursed Crown",
+    "tier": 3,
+    "description": "Gain +2 team size and Durability, but take double player damage on loss.",
+    "iconSlug": "cursedcrown3",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "deadlier-blades",
+    "name": "Deadlier Blades",
+    "tier": 3,
+    "description": "Gain Deathblade; Deathblades scale AD on takedowns.",
+    "iconSlug": "t3",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "deadlier-caps",
+    "name": "Deadlier Caps",
+    "tier": 3,
+    "description": "Gain Rabadon's Deathcap; Deathcaps scale AP on takedowns.",
+    "iconSlug": "t3",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "exclusive-customization-ii",
+    "name": "Exclusive Customization II",
+    "tier": 3,
+    "description": "Gain Lucky Item Chests, Magnetic Remover, and gold.",
+    "iconSlug": "t3",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "expected-unexpectedness",
+    "name": "Expected Unexpectedness",
+    "tier": 3,
+    "description": "Now and next stages, roll dice for rewards.",
+    "iconSlug": "addicted-to-rolling-iii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "five-pointed-star",
+    "name": "Five-Pointed Star",
+    "tier": 3,
+    "description": "First champion bought with cost equal to stage number is 2-star each stage.",
+    "iconSlug": "t3",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "flexible",
+    "name": "Flexible",
+    "tier": 3,
+    "description": "Gain Emblems over stages. Emblem holders give team Health.",
+    "iconSlug": "flexible_3",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "forged-in-strength",
+    "name": "Forged in Strength",
+    "tier": 3,
+    "description": "Gain Artifact now and more if you drop below low Health.",
+    "iconSlug": "forged-in-strength",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "giant-and-mighty",
+    "name": "Giant and Mighty",
+    "tier": 3,
+    "description": "Your team becomes large, gaining Health and max Health.",
+    "iconSlug": "giantandmighty_iii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "going-long",
+    "name": "Going Long",
+    "tier": 3,
+    "description": "You no longer gain interest. Gain gold now and XP every round.",
+    "iconSlug": "going-long",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "golden-gamble",
+    "name": "Golden Gamble++",
+    "tier": 3,
+    "description": "Much more gold, then flip for Radiant chest or completed item anvils.",
+    "iconSlug": "tft_augment_goldengamble",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "hard-commit",
+    "name": "Hard Commit",
+    "tier": 3,
+    "description": "Gain random Emblem and staged champions of that trait plus gold.",
+    "iconSlug": "hardcommit_iii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "heart-of-the-swarm",
+    "name": "Heart of the Swarm",
+    "tier": 3,
+    "description": "3-star champions count toward Swarmling power. Gain Primordians and duplicators.",
+    "iconSlug": "t3",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "hedge-fund",
+    "name": "Hedge Fund+",
+    "tier": 3,
+    "description": "Gain more gold and increase max interest to 10.",
+    "iconSlug": "hedge-fund-iii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "hold-the-line",
+    "name": "Hold the Line",
+    "tier": 3,
+    "description": "Back rows gain AP and AD for each ally in the front row.",
+    "iconSlug": "hold-the-line",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "invested",
+    "name": "Invested++",
+    "tier": 3,
+    "description": "Gain more gold. Above 50 gold, combat grants Shop rerolls.",
+    "iconSlug": "invested",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "jeweled-lotus-ii",
+    "name": "Jeweled Lotus II",
+    "tier": 3,
+    "description": "Team gains Critical Strike Chance, Critical Damage, and Precision.",
+    "iconSlug": "jeweledlotus3",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "just-hit",
+    "name": "Just Hit",
+    "tier": 3,
+    "description": "Gain a Champion Duplicator, many rerolls, and gold.",
+    "iconSlug": "t3",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "level-up",
+    "name": "Level Up!",
+    "tier": 3,
+    "description": "Buying XP grants extra XP. Gain XP immediately.",
+    "iconSlug": "levelup",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "living-forge",
+    "name": "Living Forge",
+    "tier": 3,
+    "description": "Gain an Artifact anvil now and after repeated combats.",
+    "iconSlug": "livingforge3",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "lucky-gloves",
+    "name": "Lucky Gloves+",
+    "tier": 3,
+    "description": "Thief's Gloves give recommended items. Gain Gloves now and later.",
+    "iconSlug": "luckygloves3",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "luxury-subscription",
+    "name": "Luxury Subscription",
+    "tier": 3,
+    "description": "Gain packages with 5-costs, upgraded low-costs, and gold over stages.",
+    "iconSlug": "luxury-subscription",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "min-max",
+    "name": "Min-Max",
+    "tier": 3,
+    "description": "Gain Golden Item Remover and random components.",
+    "iconSlug": "min-max",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "money-monsoon",
+    "name": "Money Monsoon",
+    "tier": 3,
+    "description": "Gain gold now and every round for the rest of the game.",
+    "iconSlug": "money-monsoon",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "new-recruit",
+    "name": "New Recruit",
+    "tier": 3,
+    "description": "Gain +1 max team size and 4-cost champions.",
+    "iconSlug": "newrecruit",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "nine-lives",
+    "name": "Nine Lives",
+    "tier": 3,
+    "description": "Set Health to 9; combat losses cost only 1 Health and give loot.",
+    "iconSlug": "nine-lives",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "one-buff-two-buff",
+    "name": "One Buff, Two Buff",
+    "tier": 3,
+    "description": "Gain Red Buff, Blue Buff, and Champion Duplicator.",
+    "iconSlug": "onebufftwobuff_iii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "pandora-s-items-iii",
+    "name": "Pandora's Items III",
+    "tier": 3,
+    "description": "Round start: bench items are randomized. Gain a random Radiant item.",
+    "iconSlug": "pandorasbox3",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "prismatic-ticket",
+    "name": "Prismatic Ticket",
+    "tier": 3,
+    "description": "Rerolls have a chance to grant a free reroll.",
+    "iconSlug": "goldenticket",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "radiant-rascal",
+    "name": "Radiant Rascal",
+    "tier": 3,
+    "description": "Gain Rascal's Gloves, equipping random Radiant items each round.",
+    "iconSlug": "roll-the-dice-iii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "retribution",
+    "name": "Retribution",
+    "tier": 3,
+    "description": "Gain Hands of Justice; HoJ holders gain Precision and Crit Chance.",
+    "iconSlug": "retribution",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "shimmerscale-essence",
+    "name": "Shimmerscale Essence",
+    "tier": 3,
+    "description": "Gain Mogul's Mail; later gain Gambler's Blade.",
+    "iconSlug": "shimmerscale-essence",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "shopping-spree",
+    "name": "Shopping Spree",
+    "tier": 3,
+    "description": "When you level up, gain free shop refreshes.",
+    "iconSlug": "shopping-spree",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "soul-awakening",
+    "name": "Soul Awakening",
+    "tier": 3,
+    "description": "Combat start: team gains ramping AD/AP and bonus true damage at max stacks.",
+    "iconSlug": "tft_augment_awakenedsoul",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "spoils-of-war-iii",
+    "name": "Spoils of War III",
+    "tier": 3,
+    "description": "Enemies have a chance to drop loot when killed.",
+    "iconSlug": "spoils-of-war-3",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "subscription-service",
+    "name": "Subscription Service",
+    "tier": 3,
+    "description": "Now and each stage, open a shop of 4-costs and gain gold.",
+    "iconSlug": "subscription-service",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "sweet-treats",
+    "name": "Sweet Treats",
+    "tier": 3,
+    "description": "Gain Artifact anvil. Team gains Health for each equipped item.",
+    "iconSlug": "sweet-treats",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "sword-overflow",
+    "name": "Sword Overflow",
+    "tier": 3,
+    "description": "Gain 4 B.F. Swords. Swords grant Attack Speed.",
+    "iconSlug": "bladeoverflow_iii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "tactician-s-kitchen",
+    "name": "Tactician's Kitchen",
+    "tier": 3,
+    "description": "Gain random Emblem. After rounds, gain Tactician's Cape.",
+    "iconSlug": "tacticianskitchen_iii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "the-golden-egg",
+    "name": "The Golden Egg",
+    "tier": 3,
+    "description": "Gain a golden egg that hatches into huge loot; wins speed it up.",
+    "iconSlug": "thegolden-egg3",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "the-trait-tree",
+    "name": "The Trait Tree+",
+    "tier": 3,
+    "description": "Gain 3 random Emblems, Reforger, and more gold.",
+    "iconSlug": "the-trait-tree",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "tiniest-titan",
+    "name": "Tiniest Titan",
+    "tier": 3,
+    "description": "Gain player Health and gold after every combat.",
+    "iconSlug": "tiniesttitan3",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "tiny-but-deadly",
+    "name": "Tiny, but Deadly",
+    "tier": 3,
+    "description": "Your team becomes small and gains Attack Speed and Movement Speed.",
+    "iconSlug": "tiny-but-deadly",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "trifecta-ii",
+    "name": "Trifecta II",
+    "tier": 3,
+    "description": "Gain 3-cost champions. 3-costs gain Health and Attack Speed.",
+    "iconSlug": "trifecta-iii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "upward-mobility",
+    "name": "Upward Mobility",
+    "tier": 3,
+    "description": "Buying XP costs less. Leveling grants Health and free rerolls.",
+    "iconSlug": "upward-mobility",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "urf-s-grab-bag",
+    "name": "Urf's Grab Bag",
+    "tier": 3,
+    "description": "Gain Spatula, random components, and gold.",
+    "iconSlug": "tft7_augment_urfsgrabbag2",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "wand-overflow",
+    "name": "Wand Overflow",
+    "tier": 3,
+    "description": "Gain 4 Needlessly Large Rods. Rods grant Attack Speed.",
+    "iconSlug": "wandoverflow_iii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "we-stick-together",
+    "name": "We Stick Together",
+    "tier": 3,
+    "description": "Gain Emblem and item anvil; allies sharing that trait gain Attack Speed.",
+    "iconSlug": "we-stick-together",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "win-out",
+    "name": "Win Out",
+    "tier": 3,
+    "description": "At level 9, immediately level to 10 and gain rerolls. Gain XP now.",
+    "iconSlug": "win-out",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "wise-spending",
+    "name": "Wise Spending",
+    "tier": 3,
+    "description": "You can no longer buy XP. Rerolling shop grants XP.",
+    "iconSlug": "wisespending",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
+    "id": "worth-the-wait-ii",
+    "name": "Worth the Wait II",
+    "tier": 3,
+    "description": "Gain two copies of a random 2-cost and another copy every round.",
+    "iconSlug": "worth-the-wait-ii",
+    "tags": [],
+    "baseScore": 0
+  },
+  {
     "id": "mecha-transformer",
     "name": "Mecha Transformer",
+    "tier": 2,
+    "category": "strategic",
+    "tags": [
+      "trait",
+      "strategic"
+    ],
+    "description": "+1 Mecha and +1 occupied board slot on a Mecha holder.",
     "type": "special-source",
     "trait": "Mecha",
     "alwaysAvailable": true,
-    "effect": "+1 Mecha and +1 occupied board slot on a Mecha holder"
+    "iconSlug": "t2"
   }
 ]

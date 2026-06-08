@@ -9,7 +9,12 @@
       "castFrequency",
       "magic"
     ],
-    "needs": ["frontline", "timeToCast", "survivability", "casterSupport"],
+    "needs": [
+      "frontline",
+      "timeToCast",
+      "survivability",
+      "casterSupport"
+    ],
     "preferredTraits": [
       "Conduit",
       "Oracle",
@@ -26,7 +31,10 @@
       "Nashor's Tooth",
       "Archangel's Staff"
     ],
-    "badTraitTags": ["physicalOnly", "attackDamageOnly"],
+    "badTraitTags": [
+      "physicalOnly",
+      "attackDamageOnly"
+    ],
     "notes": "Aurelion Sol is a Mecha/Conduit AP mana caster. Prioritize mana/cast traits, AP damage amp, and frontline/time-to-cast."
   },
   "karma": {
@@ -39,8 +47,16 @@
       "castFrequency",
       "magic"
     ],
-    "needs": ["frontline", "timeToCast"],
-    "preferredTraits": ["Voyager", "Dark Star", "Conduit", "Oracle"],
+    "needs": [
+      "frontline",
+      "timeToCast"
+    ],
+    "preferredTraits": [
+      "Voyager",
+      "Dark Star",
+      "Conduit",
+      "Oracle"
+    ],
     "preferredItems": [
       "Blue Buff",
       "Jeweled Gauntlet",
@@ -48,7 +64,9 @@
       "Spear of Shojin",
       "Nashor's Tooth"
     ],
-    "badTraitTags": ["physicalOnly"]
+    "badTraitTags": [
+      "physicalOnly"
+    ]
   },
   "jhin": {
     "archetype": "ad-ranged-carry",
@@ -60,7 +78,10 @@
       "damageAmp",
       "physicalDamage"
     ],
-    "needs": ["frontline", "timeToCast"],
+    "needs": [
+      "frontline",
+      "timeToCast"
+    ],
     "preferredTraits": [
       "Sniper",
       "Dark Star",
@@ -73,9 +94,11 @@
       "Last Whisper",
       "Deathblade",
       "Giant Slayer",
-      "Guardbreaker"
+      "Striker's Flail"
     ],
-    "badTraitTags": ["manaOnly"]
+    "badTraitTags": [
+      "manaOnly"
+    ]
   },
   "fiora": {
     "archetype": "melee-ad-carry",
@@ -87,8 +110,17 @@
       "lifesteal",
       "physicalDamage"
     ],
-    "needs": ["survivability", "frontline", "dueling"],
-    "preferredTraits": ["Marauder", "Anima", "Divine Duelist", "Brawler"],
+    "needs": [
+      "survivability",
+      "frontline",
+      "dueling"
+    ],
+    "preferredTraits": [
+      "Marauder",
+      "Anima",
+      "Divine Duelist",
+      "Brawler"
+    ],
     "preferredItems": [
       "Bloodthirster",
       "Titan's Resolve",
@@ -96,21 +128,38 @@
       "Sterak's Gage",
       "Infinity Edge"
     ],
-    "badTraitTags": ["manaOnly"]
+    "badTraitTags": [
+      "manaOnly"
+    ]
   },
   "vex": {
     "archetype": "ap-caster",
     "damageType": "magic",
-    "scalesWith": ["abilityPower", "spellDamage", "castFrequency", "magic"],
-    "needs": ["frontline", "timeToCast"],
-    "preferredTraits": ["Doomer", "Conduit", "Oracle", "Dark Star"],
+    "scalesWith": [
+      "abilityPower",
+      "spellDamage",
+      "castFrequency",
+      "magic"
+    ],
+    "needs": [
+      "frontline",
+      "timeToCast"
+    ],
+    "preferredTraits": [
+      "Doomer",
+      "Conduit",
+      "Oracle",
+      "Dark Star"
+    ],
     "preferredItems": [
       "Jeweled Gauntlet",
       "Rabadon's Deathcap",
       "Spear of Shojin",
       "Archangel's Staff"
     ],
-    "badTraitTags": ["physicalOnly"]
+    "badTraitTags": [
+      "physicalOnly"
+    ]
   },
   "miss-fortune": {
     "archetype": "mixed-ranged-carry",
@@ -122,14 +171,22 @@
       "castFrequency",
       "mixedDamage"
     ],
-    "needs": ["frontline", "timeToCast"],
-    "preferredTraits": ["Gun Goddess", "Eradicator", "Sniper", "Conduit"],
+    "needs": [
+      "frontline",
+      "timeToCast"
+    ],
+    "preferredTraits": [
+      "Gun Goddess",
+      "Eradicator",
+      "Sniper",
+      "Conduit"
+    ],
     "preferredItems": [
       "Spear of Shojin",
       "Jeweled Gauntlet",
       "Infinity Edge",
       "Giant Slayer",
-      "Guardbreaker"
+      "Striker's Flail"
     ],
     "badTraitTags": []
   },
@@ -143,36 +200,72 @@
       "physicalDamage",
       "backlineAccess"
     ],
-    "needs": ["survivability", "dueling"],
-    "preferredTraits": ["Galaxy Hunter", "Rogue", "Challenger", "Dark Star"],
+    "needs": [
+      "survivability",
+      "dueling"
+    ],
+    "preferredTraits": [
+      "Galaxy Hunter",
+      "Rogue",
+      "Challenger",
+      "Dark Star"
+    ],
     "preferredItems": [
       "Infinity Edge",
       "Hand of Justice",
       "Bloodthirster",
       "Titan's Resolve"
     ],
-    "badTraitTags": ["manaOnly"]
+    "badTraitTags": [
+      "manaOnly"
+    ]
   },
   "bard": {
     "archetype": "utility-caster",
     "damageType": "magic",
-    "scalesWith": ["mana", "abilityPower", "utility", "castFrequency"],
-    "needs": ["frontline", "timeToCast"],
-    "preferredTraits": ["Meeple", "Conduit", "Voyager", "Oracle"],
+    "scalesWith": [
+      "mana",
+      "abilityPower",
+      "utility",
+      "castFrequency"
+    ],
+    "needs": [
+      "frontline",
+      "timeToCast"
+    ],
+    "preferredTraits": [
+      "Meeple",
+      "Conduit",
+      "Voyager",
+      "Oracle"
+    ],
     "preferredItems": [
       "Spear of Shojin",
       "Nashor's Tooth",
       "Archangel's Staff",
       "Morellonomicon"
     ],
-    "badTraitTags": ["physicalOnly"]
+    "badTraitTags": [
+      "physicalOnly"
+    ]
   },
   "blitzcrank": {
     "archetype": "frontline-tank",
     "damageType": "magic",
-    "scalesWith": ["health", "tank", "survivability"],
-    "needs": ["teamAmp"],
-    "preferredTraits": ["Vanguard", "Brawler", "Space Groove", "Party Animal"],
+    "scalesWith": [
+      "health",
+      "tank",
+      "survivability"
+    ],
+    "needs": [
+      "teamAmp"
+    ],
+    "preferredTraits": [
+      "Vanguard",
+      "Brawler",
+      "Space Groove",
+      "Party Animal"
+    ],
     "preferredItems": [
       "Warmog's Armor",
       "Gargoyle Stoneplate",
@@ -190,22 +283,43 @@
       "physicalDamage",
       "survivability"
     ],
-    "needs": ["frontline", "dueling"],
-    "preferredTraits": ["Factory New", "Brawler", "Marauder", "Rogue"],
+    "needs": [
+      "frontline",
+      "dueling"
+    ],
+    "preferredTraits": [
+      "Factory New",
+      "Brawler",
+      "Marauder",
+      "Rogue"
+    ],
     "preferredItems": [
       "Bloodthirster",
       "Titan's Resolve",
       "Infinity Edge",
       "Hand of Justice"
     ],
-    "badTraitTags": ["manaOnly"]
+    "badTraitTags": [
+      "manaOnly"
+    ]
   },
   "shen": {
     "archetype": "frontline-tank",
     "damageType": "magic",
-    "scalesWith": ["health", "tank", "survivability", "frontline"],
-    "needs": ["teamAmp"],
-    "preferredTraits": ["Bulwark", "Bastion", "Brawler"],
+    "scalesWith": [
+      "health",
+      "tank",
+      "survivability",
+      "frontline"
+    ],
+    "needs": [
+      "teamAmp"
+    ],
+    "preferredTraits": [
+      "Bulwark",
+      "Bastion",
+      "Brawler"
+    ],
     "preferredItems": [
       "Warmog's Armor",
       "Gargoyle Stoneplate",
@@ -217,8 +331,16 @@
   "sona": {
     "archetype": "utility-caster",
     "damageType": "magic",
-    "scalesWith": ["mana", "utility", "castFrequency", "abilityPower"],
-    "needs": ["frontline", "timeToCast"],
+    "scalesWith": [
+      "mana",
+      "utility",
+      "castFrequency",
+      "abilityPower"
+    ],
+    "needs": [
+      "frontline",
+      "timeToCast"
+    ],
     "preferredTraits": [
       "Commander",
       "Psionic",
@@ -232,6 +354,8 @@
       "Archangel's Staff",
       "Morellonomicon"
     ],
-    "badTraitTags": ["physicalOnly"]
+    "badTraitTags": [
+      "physicalOnly"
+    ]
   }
 }

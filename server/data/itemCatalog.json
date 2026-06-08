@@ -125,13 +125,6 @@
       "Giant's Belt"
     ]
   },
-  "Guardbreaker": {
-    "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Guardbreaker.png",
-    "components": [
-      "Giant's Belt",
-      "Sparring Gloves"
-    ]
-  },
   "Sunfire Cape": {
     "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redbuff.png",
     "components": [
@@ -155,7 +148,18 @@
   },
   "Striker's Flail": {
     "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_powergauntlet.png",
-    "components": []
+    "components": [
+      "Giant's Belt",
+      "Sparring Gloves"
+    ],
+    "description": "Critical Strikes grant Damage Amp for a short duration, stacking.",
+    "tags": [
+      "ad",
+      "crit",
+      "attackSpeed",
+      "damageAmp",
+      "flex"
+    ]
   },
   "Stargazer Emblem": {
     "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft17_item_stargazeremblemitem.png",
@@ -184,13 +188,6 @@
     "components": [
       "B.F. Sword",
       "Needlessly Large Rod"
-    ]
-  },
-  "Hand Of Justice": {
-    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png",
-    "components": [
-      "Tear of the Goddess",
-      "Sparring Gloves"
     ]
   },
   "Edge of Night": {
@@ -243,7 +240,7 @@
     ]
   },
   "Spirit Visage": {
-    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redemption.png?v=1",
+    "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spiritvisage.png",
     "components": [
       "Giant's Belt",
       "Negatron Cloak"

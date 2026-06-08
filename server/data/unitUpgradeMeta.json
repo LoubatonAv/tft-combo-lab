@@ -137,7 +137,7 @@
         },
         {
           "name": "Spirit Visage",
-          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redemption.png?v=1"
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spiritvisage.png"
         },
         {
           "name": "Warmog's Armor",
@@ -557,7 +557,7 @@
       "items": [
         "Edge of Night",
         "Striker's Flail",
-        "Hand Of Justice"
+        "Hand of Justice"
       ],
       "itemImages": [
         {
@@ -569,8 +569,8 @@
           "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_powergauntlet.png"
         },
         {
-          "name": "Hand Of Justice",
-          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+          "name": "Hand of Justice",
+          "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Hand_of_Justice.png"
         }
       ],
       "tier": "S",
@@ -674,7 +674,7 @@
       "items": [
         "Sympathetic Implant",
         "Jeweled Gauntlet",
-        "Hand Of Justice"
+        "Hand of Justice"
       ],
       "itemImages": [
         {
@@ -686,8 +686,8 @@
           "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
         },
         {
-          "name": "Hand Of Justice",
-          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+          "name": "Hand of Justice",
+          "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Hand_of_Justice.png"
         }
       ],
       "tier": "S",
@@ -713,7 +713,7 @@
       "items": [
         "Jeweled Gauntlet",
         "Striker's Flail",
-        "Hand Of Justice"
+        "Hand of Justice"
       ],
       "itemImages": [
         {
@@ -725,8 +725,8 @@
           "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_powergauntlet.png"
         },
         {
-          "name": "Hand Of Justice",
-          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+          "name": "Hand of Justice",
+          "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Hand_of_Justice.png"
         }
       ],
       "tier": "S",
@@ -830,7 +830,7 @@
       "items": [
         "Edge of Night",
         "Jeweled Gauntlet",
-        "Hand Of Justice"
+        "Hand of Justice"
       ],
       "itemImages": [
         {
@@ -842,8 +842,8 @@
           "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_jeweledgauntlet.png"
         },
         {
-          "name": "Hand Of Justice",
-          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+          "name": "Hand of Justice",
+          "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Hand_of_Justice.png"
         }
       ],
       "tier": "S",
@@ -1142,7 +1142,7 @@
       "items": [
         "Jeweled Gauntlet",
         "Quicksilver",
-        "Hand Of Justice"
+        "Hand of Justice"
       ],
       "itemImages": [
         {
@@ -1154,8 +1154,8 @@
           "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_quicksilver.png"
         },
         {
-          "name": "Hand Of Justice",
-          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+          "name": "Hand of Justice",
+          "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Hand_of_Justice.png"
         }
       ],
       "tier": "S",
@@ -1307,7 +1307,7 @@
         },
         {
           "name": "Spirit Visage",
-          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redemption.png?v=1"
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spiritvisage.png"
         },
         {
           "name": "Warmog's Armor",
@@ -1385,7 +1385,7 @@
         },
         {
           "name": "Spirit Visage",
-          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redemption.png?v=1"
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spiritvisage.png"
         },
         {
           "name": "Warmog's Armor",
@@ -1428,7 +1428,7 @@
         },
         {
           "name": "Spirit Visage",
-          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redemption.png?v=1"
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spiritvisage.png"
         }
       ],
       "tier": "S",
@@ -1814,7 +1814,7 @@
         },
         {
           "name": "Spirit Visage",
-          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redemption.png?v=1"
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spiritvisage.png"
         },
         {
           "name": "Warmog's Armor",
@@ -2156,7 +2156,7 @@
       "items": [
         "Jeweled Gauntlet",
         "Striker's Flail",
-        "Hand Of Justice"
+        "Hand of Justice"
       ],
       "itemImages": [
         {
@@ -2168,8 +2168,8 @@
           "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_powergauntlet.png"
         },
         {
-          "name": "Hand Of Justice",
-          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+          "name": "Hand of Justice",
+          "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Hand_of_Justice.png"
         }
       ],
       "tier": "S",
@@ -2195,7 +2195,7 @@
       "items": [
         "Edge of Night",
         "Giant Slayer",
-        "Hand Of Justice"
+        "Hand of Justice"
       ],
       "itemImages": [
         {
@@ -2207,8 +2207,8 @@
           "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_madredsbloodrazor.png"
         },
         {
-          "name": "Hand Of Justice",
-          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_unstableconcoction.png"
+          "name": "Hand of Justice",
+          "iconUrl": "https://raw.communitydragon.org/latest/game/assets/maps/particles/tft/item_icons/standard/Hand_of_Justice.png"
         }
       ],
       "tier": "S",
@@ -2360,7 +2360,7 @@
         },
         {
           "name": "Spirit Visage",
-          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_redemption.png?v=1"
+          "iconUrl": "https://cdn.metatft.com/file/metatft/items/tft_item_spiritvisage.png"
         },
         {
           "name": "Warmog's Armor",

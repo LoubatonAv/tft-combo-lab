@@ -1,5 +1,589 @@
 [
   {
+    "id": "1780841705134-720678beac2ec",
+    "createdAt": "2026-06-07T14:15:05.134Z",
+    "compId": "bard|caitlyn|corki|maokai|milio|ornn|pantheon|rammus|twisted-fate",
+    "placement": 2,
+    "rating": "good",
+    "carryId": "corki",
+    "carryName": "Corki",
+    "units": [
+      {
+        "id": "bard",
+        "name": "Bard",
+        "cost": 5,
+        "traits": [
+          "Meeple",
+          "Conduit"
+        ]
+      },
+      {
+        "id": "corki",
+        "name": "Corki",
+        "cost": 4,
+        "traits": [
+          "Meeple",
+          "Fateweaver"
+        ]
+      },
+      {
+        "id": "rammus",
+        "name": "Rammus",
+        "cost": 4,
+        "traits": [
+          "Meeple",
+          "Bastion"
+        ]
+      },
+      {
+        "id": "maokai",
+        "name": "Maokai",
+        "cost": 3,
+        "traits": [
+          "N.O.V.A.",
+          "Brawler"
+        ]
+      },
+      {
+        "id": "ornn",
+        "name": "Ornn",
+        "cost": 3,
+        "traits": [
+          "Space Groove",
+          "Bastion"
+        ]
+      },
+      {
+        "id": "milio",
+        "name": "Milio",
+        "cost": 2,
+        "traits": [
+          "Timebreaker",
+          "Fateweaver"
+        ]
+      },
+      {
+        "id": "pantheon",
+        "name": "Pantheon",
+        "cost": 2,
+        "traits": [
+          "Timebreaker",
+          "Brawler",
+          "Replicator"
+        ]
+      },
+      {
+        "id": "caitlyn",
+        "name": "Caitlyn",
+        "cost": 1,
+        "traits": [
+          "N.O.V.A.",
+          "Fateweaver"
+        ]
+      },
+      {
+        "id": "twisted-fate",
+        "name": "Twisted Fate",
+        "cost": 1,
+        "traits": [
+          "Stargazer",
+          "Fateweaver"
+        ]
+      }
+    ],
+    "traits": [
+      {
+        "name": "Fateweaver",
+        "count": 4,
+        "activeAt": 4
+      },
+      {
+        "name": "Meeple",
+        "count": 3,
+        "activeAt": 3
+      },
+      {
+        "name": "Bastion",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "N.O.V.A.",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Brawler",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Timebreaker",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Space Groove",
+        "count": 1,
+        "activeAt": 1
+      },
+      {
+        "name": "Conduit",
+        "count": 1,
+        "activeAt": 0
+      },
+      {
+        "name": "Replicator",
+        "count": 1,
+        "activeAt": 0
+      },
+      {
+        "name": "Stargazer",
+        "count": 1,
+        "activeAt": 0
+      }
+    ],
+    "notes": "x3 milio\nx3 pantheon\nbis items on corki, many items on tanks. this fateweaver is cancer"
+  },
+  {
+    "id": "1780839468390-347ea01284dbb",
+    "createdAt": "2026-06-07T13:37:48.390Z",
+    "compId": "bard|caitlyn|corki|maokai|milio|ornn|pantheon|rammus|twisted-fate",
+    "placement": 3,
+    "rating": "good",
+    "carryId": "corki",
+    "carryName": "Corki",
+    "units": [
+      {
+        "id": "bard",
+        "name": "Bard",
+        "cost": 5,
+        "traits": [
+          "Meeple",
+          "Conduit"
+        ]
+      },
+      {
+        "id": "corki",
+        "name": "Corki",
+        "cost": 4,
+        "traits": [
+          "Meeple",
+          "Fateweaver"
+        ]
+      },
+      {
+        "id": "rammus",
+        "name": "Rammus",
+        "cost": 4,
+        "traits": [
+          "Meeple",
+          "Bastion"
+        ]
+      },
+      {
+        "id": "maokai",
+        "name": "Maokai",
+        "cost": 3,
+        "traits": [
+          "N.O.V.A.",
+          "Brawler"
+        ]
+      },
+      {
+        "id": "ornn",
+        "name": "Ornn",
+        "cost": 3,
+        "traits": [
+          "Space Groove",
+          "Bastion"
+        ]
+      },
+      {
+        "id": "milio",
+        "name": "Milio",
+        "cost": 2,
+        "traits": [
+          "Timebreaker",
+          "Fateweaver"
+        ]
+      },
+      {
+        "id": "pantheon",
+        "name": "Pantheon",
+        "cost": 2,
+        "traits": [
+          "Timebreaker",
+          "Brawler",
+          "Replicator"
+        ]
+      },
+      {
+        "id": "caitlyn",
+        "name": "Caitlyn",
+        "cost": 1,
+        "traits": [
+          "N.O.V.A.",
+          "Fateweaver"
+        ]
+      },
+      {
+        "id": "twisted-fate",
+        "name": "Twisted Fate",
+        "cost": 1,
+        "traits": [
+          "Stargazer",
+          "Fateweaver"
+        ]
+      }
+    ],
+    "traits": [
+      {
+        "name": "Fateweaver",
+        "count": 4,
+        "activeAt": 4
+      },
+      {
+        "name": "Meeple",
+        "count": 3,
+        "activeAt": 3
+      },
+      {
+        "name": "Bastion",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "N.O.V.A.",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Brawler",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Timebreaker",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Space Groove",
+        "count": 1,
+        "activeAt": 1
+      },
+      {
+        "name": "Conduit",
+        "count": 1,
+        "activeAt": 0
+      },
+      {
+        "name": "Replicator",
+        "count": 1,
+        "activeAt": 0
+      },
+      {
+        "name": "Stargazer",
+        "count": 1,
+        "activeAt": 0
+      }
+    ],
+    "notes": "NO 3 stars\n+ meeple"
+  },
+  {
+    "id": "1780824110979-192ed96a07b3a",
+    "createdAt": "2026-06-07T09:21:50.979Z",
+    "compId": "bard|caitlyn|corki|maokai|milio|ornn|pantheon|rammus|twisted-fate",
+    "placement": 3,
+    "rating": "good",
+    "carryId": "corki",
+    "carryName": "Corki",
+    "units": [
+      {
+        "id": "bard",
+        "name": "Bard",
+        "cost": 5,
+        "traits": [
+          "Meeple",
+          "Conduit"
+        ]
+      },
+      {
+        "id": "corki",
+        "name": "Corki",
+        "cost": 4,
+        "traits": [
+          "Meeple",
+          "Fateweaver"
+        ]
+      },
+      {
+        "id": "rammus",
+        "name": "Rammus",
+        "cost": 4,
+        "traits": [
+          "Meeple",
+          "Bastion"
+        ]
+      },
+      {
+        "id": "maokai",
+        "name": "Maokai",
+        "cost": 3,
+        "traits": [
+          "N.O.V.A.",
+          "Brawler"
+        ]
+      },
+      {
+        "id": "ornn",
+        "name": "Ornn",
+        "cost": 3,
+        "traits": [
+          "Space Groove",
+          "Bastion"
+        ]
+      },
+      {
+        "id": "milio",
+        "name": "Milio",
+        "cost": 2,
+        "traits": [
+          "Timebreaker",
+          "Fateweaver"
+        ]
+      },
+      {
+        "id": "pantheon",
+        "name": "Pantheon",
+        "cost": 2,
+        "traits": [
+          "Timebreaker",
+          "Brawler",
+          "Replicator"
+        ]
+      },
+      {
+        "id": "caitlyn",
+        "name": "Caitlyn",
+        "cost": 1,
+        "traits": [
+          "N.O.V.A.",
+          "Fateweaver"
+        ]
+      },
+      {
+        "id": "twisted-fate",
+        "name": "Twisted Fate",
+        "cost": 1,
+        "traits": [
+          "Stargazer",
+          "Fateweaver"
+        ]
+      }
+    ],
+    "traits": [
+      {
+        "name": "Fateweaver",
+        "count": 4,
+        "activeAt": 4
+      },
+      {
+        "name": "Meeple",
+        "count": 3,
+        "activeAt": 3
+      },
+      {
+        "name": "Bastion",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "N.O.V.A.",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Brawler",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Timebreaker",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Space Groove",
+        "count": 1,
+        "activeAt": 1
+      },
+      {
+        "name": "Conduit",
+        "count": 1,
+        "activeAt": 0
+      },
+      {
+        "name": "Replicator",
+        "count": 1,
+        "activeAt": 0
+      },
+      {
+        "name": "Stargazer",
+        "count": 1,
+        "activeAt": 0
+      }
+    ],
+    "notes": "meepsie can be nice before u get a bard"
+  },
+  {
+    "id": "1780824066529-24120a3e62386",
+    "createdAt": "2026-06-07T09:21:06.529Z",
+    "compId": "bard|caitlyn|corki|maokai|milio|ornn|pantheon|rammus|twisted-fate",
+    "placement": 3,
+    "rating": "good",
+    "carryId": "corki",
+    "carryName": "Corki",
+    "units": [
+      {
+        "id": "bard",
+        "name": "Bard",
+        "cost": 5,
+        "traits": [
+          "Meeple",
+          "Conduit"
+        ]
+      },
+      {
+        "id": "corki",
+        "name": "Corki",
+        "cost": 4,
+        "traits": [
+          "Meeple",
+          "Fateweaver"
+        ]
+      },
+      {
+        "id": "rammus",
+        "name": "Rammus",
+        "cost": 4,
+        "traits": [
+          "Meeple",
+          "Bastion"
+        ]
+      },
+      {
+        "id": "maokai",
+        "name": "Maokai",
+        "cost": 3,
+        "traits": [
+          "N.O.V.A.",
+          "Brawler"
+        ]
+      },
+      {
+        "id": "ornn",
+        "name": "Ornn",
+        "cost": 3,
+        "traits": [
+          "Space Groove",
+          "Bastion"
+        ]
+      },
+      {
+        "id": "milio",
+        "name": "Milio",
+        "cost": 2,
+        "traits": [
+          "Timebreaker",
+          "Fateweaver"
+        ]
+      },
+      {
+        "id": "pantheon",
+        "name": "Pantheon",
+        "cost": 2,
+        "traits": [
+          "Timebreaker",
+          "Brawler",
+          "Replicator"
+        ]
+      },
+      {
+        "id": "caitlyn",
+        "name": "Caitlyn",
+        "cost": 1,
+        "traits": [
+          "N.O.V.A.",
+          "Fateweaver"
+        ]
+      },
+      {
+        "id": "twisted-fate",
+        "name": "Twisted Fate",
+        "cost": 1,
+        "traits": [
+          "Stargazer",
+          "Fateweaver"
+        ]
+      }
+    ],
+    "traits": [
+      {
+        "name": "Fateweaver",
+        "count": 4,
+        "activeAt": 4
+      },
+      {
+        "name": "Meeple",
+        "count": 3,
+        "activeAt": 3
+      },
+      {
+        "name": "Bastion",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "N.O.V.A.",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Brawler",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Timebreaker",
+        "count": 2,
+        "activeAt": 2
+      },
+      {
+        "name": "Space Groove",
+        "count": 1,
+        "activeAt": 1
+      },
+      {
+        "name": "Conduit",
+        "count": 1,
+        "activeAt": 0
+      },
+      {
+        "name": "Replicator",
+        "count": 1,
+        "activeAt": 0
+      },
+      {
+        "name": "Stargazer",
+        "count": 1,
+        "activeAt": 0
+      }
+    ],
+    "notes": "Ornn 3 probably a must\nMust slow reroll a milio  to 3 with good items.\nSlam items on corki as well. a must.\nwas a close game. very."
+  },
+  {
     "id": "1780660850334-9cf33fa5d6ffa",
     "createdAt": "2026-06-05T12:00:50.334Z",
     "compId": "caitlyn|chogath|corki|gnar|jhin|maokai|milio|rammus|twisted-fate",

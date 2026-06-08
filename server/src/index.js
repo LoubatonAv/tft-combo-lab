@@ -161,11 +161,27 @@ app.post("/api/optimize", async (req, res) => {
       traitMeta: data.traitMeta,
       itemStats: data.itemStats,
       itemSetStats: data.itemSetStats,
+      itemCatalog: data.itemCatalog,
       unitUpgradeMeta: data.unitUpgradeMeta,
       unitBuildMeta: data.unitBuildMeta,
       matchHistory: data.matchHistory,
       carryProfiles: data.carryProfiles,
       traitProfiles: data.traitProfiles,
+      augments: data.augments,
+      selectedAugmentIds: Array.isArray(req.body.selectedAugmentIds)
+        ? req.body.selectedAugmentIds
+        : [],
+      offeredAugmentIds: Array.isArray(req.body.offeredAugmentIds)
+        ? req.body.offeredAugmentIds
+        : [],
+      components: Array.isArray(req.body.components) ? req.body.components : [],
+      playStyle: req.body.playStyle || "first",
+      unitStars: req.body.unitStars && typeof req.body.unitStars === "object"
+        ? req.body.unitStars
+        : {},
+      liveState: req.body.liveState && typeof req.body.liveState === "object"
+        ? req.body.liveState
+        : {},
       lockedUnitIds: Array.isArray(req.body.lockedUnitIds)
         ? req.body.lockedUnitIds
         : [],
