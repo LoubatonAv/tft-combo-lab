@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
+import { createPortal } from "react-dom";
 import {
   Shield,
   Sword,
@@ -4742,17 +4743,46 @@ function formatMetaNumber(value, suffix = "") {
   return `${number.toFixed(number % 1 === 0 ? 0 : 2)}${suffix}`;
 }
 
-function UnitHoverCard({ unit, starPlan = null }) {
+function UnitHoverCard({ unit, starPlan = null, anchorRect = null }) {
+  if (!unit || !anchorRect) return null;
+
   const traits = unit?.traits || [];
   const emblems = unit?.emblems || [];
-  const metaBuild = starPlan?.build || starPlan?.bestBuild || null;
 
-  return (
-    <div className="pointer-events-none absolute bottom-full left-1/2 z-[10001] mb-1 hidden w-72 -translate-x-1/2 translate-y-3 rounded-2xl border border-cyan-300/40 bg-slate-950 px-4 py-3 text-left text-sm text-slate-100 opacity-100 shadow-2xl ring-1 ring-black/80 group-hover:block">
-      {" "}
+  const tooltipWidth = 320;
+  const left = Math.max(
+    tooltipWidth / 2 + 12,
+    Math.min(
+      anchorRect.left + anchorRect.width / 2,
+      window.innerWidth - tooltipWidth / 2 - 12,
+    ),
+  );
+
+  const estimatedHeight = 360;
+  const belowTop = anchorRect.bottom + 10;
+  const aboveTop = anchorRect.top - estimatedHeight - 10;
+
+  const top =
+    belowTop + estimatedHeight < window.innerHeight
+      ? belowTop
+      : Math.max(12, aboveTop);
+
+  return createPortal(
+    <div
+      style={{
+        position: "fixed",
+        left,
+        top,
+        transform: "translateX(-50%)",
+        zIndex: 999999,
+        width: tooltipWidth,
+      }}
+      className="pointer-events-none rounded-2xl border border-cyan-300/45 bg-slate-950 px-4 py-3 text-left text-sm text-slate-100 shadow-[0_24px_80px_rgba(0,0,0,0.75)] ring-1 ring-black/80"
+    >
       <div className="flex items-start justify-between gap-3">
         <div>
           <div className="text-lg font-black text-white">{unit.name}</div>
+
           <div className="mt-1 text-sm font-semibold text-slate-300">
             Cost {unit.cost} · Tier {unit.tier || "?"}
           </div>
@@ -4760,23 +4790,10 @@ function UnitHoverCard({ unit, starPlan = null }) {
           {starPlan && (
             <div className="mt-2 flex items-center gap-2">
               <StarBadge starLevel={starPlan.starLevel} />
+
               <span className="text-xs font-bold text-slate-300">
                 {starPlan.label}
               </span>
-            </div>
-          )}
-
-          {metaBuild && (
-            <div className="mt-2 grid grid-cols-3 gap-1 text-[11px] text-slate-300">
-              <div className="rounded-lg bg-amber-300/10 px-2 py-1 text-amber-100">
-                Avg <b>{formatMetaNumber(metaBuild.avgPlace) || "-"}</b>
-              </div>
-              <div className="rounded-lg bg-cyan-300/10 px-2 py-1 text-cyan-100">
-                WR <b>{formatMetaNumber(metaBuild.winRate, "%") || "-"}</b>
-              </div>
-              <div className="rounded-lg bg-white/5 px-2 py-1">
-                Games <b>{formatMetaNumber(metaBuild.games) || "-"}</b>
-              </div>
             </div>
           )}
         </div>
@@ -4790,14 +4807,17 @@ function UnitHoverCard({ unit, starPlan = null }) {
           {unit.cost}
         </span>
       </div>
+
       <div className="mt-3">
         <div className="text-xs font-bold uppercase tracking-wide text-cyan-200">
           Role / Class
         </div>
+
         <div className="mt-1 text-base font-bold text-white">
           {unit.role || "Unknown"}
         </div>
       </div>
+
       <div className="mt-3">
         <div className="text-xs font-bold uppercase tracking-wide text-cyan-200">
           Traits
@@ -4824,20 +4844,24 @@ function UnitHoverCard({ unit, starPlan = null }) {
           )}
         </div>
       </div>
+
       {unit.stats && (
         <div className="mt-3 grid grid-cols-3 gap-1 text-xs text-slate-300">
           <div className="rounded-lg bg-white/5 px-2 py-1">
             HP <b>{unit.stats.hp ?? "?"}</b>
           </div>
+
           <div className="rounded-lg bg-white/5 px-2 py-1">
             AR <b>{unit.stats.armor ?? "?"}</b>
           </div>
+
           <div className="rounded-lg bg-white/5 px-2 py-1">
             MR <b>{unit.stats.magicResist ?? "?"}</b>
           </div>
         </div>
       )}
-    </div>
+    </div>,
+    document.body,
   );
 }
 
@@ -4874,167 +4898,192 @@ function TftBoard({
     return isMechaUnit(unit);
   }
 
-  return (
-    <div className="relative z-[200] mx-auto grid max-w-3xl grid-cols-5 gap-1.5 overflow-visible rounded-2xl border border-amber-200/10 bg-gradient-to-b from-slate-900/85 to-black/45 p-2 shadow-inner shadow-black/50">
-      {" "}
-      {slots.map((slot, i) => {
-        if (!slot) {
-          return (
-            <div
-              key={i}
-              className="relative flex aspect-square items-center justify-center rounded-xl border border-dashed border-white/10 bg-white/5 text-center text-[10px]"
-            >
-              <span className="text-slate-600">empty</span>
-            </div>
-          );
-        }
+  const [hoveredUnitInfo, setHoveredUnitInfo] = useState(null);
 
-        if (slot.kind === "transformer-slot") {
+  function openUnitHover(event, unit, starPlan) {
+    setHoveredUnitInfo({
+      unit,
+      starPlan,
+      rect: event.currentTarget.getBoundingClientRect(),
+    });
+  }
+
+  function closeUnitHover() {
+    setHoveredUnitInfo(null);
+  }
+
+  return (
+    <>
+      <div className="relative z-[200] mx-auto grid max-w-3xl grid-cols-5 gap-1.5 overflow-visible rounded-2xl border border-amber-200/10 bg-gradient-to-b from-slate-900/85 to-black/45 p-2 shadow-inner shadow-black/50">
+        {slots.map((slot, i) => {
+          if (!slot) {
+            return (
+              <div
+                key={i}
+                className="relative flex aspect-square items-center justify-center rounded-xl border border-dashed border-white/10 bg-white/5 text-center text-[10px]"
+              >
+                <span className="text-slate-600">empty</span>
+              </div>
+            );
+          }
+
+          if (slot.kind === "transformer-slot") {
+            return (
+              <button
+                key={`transformer-${slot.unit.id}`}
+                type="button"
+                onClick={() => onToggleMechaTransformer?.(slot.unit)}
+                className="relative flex aspect-square items-center justify-center rounded-2xl border border-amber-300/50 bg-amber-300/10 text-center transition hover:bg-amber-300/20"
+                title={`${slot.unit.name} is transformed: this is the unit's second board slot. Click to remove Transformer.`}
+              >
+                <div>
+                  <div className="text-3xl">⚙️</div>
+                  <div className="mt-1 px-1 text-[10px] font-black text-amber-100">
+                    {slot.unit.name}
+                  </div>
+                  <div className="text-[10px] text-amber-200/80">2nd slot</div>
+                </div>
+              </button>
+            );
+          }
+
+          const unit = slot.unit;
+          const starPlan = getUnitStarPlan(unit, starPlans);
+          const isMecha = canReceiveTransformer(unit);
+          const isUpgraded = upgradedMechaIds.has(unit.id);
+          const isArmedTarget = armedTool === MECHA_TRANSFORMER_TOOL && isMecha;
+
           return (
             <button
-              key={`transformer-${slot.unit.id}`}
               type="button"
-              onClick={() => onToggleMechaTransformer?.(slot.unit)}
-              className="relative flex aspect-square items-center justify-center rounded-2xl border border-amber-300/50 bg-amber-300/10 text-center transition hover:bg-amber-300/20"
-              title={`${slot.unit.name} is transformed: this is the unit's second board slot. Click to remove Transformer.`}
+              key={unit.id}
+              onMouseEnter={(event) => openUnitHover(event, unit, starPlan)}
+              onMouseLeave={closeUnitHover}
+              onFocus={(event) => openUnitHover(event, unit, starPlan)}
+              onBlur={closeUnitHover}
+              onClick={() => {
+                if (isArmedTarget) {
+                  onToggleMechaTransformer(unit);
+                  return;
+                }
+
+                onRemoveUnit?.(unit.id);
+              }}
+              onDragOver={(event) => {
+                const hasPlainText =
+                  event.dataTransfer.types.includes("text/plain");
+
+                if (isMecha || hasPlainText) {
+                  event.preventDefault();
+                  event.dataTransfer.dropEffect = "copy";
+                }
+              }}
+              onDrop={(event) => {
+                event.preventDefault();
+
+                const tool = event.dataTransfer.getData("text/plain");
+
+                if (tool === MECHA_TRANSFORMER_TOOL && isMecha) {
+                  onToggleMechaTransformer(unit);
+                  return;
+                }
+
+                if (tool.startsWith("EMBLEM:")) {
+                  onAddEmblem?.(unit.id, tool.replace("EMBLEM:", ""));
+                }
+              }}
+              className={cx(
+                "group relative z-10 flex aspect-square items-center justify-center rounded-2xl border text-center text-xs transition hover:z-[1000]",
+                costColor(unit.cost),
+                "cursor-pointer hover:scale-[1.02]",
+                isArmedTarget
+                  ? "ring-2 ring-amber-200 ring-offset-2 ring-offset-slate-950"
+                  : "",
+                isUpgraded
+                  ? "border-amber-200 bg-amber-300/20 shadow-amber-500/30"
+                  : "",
+              )}
+              aria-label={
+                isArmedTarget
+                  ? isUpgraded
+                    ? `${unit.name} is transformed. Click/drop again to remove Transformer.`
+                    : `Click/drop to transform ${unit.name}.`
+                  : `Click to remove ${unit.name}`
+              }
             >
-              <div>
-                <div className="text-3xl">⚙️</div>
-                <div className="mt-1 px-1 text-[10px] font-black text-amber-100">
-                  {slot.unit.name}
-                </div>
-                <div className="text-[10px] text-amber-200/80">2nd slot</div>
+              <ChampionPortrait unit={unit} size="board" />
+
+              <div
+                className={cx(
+                  "absolute left-1 top-1 rounded-full px-1.5 text-[10px] font-black",
+                  costBadge(unit.cost),
+                )}
+              >
+                {unit.cost}
               </div>
+
+              <div className="absolute bottom-1 left-1 right-1 rounded bg-black/70 px-1 py-0.5 text-center">
+                <div className="truncate text-[10px] font-bold text-white">
+                  {unit.name}
+                </div>
+                <StarBadge starLevel={starPlan.starLevel} compact />
+              </div>
+
+              {carryId === unit.id && (
+                <div className="absolute -right-1 -top-1 rounded-full bg-amber-300 px-1.5 text-[10px] font-black text-black">
+                  C
+                </div>
+              )}
+
+              {isMecha && !isUpgraded && (
+                <div className="absolute right-1 top-1 rounded-full border border-amber-200/50 bg-black/70 px-1.5 text-[10px] font-black text-amber-100">
+                  Mecha
+                </div>
+              )}
+
+              {isUpgraded && (
+                <div className="absolute right-1 top-1 rounded-full border border-amber-100 bg-amber-300 px-1.5 text-[10px] font-black text-black">
+                  Transformed
+                </div>
+              )}
+
+              {unit.emblems?.length > 0 && (
+                <div className="absolute left-1 right-1 top-6 flex flex-wrap justify-center gap-1">
+                  {unit.emblems.map((traitName) => (
+                    <span
+                      key={traitName}
+                      className="rounded-full bg-amber-300 px-1.5 py-0.5 text-[9px] font-black text-black"
+                    >
+                      {traitName}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {isArmedTarget && !isUpgraded && (
+                <div className="absolute inset-x-1 top-1/2 -translate-y-1/2 rounded-xl bg-amber-300 px-1 py-1 text-[10px] font-black text-black shadow-lg">
+                  Drop ⚙️
+                </div>
+              )}
+
+              {isArmedTarget && isUpgraded && (
+                <div className="absolute inset-x-1 top-1/2 -translate-y-1/2 rounded-xl bg-red-300 px-1 py-1 text-[10px] font-black text-black shadow-lg">
+                  Drop to remove
+                </div>
+              )}
+
+              <UnitHoverCard unit={unit} starPlan={starPlan} />
             </button>
           );
-        }
+        })}
+      </div>
 
-        const unit = slot.unit;
-        const starPlan = getUnitStarPlan(unit, starPlans);
-        const isMecha = canReceiveTransformer(unit);
-        const isUpgraded = upgradedMechaIds.has(unit.id);
-        const isArmedTarget = armedTool === MECHA_TRANSFORMER_TOOL && isMecha;
-
-        return (
-          <button
-            type="button"
-            key={unit.id}
-            onClick={() => {
-              if (isArmedTarget) {
-                onToggleMechaTransformer(unit);
-                return;
-              }
-
-              onRemoveUnit?.(unit.id);
-            }}
-            onDragOver={(event) => {
-              const hasPlainText =
-                event.dataTransfer.types.includes("text/plain");
-
-              if (isMecha || hasPlainText) {
-                event.preventDefault();
-                event.dataTransfer.dropEffect = "copy";
-              }
-            }}
-            onDrop={(event) => {
-              event.preventDefault();
-
-              const tool = event.dataTransfer.getData("text/plain");
-
-              if (tool === MECHA_TRANSFORMER_TOOL && isMecha) {
-                onToggleMechaTransformer(unit);
-                return;
-              }
-
-              if (tool.startsWith("EMBLEM:")) {
-                onAddEmblem?.(unit.id, tool.replace("EMBLEM:", ""));
-              }
-            }}
-            className={cx(
-              "group relative z-10 flex aspect-square items-center justify-center rounded-2xl border text-center text-xs transition hover:z-[1000]",
-              costColor(unit.cost),
-              "cursor-pointer hover:scale-[1.02]",
-              isArmedTarget
-                ? "ring-2 ring-amber-200 ring-offset-2 ring-offset-slate-950"
-                : "",
-              isUpgraded
-                ? "border-amber-200 bg-amber-300/20 shadow-amber-500/30"
-                : "",
-            )}
-            aria-label={
-              isArmedTarget
-                ? isUpgraded
-                  ? `${unit.name} is transformed. Click/drop again to remove Transformer.`
-                  : `Click/drop to transform ${unit.name}.`
-                : `Click to remove ${unit.name}`
-            }
-          >
-            <ChampionPortrait unit={unit} size="board" />
-
-            <div
-              className={cx(
-                "absolute left-1 top-1 rounded-full px-1.5 text-[10px] font-black",
-                costBadge(unit.cost),
-              )}
-            >
-              {unit.cost}
-            </div>
-
-            <div className="absolute bottom-1 left-1 right-1 rounded bg-black/70 px-1 py-0.5 text-center">
-              <div className="truncate text-[10px] font-bold text-white">
-                {unit.name}
-              </div>
-              <StarBadge starLevel={starPlan.starLevel} compact />
-            </div>
-
-            {carryId === unit.id && (
-              <div className="absolute -right-1 -top-1 rounded-full bg-amber-300 px-1.5 text-[10px] font-black text-black">
-                C
-              </div>
-            )}
-
-            {isMecha && !isUpgraded && (
-              <div className="absolute right-1 top-1 rounded-full border border-amber-200/50 bg-black/70 px-1.5 text-[10px] font-black text-amber-100">
-                Mecha
-              </div>
-            )}
-
-            {isUpgraded && (
-              <div className="absolute right-1 top-1 rounded-full border border-amber-100 bg-amber-300 px-1.5 text-[10px] font-black text-black">
-                Transformed
-              </div>
-            )}
-
-            {unit.emblems?.length > 0 && (
-              <div className="absolute left-1 right-1 top-6 flex flex-wrap justify-center gap-1">
-                {unit.emblems.map((traitName) => (
-                  <span
-                    key={traitName}
-                    className="rounded-full bg-amber-300 px-1.5 py-0.5 text-[9px] font-black text-black"
-                  >
-                    {traitName}
-                  </span>
-                ))}
-              </div>
-            )}
-
-            {isArmedTarget && !isUpgraded && (
-              <div className="absolute inset-x-1 top-1/2 -translate-y-1/2 rounded-xl bg-amber-300 px-1 py-1 text-[10px] font-black text-black shadow-lg">
-                Drop ⚙️
-              </div>
-            )}
-
-            {isArmedTarget && isUpgraded && (
-              <div className="absolute inset-x-1 top-1/2 -translate-y-1/2 rounded-xl bg-red-300 px-1 py-1 text-[10px] font-black text-black shadow-lg">
-                Drop to remove
-              </div>
-            )}
-
-            <UnitHoverCard unit={unit} starPlan={starPlan} />
-          </button>
-        );
-      })}
-    </div>
+      <UnitHoverCard
+        unit={hoveredUnitInfo?.unit}
+        starPlan={hoveredUnitInfo?.starPlan}
+        anchorRect={hoveredUnitInfo?.rect}
+      />
+    </>
   );
 }
 
