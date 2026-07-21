@@ -14,7 +14,9 @@
     "validate:data": "node scripts/validate-data.mjs",
     "import:metatft-units": "node scripts/import-metatft-units.mjs",
     "import:item-sets": "node scripts/import-metatft-meta.mjs",
-    "import:meta": "node scripts/import-metatft-meta.mjs"
+    "import:meta": "node scripts/import-metatft-meta.mjs",
+    "import:matches": "node scripts/import-match-data.mjs",
+    "test": "node --test"
   },
   "dependencies": {
     "@vitejs/plugin-react": "4.3.4",

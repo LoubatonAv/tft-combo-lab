@@ -1,0 +1,185 @@
+[
+  {
+    "metadata": { "match_id": "SET17_001" },
+    "info": {
+      "game_version": "Version 17.7.100.1",
+      "tft_set_number": 17,
+      "queue_id": 1100,
+      "participants": [
+        {
+          "puuid": "player-identical",
+          "placement": 1,
+          "level": 9,
+          "augments": ["TFT_Augment_One", "TFT_Augment_Two"],
+          "units": [
+            { "character_id": "TFT17_Riven", "tier": 2, "itemNames": ["TFT_Item_Deathblade", "TFT_Item_GuardianAngel"] },
+            { "character_id": "TFT17_Ezreal", "tier": 3, "itemNames": ["TFT_Item_BlueBuff"] },
+            { "character_id": "TFT17_Pantheon", "tier": 2, "itemNames": [] },
+            { "character_id": "TFT17_Shen", "tier": 2, "itemNames": ["TFT_Item_WarmogsArmor"] }
+          ],
+          "traits": [
+            { "name": "TFT17_Timebreaker", "num_units": 4, "tier_current": 3 },
+            { "name": "TFT17_Bastion", "num_units": 2, "tier_current": 1 }
+          ],
+          "companion": { "content_ID": "companion-one" },
+          "gold_left": 12,
+          "last_round": 35
+        }
+      ]
+    }
+  },
+  {
+    "metadata": { "match_id": "SET17_002" },
+    "info": {
+      "game_version": "17.7.101",
+      "tft_set_number": 17,
+      "queue_id": 1100,
+      "participants": [
+        {
+          "puuid": "player-near",
+          "placement": 2,
+          "level": 9,
+          "augment1": "TFT_Augment_One",
+          "units": [
+            { "character_id": "TFT17_Shen", "tier": 2, "itemNames": ["TFT_Item_WarmogsArmor"] },
+            { "character_id": "TFT17_Pantheon", "tier": 2 },
+            { "character_id": "TFT17_Ezreal", "tier": 2, "itemNames": ["TFT_Item_BlueBuff"] },
+            { "character_id": "TFT17_Riven", "tier": 2, "itemNames": ["TFT_Item_Deathblade"] }
+          ],
+          "traits": [
+            { "name": "TFT17_Timebreaker", "num_units": 4, "tier_current": 3 },
+            { "name": "TFT17_Bastion", "num_units": 2, "tier_current": 1 }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "metadata": { "match_id": "SET17_003" },
+    "info": {
+      "game_version": "17.7.102",
+      "tft_set_number": 17,
+      "participants": [
+        {
+          "puuid": "player-same-carry",
+          "placement": 4,
+          "level": 8,
+          "units": [
+            { "character_id": "TFT17_Riven", "tier": 2, "itemNames": ["TFT_Item_Deathblade"] },
+            { "character_id": "TFT17_Ezreal", "tier": 3, "itemNames": ["TFT_Item_BlueBuff"] },
+            { "character_id": "TFT17_Milio", "tier": 2 },
+            { "character_id": "TFT17_Jax", "tier": 2 }
+          ],
+          "traits": [
+            { "name": "TFT17_Timebreaker", "num_units": 3, "tier_current": 2 },
+            { "name": "TFT17_Bastion", "num_units": 1, "tier_current": 0 }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "metadata": { "match_id": "SET17_004" },
+    "info": {
+      "game_version": "17.7.103",
+      "tft_set_number": 17,
+      "participants": [
+        {
+          "puuid": "player-traits-only",
+          "placement": 6,
+          "units": [
+            { "character_id": "TFT17_Jax", "tier": 2 },
+            { "character_id": "TFT17_Ornn", "tier": 2 },
+            { "character_id": "TFT17_Milio", "tier": 2 },
+            { "character_id": "TFT17_Talon", "tier": 3 }
+          ],
+          "traits": [
+            { "name": "TFT17_Timebreaker", "num_units": 2, "tier_current": 1 },
+            { "name": "TFT17_Bastion", "num_units": 2, "tier_current": 1 }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "metadata": { "match_id": "SET17_005" },
+    "info": {
+      "game_version": "17.7.104",
+      "tft_set_number": 17,
+      "participants": [
+        {
+          "puuid": "player-unrelated",
+          "placement": 8,
+          "units": [
+            { "character_id": "TFT17_Vex", "tier": 2, "itemNames": ["TFT_Item_RabadonsDeathcap"] },
+            { "character_id": "TFT17_Xayah", "tier": 2 },
+            { "character_id": "TFT17_Nunu", "tier": 2 },
+            { "character_id": "TFT17_Lulu", "tier": 2 }
+          ],
+          "traits": [
+            { "name": "TFT17_Stargazer", "num_units": 4, "tier_current": 2 }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "metadata": { "match_id": "SET17_OLD_PATCH" },
+    "info": {
+      "game_version": "17.6.999",
+      "tft_set_number": 17,
+      "participants": [
+        {
+          "puuid": "player-old-patch",
+          "placement": 7,
+          "units": [
+            { "character_id": "TFT17_Riven", "tier": 2 },
+            { "character_id": "TFT17_Ezreal", "tier": 3 },
+            { "character_id": "TFT17_Pantheon", "tier": 2 },
+            { "character_id": "TFT17_Shen", "tier": 2 }
+          ],
+          "traits": [
+            { "name": "TFT17_Timebreaker", "num_units": 4, "tier_current": 3 }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "metadata": { "match_id": "SET16_OTHER" },
+    "info": {
+      "game_version": "16.9.1",
+      "tft_set_number": 16,
+      "participants": [
+        {
+          "puuid": "player-other-set",
+          "placement": 1,
+          "units": [
+            { "character_id": "TFT16_Riven", "tier": 3 },
+            { "character_id": "TFT16_Ezreal", "tier": 3 }
+          ],
+          "traits": [{ "name": "TFT16_OtherTrait", "num_units": 2, "tier_current": 1 }]
+        }
+      ]
+    }
+  },
+  {
+    "metadata": { "match_id": "MISSING_OPTIONALS" },
+    "info": {
+      "participants": [
+        {
+          "placement": 5,
+          "units": [{ "character_id": "TFT17_Ezreal" }]
+        }
+      ]
+    }
+  },
+  {
+    "metadata": { "match_id": "SET17_001" },
+    "info": {
+      "game_version": "Version 17.7.100.1",
+      "tft_set_number": 17,
+      "participants": [{ "puuid": "duplicate", "placement": 1, "units": [] }]
+    }
+  }
+]

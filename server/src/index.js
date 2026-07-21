@@ -5,6 +5,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { optimize } from "./optimizer.js";
 import { buildTeamPlannerCode, parseTeamPlannerCode } from "./teamPlannerCode.js";
+import { JsonMatchRepository } from "./matchData/jsonMatchRepository.js";
+import { createBoardStatsHandler } from "./matchData/boardStatsEndpoint.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,9 +14,21 @@ const root = path.resolve(__dirname, "..");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const matchRepository = new JsonMatchRepository(
+  process.env.TFT_MATCH_DATA_PATH ||
+    path.join(root, "data/importedMatches.json"),
+);
 
 app.use(cors());
 app.use(express.json({ limit: "2mb" }));
+app.use((error, req, res, next) => {
+  if (error instanceof SyntaxError && error.status === 400 && "body" in error) {
+    res.status(400).json({ error: "Malformed JSON body." });
+    return;
+  }
+
+  next(error);
+});
 
 async function readJson(relativePath, fallback) {
   try {
@@ -210,6 +224,11 @@ app.post("/api/optimize", async (req, res) => {
     });
   }
 });
+
+app.post(
+  "/api/board-stats",
+  createBoardStatsHandler({ loadData, repository: matchRepository }),
+);
 
 app.listen(PORT, () => {
   console.log(`TFT Combo Lab API running on http://localhost:${PORT}`);

@@ -151,3 +151,46 @@ New data and logic:
 Icon note:
 
 Augment icons are referenced through remote CDN URLs at runtime. They are not bundled as local binary image files, so the app remains lightweight and does not break if an icon is missing; the UI falls back to initials.
+
+## Experimental match-data analysis
+
+The `feature/match-data-ranking` branch contains a separate final-board statistics foundation. It does not alter candidate generation or `/api/optimize` ranking.
+
+Import one Riot-style match object or an array of match objects from a local file:
+
+```bash
+npm run import:matches -- test/fixtures/riot-matches.json
+```
+
+Imports are stored in `server/data/importedMatches.json`. Match IDs are deduplicated, and contextual-fingerprint summary groups are rebuilt after imports that add new matches. External fetching is deliberately not part of this command.
+
+Normalized boards expose two hashes: `boardFingerprint` identifies intrinsic composition across patches, while `contextFingerprint` combines that board identity with set and patch for patch-specific statistics.
+
+Query statistics for a candidate or optimizer-shaped board:
+
+```http
+POST /api/board-stats
+Content-Type: application/json
+```
+
+```json
+{
+  "candidateBoard": {
+    "units": [
+      { "id": "riven", "starLevel": 2, "items": ["TFT_Item_Deathblade"] },
+      { "id": "ezreal", "starLevel": 3, "items": ["TFT_Item_BlueBuff"] },
+      { "id": "pantheon", "starLevel": 2 },
+      { "id": "shen", "starLevel": 2 }
+    ],
+    "activeTraits": [
+      { "name": "Timebreaker", "count": 4, "activeAt": 3, "isActive": true }
+    ]
+  },
+  "set": 17,
+  "patch": "17.7",
+  "minimumSimilarity": 0.65,
+  "minimumSampleSize": 5
+}
+```
+
+The response contains the normalized candidate and a `statistics` object with sample size, similar-board count, average placement, Top 4 and win rates, average similarity, confidence, patch distribution, common unit/item variations, and explanations for the closest matches. Placement metrics are ordinary unweighted averages over valid placements from 1–8. `similarBoardCount` includes matching snapshots without placement, while `sampleSize` counts only snapshots supporting placement metrics. Placement-based fields remain `null` when no valid placement samples exist. Confidence is `insufficient` until the requested minimum sample size is met.
