@@ -15,10 +15,11 @@ function emptyStore() {
 }
 
 function matchesFilter(value, filter) {
+  const storedSetNumber = value.set ?? value.setNumber;
   if (
     filter.setNumber !== undefined &&
     filter.setNumber !== null &&
-    Number(value.setNumber) !== Number(filter.setNumber)
+    Number(storedSetNumber) !== Number(filter.setNumber)
   ) {
     return false;
   }
@@ -45,7 +46,7 @@ function normalizeStoredBoard(board, match) {
       board.contextFingerprint ||
       createContextFingerprint(
         boardFingerprint,
-        match.setNumber ?? board.setNumber,
+        match.set ?? match.setNumber ?? board.setNumber,
         match.patch ?? board.patch,
       ),
   };
@@ -78,6 +79,61 @@ function validPlacement(value) {
   return Number.isInteger(placement) && placement >= 1 && placement <= 8
     ? placement
     : null;
+}
+
+function derivedBoardStatistics(matches) {
+  const groups = new Map();
+
+  for (const match of matches) {
+    for (const participant of match.participants || []) {
+      const contextFingerprint = participant.board?.contextFingerprint;
+      const boardFingerprint = participant.board?.boardFingerprint;
+      if (!contextFingerprint || !boardFingerprint) continue;
+
+      const current = groups.get(contextFingerprint) || {
+        contextFingerprint,
+        boardFingerprint,
+        setNumber: match.set ?? match.setNumber,
+        patch: match.patch,
+        similarBoardCount: 0,
+        placementTotal: 0,
+        placementSamples: 0,
+        top4Count: 0,
+        winCount: 0,
+      };
+      const placement = validPlacement(participant.placement);
+
+      current.similarBoardCount += 1;
+      if (placement !== null) {
+        current.placementTotal += placement;
+        current.placementSamples += 1;
+        if (placement <= 4) current.top4Count += 1;
+        if (placement === 1) current.winCount += 1;
+      }
+
+      groups.set(contextFingerprint, current);
+    }
+  }
+
+  return [...groups.values()]
+    .map((group) => ({
+      contextFingerprint: group.contextFingerprint,
+      boardFingerprint: group.boardFingerprint,
+      setNumber: group.setNumber,
+      patch: group.patch,
+      sampleSize: group.placementSamples,
+      similarBoardCount: group.similarBoardCount,
+      averagePlacement: group.placementSamples
+        ? group.placementTotal / group.placementSamples
+        : null,
+      top4Rate: group.placementSamples
+        ? group.top4Count / group.placementSamples
+        : null,
+      winRate: group.placementSamples
+        ? group.winCount / group.placementSamples
+        : null,
+    }))
+    .sort((a, b) => a.contextFingerprint.localeCompare(b.contextFingerprint));
 }
 
 export class JsonMatchRepository {
@@ -186,7 +242,7 @@ export class JsonMatchRepository {
       .flatMap((match) =>
         (match.participants || []).map((participant) => ({
           matchId: match.matchId,
-          setNumber: match.setNumber,
+          setNumber: match.set ?? match.setNumber,
           patch: match.patch,
           gameVersion: match.gameVersion,
           queueType: match.queueType,
@@ -208,63 +264,26 @@ export class JsonMatchRepository {
   async rebuildDerivedBoardStatistics() {
     const operation = this.writeQueue.then(async () => {
       const store = structuredClone(await this.readStore());
-      const groups = new Map();
-
-      for (const match of store.matches) {
-        for (const participant of match.participants || []) {
-          const contextFingerprint = participant.board?.contextFingerprint;
-          const boardFingerprint = participant.board?.boardFingerprint;
-          if (!contextFingerprint || !boardFingerprint) continue;
-
-          const current = groups.get(contextFingerprint) || {
-            contextFingerprint,
-            boardFingerprint,
-            setNumber: match.setNumber,
-            patch: match.patch,
-            similarBoardCount: 0,
-            placementTotal: 0,
-            placementSamples: 0,
-            top4Count: 0,
-            winCount: 0,
-          };
-          const placement = validPlacement(participant.placement);
-
-          current.similarBoardCount += 1;
-          if (placement !== null) {
-            current.placementTotal += placement;
-            current.placementSamples += 1;
-            if (placement <= 4) current.top4Count += 1;
-            if (placement === 1) current.winCount += 1;
-          }
-
-          groups.set(contextFingerprint, current);
-        }
-      }
-
-      store.derivedBoardStatistics = [...groups.values()]
-        .map((group) => ({
-          contextFingerprint: group.contextFingerprint,
-          boardFingerprint: group.boardFingerprint,
-          setNumber: group.setNumber,
-          patch: group.patch,
-          sampleSize: group.placementSamples,
-          similarBoardCount: group.similarBoardCount,
-          averagePlacement: group.placementSamples
-            ? group.placementTotal / group.placementSamples
-            : null,
-          top4Rate: group.placementSamples
-            ? group.top4Count / group.placementSamples
-            : null,
-          winRate: group.placementSamples
-            ? group.winCount / group.placementSamples
-            : null,
-        }))
-        .sort((a, b) =>
-          a.contextFingerprint.localeCompare(b.contextFingerprint),
-        );
+      store.derivedBoardStatistics = derivedBoardStatistics(store.matches);
 
       await this.writeStore(store);
       return store.derivedBoardStatistics;
+    });
+
+    this.writeQueue = operation.catch(() => {});
+    return operation;
+  }
+
+  async replaceMatchesAndRebuildStatistics(matches) {
+    const operation = this.writeQueue.then(async () => {
+      const store = structuredClone(await this.readStore());
+      store.matches = structuredClone(matches);
+      store.derivedBoardStatistics = derivedBoardStatistics(store.matches);
+      await this.writeStore(store);
+      return {
+        totalMatches: store.matches.length,
+        derivedStatisticGroups: store.derivedBoardStatistics.length,
+      };
     });
 
     this.writeQueue = operation.catch(() => {});

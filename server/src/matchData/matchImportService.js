@@ -12,7 +12,7 @@ export function normalizeParsedMatch(parsedMatch, options = {}) {
       companion: participant.companion,
       board: normalizeFinalBoard(
         {
-          setNumber: parsedMatch.setNumber,
+          setNumber: parsedMatch.set ?? parsedMatch.setNumber,
           patch: parsedMatch.patch,
           gameVersion: parsedMatch.gameVersion,
           units: participant.units,

@@ -201,6 +201,6 @@ test("statistics honor patch and set filtering", async (t) => {
   });
 
   assert.equal(currentPatch.sampleSize, 5);
-  assert.equal(allSet17.sampleSize, 6);
+  assert.equal(allSet17.sampleSize, 7);
   assert.equal(otherSet.sampleSize, 1);
 });

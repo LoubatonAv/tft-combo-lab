@@ -31,7 +31,7 @@
  * @property {string} participantId
  * @property {number|null} placement
  * @property {number|null} level
- * @property {string[]} augments
+ * @property {string[]|null} augments Null means the source field was absent.
  * @property {NormalizedFinalBoard} board
  * @property {Object} companion
  */
@@ -39,6 +39,7 @@
 /**
  * @typedef {Object} ImportedMatch
  * @property {string} matchId
+ * @property {number|null} set
  * @property {number|null} setNumber
  * @property {string|null} gameVersion
  * @property {string|null} patch

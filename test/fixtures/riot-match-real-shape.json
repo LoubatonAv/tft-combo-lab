@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "data_version": "5",
+    "match_id": "EUW1_SANITIZED_REAL_SHAPE"
+  },
+  "info": {
+    "game_version": "Linux Version 16.14.794.5912 (Jul 10 2026/14:56:00) [PUBLIC] <Releases/16.14>",
+    "queue_id": 1100,
+    "tft_set_core_name": "TFTSet17",
+    "tft_set_number": 17,
+    "participants": [
+      {
+        "puuid": "sanitized-participant",
+        "placement": 2,
+        "level": 8,
+        "gold_left": 13,
+        "last_round": 38,
+        "traits": [{ "name": "TFT17_Timebreaker", "num_units": 2, "tier_current": 1 }],
+        "units": [{ "character_id": "TFT17_Akali", "tier": 3, "itemNames": ["TFT_Item_Deathblade"] }]
+      }
+    ]
+  }
+}

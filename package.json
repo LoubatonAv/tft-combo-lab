@@ -16,6 +16,9 @@
     "import:item-sets": "node scripts/import-metatft-meta.mjs",
     "import:meta": "node scripts/import-metatft-meta.mjs",
     "import:matches": "node scripts/import-match-data.mjs",
+    "fetch:riot-matches": "node scripts/fetch-riot-matches.mjs",
+    "inspect:riot-match": "node scripts/inspect-riot-match.mjs",
+    "reparse:matches": "node scripts/reparse-matches.mjs",
     "test": "node --test"
   },
   "dependencies": {

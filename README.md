@@ -194,3 +194,43 @@ Content-Type: application/json
 ```
 
 The response contains the normalized candidate and a `statistics` object with sample size, similar-board count, average placement, Top 4 and win rates, average similarity, confidence, patch distribution, common unit/item variations, and explanations for the closest matches. Placement metrics are ordinary unweighted averages over valid placements from 1–8. `similarBoardCount` includes matching snapshots without placement, while `sampleSize` counts only snapshots supporting placement metrics. Placement-based fields remain `null` when no valid placement samples exist. Confidence is `insufficient` until the requested minimum sample size is met.
+
+### Controlled Riot API ingestion
+
+Create a development key in the Riot Developer Portal, then expose it only through the process environment. The CLI does not read a key from source files or command-line arguments.
+
+PowerShell:
+
+```powershell
+$env:RIOT_API_KEY = "RGAPI-your-development-key"
+npm run fetch:riot-matches -- --game-name "Player Name" --tag-line "TAG" --platform euw1 --count 10
+```
+
+Bash:
+
+```bash
+export RIOT_API_KEY="RGAPI-your-development-key"
+npm run fetch:riot-matches -- --game-name "Player Name" --tag-line "TAG" --platform euw1 --count 10
+```
+
+Start with 10–20 recent matches. `--count` defaults to 20 and is capped at 50; `--start` defaults to 0. Supported current platform routes are `br1`, `eun1`, `euw1`, `jp1`, `kr`, `la1`, `la2`, `na1`, `oc1`, `ru`, `sg2`, `tr1`, `tw2`, and `vn2`. Riot has merged the former `ph2` and `th2` platforms into `sg2`.
+
+The Account API resolves the Riot ID through the platform's regional cluster, TFT Summoner uses the platform host, and TFT Match uses the regional host. Match details are fetched sequentially with bounded retry handling for rate limits, transient server errors, and network failures. Permanent client errors are not retried. Failed match details are reported while the remaining batch continues.
+
+Optional development-only storage override:
+
+```powershell
+$env:TFT_MATCH_DATA_PATH = "C:\temp\tft-imported-matches.json"
+```
+
+`server/data/importedMatches.json` remains the default. Development API keys expire and must never be committed. `.env.example` documents the variable name only; this project does not automatically load `.env` files.
+
+To inspect one raw match schema without parsing or persisting it:
+
+```powershell
+npm run inspect:riot-match -- --match-id EUW1_7924916872 --platform euw1
+```
+
+The inspector prints selected match fields and participant keys. It omits
+PUUIDs, Riot IDs, summoner identifiers, companion identity, request headers,
+and the API key. It does not write the raw payload to disk.

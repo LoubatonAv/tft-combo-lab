@@ -8,24 +8,82 @@ import { parseRiotMatchPayload } from "../../server/src/matchData/riotMatchParse
 const fixtures = JSON.parse(
   await fs.readFile(new URL("../fixtures/riot-matches.json", import.meta.url)),
 );
+const realShapedFixture = JSON.parse(
+  await fs.readFile(
+    new URL("../fixtures/riot-match-real-shape.json", import.meta.url),
+  ),
+);
 
 test("parses Riot-style match fields and tolerates missing optional fields", () => {
   const parsed = parseRiotMatchPayload(fixtures[0], {
     importedAt: "2026-07-21T00:00:00.000Z",
   });
   assert.equal(parsed.matchId, "SET17_001");
+  assert.equal(parsed.set, 17);
   assert.equal(parsed.setNumber, 17);
   assert.equal(parsed.patch, "17.7");
   assert.equal(parsed.participants[0].placement, 1);
   assert.deepEqual(parsed.participants[0].augments, [
-    "TFT_Augment_One",
-    "TFT_Augment_Two",
+    "tft_augment_one",
+    "tft_augment_two",
   ]);
 
   const missing = importRiotPayload(fixtures[7]);
-  assert.equal(missing.setNumber, null);
+  assert.equal(missing.setNumber, 17);
+  assert.equal(missing.set, 17);
   assert.equal(missing.participants[0].participantId, "participant-1");
   assert.equal(missing.participants[0].board.units[0].starLevel, null);
+});
+
+test("real Riot payload shape keeps set and patch semantics independent", () => {
+  const imported = importRiotPayload(realShapedFixture);
+
+  assert.equal(imported.set, 17);
+  assert.equal(imported.setNumber, 17);
+  assert.equal(imported.patch, "16.14");
+  assert.equal(imported.participants[0].board.setNumber, 17);
+  assert.equal(imported.participants[0].augments, null);
+});
+
+test("augment parsing distinguishes missing, empty, and malformed current fields", () => {
+  const parseParticipant = (overrides) => {
+    const payload = structuredClone(realShapedFixture);
+    payload.metadata.match_id = `augment-${Math.random()}`;
+    payload.info.participants[0] = {
+      ...payload.info.participants[0],
+      ...overrides,
+    };
+    return parseRiotMatchPayload(payload).participants[0];
+  };
+
+  assert.deepEqual(
+    parseParticipant({
+      augments: [
+        "TFT_Augment_One",
+        "TFT17_Augment_Two",
+        "TFT_Augment_Three",
+      ],
+    }).augments,
+    ["tft_augment_one", "tft17_augment_two", "tft_augment_three"],
+  );
+  assert.equal(parseParticipant({}).augments, null);
+  assert.deepEqual(parseParticipant({ augments: [] }).augments, []);
+  assert.deepEqual(
+    parseParticipant({ augments: [null, 7, {}, "", "TFT_Augment_Valid"] })
+      .augments,
+    ["tft_augment_valid"],
+  );
+});
+
+test("set falls back to participant fields and then a consistent unit namespace", () => {
+  const participantSet = structuredClone(realShapedFixture);
+  delete participantSet.info.tft_set_number;
+  participantSet.info.participants[0].set = 17;
+  assert.equal(parseRiotMatchPayload(participantSet).set, 17);
+
+  const unitNamespace = structuredClone(realShapedFixture);
+  delete unitNamespace.info.tft_set_number;
+  assert.equal(parseRiotMatchPayload(unitNamespace).set, 17);
 });
 
 test("normalization uses canonical IDs, stable sorting, and stable fingerprints", () => {

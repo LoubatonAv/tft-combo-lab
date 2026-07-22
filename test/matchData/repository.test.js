@@ -4,7 +4,10 @@ import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { JsonMatchRepository } from "../../server/src/matchData/jsonMatchRepository.js";
-import { importRiotPayloads } from "../../server/src/matchData/matchImportService.js";
+import {
+  importRiotPayload,
+  importRiotPayloads,
+} from "../../server/src/matchData/matchImportService.js";
 
 const fixtures = JSON.parse(
   await fs.readFile(new URL("../fixtures/riot-matches.json", import.meta.url)),
@@ -71,4 +74,21 @@ test("repository filters normalized boards by set and patch", async (t) => {
 
   const derived = await repository.rebuildDerivedBoardStatistics();
   assert.equal(derived.length, 3);
+});
+
+test("repository set filtering accepts the explicit match set field", async (t) => {
+  const repository = await temporaryRepository(t);
+  const fixture = JSON.parse(
+    await fs.readFile(
+      new URL("../fixtures/riot-match-real-shape.json", import.meta.url),
+    ),
+  );
+  const match = importRiotPayload(fixture);
+
+  await repository.saveImportedMatches([match]);
+  const participants = await repository.queryParticipants({ setNumber: 17 });
+
+  assert.equal(match.set, 17);
+  assert.equal(participants.length, 1);
+  assert.equal(participants[0].board.setNumber, 17);
 });
