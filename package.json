@@ -19,6 +19,7 @@
     "fetch:riot-matches": "node scripts/fetch-riot-matches.mjs",
     "inspect:riot-match": "node scripts/inspect-riot-match.mjs",
     "reparse:matches": "node scripts/reparse-matches.mjs",
+    "analyze:match-data": "node scripts/analyze-match-data.mjs",
     "seed:challenger-matches": "node scripts/seed-challenger-matches.mjs",
     "test": "node --test"
   },
