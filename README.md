@@ -223,7 +223,10 @@ Optional development-only storage override:
 $env:TFT_MATCH_DATA_PATH = "C:\temp\tft-imported-matches.json"
 ```
 
-`server/data/importedMatches.json` remains the default. Development API keys expire and must never be committed. `.env.example` documents the variable name only; this project does not automatically load `.env` files.
+`server/data/importedMatches.json` remains the default. The match-data CLI
+commands load `.env` from the project root, while values already set in the
+process environment take precedence. Development API keys expire and must
+never be committed; `.env.example` contains placeholders only.
 
 To inspect one raw match schema without parsing or persisting it:
 
@@ -234,3 +237,20 @@ npm run inspect:riot-match -- --match-id EUW1_7924916872 --platform euw1
 The inspector prints selected match fields and participant keys. It omits
 PUUIDs, Riot IDs, summoner identifiers, companion identity, request headers,
 and the API key. It does not write the raw payload to disk.
+
+### Controlled Challenger sampling
+
+Seed a small deterministic sample from Riot's official TFT Challenger league.
+Use a separate repository path for development sampling:
+
+```powershell
+$env:RIOT_API_KEY = "RGAPI-your-development-key"
+$env:TFT_MATCH_DATA_PATH = Join-Path $env:TEMP "tft-challenger-sample.json"
+npm run seed:challenger-matches -- --platform euw1 --players 10 --matches-per-player 10
+```
+
+Players are ordered by league points, match IDs are deduplicated across shared
+lobbies before details are fetched, and imports still use the normal match
+parser and repository duplicate protection. The command is intentionally
+capped at 25 players and 20 matches per player and performs requests
+sequentially.

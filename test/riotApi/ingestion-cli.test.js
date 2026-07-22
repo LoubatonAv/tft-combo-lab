@@ -126,6 +126,7 @@ test("CLI rejects a missing environment API key without making HTTP requests", a
         "euw1",
       ],
       env: {},
+      loadEnv() {},
       fetchImpl: async () => {
         fetchCalled = true;
       },

@@ -19,12 +19,14 @@
     "fetch:riot-matches": "node scripts/fetch-riot-matches.mjs",
     "inspect:riot-match": "node scripts/inspect-riot-match.mjs",
     "reparse:matches": "node scripts/reparse-matches.mjs",
+    "seed:challenger-matches": "node scripts/seed-challenger-matches.mjs",
     "test": "node --test"
   },
   "dependencies": {
     "@vitejs/plugin-react": "4.3.4",
     "concurrently": "9.1.0",
     "cors": "2.8.5",
+    "dotenv": "^16.4.7",
     "express": "4.21.2",
     "lucide-react": "0.468.0",
     "react": "18.3.1",

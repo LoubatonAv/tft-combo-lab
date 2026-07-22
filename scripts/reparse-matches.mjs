@@ -3,10 +3,16 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { JsonMatchRepository } from "../server/src/matchData/jsonMatchRepository.js";
 import { reparseMatchRepository } from "../server/src/matchData/matchReparseService.js";
+import { loadProjectEnv } from "./lib/project-env.mjs";
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
-export async function runReparseCli({ env = process.env, output = console } = {}) {
+export async function runReparseCli({
+  env = process.env,
+  output = console,
+  loadEnv = loadProjectEnv,
+} = {}) {
+  loadEnv(env);
   const repository = new JsonMatchRepository(
     env.TFT_MATCH_DATA_PATH ||
       path.join(projectRoot, "server/data/importedMatches.json"),

@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 import { RiotHttpClient } from "../server/src/riotApi/riotHttpClient.js";
 import { normalizePlatform } from "../server/src/riotApi/riotRouting.js";
 import { RiotTftClient } from "../server/src/riotApi/riotTftClient.js";
+import { loadProjectEnv } from "./lib/project-env.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -64,7 +65,9 @@ export async function runInspectCli({
   env = process.env,
   output = console,
   fetchImpl = globalThis.fetch,
+  loadEnv = loadProjectEnv,
 } = {}) {
+  loadEnv(env);
   const options = parseInspectArgs(argv);
   const apiKey = String(env.RIOT_API_KEY || "").trim();
   if (!apiKey) throw new Error("RIOT_API_KEY is required.");

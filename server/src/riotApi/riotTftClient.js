@@ -45,6 +45,23 @@ export class RiotTftClient {
     };
   }
 
+  async fetchChallengerLeague() {
+    return this.httpClient.requestJson(
+      `https://${this.platformHost}/tft/league/v1/challenger?queue=RANKED_TFT`,
+    );
+  }
+
+  async resolveSummonerId(summonerId) {
+    const summoner = await this.httpClient.requestJson(
+      `https://${this.platformHost}/tft/summoner/v1/summoners/${encodePath(summonerId)}`,
+    );
+
+    if (!summoner?.puuid) {
+      throw new Error("Riot TFT Summoner API response did not include a PUUID.");
+    }
+    return summoner;
+  }
+
   async fetchMatchIds(puuid, { start = 0, count = 20 } = {}) {
     const query = new URLSearchParams({
       start: String(start),
@@ -67,4 +84,3 @@ export class RiotTftClient {
     );
   }
 }
-

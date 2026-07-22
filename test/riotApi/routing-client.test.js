@@ -82,3 +82,30 @@ test("match ID and detail fetching use the regional TFT Match API", async () => 
     "https://europe.api.riotgames.com/tft/match/v1/matches/EUW1_1",
   );
 });
+
+test("Challenger and summoner-ID requests use official platform TFT endpoints", async () => {
+  const requests = [];
+  const httpClient = {
+    async requestJson(url) {
+      requests.push(url);
+      return requests.length === 1
+        ? { entries: [{ summonerId: "encrypted id", leaguePoints: 999 }] }
+        : { id: "encrypted id", puuid: "resolved-puuid" };
+    },
+  };
+  const client = new RiotTftClient({ httpClient, platform: "euw1" });
+
+  const league = await client.fetchChallengerLeague();
+  const summoner = await client.resolveSummonerId("encrypted id");
+
+  assert.equal(league.entries.length, 1);
+  assert.equal(summoner.puuid, "resolved-puuid");
+  assert.equal(
+    requests[0],
+    "https://euw1.api.riotgames.com/tft/league/v1/challenger?queue=RANKED_TFT",
+  );
+  assert.equal(
+    requests[1],
+    "https://euw1.api.riotgames.com/tft/summoner/v1/summoners/encrypted%20id",
+  );
+});

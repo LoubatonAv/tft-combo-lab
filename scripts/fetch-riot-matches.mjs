@@ -6,6 +6,7 @@ import { RiotHttpClient } from "../server/src/riotApi/riotHttpClient.js";
 import { ingestRecentRiotMatches } from "../server/src/riotApi/riotMatchIngestion.js";
 import { normalizePlatform } from "../server/src/riotApi/riotRouting.js";
 import { RiotTftClient } from "../server/src/riotApi/riotTftClient.js";
+import { loadProjectEnv } from "./lib/project-env.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const projectRoot = path.resolve(path.dirname(__filename), "..");
@@ -129,7 +130,9 @@ export async function runRiotFetchCli({
   sleep,
   random,
   repository: suppliedRepository,
+  loadEnv = loadProjectEnv,
 } = {}) {
+  loadEnv(env);
   const options = parseRiotFetchArgs(argv);
   if (options.help) {
     output.log(usage());
@@ -192,4 +195,3 @@ if (path.resolve(process.argv[1] || "") === __filename) {
     process.exitCode = 1;
   });
 }
-
