@@ -2,28 +2,37 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { analyzeMatchData } from "../server/src/matchData/matchDataAnalysis.js";
+import { createAnalysisMetadata } from "../server/src/matchData/boardSignatures.js";
 import { loadProjectEnv, projectRoot } from "./lib/project-env.mjs";
 
 function usage() {
-  return "Usage: npm run analyze:match-data -- [--minimum-samples 3] [--top 20] [--json]";
+  return "Usage: npm run analyze:match-data -- [--minimum-samples 3] [--top 20] [--set 17] [--patch 16.14] [--patch-min 16.13] [--patch-max 16.14] [--similarity-diagnostics] [--json]";
 }
 
 export function parseAnalysisArgs(argv = []) {
-  const options = { minimumSamples: 3, top: 20, json: false };
+  const options = { minimumSamples: 3, top: 20, json: false, similarityDiagnostics: false };
   for (let index = 0; index < argv.length; index += 1) {
     const argument = argv[index];
     if (argument === "--json") {
       options.json = true;
       continue;
     }
-    if (!["--minimum-samples", "--top"].includes(argument) || argv[index + 1] === undefined) {
+    if (argument === "--similarity-diagnostics") {
+      options.similarityDiagnostics = true;
+      continue;
+    }
+    if (!["--minimum-samples", "--top", "--set", "--patch", "--patch-min", "--patch-max"].includes(argument) || argv[index + 1] === undefined) {
       throw new Error(usage());
     }
-    const value = Number(argv[index + 1]);
-    if (!Number.isInteger(value) || value < 1 || value > 1000) {
-      throw new Error(`${argument} must be an integer from 1 to 1000.`);
+    const rawValue = argv[index + 1];
+    if (["--minimum-samples", "--top", "--set"].includes(argument)) {
+      const value = Number(rawValue);
+      if (!Number.isInteger(value) || value < 1 || value > 1000) throw new Error(`${argument} must be an integer from 1 to 1000.`);
+      options[argument === "--top" ? "top" : argument === "--set" ? "setNumber" : "minimumSamples"] = value;
+    } else {
+      if (!/^\d+\.\d+$/.test(rawValue)) throw new Error(`${argument} must use numeric major.minor format.`);
+      options[argument === "--patch" ? "patch" : argument === "--patch-min" ? "patchMin" : "patchMax"] = rawValue;
     }
-    options[argument === "--top" ? "top" : "minimumSamples"] = value;
     index += 1;
   }
   return options;
@@ -34,7 +43,7 @@ function percent(value) {
 }
 
 function formatFingerprint(entry) {
-  return `${entry.fingerprint} | boards ${entry.boardCount} | placements ${entry.sampleSize} | avg ${entry.averagePlacement?.toFixed(2) ?? "n/a"} | Top 4 ${percent(entry.top4Rate)} | wins ${percent(entry.winRate)}`;
+  return `${entry.signature} | boards ${entry.boardCount} | placements ${entry.sampleSize} | avg ${entry.averagePlacement?.toFixed(2) ?? "n/a"} | Top 4 ${percent(entry.top4Rate)} | wins ${percent(entry.winRate)}`;
 }
 
 export function formatAnalysisText(result) {
@@ -48,6 +57,7 @@ export function formatAnalysisText(result) {
     ...result.countsByPatch.map((entry) => `  ${entry.value}: ${entry.matches} matches, ${entry.boards} boards`),
     `Unique exact board fingerprints: ${result.uniqueBoardFingerprints}`,
     `Unique context fingerprints: ${result.uniqueContextFingerprints}`,
+    ...result.warnings.map((warning) => `WARNING: ${warning}`),
     "Fingerprint frequency:",
     `  once: ${result.fingerprintFrequency.once}`,
     `  at least 2: ${result.fingerprintFrequency.atLeast2}`,
@@ -64,7 +74,19 @@ export function formatAnalysisText(result) {
     ...Object.entries(result.completeness).map(([key, value]) => `  ${key}: ${value}`),
     "Placement distribution:",
     ...Object.entries(result.placementDistribution).map(([placement, count]) => `  ${placement}: ${count}`),
-    `Readiness: ${result.readiness.classification}`,
+    "Signature frequencies:",
+    ...Object.entries(result.signatureStatistics).flatMap(([type, stats]) => [
+      `  ${type}: unique ${stats.uniqueCount}, once ${stats.once}, 2+ ${stats.atLeast2}, 3+ ${stats.atLeast3}, 5+ ${stats.atLeast5}, 10+ ${stats.atLeast10}, largest ${stats.largestGroupSize}`,
+      ...stats.topGroups.map((entry) => `    ${formatFingerprint(entry)} | patches ${entry.patches.join(",") || "n/a"} | units ${entry.representativeUnitIds.join(",")} | traits ${entry.representativeActiveTraits.join(",")} | carries ${entry.representativeCarries.map((carry) => carry.unitId).join(",")}`),
+    ]),
+    ...(result.similarityDiagnostics.length ? [
+      "Similarity diagnostics:",
+      ...result.similarityDiagnostics.map((entry) => `  ${entry.boardSignature} -> ${entry.neighborSignature}: ${entry.similarity.toFixed(4)} (${entry.patchRelationship}, same placement: ${entry.samePlacement}) ${JSON.stringify(entry.components)}`),
+      `Similarity distribution: ${JSON.stringify(result.similarityDistribution)}`,
+    ] : []),
+    `Exact-signature readiness: ${result.readiness.exactSignatures}`,
+    `Relaxed-signature readiness: ${result.readiness.relaxedSignatures}`,
+    `Nearest-neighbor readiness: ${result.readiness.nearestNeighbor}`,
     "Readiness thresholds:",
     ...Object.entries(result.readiness.thresholds).map(([key, value]) => `  ${key}: ${value}`),
   ];
@@ -77,6 +99,7 @@ export async function runAnalysisCli({
   output = console,
   loadEnv = loadProjectEnv,
   readFile = fs.readFile,
+  metadata: suppliedMetadata,
 } = {}) {
   loadEnv(env);
   const options = parseAnalysisArgs(argv);
@@ -96,11 +119,19 @@ export async function runAnalysisCli({
   } catch (error) {
     throw new Error(`Match repository ${repositoryPath} contains invalid JSON: ${error.message}`);
   }
+  const metadata = suppliedMetadata || await Promise.all([
+    readFile(path.join(projectRoot, "server/data/itemCatalog.json"), "utf8").then(JSON.parse),
+    readFile(path.join(projectRoot, "server/data/champions.json"), "utf8").then(JSON.parse),
+    readFile(path.join(projectRoot, "server/data/traits.json"), "utf8").then(JSON.parse),
+  ]).then(([itemCatalog, champions, traits]) => createAnalysisMetadata({ itemCatalog, champions, traits }));
   const result = {
     repositoryPath,
     minimumSamples: options.minimumSamples,
     top: options.top,
-    ...analyzeMatchData(store, options),
+    ...analyzeMatchData(store, {
+      ...options,
+      metadata,
+    }),
   };
   output.log(options.json ? JSON.stringify(result) : formatAnalysisText(result));
   return result;

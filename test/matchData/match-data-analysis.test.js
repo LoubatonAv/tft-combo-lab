@@ -6,7 +6,15 @@ import test from "node:test";
 import {
   analyzeMatchData,
   classifyReadiness,
+  comparePatches,
 } from "../../server/src/matchData/matchDataAnalysis.js";
+import {
+  compareBoardsRelaxed,
+  createAnalysisMetadata,
+  createBoardSignatures,
+  selectCarries,
+  selectCoreUnits,
+} from "../../server/src/matchData/boardSignatures.js";
 import { runAnalysisCli } from "../../scripts/analyze-match-data.mjs";
 
 function participant(fingerprint, placement, overrides = {}) {
@@ -69,11 +77,11 @@ test("empty repository produces deterministic insufficient analysis", () => {
   const result = analyzeMatchData({ matches: [] });
   assert.equal(result.totalMatches, 0);
   assert.equal(result.totalParticipantBoardSamples, 0);
-  assert.equal(result.readiness.classification, "insufficient");
+  assert.equal(result.readiness.exactSignatures, "insufficient");
 });
 
 test("analysis groups sets and patches and calculates fingerprint placements", () => {
-  const result = analyzeMatchData(sampleStore(), { minimumSamples: 3, top: 20 });
+  const result = analyzeMatchData(sampleStore(), { minimumSamples: 2, top: 20 });
   assert.deepEqual(result.countsBySet, [
     { value: "17", matches: 1, boards: 3 },
     { value: "18", matches: 1, boards: 1 },
@@ -82,24 +90,21 @@ test("analysis groups sets and patches and calculates fingerprint placements", (
     { value: "16.14", matches: 1, boards: 3 },
     { value: "16.15", matches: 1, boards: 1 },
   ]);
-  assert.equal(result.uniqueBoardFingerprints, 2);
+  assert.equal(result.uniqueBoardFingerprints, 3);
   assert.equal(result.uniqueContextFingerprints, 3);
   assert.deepEqual(result.fingerprintFrequency, {
-    once: 1,
+    once: 2,
     atLeast2: 1,
-    atLeast3: 1,
+    atLeast3: 0,
     atLeast5: 0,
     atLeast10: 0,
   });
   assert.equal(result.placementStatistics.length, 1);
-  assert.deepEqual(result.placementStatistics[0], {
-    fingerprint: "board-a",
-    boardCount: 3,
-    sampleSize: 3,
-    averagePlacement: 2,
-    top4Rate: 1,
-    winRate: 1 / 3,
-  });
+  assert.equal(result.placementStatistics[0].signature, "board-a");
+  assert.equal(result.placementStatistics[0].sampleSize, 2);
+  assert.equal(result.placementStatistics[0].averagePlacement, 2);
+  assert.equal(result.placementStatistics[0].top4Rate, 1);
+  assert.equal(result.placementStatistics[0].winRate, 1 / 2);
   assert.deepEqual(result.placementDistribution, {
     1: 1, 2: 1, 3: 1, 4: 0, 5: 0, 6: 0, 7: 0, 8: 1,
   });
@@ -109,12 +114,103 @@ test("analysis reports missing data and invalid participant counts", () => {
   const result = analyzeMatchData(sampleStore());
   assert.deepEqual(result.completeness, {
     missingAugments: 1,
-    emptyItems: 1,
+    unitsWithNoItems: 1,
+    missingItemArrays: 0,
+    invalidItemIds: 0,
+    unknownItemIds: 3,
+    componentItems: 0,
+    completedItems: 0,
     missingTraits: 1,
     missingSet: 0,
     missingPatch: 0,
     invalidParticipantCounts: 2,
   });
+});
+
+const metadata = createAnalysisMetadata({
+  itemCatalog: {
+    "Sword Item": {
+      iconUrl: "https://example.test/tft_item_sworditem.png",
+      components: ["B.F. Sword", "Recurve Bow"],
+    },
+    "Rod Item": {
+      iconUrl: "https://example.test/tft_item_roditem.png",
+      components: ["Needlessly Large Rod", "Giant's Belt"],
+    },
+  },
+});
+
+function signatureBoard(overrides = {}) {
+  return {
+    setNumber: 17,
+    patch: "16.14",
+    boardFingerprint: "exact",
+    units: [
+      { unitId: "a", cost: 5, starLevel: 2, itemIds: ["tft_item_sworditem", "tft_item_roditem"] },
+      { unitId: "b", cost: 2, starLevel: 2, itemIds: [] },
+      { unitId: "c", cost: 1, starLevel: 3, itemIds: [] },
+    ],
+    activeTraits: [{ traitId: "trait-a", activeTier: 2, unitCount: 3 }],
+    ...overrides,
+  };
+}
+
+test("relaxed signatures ignore position and unit signatures ignore stars and items", () => {
+  const board = signatureBoard();
+  const reordered = signatureBoard({
+    units: [
+      { ...board.units[2], starLevel: 1 },
+      { ...board.units[0], itemIds: ["tft_item_roditem"] },
+      board.units[1],
+    ],
+  });
+  const first = createBoardSignatures(board, metadata);
+  const second = createBoardSignatures(reordered, metadata);
+  assert.equal(first.unit, second.unit);
+  assert.notEqual(first.carry, second.carry);
+});
+
+test("trait, carry, and core selection are deterministic", () => {
+  const board = signatureBoard();
+  const changedTraits = signatureBoard({ activeTraits: [{ traitId: "trait-b", activeTier: 1, unitCount: 2 }] });
+  assert.notEqual(createBoardSignatures(board, metadata).trait, createBoardSignatures(changedTraits, metadata).trait);
+  assert.deepEqual(selectCarries(board, metadata).map((unit) => unit.unitId), ["a"]);
+  assert.deepEqual(selectCoreUnits(board, metadata).map((unit) => unit.unitId), ["a", "c"]);
+  assert.deepEqual(selectCoreUnits({ ...board, units: [...board.units].reverse() }, metadata).map((unit) => unit.unitId), ["a", "c"]);
+});
+
+test("sets never group and relaxed similarity is symmetric, bounded, and intuitive", () => {
+  const board = signatureBoard();
+  const otherSet = signatureBoard({ setNumber: 18 });
+  assert.notEqual(createBoardSignatures(board, metadata).unit, createBoardSignatures(otherSet, metadata).unit);
+  assert.equal(compareBoardsRelaxed(board, otherSet, metadata).score, 0);
+  assert.equal(compareBoardsRelaxed(board, board, metadata).score, 1);
+  const unrelated = signatureBoard({
+    units: [{ unitId: "x", cost: 1, starLevel: 1, itemIds: [] }],
+    activeTraits: [{ traitId: "other", activeTier: 1 }],
+  });
+  const forward = compareBoardsRelaxed(board, unrelated, metadata);
+  const reverse = compareBoardsRelaxed(unrelated, board, metadata);
+  assert.deepEqual(forward, reverse);
+  assert.ok(forward.score >= 0 && forward.score <= 1);
+  assert.ok(forward.score < 0.6);
+  const separated = analyzeMatchData({
+    matches: [
+      { set: 17, patch: "16.14", participants: [{ placement: 1, board }] },
+      { set: 18, patch: "16.14", participants: [{ placement: 2, board: otherSet }] },
+    ],
+  }, { metadata });
+  assert.equal(separated.signatureStatistics.exact.uniqueCount, 2);
+});
+
+test("set and numeric patch filters apply before analysis and multiple sets warn", () => {
+  assert.ok(comparePatches("16.9", "16.10") < 0);
+  const all = analyzeMatchData(sampleStore());
+  assert.equal(all.warnings.length, 1);
+  const filtered = analyzeMatchData(sampleStore(), { setNumber: 17, patchMin: "16.9", patchMax: "16.14" });
+  assert.equal(filtered.totalMatches, 1);
+  assert.equal(filtered.totalParticipantBoardSamples, 3);
+  assert.deepEqual(filtered.warnings, []);
 });
 
 test("readiness classification thresholds are explicit and deterministic", () => {
@@ -143,6 +239,7 @@ test("JSON CLI output is exclusive, respects configured path, and performs no wr
     env: { TFT_MATCH_DATA_PATH: repositoryPath },
     loadEnv() {},
     output: { log: (line) => logs.push(line) },
+    metadata: {},
   });
 
   assert.equal(result.repositoryPath, path.resolve(repositoryPath));
