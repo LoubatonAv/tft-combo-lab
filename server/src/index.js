@@ -7,6 +7,10 @@ import { optimize } from "./optimizer.js";
 import { buildTeamPlannerCode, parseTeamPlannerCode } from "./teamPlannerCode.js";
 import { JsonMatchRepository } from "./matchData/jsonMatchRepository.js";
 import { createBoardStatsHandler } from "./matchData/boardStatsEndpoint.js";
+import { loadProjectEnv } from "../../scripts/lib/project-env.mjs";
+import { resolveMatchRepositoryPath } from "./matchData/historicalBoardEvaluation.js";
+
+loadProjectEnv(process.env);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,8 +19,10 @@ const root = path.resolve(__dirname, "..");
 const app = express();
 const PORT = process.env.PORT || 3001;
 const matchRepository = new JsonMatchRepository(
-  process.env.TFT_MATCH_DATA_PATH ||
+  resolveMatchRepositoryPath(
+    process.env,
     path.join(root, "data/importedMatches.json"),
+  ),
 );
 
 app.use(cors());

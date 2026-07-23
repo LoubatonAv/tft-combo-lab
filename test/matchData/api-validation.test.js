@@ -52,6 +52,12 @@ test("board-stats request validation rejects malformed client inputs", () => {
     { ...validBody, minimumSimilarity: "not-a-number" },
     { ...validBody, minimumSampleSize: 0 },
     { ...validBody, minimumSampleSize: 1.5 },
+    { ...validBody, maximumNeighbors: 0 },
+    { ...validBody, maximumNeighbors: 201 },
+    { ...validBody, minimumNeighbors: 4, maximumNeighbors: 3 },
+    { ...validBody, debugHistoricalNeighbors: "yes" },
+    { ...validBody, weightingMode: "invented" },
+    { ...validBody, candidateBoard: { ...validBody.candidateBoard, sourceParticipantIndex: -1 } },
     { ...validBody, weights: { unknownWeight: 1 } },
   ];
 
@@ -63,6 +69,35 @@ test("board-stats request validation rejects malformed client inputs", () => {
   }
 });
 
+test("endpoint remains backward compatible and adds a sanitized historical evaluation", async () => {
+  const candidate = parseBoardStatsRequest(validBody, data).candidateBoard;
+  const repository = {
+    async fileSignature() { return "one"; },
+    async queryNormalizedBoards() {
+      return [{
+        matchId: "secret-match",
+        participantId: "secret-participant",
+        setNumber: 17,
+        patch: "16.14",
+        placement: 1,
+        board: candidate,
+      }];
+    },
+  };
+  const handler = createBoardStatsHandler({
+    loadData: async () => ({ ...data, itemCatalog: {} }),
+    repository,
+  });
+  const response = responseRecorder();
+  await handler({ body: { ...validBody, minimumNeighbors: 1, debugHistoricalNeighbors: true } }, response);
+
+  assert.equal(response.statusCode, 200);
+  assert.ok(response.body.statistics);
+  assert.equal(response.body.historicalEvaluation.status, "available");
+  assert.equal(response.body.historicalEvaluation.rawNeighborCount, 1);
+  assert.doesNotMatch(JSON.stringify(response.body.historicalEvaluation), /secret-match|secret-participant|rawSource/);
+});
+
 test("patch is an optional filter and valid requests normalize safely", () => {
   const parsed = parseBoardStatsRequest(validBody, data);
   assert.equal(parsed.patch, null);
@@ -71,7 +106,7 @@ test("patch is an optional filter and valid requests normalize safely", () => {
   assert.equal(parsed.candidateBoard.units[0].unitId, "tft17_riven");
 });
 
-test("endpoint returns 400 for client errors and generic 500 for repository failures", async (t) => {
+test("endpoint returns 400 for client errors and degrades gracefully for repository failures", async (t) => {
   const clientHandler = createBoardStatsHandler({
     loadData: async () => data,
     repository: { queryNormalizedBoards: async () => [] },
@@ -81,7 +116,6 @@ test("endpoint returns 400 for client errors and generic 500 for repository fail
   assert.equal(clientResponse.statusCode, 400);
   assert.match(clientResponse.body.error, /candidateBoard/);
 
-  t.mock.method(console, "error", () => {});
   const failingHandler = createBoardStatsHandler({
     loadData: async () => data,
     repository: {
@@ -92,9 +126,8 @@ test("endpoint returns 400 for client errors and generic 500 for repository fail
   });
   const serverResponse = responseRecorder();
   await failingHandler({ body: validBody }, serverResponse);
-  assert.equal(serverResponse.statusCode, 500);
-  assert.deepEqual(serverResponse.body, {
-    error: "Failed to calculate board statistics.",
-  });
+  assert.equal(serverResponse.statusCode, 200);
+  assert.equal(serverResponse.body.statistics, null);
+  assert.equal(serverResponse.body.historicalEvaluation.status, "unavailable");
+  assert.doesNotMatch(JSON.stringify(serverResponse.body), /secret repository path/);
 });
-

@@ -108,6 +108,26 @@ export function parseBoardStatsRequest(body, data) {
     );
   }
 
+  const maximumNeighbors = Number(body.maximumNeighbors ?? 50);
+  if (!Number.isInteger(maximumNeighbors) || maximumNeighbors < 1 || maximumNeighbors > 200) {
+    throw new ClientInputError("maximumNeighbors must be an integer from 1 to 200.");
+  }
+  const minimumNeighbors = Number(body.minimumNeighbors ?? 3);
+  if (!Number.isInteger(minimumNeighbors) || minimumNeighbors < 1 || minimumNeighbors > maximumNeighbors) {
+    throw new ClientInputError("minimumNeighbors must be an integer from 1 to maximumNeighbors.");
+  }
+  if (body.debugHistoricalNeighbors !== undefined && typeof body.debugHistoricalNeighbors !== "boolean") {
+    throw new ClientInputError("debugHistoricalNeighbors must be a boolean.");
+  }
+  const weightingMode = body.weightingMode || "similarity-squared";
+  if (!["similarity-squared", "threshold-relative-squared"].includes(weightingMode)) {
+    throw new ClientInputError("weightingMode must be similarity-squared or threshold-relative-squared.");
+  }
+  const sourceParticipantIndex = candidateInput.sourceParticipantIndex;
+  if (sourceParticipantIndex !== undefined && (!Number.isInteger(Number(sourceParticipantIndex)) || Number(sourceParticipantIndex) < 0)) {
+    throw new ClientInputError("candidateBoard.sourceParticipantIndex must be a non-negative integer.");
+  }
+
   const championIndex = createChampionIndex(data.champions || []);
   const seenUnitIds = new Set();
 
@@ -156,7 +176,13 @@ export function parseBoardStatsRequest(body, data) {
     patch,
     minimumSimilarity,
     minimumSampleSize,
+    maximumNeighbors,
+    minimumNeighbors,
+    debugHistoricalNeighbors: body.debugHistoricalNeighbors === true,
+    weightingMode,
+    sourceMatchId: candidateInput.sourceMatchId || null,
+    sourceParticipantId: candidateInput.sourceParticipantId || null,
+    sourceParticipantIndex: sourceParticipantIndex === undefined ? null : Number(sourceParticipantIndex),
     weights: validateWeights(body.weights),
   };
 }
-
