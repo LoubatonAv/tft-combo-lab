@@ -17,6 +17,7 @@ import {
   historicalObserveModeEnabled,
   observeOptimizerResults,
 } from "./matchData/optimizerHistoricalObservation.js";
+import { parseFrontlineSelection } from "./frontlineSelection.js";
 
 loadProjectEnv(process.env);
 
@@ -192,6 +193,8 @@ app.post("/api/optimize", async (req, res) => {
   try {
     const requestStartedAt = performance.now();
     const data = await loadData();
+    const boardSize = Number(req.body.boardSize || 8);
+    const frontlineSelection = parseFrontlineSelection(req.body, boardSize);
 
     const optimizerStartedAt = performance.now();
     const optimizerResults = optimize({
@@ -228,8 +231,10 @@ app.post("/api/optimize", async (req, res) => {
         : [],
       targetTrait: req.body.targetTrait,
       targetCount: Number(req.body.targetCount || 0),
-      boardSize: Number(req.body.boardSize || 8),
-      minFrontline: Number(req.body.minFrontline || 0),
+      boardSize,
+      minFrontline: frontlineSelection.minFrontline,
+      frontlineMode: frontlineSelection.mode,
+      maxFrontline: frontlineSelection.maxFrontline,
       carryId: req.body.carryId || "auto",
       maxResults: Number(req.body.maxResults || 12),
       gameModeId: req.body.gameModeId || "capped",

@@ -24,6 +24,7 @@ function candidate(id, score, units = data.champions) {
     units: structuredClone(units),
     starPlans: { a: { starLevel: 2 } },
     activeTraits: [{ name: "Alpha", count: 2, activeAt: 1, isActive: true }],
+    frontlineSelection: { mode: "flex", selectedCount: 3, requestedMinimum: 3, requestedMaximum: 6 },
   };
 }
 
@@ -58,6 +59,7 @@ test("observe mode appends metadata without changing candidates, scores, orderin
   assert.deepEqual(observed.map((result) => result.id), ["tie-a", "tie-b", "lower"]);
   assert.deepEqual(observed.map((result) => result.score), [100, 100, 90]);
   assert.deepEqual(observed.map((result) => result.units), snapshot.map((result) => result.units));
+  assert.deepEqual(observed.map((result) => result.frontlineSelection), snapshot.map((result) => result.frontlineSelection));
   assert.ok(observed.every((result) => result.historicalEvaluation === evaluation));
 });
 

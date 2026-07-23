@@ -11,6 +11,10 @@ import {
 } from "lucide-react";
 import "./styles.css";
 import { historicalObservationViewModel } from "./historicalObservation.js";
+import {
+  flexFrontlineMinimum,
+  formatFrontlineSelection,
+} from "./frontlineSelection.js";
 const MECHA_TRANSFORMER_TOOL = "MECHA_TRANSFORMER";
 
 function HistoricalObservation({ evaluation }) {
@@ -1110,6 +1114,9 @@ function App() {
     gold: 40,
     level: 8,
   });
+  const effectiveMinFrontline = minFrontline === "flex"
+    ? flexFrontlineMinimum(boardSize)
+    : Number(minFrontline);
 
   async function loadData() {
     try {
@@ -1247,7 +1254,7 @@ function App() {
           targetTrait: targetTrait || null,
           targetCount: targetTrait ? Number(targetCount) : 0,
           boardSize: Number(boardSize),
-          minFrontline: Number(minFrontline),
+          frontlineCount: minFrontline === "flex" ? "flex" : Number(minFrontline),
           carryId,
           lockedUnitIds,
           maxResults: Number(maxResults),
@@ -1340,7 +1347,7 @@ function App() {
               Board {boardSize}
             </span>
             <span className="rounded-full bg-white/10 px-3 py-1">
-              Front {minFrontline}
+              Frontline: {minFrontline === "flex" ? "Flex (automatic)" : minFrontline}
             </span>
             <span className="rounded-full bg-white/10 px-3 py-1">
               Max cost {maxUnitCost}
@@ -1481,7 +1488,7 @@ function App() {
 
                 setBoardSize(nextSize);
                 setMinFrontline((current) =>
-                  Math.min(Number(current), nextSize),
+                  current === "flex" ? "flex" : Math.min(Number(current), nextSize),
                 );
                 setTargetCount((current) =>
                   targetTrait ? Math.min(current, nextSize) : 0,
@@ -1491,18 +1498,18 @@ function App() {
             />
           </Control>
           <Control label="Frontline">
-            <input
-              type="number"
-              min="0"
-              max={Number(boardSize || 10)}
+            <select
               value={minFrontline}
-              onChange={(e) =>
-                setMinFrontline(
-                  clampNumber(e.target.value, 0, Number(boardSize || 10), 0),
-                )
-              }
+              onChange={(event) => setMinFrontline(
+                event.target.value === "flex" ? "flex" : Number(event.target.value),
+              )}
               className="input"
-            />
+            >
+              <option value="flex">Flex (automatic)</option>
+              {Array.from({ length: Number(boardSize || 0) + 1 }, (_, count) => (
+                <option key={count} value={count}>{count}</option>
+              ))}
+            </select>
           </Control>
           <Control label="Carry Focus">
             <select
@@ -1552,7 +1559,7 @@ function App() {
         setCarryId={setCarryId}
         maxUnitCost={maxUnitCost}
         boardSize={Number(boardSize)}
-        minFrontline={Number(minFrontline)}
+        minFrontline={effectiveMinFrontline}
         targetTrait={targetTrait}
         targetCount={Number(targetCount)}
         allowMechaTransformer={allowMechaTransformer}
@@ -1575,7 +1582,7 @@ function App() {
               itemSetStats={data.itemSetStats || {}}
               itemCatalog={data.itemCatalog || {}}
               boardSize={Number(boardSize)}
-              minFrontline={Number(minFrontline)}
+              minFrontline={effectiveMinFrontline}
               targetTrait={targetTrait}
               targetCount={Number(targetCount)}
               allowEmblems={allowEmblems}
@@ -1667,6 +1674,11 @@ function App() {
                   ))}
                 </div>
                 <HistoricalObservation evaluation={r.historicalEvaluation} />
+                {formatFrontlineSelection(r.frontlineSelection, r.units.length) ? (
+                  <div className="mt-2 text-xs font-bold text-cyan-100/80">
+                    {formatFrontlineSelection(r.frontlineSelection, r.units.length)}
+                  </div>
+                ) : null}
               </button>
             ))
           ) : (

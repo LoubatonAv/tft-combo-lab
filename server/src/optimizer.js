@@ -1,4 +1,8 @@
 import { scoreComp } from "./scoring.js";
+import {
+  frontlineCountAllowed,
+  frontlineSelectionMetadata,
+} from "./frontlineSelection.js";
 import { getSpecialTraitPlan } from "./specialSources.js";
 import { getAllowedMaxCost, getGameMode, tierToScore } from "./rules.js";
 import { getChampionFitToCarry, getCarryProfile } from "./carryFit.js";
@@ -946,6 +950,8 @@ export function optimize({
   transformedMechaIds = [],
   boardSize = 8,
   minFrontline = 0,
+  frontlineMode = "fixed",
+  maxFrontline = null,
   carryId = "auto",
   maxResults = 12,
   gameModeId = "capped",
@@ -973,6 +979,13 @@ export function optimize({
 }) {
   boardSize = Math.max(2, Math.min(Number(boardSize || 8), 10));
   minFrontline = Math.max(0, Math.min(Number(minFrontline || 0), boardSize));
+  const frontlineSelection = {
+    mode: frontlineMode === "flex" ? "flex" : "fixed",
+    minFrontline,
+    maxFrontline: frontlineMode === "flex"
+      ? Math.max(minFrontline, Math.min(Number(maxFrontline ?? boardSize - 2), boardSize))
+      : null,
+  };
 
   const wantedCount = targetTrait
     ? Math.max(1, Number(targetCount || boardSize))
@@ -998,6 +1011,13 @@ export function optimize({
   const availableFrontlineCount = champions.filter((unit) =>
     isFrontlineUnit(unit),
   ).length;
+
+  if (frontlineSelection.mode === "flex") {
+    frontlineSelection.maxFrontline = Math.max(
+      frontlineSelection.minFrontline,
+      Math.min(frontlineSelection.maxFrontline, availableFrontlineCount),
+    );
+  }
 
   if (minFrontline > availableFrontlineCount) {
     throw new Error(
@@ -1107,7 +1127,8 @@ export function optimize({
       continue;
     }
 
-    if (minFrontline > 0 && countFrontlineUnits(units) < minFrontline) {
+    const frontlineCount = countFrontlineUnits(units);
+    if (!frontlineCountAllowed(frontlineCount, frontlineSelection)) {
       continue;
     }
 
@@ -1206,6 +1227,7 @@ export function optimize({
       carry: chosenCarry,
       gameMode,
       lockedUnitIds: [...lockedIds],
+      frontlineSelection: frontlineSelectionMetadata(frontlineCount, frontlineSelection),
       ...evaluation,
     });
   }
