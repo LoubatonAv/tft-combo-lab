@@ -10,7 +10,36 @@ import {
   Sparkles,
 } from "lucide-react";
 import "./styles.css";
+import { historicalObservationViewModel } from "./historicalObservation.js";
 const MECHA_TRANSFORMER_TOOL = "MECHA_TRANSFORMER";
+
+function HistoricalObservation({ evaluation }) {
+  if (!evaluation) return null;
+  const view = historicalObservationViewModel(evaluation);
+  if (view.state === "unavailable") {
+    return (
+      <div className="mt-3 rounded-lg border border-amber-200/15 bg-amber-200/5 p-2 text-xs text-amber-100/75">
+        <div className="font-black">{view.title}</div>
+        <div className="mt-1">{view.warning}</div>
+      </div>
+    );
+  }
+  return (
+    <div className="mt-3 rounded-lg border border-cyan-200/15 bg-cyan-200/5 p-2 text-xs text-slate-300">
+      <div className="font-black text-cyan-100">{view.title}</div>
+      <div className={cx("mt-1 grid grid-cols-2 gap-x-3 gap-y-1", view.lowConfidence && "opacity-70")}>
+        <span>Avg placement: {view.averagePlacement}</span>
+        <span>Top 4: {view.top4Rate}</span>
+        <span>Win: {view.winRate}</span>
+        <span>Similarity: {view.averageSimilarity}</span>
+        <span>Confidence: {view.confidence}</span>
+        <span>Reliability: {view.reliability}</span>
+        <span className="col-span-2">Samples: {view.effectiveSampleSize} ESS / {view.rawNeighborCount} neighbors</span>
+      </div>
+      {view.warning ? <div className="mt-1 text-amber-200/80">{view.warning}</div> : null}
+    </div>
+  );
+}
 
 function isMechaUnit(unit) {
   return unit?.traits?.includes("Mecha");
@@ -1513,11 +1542,33 @@ function App() {
         </div>
       </section>
 
+      <CoreUnitPicker
+        champions={data.champions}
+        lockedUnitIds={lockedUnitIds}
+        setLockedUnitIds={setLockedUnitIds}
+        preTransformedMechaIds={preTransformedMechaIds}
+        setPreTransformedMechaIds={setPreTransformedMechaIds}
+        carryId={carryId}
+        setCarryId={setCarryId}
+        maxUnitCost={maxUnitCost}
+        boardSize={Number(boardSize)}
+        minFrontline={Number(minFrontline)}
+        targetTrait={targetTrait}
+        targetCount={Number(targetCount)}
+        allowMechaTransformer={allowMechaTransformer}
+        unitStars={unitStars}
+        setUnitStars={setUnitStars}
+        onOptimize={optimize}
+        loading={loading}
+      />
+
       <div className="grid gap-4 2xl:grid-cols-[minmax(0,1fr)_300px]">
         <section className="min-w-0">
           {selected ? (
             <CompDetail
               comp={selected}
+              champions={data.champions}
+              championMeta={data.championMeta || {}}
               traitsConfig={data.traits}
               traitProfiles={data.traitProfiles || {}}
               itemStats={data.itemStats || {}}
@@ -1553,25 +1604,6 @@ function App() {
                   matchHistory: nextHistory,
                 }));
               }}
-              coreUnitPickerNode={
-                <CoreUnitPicker
-                  champions={data.champions}
-                  lockedUnitIds={lockedUnitIds}
-                  setLockedUnitIds={setLockedUnitIds}
-                  preTransformedMechaIds={preTransformedMechaIds}
-                  setPreTransformedMechaIds={setPreTransformedMechaIds}
-                  carryId={carryId}
-                  setCarryId={setCarryId}
-                  maxUnitCost={maxUnitCost}
-                  boardSize={Number(boardSize)}
-                  minFrontline={Number(minFrontline)}
-                  targetTrait={targetTrait}
-                  targetCount={Number(targetCount)}
-                  allowMechaTransformer={allowMechaTransformer}
-                  unitStars={unitStars}
-                  setUnitStars={setUnitStars}
-                />
-              }
             />
           ) : (
             <div className="rounded-3xl border border-white/10 bg-white/5 p-6">
@@ -1634,6 +1666,7 @@ function App() {
                     </span>
                   ))}
                 </div>
+                <HistoricalObservation evaluation={r.historicalEvaluation} />
               </button>
             ))
           ) : (
@@ -1676,6 +1709,8 @@ function CoreUnitPicker({
   allowMechaTransformer,
   unitStars = {},
   setUnitStars,
+  onOptimize,
+  loading = false,
 }) {
   const [search, setSearch] = useState("");
 
@@ -1810,13 +1845,24 @@ function CoreUnitPicker({
           </div>
         </div>
 
-        <button
-          type="button"
-          onClick={clearCore}
-          className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold text-slate-200 hover:bg-white/10"
-        >
-          Clear core
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={clearCore}
+            className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold text-slate-200 hover:bg-white/10"
+          >
+            Clear core
+          </button>
+          <button
+            type="button"
+            onClick={onOptimize}
+            disabled={loading}
+            className="flex items-center gap-2 rounded-xl border border-cyan-100/40 bg-cyan-200 px-3 py-2 text-xs font-black text-slate-950 transition hover:brightness-110 disabled:cursor-wait disabled:opacity-60"
+          >
+            <RefreshCw className={loading ? "animate-spin" : ""} size={14} />
+            Analyze selected
+          </button>
+        </div>
       </div>
       <input
         value={search}
@@ -3985,10 +4031,240 @@ function LogResultBox({ comp, units = [], activeTraits = [], onSaved }) {
   );
 }
 
+function getReplacementBucket(unit) {
+  if (isFrontlineUnit(unit)) return "front";
+  if (isCarryCandidateUnit(unit)) return "damage";
+  if (/support|utility/i.test(unit?.role || "")) return "support";
+  return "flex";
+}
+
+function getUiTierScore(tier) {
+  return (
+    {
+      S: 100,
+      A: 82,
+      B: 66,
+      C: 48,
+      D: 30,
+    }[String(tier || "").toUpperCase()] || 45
+  );
+}
+
+function getUiMetaScore(unit, championMeta = {}) {
+  const meta = championMeta?.[unit.id] || championMeta?.[unit.apiName] || {};
+  return Number(meta.score || 0) || getUiTierScore(meta.tier || unit.tier);
+}
+
+function getLegendaryReplacementSuggestions({
+  legendary,
+  units,
+  champions,
+  targetTrait,
+  carry,
+  championMeta = {},
+}) {
+  const boardIds = new Set((units || []).map((unit) => unit.id));
+  const legendaryTraits = new Set(legendary.traits || []);
+  const carryTraitNames = new Set(carry?.traits || []);
+  const legendaryBucket = getReplacementBucket(legendary);
+
+  return (champions || [])
+    .filter((candidate) => {
+      if (!candidate || candidate.id === legendary.id) return false;
+      if (boardIds.has(candidate.id)) return false;
+
+      // Only cheaper replacements.
+      if (Number(candidate.cost || 1) >= Number(legendary.cost || 1)) {
+        return false;
+      }
+
+      // Avoid nonsense 1-cost filler unless it is very connected.
+      const sharedTraits = (candidate.traits || []).filter((trait) =>
+        legendaryTraits.has(trait),
+      );
+
+      const keepsTargetTrait =
+        targetTrait &&
+        legendary.traits?.includes(targetTrait) &&
+        candidate.traits?.includes(targetTrait);
+
+      const supportsCarryTrait = candidate.traits?.some(
+        (trait) => trait !== targetTrait && carryTraitNames.has(trait),
+      );
+
+      const sameRole = getReplacementBucket(candidate) === legendaryBucket;
+
+      return (
+        sharedTraits.length > 0 ||
+        keepsTargetTrait ||
+        supportsCarryTrait ||
+        sameRole
+      );
+    })
+    .map((candidate) => {
+      const sharedTraits = (candidate.traits || []).filter((trait) =>
+        legendaryTraits.has(trait),
+      );
+
+      const candidateBucket = getReplacementBucket(candidate);
+
+      const keepsTargetTrait =
+        targetTrait &&
+        legendary.traits?.includes(targetTrait) &&
+        candidate.traits?.includes(targetTrait);
+
+      const supportsCarryTrait = candidate.traits?.some(
+        (trait) => trait !== targetTrait && carryTraitNames.has(trait),
+      );
+
+      let score = 0;
+
+      score += getUiMetaScore(candidate, championMeta) * 0.55;
+      score += Number(candidate.cost || 1) * 8;
+      score += sharedTraits.length * 34;
+
+      if (candidateBucket === legendaryBucket) score += 42;
+      if (keepsTargetTrait) score += 58;
+      if (supportsCarryTrait) score += 42;
+
+      if (legendaryBucket === "front" && !isFrontlineUnit(candidate)) {
+        score -= 70;
+      }
+
+      if (legendaryBucket === "damage" && !isCarryCandidateUnit(candidate)) {
+        score -= 45;
+      }
+
+      // Cheap is good as a substitute, but not if it is random trait soup.
+      if (Number(candidate.cost || 1) === 1 && sharedTraits.length === 0) {
+        score -= 18;
+      }
+
+      const reason =
+        sharedTraits.length > 0
+          ? `shares ${sharedTraits.join(" / ")}`
+          : keepsTargetTrait
+            ? `keeps ${targetTrait}`
+            : supportsCarryTrait
+              ? `supports ${carry?.name}'s traits`
+              : candidateBucket === legendaryBucket
+                ? `same role: ${candidateBucket}`
+                : "cheaper substitute";
+
+      return {
+        unit: candidate,
+        score,
+        reason,
+      };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3);
+}
+
+function LegendaryAlternatives({
+  units = [],
+  champions = [],
+  targetTrait,
+  carry,
+  championMeta = {},
+}) {
+  const legendaryUnits = units.filter((unit) => Number(unit.cost || 1) === 5);
+
+  if (!legendaryUnits.length) return null;
+
+  return (
+    <div className="mt-3 rounded-2xl border border-amber-300/20 bg-amber-300/10 p-3">
+      <div className="mb-2">
+        <div className="text-xs font-black uppercase tracking-[0.16em] text-amber-100">
+          5-cost alternatives
+        </div>
+
+        <div className="text-xs text-amber-100/70">
+          Cheaper fallback ideas if the legendary units are hard to hit.
+        </div>
+      </div>
+
+      <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-3">
+        {legendaryUnits.map((legendary) => {
+          const suggestions = getLegendaryReplacementSuggestions({
+            legendary,
+            units,
+            champions,
+            targetTrait,
+            carry,
+            championMeta,
+          });
+
+          return (
+            <div
+              key={legendary.id}
+              className="rounded-xl border border-white/10 bg-black/20 p-2"
+            >
+              <div className="mb-2 flex items-center gap-2 text-xs">
+                <span
+                  className={cx(
+                    "rounded-full px-2 py-0.5 font-black",
+                    costBadge(legendary.cost),
+                  )}
+                >
+                  {legendary.cost}
+                </span>
+
+                <span className="font-black text-white">{legendary.name}</span>
+                <span className="text-slate-500">→</span>
+              </div>
+
+              {suggestions.length ? (
+                <div className="space-y-1.5">
+                  {suggestions.map(({ unit, reason }) => (
+                    <div
+                      key={unit.id}
+                      className="flex items-center gap-2 rounded-lg bg-white/5 px-2 py-1.5 text-xs"
+                    >
+                      <ChampionPortrait unit={unit} size="sm" />
+
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-1.5">
+                          <span
+                            className={cx(
+                              "rounded-full px-1.5 py-0.5 text-[10px] font-black",
+                              costBadge(unit.cost),
+                            )}
+                          >
+                            {unit.cost}
+                          </span>
+
+                          <span className="truncate font-black text-slate-100">
+                            {unit.name}
+                          </span>
+                        </div>
+
+                        <div className="truncate text-[11px] text-slate-400">
+                          {reason}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-xs text-slate-500">
+                  No clean cheaper substitute found.
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 function CompDetail({
   comp,
+  champions = [],
   traitsConfig,
   traitProfiles = {},
+  championMeta = {},
   itemStats = {},
   itemSetStats = {},
   itemCatalog = {},
@@ -4006,7 +4282,6 @@ function CompDetail({
   setComponents,
   liveState = {},
   playStyle = "first",
-  coreUnitPickerNode = null,
   onMatchHistorySaved,
   onLockCompUnits,
 }) {
@@ -4267,6 +4542,13 @@ function CompDetail({
               traitProfiles={traitProfiles}
               traitsConfig={traitsConfig}
             />
+            <LegendaryAlternatives
+              units={effectiveBoardUnits}
+              champions={champions}
+              targetTrait={targetTrait}
+              carry={comp.carry}
+              championMeta={championMeta}
+            />
             <div className="relative z-[200] mt-4 overflow-visible">
               <TftBoard
                 units={effectiveBoardUnits}
@@ -4350,8 +4632,6 @@ function CompDetail({
           <PersonalCompStats comp={comp} matchHistory={matchHistory} />
         </div>
       </div>
-
-      {coreUnitPickerNode}
 
       <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
         {effectiveBoardUnits.map((unit) => (

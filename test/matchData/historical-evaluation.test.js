@@ -203,3 +203,55 @@ test("repository path resolution respects TFT_MATCH_DATA_PATH", () => {
   const configured = path.join(os.tmpdir(), "configured-match-data.json");
   assert.equal(resolveMatchRepositoryPath({ TFT_MATCH_DATA_PATH: configured }, "fallback.json"), path.resolve(configured));
 });
+
+test("incomplete full-board context omits unavailable carry, item, and star penalties", async (t) => {
+  const historical = board();
+  const incomplete = board();
+  incomplete.units = incomplete.units.map((unit) => ({ ...unit, starLevel: null, itemIds: [] }));
+  incomplete.activeTraits = [{ traitId: "tft17_alpha", unitCount: 2, activeTier: 2 }];
+  const { service } = await setup(t, [storedMatch("common", 3, historical)]);
+  const result = await service.evaluate(incomplete, {
+    minimumNeighbors: 1,
+    expectedBoardSize: 8,
+    hasIncompleteContext: true,
+    debugDiagnostics: true,
+  });
+  assert.equal(result.status, "available");
+  assert.equal(result.isPartialBoard, false);
+  assert.equal(result.hasIncompleteContext, true);
+  assert.equal(result.rawNeighborCount, 1);
+  assert.ok(result.confidence <= 0.64);
+  assert.equal(result.diagnostics.indexedBruteForceHighestAgreement, true);
+});
+
+test("six-of-six is complete while six-of-eight is partial", async (t) => {
+  const six = board({ units: ["a", "b", "c", "d", "e", "f"] });
+  const { service } = await setup(t, [storedMatch("six", 4, six)]);
+  const complete = await service.evaluate(six, { minimumNeighbors: 1, expectedBoardSize: 6 });
+  const partial = await service.evaluate(six, { minimumNeighbors: 1, expectedBoardSize: 8 });
+  assert.equal(complete.actualBoardSize, 6);
+  assert.equal(complete.expectedBoardSize, 6);
+  assert.equal(complete.isPartialBoard, false);
+  assert.equal(partial.expectedBoardSize, 8);
+  assert.equal(partial.isPartialBoard, true);
+});
+
+test("bounded same-set fallback activates when postings miss a qualifying board", async (t) => {
+  const candidate = board();
+  const { service } = await setup(t, [storedMatch("fallback", 2, candidate)]);
+  const index = await service.buildIndex();
+  const setIndex = index.sets.get(17);
+  setIndex.coreUnits.clear();
+  setIndex.traits.clear();
+  setIndex.carries.clear();
+  const result = await service.evaluate(candidate, {
+    minimumNeighbors: 1,
+    fallbackScanLimit: 10,
+    debugDiagnostics: true,
+  });
+  assert.equal(result.status, "available");
+  assert.equal(result.diagnostics.uniqueBlockedCandidateCount, 0);
+  assert.equal(result.diagnostics.fallbackActivated, true);
+  assert.equal(result.diagnostics.fallbackScanned, 1);
+  assert.equal(result.diagnostics.bruteForceQualifyingCount, 1);
+});

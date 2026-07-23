@@ -25,8 +25,16 @@ export function createAnalysisMetadata({ itemCatalog = {}, champions = [], trait
     }
   }
   const traitAliases = new Map();
+  const traitBreakpoints = new Map();
   for (const trait of traits) {
     const apiName = canonicalizeIdentifier(trait.apiName || trait.name);
+    traitBreakpoints.set(
+      apiName,
+      (Array.isArray(trait.breakpoints) ? trait.breakpoints : [])
+        .map(Number)
+        .filter((value) => Number.isFinite(value) && value > 0)
+        .sort((a, b) => a - b),
+    );
     for (const alias of [trait.name, trait.apiName]) {
       const key = canonicalizeIdentifier(alias);
       if (key && apiName) traitAliases.set(key, apiName);
@@ -41,7 +49,16 @@ export function createAnalysisMetadata({ itemCatalog = {}, champions = [], trait
       new Set((champion.traits || []).map((trait) => traitAliases.get(canonicalizeIdentifier(trait)) || canonicalizeIdentifier(trait)).filter(Boolean)),
     );
   }
-  return { completedItems, componentItems, unitTraits };
+  return { completedItems, componentItems, unitTraits, traitAliases, traitBreakpoints };
+}
+
+export function normalizedTraitBreakpoint(trait, metadata = {}) {
+  const breakpoints = metadata.traitBreakpoints?.get(trait?.traitId) || [];
+  const count = Number(trait?.unitCount);
+  if (breakpoints.length && Number.isFinite(count)) {
+    return [...breakpoints].reverse().find((breakpoint) => count >= breakpoint) || 0;
+  }
+  return Number(trait?.activeTier) || 0;
 }
 
 export function classifyBoardItem(itemId, metadata = {}) {
@@ -163,7 +180,7 @@ export function compareBoardsRelaxed(left, right, metadata = {}) {
   const unitOverlap = multisetJaccard(leftUnits.map((unit) => unit.unitId), rightUnits.map((unit) => unit.unitId));
   const weighted = (board) => selectCoreUnits(board, metadata).flatMap((unit) => Array(Math.max(1, Number(unit.cost) || 1)).fill(unit.unitId));
   const weightedCoreUnitOverlap = multisetJaccard(weighted(left), weighted(right));
-  const traitTokens = (board) => (board?.activeTraits || []).map((trait) => `${trait.traitId}:${Number(trait.activeTier) || 0}`);
+  const traitTokens = (board) => (board?.activeTraits || []).map((trait) => `${trait.traitId}:${normalizedTraitBreakpoint(trait, metadata)}`);
   const activeTraitSimilarity = multisetJaccard(traitTokens(left), traitTokens(right));
   const carries = (board) => selectCarries(board, metadata).map((unit) => unit.unitId);
   const carrySimilarity = multisetJaccard(carries(left), carries(right));

@@ -8,7 +8,15 @@ import { buildTeamPlannerCode, parseTeamPlannerCode } from "./teamPlannerCode.js
 import { JsonMatchRepository } from "./matchData/jsonMatchRepository.js";
 import { createBoardStatsHandler } from "./matchData/boardStatsEndpoint.js";
 import { loadProjectEnv } from "../../scripts/lib/project-env.mjs";
-import { resolveMatchRepositoryPath } from "./matchData/historicalBoardEvaluation.js";
+import {
+  HistoricalBoardEvaluationService,
+  resolveMatchRepositoryPath,
+} from "./matchData/historicalBoardEvaluation.js";
+import {
+  buildHistoricalObservationDebug,
+  historicalObserveModeEnabled,
+  observeOptimizerResults,
+} from "./matchData/optimizerHistoricalObservation.js";
 
 loadProjectEnv(process.env);
 
@@ -24,6 +32,17 @@ const matchRepository = new JsonMatchRepository(
     path.join(root, "data/importedMatches.json"),
   ),
 );
+const historicalEvaluator = new HistoricalBoardEvaluationService({
+  repository: matchRepository,
+  loadMetadata: async () => {
+    const data = await loadData();
+    return {
+      champions: data.champions,
+      traits: data.traits,
+      itemCatalog: data.itemCatalog,
+    };
+  },
+});
 
 app.use(cors());
 app.use(express.json({ limit: "2mb" }));
@@ -171,9 +190,11 @@ app.post("/api/parse-team-planner-code", async (req, res) => {
 
 app.post("/api/optimize", async (req, res) => {
   try {
+    const requestStartedAt = performance.now();
     const data = await loadData();
 
-    const results = optimize({
+    const optimizerStartedAt = performance.now();
+    const optimizerResults = optimize({
       champions: data.champions,
       traits: data.traits,
       metaComps: data.metaComps,
@@ -220,8 +241,41 @@ app.post("/api/optimize", async (req, res) => {
         ? req.body.transformedMechaIds
         : [],
     });
+    const optimizerRuntimeMs = performance.now() - optimizerStartedAt;
+    const historicalStartedAt = performance.now();
+    const results = await observeOptimizerResults({
+      results: optimizerResults,
+      evaluator: historicalEvaluator,
+      data,
+      enabled: historicalObserveModeEnabled(process.env.TFT_HISTORICAL_OBSERVE_MODE),
+      context: {
+        setNumber: req.body.setNumber,
+        patch: req.body.patch,
+        expectedBoardSize: Number(req.body.boardSize || 8),
+        hasIncompleteContext: true,
+        debugDiagnostics:
+          process.env.NODE_ENV !== "production" && req.body.debugHistoricalObservation === true,
+      },
+    });
+    const historicalRuntimeMs = performance.now() - historicalStartedAt;
+    const debugHistoricalObservation =
+      process.env.NODE_ENV !== "production" && req.body.debugHistoricalObservation === true;
+    const debugSummary = debugHistoricalObservation
+      ? buildHistoricalObservationDebug(results, optimizerRuntimeMs, historicalRuntimeMs)
+      : null;
 
-    res.json({ results });
+    res.json({
+      results,
+      ...(debugHistoricalObservation ? {
+        historicalObservationDebug: {
+          ...debugSummary,
+          timing: {
+            ...debugSummary.timing,
+            totalRuntimeMs: Number((performance.now() - requestStartedAt).toFixed(2)),
+          },
+        },
+      } : {}),
+    });
   } catch (error) {
     console.error(error);
 

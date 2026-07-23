@@ -1,6 +1,8 @@
 import {
   compareBoardsRelaxed,
   createAnalysisMetadata,
+  normalizedTraitBreakpoint,
+  RELAXED_SIMILARITY_WEIGHTS,
   selectCarries,
   selectCoreUnits,
 } from "./boardSignatures.js";
@@ -11,6 +13,7 @@ export const HISTORICAL_EVALUATION_DEFAULTS = Object.freeze({
   maximumNeighbors: 50,
   minimumNeighbors: 3,
   expectedBoardSize: 8,
+  fallbackScanLimit: 500,
   weightingMode: "similarity-squared",
   dominantWeightShare: 0.5,
 });
@@ -70,24 +73,30 @@ function containment(query, historical) {
   return found / query.length;
 }
 
-function partialSimilarity(candidate, historical, metadata) {
+export function compareBoardsForHistoricalEvaluation(candidate, historical, metadata, context = {}) {
   const base = compareBoardsRelaxed(candidate, historical, metadata);
+  if (base.score === 0 && Number(candidate?.setNumber) !== Number(historical?.setNumber)) return base;
+  const isPartialBoard = context.isPartialBoard === true;
+  const hasIncompleteContext = context.hasIncompleteContext === true;
   const candidateCore = selectCoreUnits(candidate, metadata).map((unit) => unit.unitId);
   const historicalCore = selectCoreUnits(historical, metadata).map((unit) => unit.unitId);
-  const candidateTraits = (candidate.activeTraits || []).map((trait) => `${trait.traitId}:${trait.activeTier}`);
-  const historicalTraits = (historical.activeTraits || []).map((trait) => `${trait.traitId}:${trait.activeTier}`);
+  const candidateTraits = (candidate.activeTraits || []).map((trait) => `${trait.traitId}:${normalizedTraitBreakpoint(trait, metadata)}`);
+  const historicalTraits = (historical.activeTraits || []).map((trait) => `${trait.traitId}:${normalizedTraitBreakpoint(trait, metadata)}`);
   const candidateCarries = selectCarries(candidate, metadata).map((unit) => unit.unitId);
   const historicalCarries = selectCarries(historical, metadata).map((unit) => unit.unitId);
-  const components = {
-    ...base.components,
-    unitOverlap: containment((candidate.units || []).map((unit) => unit.unitId), (historical.units || []).map((unit) => unit.unitId)),
-    weightedCoreUnitOverlap: containment(candidateCore, historicalCore),
-    activeTraitSimilarity: containment(candidateTraits, historicalTraits),
-    carrySimilarity: containment(candidateCarries, historicalCarries),
-  };
-  const weights = { unitOverlap: 0.3, weightedCoreUnitOverlap: 0.25, activeTraitSimilarity: 0.2, carrySimilarity: 0.13, completedItemSimilarity: 0.1, starLevelSimilarity: 0.02 };
+  const components = { ...base.components };
+  if (isPartialBoard) {
+    components.unitOverlap = containment((candidate.units || []).map((unit) => unit.unitId), (historical.units || []).map((unit) => unit.unitId));
+    components.weightedCoreUnitOverlap = containment(candidateCore, historicalCore);
+    components.activeTraitSimilarity = containment(candidateTraits, historicalTraits);
+    components.carrySimilarity = containment(candidateCarries, historicalCarries);
+  }
+  const availableWeights = Object.entries(RELAXED_SIMILARITY_WEIGHTS).filter(([key]) =>
+    !hasIncompleteContext || !["carrySimilarity", "completedItemSimilarity", "starLevelSimilarity"].includes(key),
+  );
+  const weightTotal = availableWeights.reduce((sum, [, weight]) => sum + weight, 0);
   return {
-    score: round(Object.entries(weights).reduce((sum, [key, weight]) => sum + components[key] * weight, 0)),
+    score: round(availableWeights.reduce((sum, [key, weight]) => sum + components[key] * weight, 0) / weightTotal),
     components: Object.fromEntries(Object.entries(components).map(([key, value]) => [key, round(value)])),
   };
 }
@@ -137,6 +146,7 @@ export class HistoricalBoardEvaluationService {
     const records = [];
     const sets = new Map();
     const participantIndexes = new Map();
+    let unresolvedHistoricalUnitCount = 0;
 
     for (const entry of entries) {
       const board = entry?.board;
@@ -145,6 +155,7 @@ export class HistoricalBoardEvaluationService {
       const participantIndex = participantIndexes.get(entry.matchId) || 0;
       participantIndexes.set(entry.matchId, participantIndex + 1);
       const record = { ...entry, participantIndex, board: { ...board, setNumber: Number(setNumber) } };
+      unresolvedHistoricalUnitCount += (record.board.units || []).filter((unit) => !metadata.unitTraits.has(unit.unitId)).length;
       const index = records.push(record) - 1;
       const setIndex = sets.get(Number(setNumber)) || {
         all: new Set(), coreUnits: new Map(), traits: new Map(), carries: new Map(),
@@ -156,7 +167,7 @@ export class HistoricalBoardEvaluationService {
       sets.set(Number(setNumber), setIndex);
     }
     this.cachedSignature = signature;
-    this.cachedIndex = { records, sets, metadata, signature };
+    this.cachedIndex = { records, sets, metadata, signature, unresolvedHistoricalUnitCount };
     return this.cachedIndex;
   }
 
@@ -178,16 +189,27 @@ export class HistoricalBoardEvaluationService {
     const maximumNeighbors = Number(options.maximumNeighbors ?? HISTORICAL_EVALUATION_DEFAULTS.maximumNeighbors);
     const minimumNeighbors = Number(options.minimumNeighbors ?? HISTORICAL_EVALUATION_DEFAULTS.minimumNeighbors);
     const weightingMode = options.weightingMode || HISTORICAL_EVALUATION_DEFAULTS.weightingMode;
-    const isPartialBoard = (candidateBoard.units || []).length < HISTORICAL_EVALUATION_DEFAULTS.expectedBoardSize;
+    const expectedBoardSize = Math.max(1, Number(options.expectedBoardSize ?? HISTORICAL_EVALUATION_DEFAULTS.expectedBoardSize));
+    const actualBoardSize = (candidateBoard.units || []).length;
+    const isPartialBoard = actualBoardSize < expectedBoardSize;
+    const hasIncompleteContext = options.hasIncompleteContext ??
+      (candidateBoard.units || []).some((unit) => !Number.isFinite(Number(unit.starLevel)));
+    const unresolvedOptimizerUnitCount = Number(candidateBoard.normalizationDiagnostics?.unresolvedUnitCount || 0);
     const candidateIds = new Set();
-    for (const unit of selectCoreUnits(candidateBoard, index.metadata)) for (const id of setIndex.coreUnits.get(unit.unitId) || []) candidateIds.add(id);
-    for (const trait of candidateBoard.activeTraits || []) for (const id of setIndex.traits.get(trait.traitId) || []) candidateIds.add(id);
-    for (const carry of selectCarries(candidateBoard, index.metadata)) for (const id of setIndex.carries.get(carry.unitId) || []) candidateIds.add(id);
-    if (!candidateIds.size) for (const id of setIndex.all) candidateIds.add(id);
+    const coreTokens = selectCoreUnits(candidateBoard, index.metadata).map((unit) => unit.unitId);
+    const traitTokens = (candidateBoard.activeTraits || []).map((trait) => trait.traitId);
+    const carryTokens = selectCarries(candidateBoard, index.metadata).map((unit) => unit.unitId);
+    const corePostingIds = new Set();
+    const traitPostingIds = new Set();
+    const carryPostingIds = new Set();
+    for (const token of coreTokens) for (const id of setIndex.coreUnits.get(token) || []) corePostingIds.add(id);
+    for (const token of traitTokens) for (const id of setIndex.traits.get(token) || []) traitPostingIds.add(id);
+    for (const token of carryTokens) for (const id of setIndex.carries.get(token) || []) carryPostingIds.add(id);
+    for (const id of [...corePostingIds, ...traitPostingIds, ...carryPostingIds]) candidateIds.add(id);
 
     const neighbors = [];
     let selfRecordExcluded = false;
-    for (const id of candidateIds) {
+    const scoreRecord = (id) => {
       const record = index.records[id];
       const sameSourceMatch = options.sourceMatchId && record.matchId === options.sourceMatchId;
       const sameSourceParticipant =
@@ -195,15 +217,34 @@ export class HistoricalBoardEvaluationService {
         (Number.isInteger(options.sourceParticipantIndex) && record.participantIndex === options.sourceParticipantIndex);
       if (sameSourceMatch && sameSourceParticipant) {
         selfRecordExcluded = true;
-        continue;
+        return null;
       }
-      const similarity = isPartialBoard
-        ? partialSimilarity(candidateBoard, record.board, index.metadata)
-        : compareBoardsRelaxed(candidateBoard, record.board, index.metadata);
+      const similarity = compareBoardsForHistoricalEvaluation(candidateBoard, record.board, index.metadata, {
+        isPartialBoard,
+        hasIncompleteContext,
+      });
+      return { record, similarity };
+    };
+    const scoredBlocked = [...candidateIds].map(scoreRecord).filter(Boolean);
+    for (const { record, similarity } of scoredBlocked) {
       if (similarity.score < minimumSimilarity) continue;
       const weight = calculateNeighborWeight(similarity.score, minimumSimilarity, weightingMode);
       if (!(weight > 0)) continue;
       neighbors.push({ record, similarity, weight });
+    }
+    let fallbackActivated = false;
+    let fallbackScanned = 0;
+    if (!neighbors.length) {
+      fallbackActivated = true;
+      const fallbackLimit = Math.max(0, Number(options.fallbackScanLimit ?? HISTORICAL_EVALUATION_DEFAULTS.fallbackScanLimit));
+      for (const id of setIndex.all) {
+        if (candidateIds.has(id) || fallbackScanned >= fallbackLimit) continue;
+        fallbackScanned += 1;
+        const row = scoreRecord(id);
+        if (!row || row.similarity.score < minimumSimilarity) continue;
+        const weight = calculateNeighborWeight(row.similarity.score, minimumSimilarity, weightingMode);
+        if (weight > 0) neighbors.push({ ...row, weight });
+      }
     }
     neighbors.sort((a, b) => {
       const aSame = patch && a.record.patch === patch ? 1 : 0;
@@ -235,6 +276,7 @@ export class HistoricalBoardEvaluationService {
     const averageCoreOverlap = selected.length ? selected.reduce((sum, row) => sum + row.similarity.components.weightedCoreUnitOverlap, 0) / selected.length : 0;
     let confidence = Math.min(1, effectiveSampleSize / 10) * 0.3 + Math.min(1, selected.length / 20) * 0.15 + averageSimilarity * 0.2 + maximumSimilarity * 0.1 + patchConcentration * 0.1 + (isPartialBoard ? 0.5 : 1) * 0.15;
     if (isPartialBoard) confidence = Math.min(confidence * 0.75, 0.64);
+    if (hasIncompleteContext) confidence = Math.min(confidence * 0.85, 0.64);
     if (averageUnitOverlap < 0.35 || averageCoreOverlap < 0.25) confidence = Math.min(confidence, 0.64);
     if (effectiveSampleSize < 2) confidence = Math.min(confidence, 0.24);
     else if (effectiveSampleSize < 3) confidence = Math.min(confidence, 0.44);
@@ -283,9 +325,80 @@ export class HistoricalBoardEvaluationService {
       distinctExactBoardCount,
       selfRecordExcluded,
       isPartialBoard,
+      hasIncompleteContext,
+      expectedBoardSize,
+      actualBoardSize,
+      resolvedUnitCount: actualBoardSize,
+      unresolvedUnitCount: unresolvedOptimizerUnitCount,
       patchesRepresented,
       neighbors: options.debugNeighbors ? selected.map(({ record, similarity, weight, normalizedWeight }) => ({ similarity: similarity.score, rawWeight: round(weight), normalizedWeight: round(normalizedWeight), placement: record.placement, patch: record.patch, representativeUnits: (record.board.units || []).map((unit) => unit.unitId), representativeTraits: (record.board.activeTraits || []).map((trait) => trait.traitId), components: similarity.components })) : [],
     };
+    if (options.debugDiagnostics) {
+      const bruteForce = [...setIndex.all].map(scoreRecord).filter(Boolean).sort((a, b) => b.similarity.score - a.similarity.score);
+      const indexedQualifying = scoredBlocked.filter((row) => row.similarity.score >= minimumSimilarity).map((row) => row.similarity.score).sort((a, b) => b - a);
+      const bruteQualifying = bruteForce.filter((row) => row.similarity.score >= minimumSimilarity).map((row) => row.similarity.score).sort((a, b) => b - a);
+      const allScored = bruteForce;
+      result.diagnostics = {
+        sameSetHistoricalBoardCount: setIndex.all.size,
+        unresolvedOptimizerChampionIds: unresolvedOptimizerUnitCount,
+        unresolvedHistoricalChampionIds: index.unresolvedHistoricalUnitCount,
+        blockingTokenCounts: { core: coreTokens.length, traits: traitTokens.length, carries: carryTokens.length },
+        candidatesFromCorePostings: corePostingIds.size,
+        candidatesFromTraitPostings: traitPostingIds.size,
+        candidatesFromCarryPostings: carryPostingIds.size,
+        uniqueBlockedCandidateCount: candidateIds.size,
+        fallbackActivated,
+        fallbackScanned,
+        similarityCounts: {
+          atLeast050: allScored.filter((row) => row.similarity.score >= 0.5).length,
+          atLeast060: allScored.filter((row) => row.similarity.score >= 0.6).length,
+          atLeast065: allScored.filter((row) => row.similarity.score >= 0.65).length,
+          atLeast070: allScored.filter((row) => row.similarity.score >= 0.7).length,
+        },
+        highestSimilarityBeforeThreshold: round(allScored[0]?.similarity.score || 0),
+        topSimilarityComponents: allScored[0]?.similarity.components || null,
+        indexedQualifyingCount: indexedQualifying.length,
+        bruteForceQualifyingCount: bruteQualifying.length,
+        indexedBruteForceHighestAgreement: round(indexedQualifying[0] || 0) === round(bruteQualifying[0] || 0),
+        representationComparison: {
+          candidate: {
+            setNumber,
+            patch,
+            rawOptimizerUnitIds: candidateBoard.normalizationDiagnostics?.rawOptimizerUnitIds || [],
+            normalizedUnitIds: (candidateBoard.units || []).map((unit) => unit.unitId),
+            resolvedCatalogUnitIds: candidateBoard.normalizationDiagnostics?.resolvedCatalogUnitIds || [],
+            starLevels: (candidateBoard.units || []).map((unit) => unit.starLevel),
+            itemIds: (candidateBoard.units || []).map((unit) => unit.itemIds),
+            activeTraits: (candidateBoard.activeTraits || []).map((trait) => ({
+              traitId: trait.traitId,
+              activeTier: trait.activeTier,
+              normalizedBreakpoint: normalizedTraitBreakpoint(trait, index.metadata),
+            })),
+            carries: carryTokens,
+            cores: coreTokens,
+            blockingTokens: { core: coreTokens, traits: traitTokens, carries: carryTokens },
+            isPartialBoard,
+            hasIncompleteContext,
+            expectedBoardSize,
+            actualBoardSize,
+          },
+          nearestHistoricalBoard: bruteForce[0] ? {
+            unitIds: (bruteForce[0].record.board.units || []).map((unit) => unit.unitId),
+            starLevels: (bruteForce[0].record.board.units || []).map((unit) => unit.starLevel),
+            itemIds: (bruteForce[0].record.board.units || []).map((unit) => unit.itemIds),
+            activeTraits: (bruteForce[0].record.board.activeTraits || []).map((trait) => ({
+              traitId: trait.traitId,
+              activeTier: trait.activeTier,
+              normalizedBreakpoint: normalizedTraitBreakpoint(trait, index.metadata),
+            })),
+            carries: selectCarries(bruteForce[0].record.board, index.metadata).map((unit) => unit.unitId),
+            cores: selectCoreUnits(bruteForce[0].record.board, index.metadata).map((unit) => unit.unitId),
+            similarity: bruteForce[0].similarity.score,
+            components: bruteForce[0].similarity.components,
+          } : null,
+        },
+      };
+    }
     return result;
   }
 }
